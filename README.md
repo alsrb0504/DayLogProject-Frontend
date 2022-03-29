@@ -1,5 +1,4 @@
 # DayLogProject-Frontend
----
 프론트엔드 저장소
 https://github.com/alsrb0504/CapStoneProject
 
