@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function App() {
@@ -21,6 +22,21 @@ const TestLoginForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+
+    // GET 요청
+    // axios.get("/api").then((res) => {
+    //   console.log(res.data);
+    // });
+
+    // POST 요청
+    axios
+      .post("/api/login", {
+        id: "id",
+        passwd: "passwd",
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   const onError = (e) => {
@@ -31,15 +47,7 @@ const TestLoginForm = () => {
     <>
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <input
-          type="text"
-          {...register("username", {
-            minLength: {
-              value: 5,
-              messaage: "username must be longth than 5 characters.",
-            },
-          })}
-        />
+        <input type="text" {...register("username")} />
         <input
           type="password"
           {...register("password", {
@@ -51,7 +59,7 @@ const TestLoginForm = () => {
         />
         <br />
 
-        <input type="submit" />
+        <input type="submit" value={"로그인"} />
       </form>
     </>
   );
