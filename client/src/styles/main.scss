@@ -1,9 +1,12 @@
 // reset.scss
-@import "./base/reset.scss";
+@import "./base/reset";
+@import "./base/base";
 
 // constrants
 @import "./constants/breakpoint";
 @import "./constants/colors";
+
+@import "./constants/grids";
 
 // @layouts
 @import "./layouts/visible";
