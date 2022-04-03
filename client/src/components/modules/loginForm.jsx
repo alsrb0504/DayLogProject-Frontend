@@ -16,7 +16,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form className="col-sm-3" onSubmit={handleSubmit(onSubmit, onError)}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       <InputContainer
         children={
           <input

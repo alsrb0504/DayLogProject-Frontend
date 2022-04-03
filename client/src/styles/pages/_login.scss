@@ -1,0 +1,41 @@
+.login-container {
+  @include column-flexbox(center, center);
+  width: 100%;
+
+  max-width: 400px;
+
+  background-color: beige;
+}
+
+.logo {
+  margin-bottom: 48px;
+}
+
+// 예외
+// 설계 시, 정확하게 col-sm-3이 아니라 대략 2.5 정도
+.login-top {
+  width: percentage(3 / ($sm-columns + 1));
+}
+
+.find-section {
+  @include flexbox(center);
+
+  button {
+    background-color: $white;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+
+    &:last-child {
+      margin-left: 8px;
+    }
+
+    a {
+      font-size: $font-size-12;
+      font-weight: 600;
+      color: $text-gray-2;
+      border-bottom: 1.5px solid $text-gray-3;
+    }
+  }
+}
