@@ -15,10 +15,23 @@ function App() {
         <div className="row">
           <div className="col-sm-3">
             {/* <button className="col-sm-1">1</button> */}
-            <button className="btn-primary">로그인</button>
-            <button className="btn-secondary">회원가입</button>
-            <button className="btn-tertiary">체크</button>
-            <button className="btn-outlined">아웃라인</button>
+            <div className="input-container-36">
+              <span>🎈</span>
+              <input
+                className="input"
+                type="text"
+                placeholder="아이디를 입력하세요"
+              />
+            </div>
+
+            <div className="input-container-36">
+              <span>🎈</span>
+              <input
+                className="input"
+                type="text"
+                placeholder="아이디를 입력하세요"
+              />
+            </div>
 
             <Button
               text={"회원가입"}
