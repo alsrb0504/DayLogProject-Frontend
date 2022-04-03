@@ -1,39 +1,29 @@
-import logo from "./logo.svg";
 import "./App.scss";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
+import Button from "./components/button";
+
 function App() {
+  const onClick = () => {
+    alert("hi");
+  };
+
   return (
     <div className="App">
       <div className="container">
-        <div>
-          <div className="col-sm-1">1</div>
-        </div>
-        <div className="col-sm-2">
-          <div className="red">he</div>
-        </div>
+        <div className="row">
+          <div className="col-sm-3">
+            {/* <button className="col-sm-1">1</button> */}
+            <button className="btn-primary">로그인</button>
+            <button className="btn-secondary">회원가입</button>
+            <button className="btn-tertiary">체크</button>
+            <button className="btn-outlined">아웃라인</button>
 
-        <div className="col-sm-3">1</div>
-        <div className="col-sm-4">1</div>
-
-        <div>
-          <div className="col-md-1">1</div>
+            <Button text={"회원가입"} type={"btn-primary"} onClick={onClick} />
+          </div>
         </div>
-        <div className="col-md-2">
-          <div className="red">he</div>
-        </div>
-
-        <div className="col-md-3">1</div>
-        <div className="col-md-4">1</div>
-        <div className="col-md-8">1</div>
       </div>
-
-      {/* <header className="App-header"> */}
-      {/* <img src={logo} className="App-logo" alt="logo" /> */}
-
-      {/* <TestLoginForm /> */}
-      {/* </header> */}
     </div>
   );
 }
