@@ -1,50 +1,13 @@
 import "./App.scss";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-
-import Button from "./components/button";
 import Login from "./pages/login";
 
 function App() {
-  const onClick = () => {
-    alert("hi");
-  };
-
   return (
-    <Login />
-
-    // <div className="App">
-    //   <div className="container">
-    //     <div className="row">
-    //       <div className="col-sm-3">
-    //         <div className="input-container-36">
-    //           <span>🎈</span>
-    //           <input
-    //             className="input"
-    //             type="text"
-    //             placeholder="아이디를 입력하세요"
-    //           />
-    //         </div>
-
-    //         <div className="input-container-36">
-    //           <span>🎈</span>
-    //           <input
-    //             className="input"
-    //             type="text"
-    //             placeholder="아이디를 입력하세요"
-    //           />
-    //         </div>
-
-    //         <Button
-    //           text={"회원가입"}
-    //           type={"btn-primary"}
-    //           size={"btn-40"}
-    //           onClick={onClick}
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+    <div className="tablet-container">
+      <Login />
+    </div>
   );
 }
 
