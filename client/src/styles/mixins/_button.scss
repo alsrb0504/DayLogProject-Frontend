@@ -1,0 +1,11 @@
+@mixin btn-setting($back: $primary, $font: $white) {
+  width: 100%;
+  height: 40px;
+
+  background-color: $back;
+  color: $font;
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
