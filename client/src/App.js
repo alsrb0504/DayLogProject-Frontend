@@ -20,7 +20,12 @@ function App() {
             <button className="btn-tertiary">체크</button>
             <button className="btn-outlined">아웃라인</button>
 
-            <Button text={"회원가입"} type={"btn-primary"} onClick={onClick} />
+            <Button
+              text={"회원가입"}
+              type={"btn-primary"}
+              size={"btn-40"}
+              onClick={onClick}
+            />
           </div>
         </div>
       </div>
