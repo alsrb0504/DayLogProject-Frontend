@@ -1,12 +1,19 @@
-@mixin btn-setting($back: $primary, $font: $white) {
+@mixin btn-setting($back: $primary, $font-color: $white) {
   width: 100%;
 
   background-color: $back;
-  color: $font;
+  color: $font-color;
 
   border: none;
   border-radius: 6px;
   cursor: pointer;
 
   margin-bottom: 8px;
+
+  transition: opacity 100ms ease-in-out;
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
 }
