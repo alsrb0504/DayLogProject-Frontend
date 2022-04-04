@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import Button from "../button";
 import InputContainer from "../inputContainer";
 
+import { login } from "../../services/auth";
+
 const LoginForm = (props) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     // 데이터 로그인 api 주소로 전송
     // http://localhost:8000/api/login
+    login(data);
   };
 
   const onError = () => {
@@ -32,7 +34,7 @@ const LoginForm = (props) => {
           <input
             type="password"
             placeholder="비밀번호를 입력하세요."
-            {...register("passwd", { required: true })}
+            {...register("password", { required: true })}
           />
         }
       />
