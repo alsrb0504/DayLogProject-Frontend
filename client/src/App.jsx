@@ -2,11 +2,14 @@ import "./App.scss";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Login from "./pages/login";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="tablet-container">
-      <Login />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 }
