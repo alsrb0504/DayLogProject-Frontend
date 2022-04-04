@@ -1,0 +1,42 @@
+.btn-primary {
+  @include btn-setting;
+  font-size: 20px;
+  font-weight: bold;
+
+  font-family: $font-main;
+}
+
+.btn-secondary {
+  @include btn-setting($secondary, $white);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-tertiary {
+  @include btn-setting($tertiary, $white);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-outlined {
+  @include btn-setting($white, $primary);
+  border: 2px solid $primary;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.btn-20 {
+  font-size: font-size-12;
+  height: 20px;
+}
+
+.btn-40 {
+  font-size: $font-size-20;
+  height: 40px;
+}
+
+.btn-60 {
+  font-size: $font-size-30;
+  height: 60px;
+}
