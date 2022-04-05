@@ -2,19 +2,34 @@ import { useForm } from "react-hook-form";
 import Button from "../button";
 import InputContainer from "../inputContainer";
 import { login } from "../../services/auth";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../../store/actions/auth";
 
 const LoginForm = (props) => {
   const { register, handleSubmit } = useForm();
 
+  const [loginData, setLoginData] = useState({});
+
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
     // 데이터 로그인 api 주소로 전송
     // http://localhost:8000/api/login
-    login(data).then((res) => console.log(res));
+    // login(data).then((res) => console.log(res));
+
+    setLoginData(data);
+
+    dispatch(loginAction(data));
   };
 
   const onError = () => {
     //
   };
+
+  useEffect(() => {
+    console.log(loginData);
+  }, [loginData]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
