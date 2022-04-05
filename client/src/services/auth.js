@@ -8,19 +8,22 @@ export async function login(data) {
   try {
     const res = await axios.post("/api/members/login", data);
 
-    if (res.data.message === "login connect") {
-      return true;
-    } else {
-      return false;
-    }
+    console.log("login func");
+
+    return res.data;
   } catch {
-    return false;
+    console.error("services/auth.js, login func error");
   }
+}
 
-  // 유저 설정 setUser
-  // 리덕스 사용?
-  // 로그인 결과 true / false 로 반환?
-  // 세션에 먼저 해보자 : 어제 띄어놓은 글 참고
+export async function register(data) {
+  try {
+    const res = await axios.post("/api/members/new", data);
 
-  // return res;
+    console.log("register func");
+
+    return res.data;
+  } catch {
+    console.error("services/auth.js, register func error");
+  }
 }

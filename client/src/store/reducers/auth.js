@@ -1,8 +1,8 @@
-import { LOGIN_USER } from "../actions/types";
+import { LOGIN_USER, REGISTER_USER } from "../actions/types";
 
 const initState = {
-  id: "",
-  password: "",
+  result: "",
+  register: "",
 };
 
 const authReducer = (state = initState, action) => {
@@ -10,10 +10,10 @@ const authReducer = (state = initState, action) => {
     case LOGIN_USER: {
       return {
         ...state,
-        id: action.payload.id,
-        password: action.payload.password,
+        result: action.payload,
       };
     }
+
     default:
       return { ...state };
   }
