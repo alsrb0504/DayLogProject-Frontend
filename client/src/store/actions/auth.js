@@ -16,3 +16,18 @@ export function loginActionAync(data) {
     dispatch(loginAction(result));
   };
 }
+
+function registerAction(data) {
+  return {
+    type: REGISTER_USER,
+    payload: data,
+  };
+}
+
+export function registerActionAsync(data) {
+  return async (dispatch) => {
+    const result = await register(data);
+
+    dispatch(registerAction(result));
+  };
+}

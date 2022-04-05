@@ -13,7 +13,14 @@ const authReducer = (state = initState, action) => {
         result: action.payload,
       };
     }
-
+    case REGISTER_USER: {
+      console.log("authreducer register user");
+      return {
+        ...state,
+        result: action.payload.message,
+        register: action.payload.message,
+      };
+    }
     default:
       return { ...state };
   }
