@@ -1,8 +1,8 @@
 import React from "react";
-import LoginForm from "../components/modules/loginForm";
+import LoginForm from "../../components/modules/loginForm";
 import classnames from "classnames";
-import Button from "../components/button";
-import logo from "../assets/img/logo.svg";
+import Button from "../../components/button";
+import logo from "../../assets/img/logo.svg";
 
 const Login = (props) => {
   return (
