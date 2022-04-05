@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../button";
 import InputContainer from "../inputContainer";
-
 import { login } from "../../services/auth";
 
 const LoginForm = (props) => {
@@ -10,7 +9,7 @@ const LoginForm = (props) => {
   const onSubmit = (data) => {
     // 데이터 로그인 api 주소로 전송
     // http://localhost:8000/api/login
-    login(data);
+    login(data).then((res) => console.log(res));
   };
 
   const onError = () => {
