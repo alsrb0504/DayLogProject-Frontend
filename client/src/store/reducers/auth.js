@@ -1,24 +1,44 @@
 import { LOGIN_USER, REGISTER_USER } from "../actions/types";
 
 const initState = {
-  result: "",
+  login_result: "",
   register: "",
+  user: "",
+  loading: false,
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case LOGIN_USER: {
-      return {
-        ...state,
-        result: action.payload,
-      };
-    }
+    // case LOGIN_USER: {
+    //   return {
+    //     ...state,
+    //     login_result: action.payload.login_result,
+    //   };
+    // }
     case REGISTER_USER: {
-      console.log("authreducer register user");
       return {
         ...state,
         result: action.payload.message,
         register: action.payload.message,
+      };
+    }
+    case "LOGIN_START": {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case "LOGIN_SUCCESS": {
+      return {
+        ...state,
+        login_result: action.payload,
+        loading: false,
+      };
+    }
+    case "LOGIN_ERROR": {
+      return {
+        ...state,
+        loading: false,
       };
     }
     default:

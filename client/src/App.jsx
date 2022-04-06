@@ -3,6 +3,7 @@ import Login from "./pages/Login/login";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/home";
 import SignUp from "./pages/SignUp/signUp";
+import { useSelector } from "react-redux";
 
 function App() {
   return (

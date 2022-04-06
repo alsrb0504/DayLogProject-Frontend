@@ -10,10 +10,20 @@ import ReduxThunk from "redux-thunk";
 import logger from "redux-logger";
 
 import rootReducer from "./store";
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory({
+  forceRefresh: true,
+});
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(ReduxThunk, logger))
+  composeWithDevTools(
+    applyMiddleware(
+      ReduxThunk.withExtraArgument({ history: customHistory }),
+      logger
+    )
+  )
 );
 ReactDOM.render(
   <React.StrictMode>
