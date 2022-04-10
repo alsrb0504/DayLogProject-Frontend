@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "../../components/modules/loginForm";
 import classnames from "classnames";
 import Button from "../../components/button";
 import logo from "../../assets/img/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("access_token")) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
+
   return (
     <div className="container">
       <div className="row">

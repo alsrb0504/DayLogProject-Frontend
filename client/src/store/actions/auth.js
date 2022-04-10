@@ -1,4 +1,8 @@
+import axios from "axios";
+import { useCookies } from "react-cookie";
 import { login, register } from "../../services/auth";
+import { getAuthHeader } from "../../services/authHeader";
+import { getCookie, setCookie } from "../../utils/cookie";
 import { REGISTER_USER } from "./types";
 
 export const loginActionAync =
@@ -9,13 +13,25 @@ export const loginActionAync =
     try {
       const res = await login(data);
 
-      // 테스트 토큰 : (id: aa, password: 1234)
-      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfa…zM2fQ.GzlqwE9eDyZv4ixWhSXBtwZ5Eg1f_XvZmaKgyKvX1Ig
-      console.log(res);
-      console.log(res.message);
-
       if (res.login_result) {
+        // 로그인 성공
+        // response.body의 access_token을 로컬 스토리지에 저장
+        // cookie에 httpOnly, Secure로 설정해서 refresh_token 자동 저장.
+        const access_token = res.access_token;
+
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${access_token}`;
+
+        localStorage.setItem("access_token", access_token);
+
+        // header 포함 함수 호출
+        const test = await axios.get("/api/me", {});
+
+        console.log(test);
+
         dispatch({ type: "LOGIN_SUCCESS", payload: res });
+
         history.push("/");
       } else {
         dispatch({ type: "LOGIN_ERROR", payload: res });
@@ -26,17 +42,12 @@ export const loginActionAync =
     }
   };
 
-function registerAction(data) {
-  return {
-    type: REGISTER_USER,
-    payload: data,
-  };
-}
-
 export function registerActionAsync(data) {
   return async (dispatch) => {
-    const result = await register(data);
+    const res = await axios.get("/api/signup");
 
-    dispatch(registerAction(result));
+    console.log(res);
+
+    // dispatch(registerAction(result));
   };
 }

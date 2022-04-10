@@ -1,14 +1,24 @@
-import axios from "axios";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = (props) => {
-  const onTest = async () => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfa…zM2fQ.GzlqwE9eDyZv4ixWhSXBtwZ5Eg1f_XvZmaKgyKvX1Ig";
+  const [logined, setLogined] = useState(localStorage.getItem("access_token"));
+  const navigate = useNavigate();
 
-    const res = await axios.post("/api/members/login/token", token);
-    console.log(res);
+  useEffect(() => {
+    console.log(logined);
+  }, [logined]);
+
+  // 로그아웃
+  // localStrage의 access_token을 지워버림.
+  const onLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
+  // 현재 필요없는 코드.
+  const onLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -21,7 +31,20 @@ const Home = (props) => {
         <br />
         <Link to="/signup">Move to Signup</Link>
 
-        <button onClick={onTest}>token test</button>
+        <br />
+        <br />
+        <br />
+
+        {logined && (
+          <button className="btn-primary" onClick={onLogout}>
+            Logout
+          </button>
+        )}
+        {!logined && (
+          <button className="btn-primary" onClick={onLogin}>
+            Login
+          </button>
+        )}
       </div>
     </div>
   );
