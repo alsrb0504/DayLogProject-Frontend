@@ -1,10 +1,17 @@
 import React from "react";
-import LoginForm from "../components/modules/loginForm";
+import LoginForm from "../../components/modules/loginForm";
 import classnames from "classnames";
-import Button from "../components/button";
-import logo from "../assets/img/logo.svg";
+import Button from "../../components/button";
+import logo from "../../assets/img/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
+  const navigate = useNavigate();
+
+  const goToSignup = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -19,9 +26,9 @@ const Login = (props) => {
           <div className={classnames("login-bottom", "col-sm-2")}>
             <Button
               text="회원가입"
-              type="btn-secondary"
+              color="btn-secondary"
               size="btn-40"
-              onClick={() => {}}
+              onClick={goToSignup}
             />
 
             <div className="find-section">

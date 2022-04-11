@@ -1,24 +1,20 @@
 import { useForm } from "react-hook-form";
 import Button from "../button";
 import InputContainer from "../inputContainer";
+import { useDispatch } from "react-redux";
+import { loginActionAync } from "../../store/actions/auth";
 
-import { login } from "../../services/auth";
-
-const LoginForm = (props) => {
+const LoginForm = () => {
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    // 데이터 로그인 api 주소로 전송
-    // http://localhost:8000/api/login
-    login(data);
-  };
-
-  const onError = () => {
-    //
+    // 로그인
+    dispatch(loginActionAync(data));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <InputContainer
         children={
           <input
@@ -39,12 +35,7 @@ const LoginForm = (props) => {
         }
       />
 
-      <Button
-        text="로그인"
-        type="btn-primary"
-        size="btn-40"
-        onClick={handleSubmit}
-      />
+      <Button text="로그인" type="submit" color="btn-primary" size="btn-40" />
     </form>
   );
 };
