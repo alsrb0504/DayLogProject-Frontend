@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import Button from "../../components/button";
+import InputContainer from "../../components/inputContainer";
 import { registerActionAsync } from "../../store/actions/auth";
 
 const SignUp = (props) => {
@@ -18,41 +20,55 @@ const SignUp = (props) => {
       <div className="row">
         <div className="col-sm-4">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              style={{ border: "1px solid tomato" }}
-              type="text"
-              {...register("id", { required: true })}
+            {/* <label>아이디</label> */}
+            <InputContainer
+              children={
+                <input type="text" {...register("id", { required: true })} />
+              }
+              size="col-sm-3"
+              label="아이디"
             />
-            <br />
-            <input
-              style={{ border: "1px solid tomato" }}
-              type="text"
-              {...register("password", { required: true })}
+            <InputContainer
+              children={
+                <input
+                  type="text"
+                  {...register("password", { required: true })}
+                />
+              }
+              size="col-sm-3"
+              label="비밀번호"
             />
-            <br />
+            <InputContainer
+              children={
+                <input type="text" {...register("email", { required: true })} />
+              }
+              size="col-sm-3"
+              label="이메일"
+            />
+            <InputContainer
+              children={
+                <input
+                  type="text"
+                  {...register("nickname", { required: true })}
+                />
+              }
+              size="col-sm-3"
+              label="닉네임"
+            />
+            <InputContainer
+              children={
+                <input type="text" {...register("name", { required: true })} />
+              }
+              size="col-sm-3"
+              label="이름"
+            />
 
-            <input
-              style={{ border: "1px solid tomato" }}
-              type="text"
-              {...register("email", { required: true })}
+            <Button
+              text="완료"
+              type="submit"
+              color="btn-primary"
+              size="btn-40"
             />
-            <br />
-
-            <input
-              style={{ border: "1px solid tomato" }}
-              type="text"
-              {...register("nickname", { required: true })}
-            />
-            <br />
-
-            <input
-              style={{ border: "1px solid tomato" }}
-              type="text"
-              {...register("name", { required: true })}
-            />
-            <br />
-
-            <input type="submit" />
           </form>
         </div>
       </div>
