@@ -2,7 +2,7 @@ import "./App.scss";
 import Login from "./pages/Login/login";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/home";
-import SignUp from "./pages/SignUp/signUp";
+import SignUp from "./pages/Signup/signup";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -36,10 +36,10 @@ function App() {
           // 1. access 토큰이 변조됨.
           // 2. access 토큰이 변조됨.
           // 3. refresh 토큰 만료 or 변조.
-          if (err_message === "JWT_EXPIRED") {
-            axios.get("/api/newToken").then((res) => {
+          if (e.response.status === 401) {
+            axios.get("/api/update").then((res) => {
               console.log(res.data);
-              localStorage.setItem("access_token", res.data.new_token);
+              localStorage.setItem("access_token", res.data.AT);
             });
           } else {
             alert(`로그인 오류 ${err_message}`);
