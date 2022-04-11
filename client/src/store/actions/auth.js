@@ -12,12 +12,13 @@ export const loginActionAync =
 
     try {
       const res = await login(data);
+      console.log(res);
 
-      if (res.login_result) {
+      if (res.success) {
         // 로그인 성공
         // response.body의 access_token을 로컬 스토리지에 저장
         // cookie에 httpOnly, Secure로 설정해서 refresh_token 자동 저장.
-        const access_token = res.access_token;
+        const access_token = res.AT;
 
         axios.defaults.headers.common[
           "Authorization"
@@ -26,9 +27,9 @@ export const loginActionAync =
         localStorage.setItem("access_token", access_token);
 
         // header 포함 함수 호출
-        const test = await axios.get("/api/me", {});
+        //const test = await axios.get("/api/update", {});
 
-        console.log(test);
+        //console.log(test);
 
         dispatch({ type: "LOGIN_SUCCESS", payload: res });
 
@@ -44,7 +45,7 @@ export const loginActionAync =
 
 export function registerActionAsync(data) {
   return async (dispatch) => {
-    const res = await axios.get("/api/signup");
+    const res = await axios.post("/api/members/new",data);
 
     console.log(res);
 

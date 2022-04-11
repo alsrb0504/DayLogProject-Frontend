@@ -26,7 +26,7 @@ const authReducer = (state = initState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        login_result: action.payload.login_result,
+        login_result: action.payload.success,
         user: action.payload.user,
         loading: false,
       };
@@ -34,7 +34,7 @@ const authReducer = (state = initState, action) => {
     case "LOGIN_ERROR": {
       return {
         ...state,
-        login_result: action.payload.login_result,
+        login_result: action.payload.success,
         user: "",
         loading: false,
       };
