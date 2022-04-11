@@ -26,7 +26,7 @@ const Login = (props) => {
           <div className={classnames("login-bottom", "col-sm-2")}>
             <Button
               text="회원가입"
-              type="btn-secondary"
+              color="btn-secondary"
               size="btn-40"
               onClick={goToSignup}
             />

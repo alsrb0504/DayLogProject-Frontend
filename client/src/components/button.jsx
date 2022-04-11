@@ -1,10 +1,10 @@
-const Button = ({ text, type, size, onClick }) => {
+const Button = ({ text, type, color, size, onClick }) => {
   const handleClick = () => {
     onClick();
   };
 
   return (
-    <button onClick={handleClick} className={`${type} ${size}`}>
+    <button type={type} onClick={handleClick} className={`${color} ${size}`}>
       {text}
     </button>
   );

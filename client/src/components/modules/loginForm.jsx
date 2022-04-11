@@ -35,12 +35,7 @@ const LoginForm = () => {
         }
       />
 
-      <Button
-        text="로그인"
-        type="btn-primary"
-        size="btn-40"
-        onClick={handleSubmit}
-      />
+      <Button text="로그인" type="submit" color="btn-primary" size="btn-40" />
     </form>
   );
 };
