@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LoginForm from "../../components/modules/loginForm";
 import classnames from "classnames";
 import Button from "../../components/button";
@@ -6,13 +6,11 @@ import logo from "../../assets/img/logo.svg";
 import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("access_token")) {
-  //     navigate("/");
-  //   }
-  // }, [navigate]);
+  const goToSignup = () => {
+    navigate("/signup");
+  };
 
   return (
     <div className="container">
@@ -30,7 +28,7 @@ const Login = (props) => {
               text="회원가입"
               type="btn-secondary"
               size="btn-40"
-              onClick={() => {}}
+              onClick={goToSignup}
             />
 
             <div className="find-section">
