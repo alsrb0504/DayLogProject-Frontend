@@ -2,6 +2,7 @@ import {
   SIGNUP_ID_FAIL,
   SIGNUP_ID_START,
   SIGNUP_ID_SUCCESS,
+  SIGNUP_PASSWD,
 } from "../actions/types";
 
 const initState = {
@@ -30,6 +31,12 @@ const signupReducer = (state = initState, action) => {
       return {
         ...state,
         loading: false,
+      };
+    }
+    case SIGNUP_PASSWD: {
+      return {
+        ...state,
+        password: action.payload,
       };
     }
     default: {

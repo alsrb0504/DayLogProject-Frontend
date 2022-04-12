@@ -1,5 +1,10 @@
 import axios from "axios";
-import { SIGNUP_ID_FAIL, SIGNUP_ID_START, SIGNUP_ID_SUCCESS } from "./types";
+import {
+  SIGNUP_ID_FAIL,
+  SIGNUP_ID_START,
+  SIGNUP_ID_SUCCESS,
+  SIGNUP_PASSWD,
+} from "./types";
 
 export function signupId(id) {
   console.log("action func in ", id);
@@ -16,6 +21,7 @@ export const signupIdAsync =
     dispatch({ type: SIGNUP_ID_START });
 
     try {
+      // 서버와 통신할 때 주석 지움.
       // const res = await axios.post("/api/members/idCheck", { id });
       const res = {
         existed: true,
@@ -39,3 +45,10 @@ export const signupIdAsync =
       dispatch({ type: SIGNUP_ID_FAIL });
     }
   };
+
+export const signupPasswd = (password) => {
+  return {
+    type: SIGNUP_PASSWD,
+    payload: password,
+  };
+};
