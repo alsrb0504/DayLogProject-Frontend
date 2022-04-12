@@ -28,10 +28,14 @@ const SignUpEmail = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="email" {...register("email", { required: true })} />
+            <input
+              type="email"
+              placeholder="이메일을 입력하세요"
+              {...register("email", { required: true })}
+            />
           }
           size="col-sm-3"
-          label="이메일을 입력해주세요."
+          label="이메일을 입력하세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

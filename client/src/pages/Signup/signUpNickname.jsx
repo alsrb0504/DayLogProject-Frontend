@@ -28,10 +28,14 @@ const SignUpNickname = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="text" {...register("nickname", { required: true })} />
+            <input
+              type="text"
+              placeholder="닉네임을 입력하세요"
+              {...register("nickname", { required: true })}
+            />
           }
           size="col-sm-3"
-          label="닉네임을 입력해주세요."
+          label="닉네임을 입력하세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

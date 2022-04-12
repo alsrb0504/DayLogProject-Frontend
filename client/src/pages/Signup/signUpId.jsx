@@ -33,11 +33,11 @@ const SignUpId = (props) => {
             <input
               type="text"
               {...register("id", { required: true })}
-              placeholder="아이디를 입력해주세요."
+              placeholder="아이디를 입력하세요."
             />
           }
           size="col-sm-3"
-          label="아이디를 입력해주세요."
+          label="아이디를 입력하세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

@@ -37,17 +37,19 @@ const SignUpPasswd = (props) => {
           children={
             <input
               type="password"
+              placeholder="비밀번호를 입력하세요."
               {...register("password1", { required: true })}
             />
           }
           size="col-sm-3"
-          label="비밀번호를 입력해주세요."
+          label="비밀번호를 입력하세요."
         />
 
         <InputContainer
           children={
             <input
               type="password"
+              placeholder="비밀번호를 재입력 하세요."
               {...register("password2", { required: true })}
             />
           }
