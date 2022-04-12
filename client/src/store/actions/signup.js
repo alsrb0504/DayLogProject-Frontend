@@ -11,8 +11,6 @@ import {
 } from "./types";
 
 export function signupId(id) {
-  console.log("action func in ", id);
-
   return {
     type: SIGNUP_ID_START,
     payload: id,
@@ -28,7 +26,6 @@ export const signupIdAsync =
       // 서버와 통신할 때 주석 지움.
       const res = await axios.post("/api/members/idCheck", { id: id.id });
 
-      console.log(res);
       // 중복된 아이디가 없다면 => existed === false?? true??
       if (res.data.success === true) {
         dispatch({
