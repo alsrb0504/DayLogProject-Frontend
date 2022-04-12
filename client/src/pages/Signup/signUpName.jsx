@@ -1,10 +1,10 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/button";
-import InputContainer from "../../components/inputContainer";
+import Button from "../../components/modules/button";
 import InputHeader from "../../components/modules/inputHeader";
+import InputContainer from "../../components/modules/inputContainer";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { signupAsync, signupName } from "../../store/actions/signup";
 
 const SignUpName = (props) => {
@@ -12,15 +12,11 @@ const SignUpName = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const data = useSelector((state) => state.signupReducer);
-
   const onSubmit = (name) => {
+    // 이름 redux에 저장
     dispatch(signupName(name));
-    // navigate("/signup/name");
-
-    console.log(data);
-
-    dispatch(signupAsync(data));
+    // 이후 회원가입 진행.
+    dispatch(signupAsync());
   };
 
   const moveBack = () => {
@@ -34,10 +30,14 @@ const SignUpName = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="text" {...register("name", { required: true })} />
+            <input
+              type="text"
+              placeholder="이름을 입력하세요"
+              {...register("name", { required: true })}
+            />
           }
           size="col-sm-3"
-          label="이름을 입력해주세요."
+          label="이름을 입력하세요."
         />
 
         <Button text="완료" type="submit" color="btn-primary" size="btn-40" />

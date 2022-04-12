@@ -4,7 +4,9 @@ const InputContainer = ({ children, size, label }) => {
   return (
     <>
       {label && <label className="input-label">{label}</label>}
-      <div className={`input-container-36 ${size ? size : "col-sm-4"}`}>
+      <div
+        className={`input-container-36 ${size ? size : "col-sm-4"} col-md-4`}
+      >
         {children}
       </div>
     </>

@@ -3,11 +3,13 @@ import arrow_back_icon from "../../assets/icons/arrow-back.svg";
 
 const InputHeader = ({ text, onClick }) => {
   return (
-    <header>
-      <div onClick={onClick}>
-        <img src={arrow_back_icon} alt="arrow-back-icon" />
+    <header className="input-header">
+      <div className="header-section">
+        <div className="header-icon-box" onClick={onClick}>
+          <img src={arrow_back_icon} alt="arrow-back-icon" />
+        </div>
+        <span className="header-text">{text}</span>
       </div>
-      <span>{text}</span>
     </header>
   );
 };

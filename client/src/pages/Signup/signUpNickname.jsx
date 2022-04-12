@@ -1,10 +1,10 @@
 import React from "react";
+import Button from "../../components/modules/button";
+import InputContainer from "../../components/modules/inputContainer";
+import InputHeader from "../../components/modules/inputHeader";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/button";
-import InputContainer from "../../components/inputContainer";
-import InputHeader from "../../components/modules/inputHeader";
 import { signupNickname } from "../../store/actions/signup";
 
 const SignUpNickname = (props) => {
@@ -28,10 +28,14 @@ const SignUpNickname = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="text" {...register("nickname", { required: true })} />
+            <input
+              type="text"
+              placeholder="닉네임을 입력하세요"
+              {...register("nickname", { required: true })}
+            />
           }
           size="col-sm-3"
-          label="닉네임을 입력해주세요."
+          label="닉네임을 입력하세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

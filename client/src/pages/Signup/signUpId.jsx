@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../../components/button";
-import InputContainer from "../../components/inputContainer";
+import Button from "../../components/modules/button";
+import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -12,13 +12,9 @@ const SignUpId = (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (id) => {
-    console.log(id);
-
+    // 아이디 중복체크 통신 후,
+    // 참일 경우만 다음 단계로 진행.
     dispatch(signupIdAsync(id));
-
-    // redux의 signUp 부분에 저장 action 실행.
-    // 아이디 중복체크 통신
-    // 성공 시, redux에 저장 및 비밀번호 페이지로 이동
   };
 
   const navigate = useNavigate();
@@ -34,10 +30,14 @@ const SignUpId = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="text" {...register("id", { required: true })} />
+            <input
+              type="text"
+              {...register("id", { required: true })}
+              placeholder="아이디를 입력하세요."
+            />
           }
           size="col-sm-3"
-          label="아이디"
+          label="아이디를 입력하세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

@@ -1,9 +1,9 @@
 import React from "react";
-import LoginForm from "../../components/modules/loginForm";
 import classnames from "classnames";
-import Button from "../../components/button";
+import Button from "../../components/modules/button";
 import logo from "../../assets/img/logo.svg";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "../../components/sections/loginForm";
 
 const Login = (props) => {
   const navigate = useNavigate();
