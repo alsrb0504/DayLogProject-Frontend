@@ -85,7 +85,7 @@ export const signupAsync =
   async (dispatch, getState, { history }) => {
     dispatch({ type: SIGNUP_START });
 
-    const userData = getState().signupReducer;
+    const userData = getState().signup;
 
     try {
       await axios.post("/api/members/new", userData);
