@@ -2,13 +2,19 @@ import "./App.scss";
 import Login from "./pages/Login/login";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/home";
-import SignUp from "./pages/Signup/signup";
+import SignUp from "./pages/SignUp/signUp";
 import { useEffect } from "react";
 import axios from "axios";
+import SignUpId from "./pages/SignUp/signUpId";
+import SignUpPasswd from "./pages/SignUp/signUpPasswd";
+import SignUpEmail from "./pages/SignUp/signUpEmail";
+import SignUpNickname from "./pages/SignUp/signUpNickname";
+import SignUpName from "./pages/SignUp/signUpName";
 
 function App() {
   const navigate = useNavigate();
 
+  /*
   useEffect(() => {
     // 처음 접속 : 아예 access_token 이 존재 X
     // => 로그인 페이지로 이동.
@@ -50,13 +56,20 @@ function App() {
         });
     }
   }, [navigate]);
+*/
 
   return (
     <div className="tablet-container">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />}>
+          <Route index element={<SignUpId />} />
+          <Route path="password" element={<SignUpPasswd />} />
+          <Route path="email" element={<SignUpEmail />} />
+          <Route path="nickname" element={<SignUpNickname />} />
+          <Route path="name" element={<SignUpName />} />
+        </Route>
       </Routes>
     </div>
   );

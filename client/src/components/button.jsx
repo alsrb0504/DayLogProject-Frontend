@@ -1,6 +1,6 @@
 const Button = ({ text, type, color, size, onClick }) => {
   const handleClick = () => {
-    onClick();
+    onClick && onClick();
   };
 
   return (

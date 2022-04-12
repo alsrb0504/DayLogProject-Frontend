@@ -45,7 +45,7 @@ export const loginActionAync =
 
 export function registerActionAsync(data) {
   return async (dispatch) => {
-    const res = await axios.post("/api/members/new",data);
+    const res = await axios.post("/api/members/new", data);
 
     console.log(res);
 
