@@ -5,6 +5,7 @@ import Home from "./pages/Home/home";
 import SignUp from "./pages/SignUp/signUp";
 import { useEffect } from "react";
 import axios from "axios";
+import SignUpId from "./pages/SignUp/signUpId";
 
 function App() {
   const navigate = useNavigate();
@@ -58,7 +59,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp />}>
+          <Route index element={<SignUpId />} />
+        </Route>
       </Routes>
     </div>
   );
