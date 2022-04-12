@@ -1,0 +1,13 @@
+.signup-container {
+  height: 100vh;
+  position: relative;
+
+  button {
+    position: absolute;
+    left: 0;
+    // 설계 상 아래서 20px 띄워져 있음.
+    // Button 컴포넌트 기본 margin-bottom: 8px
+    // + 12px = 20px
+    bottom: 12px;
+  }
+}
