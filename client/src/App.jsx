@@ -2,14 +2,14 @@ import "./App.scss";
 import Login from "./pages/Login/login";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/home";
-import SignUp from "./pages/SignUp/signUp";
+import SignUp from "./pages/Signup/signup";
 import { useEffect } from "react";
 import axios from "axios";
-import SignUpId from "./pages/SignUp/signUpId";
-import SignUpPasswd from "./pages/SignUp/signUpPasswd";
-import SignUpEmail from "./pages/SignUp/signUpEmail";
-import SignUpNickname from "./pages/SignUp/signUpNickname";
-import SignUpName from "./pages/SignUp/signUpName";
+import SignUpId from "./pages/Signup/signUpId";
+import SignUpPasswd from "./pages/Signup/signUpPasswd";
+import SignUpEmail from "./pages/Signup/signUpEmail";
+import SignUpNickname from "./pages/Signup/signUpNickname";
+import SignUpName from "./pages/Signup/signUpName";
 
 function App() {
   const navigate = useNavigate();

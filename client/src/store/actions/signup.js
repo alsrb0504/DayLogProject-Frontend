@@ -26,13 +26,11 @@ export const signupIdAsync =
 
     try {
       // 서버와 통신할 때 주석 지움.
-      // const res = await axios.post("/api/members/idCheck", { id });
-      const res = {
-        existed: true,
-      };
+      const res = await axios.post("/api/members/idCheck", { id : id.id });
 
+      console.log(res);
       // 중복된 아이디가 없다면 => existed === false?? true??
-      if (res.existed) {
+      if (res.data.success===true) {
         dispatch({
           type: SIGNUP_ID_SUCCESS,
           payload: id,
@@ -40,7 +38,7 @@ export const signupIdAsync =
 
         history.push("signup/password");
       } else {
-        console.log("이미 존재하는 아아디");
+        alert("이미 존재하는 아이디 입니다.")
         dispatch({ type: SIGNUP_ID_FAIL });
       }
     } catch (e) {
