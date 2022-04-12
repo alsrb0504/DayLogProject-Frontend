@@ -12,13 +12,9 @@ const SignUpId = (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (id) => {
-    console.log(id);
-
+    // 아이디 중복체크 통신 후,
+    // 참일 경우만 다음 단계로 진행.
     dispatch(signupIdAsync(id));
-
-    // redux의 signUp 부분에 저장 action 실행.
-    // 아이디 중복체크 통신
-    // 성공 시, redux에 저장 및 비밀번호 페이지로 이동
   };
 
   const navigate = useNavigate();
