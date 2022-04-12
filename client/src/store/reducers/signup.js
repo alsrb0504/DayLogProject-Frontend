@@ -3,6 +3,7 @@ import {
   SIGNUP_ID_FAIL,
   SIGNUP_ID_START,
   SIGNUP_ID_SUCCESS,
+  SIGNUP_NICKNAME,
   SIGNUP_PASSWD,
 } from "../actions/types";
 
@@ -44,6 +45,12 @@ const signupReducer = (state = initState, action) => {
       return {
         ...state,
         email: action.payload,
+      };
+    }
+    case SIGNUP_NICKNAME: {
+      return {
+        ...state,
+        nickname: action.nickname,
       };
     }
     default: {

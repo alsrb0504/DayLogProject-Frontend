@@ -59,3 +59,10 @@ export const signupEmail = (email) => {
     payload: email,
   };
 };
+
+export const signupNickname = (nickname) => {
+  return {
+    type: SIGNUP_PASSWD,
+    payload: nickname,
+  };
+};
