@@ -13,12 +13,11 @@ const initState = {
   password: "",
   email: "",
   nickname: "",
-  name: "",
+  name: "name",
   loading: false,
 };
 
 const signupReducer = (state = initState, action) => {
-  console.log(state);
   switch (action.type) {
     case SIGNUP_ID_START: {
       return { ...state, loading: true };
@@ -45,19 +44,20 @@ const signupReducer = (state = initState, action) => {
     case SIGNUP_EMAIL: {
       return {
         ...state,
-        email: action.payload,
+        email: action.payload.email,
       };
     }
     case SIGNUP_NICKNAME: {
       return {
         ...state,
-        nickname: action.nickname,
+        nickname: action.payload.nickname,
       };
     }
     case SIGNUP_NAME: {
+      console.log(action.payload);
       return {
         ...state,
-        name: action.name,
+        name: action.payload.name,
       };
     }
     default: {

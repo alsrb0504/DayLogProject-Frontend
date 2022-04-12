@@ -7,6 +7,7 @@ import {
   SIGNUP_NAME,
   SIGNUP_NICKNAME,
   SIGNUP_PASSWD,
+  SIGNUP_START,
 } from "./types";
 
 export function signupId(id) {
@@ -76,3 +77,21 @@ export const signupName = (name) => {
     payload: name,
   };
 };
+
+export const signupAsync =
+  (data) =>
+  async (dispatch, getState, { history }) => {
+    dispatch({ type: SIGNUP_START });
+
+    dispatch({ type: "GET_SIGNUP_DATA" }, data);
+
+    try {
+      const res = await axios.post("/api/members/new", data);
+
+      history.push("/login");
+
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
