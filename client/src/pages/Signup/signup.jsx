@@ -20,7 +20,6 @@ const SignUp = (props) => {
       <div className="row">
         <div className="col-sm-4">
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <label>아이디</label> */}
             <InputContainer
               children={
                 <input type="text" {...register("id", { required: true })} />
