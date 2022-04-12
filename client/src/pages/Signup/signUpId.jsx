@@ -4,12 +4,17 @@ import InputContainer from "../../components/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signupIdAsync } from "../../store/actions/signup";
 
 const SignUpId = (props) => {
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (id) => {
+    console.log(id);
+
+    dispatch(signupIdAsync(id));
 
     // redux의 signUp 부분에 저장 action 실행.
     // 아이디 중복체크 통신
