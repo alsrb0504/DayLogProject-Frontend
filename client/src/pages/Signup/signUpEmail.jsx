@@ -2,8 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/button";
-import InputContainer from "../../components/inputContainer";
+import Button from "../../components/modules/button";
+import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
 import { signupEmail } from "../../store/actions/signup";
 

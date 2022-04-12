@@ -1,10 +1,10 @@
 import React from "react";
+import Button from "../../components/modules/button";
+import InputContainer from "../../components/modules/inputContainer";
+import InputHeader from "../../components/modules/inputHeader";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/button";
-import InputContainer from "../../components/inputContainer";
-import InputHeader from "../../components/modules/inputHeader";
 import { signupPasswd } from "../../store/actions/signup";
 
 const SignUpPasswd = (props) => {
