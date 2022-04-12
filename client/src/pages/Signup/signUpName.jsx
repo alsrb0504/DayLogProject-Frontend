@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button";
 import InputContainer from "../../components/inputContainer";
@@ -12,15 +12,11 @@ const SignUpName = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const data = useSelector((state) => state.signupReducer);
-
   const onSubmit = (name) => {
+    // 이름 redux에 저장
     dispatch(signupName(name));
-    // navigate("/signup/name");
-
-    console.log(data);
-
-    dispatch(signupAsync(data));
+    // 이후 회원가입 진행.
+    dispatch(signupAsync());
   };
 
   const moveBack = () => {
