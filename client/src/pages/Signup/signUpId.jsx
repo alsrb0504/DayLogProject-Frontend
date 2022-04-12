@@ -30,10 +30,14 @@ const SignUpId = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input type="text" {...register("id", { required: true })} />
+            <input
+              type="text"
+              {...register("id", { required: true })}
+              placeholder="아이디를 입력해주세요."
+            />
           }
           size="col-sm-3"
-          label="아이디"
+          label="아이디를 입력해주세요."
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />
