@@ -2,13 +2,14 @@ import "./App.scss";
 import Login from "./pages/Login/login";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/home";
-import SignUp from "./pages/Signup/signup";
+import SignUp from "./pages/SignUp/signUp";
 import { useEffect } from "react";
 import axios from "axios";
 
 function App() {
   const navigate = useNavigate();
 
+  /*
   useEffect(() => {
     // 처음 접속 : 아예 access_token 이 존재 X
     // => 로그인 페이지로 이동.
@@ -50,6 +51,7 @@ function App() {
         });
     }
   }, [navigate]);
+*/
 
   return (
     <div className="tablet-container">
