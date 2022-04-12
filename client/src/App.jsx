@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import SignUpId from "./pages/SignUp/signUpId";
 import SignUpPasswd from "./pages/SignUp/signUpPasswd";
+import SignUpEmail from "./pages/SignUp/signUpEmail";
 
 function App() {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ function App() {
         <Route path="/signup" element={<SignUp />}>
           <Route index element={<SignUpId />} />
           <Route path="password" element={<SignUpPasswd />} />
+          <Route path="email" element={<SignUpEmail />} />
         </Route>
       </Routes>
     </div>

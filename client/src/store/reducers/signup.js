@@ -1,4 +1,5 @@
 import {
+  SIGNUP_EMAIL,
   SIGNUP_ID_FAIL,
   SIGNUP_ID_START,
   SIGNUP_ID_SUCCESS,
@@ -37,6 +38,12 @@ const signupReducer = (state = initState, action) => {
       return {
         ...state,
         password: action.payload,
+      };
+    }
+    case SIGNUP_EMAIL: {
+      return {
+        ...state,
+        email: action.payload,
       };
     }
     default: {

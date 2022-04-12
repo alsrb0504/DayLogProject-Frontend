@@ -52,3 +52,10 @@ export const signupPasswd = (password) => {
     payload: password,
   };
 };
+
+export const signupEmail = (email) => {
+  return {
+    type: SIGNUP_PASSWD,
+    payload: email,
+  };
+};
