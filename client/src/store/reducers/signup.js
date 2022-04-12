@@ -3,6 +3,7 @@ import {
   SIGNUP_ID_FAIL,
   SIGNUP_ID_START,
   SIGNUP_ID_SUCCESS,
+  SIGNUP_NAME,
   SIGNUP_NICKNAME,
   SIGNUP_PASSWD,
 } from "../actions/types";
@@ -51,6 +52,12 @@ const signupReducer = (state = initState, action) => {
       return {
         ...state,
         nickname: action.nickname,
+      };
+    }
+    case SIGNUP_NAME: {
+      return {
+        ...state,
+        name: action.name,
       };
     }
     default: {

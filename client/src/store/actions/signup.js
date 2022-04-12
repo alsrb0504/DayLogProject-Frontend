@@ -1,8 +1,11 @@
 import axios from "axios";
 import {
+  SIGNUP_EMAIL,
   SIGNUP_ID_FAIL,
   SIGNUP_ID_START,
   SIGNUP_ID_SUCCESS,
+  SIGNUP_NAME,
+  SIGNUP_NICKNAME,
   SIGNUP_PASSWD,
 } from "./types";
 
@@ -55,14 +58,21 @@ export const signupPasswd = (password) => {
 
 export const signupEmail = (email) => {
   return {
-    type: SIGNUP_PASSWD,
+    type: SIGNUP_EMAIL,
     payload: email,
   };
 };
 
 export const signupNickname = (nickname) => {
   return {
-    type: SIGNUP_PASSWD,
+    type: SIGNUP_NICKNAME,
     payload: nickname,
+  };
+};
+
+export const signupName = (name) => {
+  return {
+    type: SIGNUP_NAME,
+    payload: name,
   };
 };

@@ -9,6 +9,7 @@ import SignUpId from "./pages/SignUp/signUpId";
 import SignUpPasswd from "./pages/SignUp/signUpPasswd";
 import SignUpEmail from "./pages/SignUp/signUpEmail";
 import SignUpNickname from "./pages/SignUp/signUpNickname";
+import SignUpName from "./pages/SignUp/signUpName";
 
 function App() {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ function App() {
           <Route path="password" element={<SignUpPasswd />} />
           <Route path="email" element={<SignUpEmail />} />
           <Route path="nickname" element={<SignUpNickname />} />
+          <Route path="name" element={<SignUpName />} />
         </Route>
       </Routes>
     </div>
