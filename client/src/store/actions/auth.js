@@ -35,7 +35,8 @@ export const loginActionAync =
 
         history.push("/");
       } else {
-        dispatch({ type: "LOGIN_ERROR", payload: res });
+        console.log(res);
+        dispatch({ type: "LOGIN_ERROR", payload: res.success });
         alert(`로그인 실패 : ${res.message}`);
       }
     } catch {
