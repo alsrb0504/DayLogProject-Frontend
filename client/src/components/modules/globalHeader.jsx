@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logoBold from "../../assets/img/logo-bold.svg";
 import menu from "../../assets/icons/menu.svg";
 import water from "../../assets/icons/water.svg";
 import yellowWater from "../../assets/icons/yellow-water.svg";
-import { useNavigate } from "react-router-dom";
 
 const GlobalHeader = (props) => {
+  const navigate = useNavigate();
+
   // 생리 달력 기능 표시를 위한 상태
   // 추후 useSelector로 전환
   const [onMenstruation, setOnMenstruation] = useState(false);
@@ -18,6 +20,10 @@ const GlobalHeader = (props) => {
     // 생리 달력 on/off 기능
     // 처음 클릭 시, 설정으로 이동?
     setOnMenstruation(!onMenstruation);
+  };
+
+  const handleLogo = () => {
+    navigate("/");
   };
 
   return (
