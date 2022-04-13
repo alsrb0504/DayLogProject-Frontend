@@ -1,8 +1,8 @@
+import Button from "../modules/button";
+import InputContainer from "../modules/inputContainer";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { loginActionAync } from "../../store/actions/auth";
-import Button from "../modules/button";
-import InputContainer from "../modules/inputContainer";
 
 const LoginForm = () => {
   const { register, handleSubmit } = useForm();

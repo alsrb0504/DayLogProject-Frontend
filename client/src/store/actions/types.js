@@ -1,6 +1,3 @@
-export const LOGIN_USER = "LOGIN_USER";
-export const REGISTER_USER = "REGISTER_USER";
-
 // 회원가입 관련
 // ID 중복 확인용
 export const SIGNUP_ID_START = "SIGNUP_ID_START";
@@ -15,3 +12,11 @@ export const SIGNUP_NAME = "SIGNUP_NAME";
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
+
+//
+// 로그인 관련
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
+export const LOGIN_USER = "LOGIN_USER";
