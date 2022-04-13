@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import logo from "../../assets/img/logo.svg";
+import logoBold from "../../assets/img/logo-bold.svg";
 import menu from "../../assets/icons/menu.svg";
 import water from "../../assets/icons/water.svg";
 import yellowWater from "../../assets/icons/yellow-water.svg";
+import { useNavigate } from "react-router-dom";
 
 const GlobalHeader = (props) => {
   // 생리 달력 기능 표시를 위한 상태
@@ -24,8 +25,8 @@ const GlobalHeader = (props) => {
       <div className="menu-icon" onClick={handleSideMenu}>
         <img src={menu} alt="메뉴 아이콘" />
       </div>
-      <div className="logo">
-        <img src={logo} alt="로고 이미지" />
+      <div className="global-header-logo" onClick={handleLogo}>
+        <img src={logoBold} alt="로고 이미지" />
       </div>
       <div className="water-icon" onClick={handleMenstruation}>
         {onMenstruation ? (
