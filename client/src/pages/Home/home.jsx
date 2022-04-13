@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import GlobalHeader from "../../components/modules/globalHeader";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -22,29 +23,32 @@ const Home = (props) => {
   };
 
   return (
-    <div className="contain">
+    <div className="container">
       <div className="row">
-        <h1>Home page</h1>
-        <br />
-        <Link to="/login">Move to Login</Link>
-        <br />
-        <br />
-        <Link to="/signup">Move to Signup</Link>
+        <div className="col-sm-4">
+          <GlobalHeader />
+          <h1>Home page</h1>
+          <br />
+          <Link to="/login">Move to Login</Link>
+          <br />
+          <br />
+          <Link to="/signup">Move to Signup</Link>
 
-        <br />
-        <br />
-        <br />
+          <br />
+          <br />
+          <br />
 
-        {logined && (
-          <button className="btn-primary" onClick={onLogout}>
-            Logout
-          </button>
-        )}
-        {!logined && (
-          <button className="btn-primary" onClick={onLogin}>
-            Login
-          </button>
-        )}
+          {logined && (
+            <button className="btn-primary" onClick={onLogout}>
+              Logout
+            </button>
+          )}
+          {!logined && (
+            <button className="btn-primary" onClick={onLogin}>
+              Login
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
