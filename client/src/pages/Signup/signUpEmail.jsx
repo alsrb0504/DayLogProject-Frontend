@@ -34,7 +34,7 @@ const SignUpEmail = (props) => {
               {...register("email", { required: true })}
             />
           }
-          size="col-sm-3"
+          size="col-sm-3 col-md-4 "
           label="이메일을 입력하세요."
         />
 

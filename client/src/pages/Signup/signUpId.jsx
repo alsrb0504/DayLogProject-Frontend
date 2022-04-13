@@ -36,7 +36,7 @@ const SignUpId = (props) => {
               placeholder="아이디를 입력하세요."
             />
           }
-          size="col-sm-3"
+          size="col-sm-3 col-md-4"
           label="아이디를 입력하세요."
         />
 

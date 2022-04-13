@@ -17,8 +17,6 @@ const Login = (props) => {
       <div className="row">
         <div className="login-container">
           <img className="logo" src={logo} alt="logo 이미지" />
-
-          {/* <div className={classnames("login-top", "col-sm-3")}> */}
           <div className={classnames("login-top")}>
             <LoginForm />
           </div>

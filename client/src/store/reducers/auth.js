@@ -1,28 +1,20 @@
-import { REGISTER_USER } from "../actions/types";
+import { LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS } from "../actions/types";
 
 const initState = {
-  login_result: "",
-  register: "",
+  login_result: false,
   user: "",
   loading: false,
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case REGISTER_USER: {
-      return {
-        ...state,
-        result: action.payload.message,
-        register: action.payload.message,
-      };
-    }
-    case "LOGIN_START": {
+    case LOGIN_START: {
       return {
         ...state,
         loading: true,
       };
     }
-    case "LOGIN_SUCCESS": {
+    case LOGIN_SUCCESS: {
       console.log(action.payload);
       return {
         ...state,
@@ -31,7 +23,7 @@ const authReducer = (state = initState, action) => {
         loading: false,
       };
     }
-    case "LOGIN_ERROR": {
+    case LOGIN_ERROR: {
       return {
         ...state,
         login_result: action.payload,
