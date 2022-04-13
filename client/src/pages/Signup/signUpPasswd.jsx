@@ -41,7 +41,7 @@ const SignUpPasswd = (props) => {
               {...register("password1", { required: true })}
             />
           }
-          size="col-sm-3"
+          size="col-sm-3 col-md-4"
           label="비밀번호를 입력하세요."
         />
 
@@ -53,7 +53,7 @@ const SignUpPasswd = (props) => {
               {...register("password2", { required: true })}
             />
           }
-          size="col-sm-3"
+          size="col-sm-3 col-md-4"
           label="비밀번호를 재입력 하세요."
         />
 

@@ -34,7 +34,7 @@ const SignUpNickname = (props) => {
               {...register("nickname", { required: true })}
             />
           }
-          size="col-sm-3"
+          size="col-sm-3 col-md-4"
           label="닉네임을 입력하세요."
         />
 
