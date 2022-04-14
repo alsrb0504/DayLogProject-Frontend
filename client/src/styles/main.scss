@@ -23,7 +23,9 @@
 @import "./modules/inputHeader";
 @import "./modules/globalHeader";
 
+// sections.scss
 @import "./sections/signupContainer";
+@import "./sections/mainCalendarWrapper";
 
 // pages
 @import "./pages/login";

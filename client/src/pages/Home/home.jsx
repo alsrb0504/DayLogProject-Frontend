@@ -32,7 +32,14 @@ const Home = (props) => {
           <GlobalHeader />
 
           <MainCalendarWrapper>
-            <FullCalendar plugins={[dayGridPlugin]} />
+            <FullCalendar //
+              plugins={[dayGridPlugin]}
+              headerToolbar={{
+                start: "",
+                center: "prev title next",
+                end: "",
+              }}
+            />
           </MainCalendarWrapper>
 
           <h1>Home page</h1>
