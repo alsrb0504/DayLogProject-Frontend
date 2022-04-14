@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GlobalHeader from "../../components/modules/globalHeader";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(logined);
+    // console.log(logined);
   }, [logined]);
 
   // 로그아웃
@@ -27,6 +30,11 @@ const Home = (props) => {
       <div className="row">
         <div className="col-sm-4">
           <GlobalHeader />
+
+          <MainCalendarWrapper>
+            <FullCalendar plugins={[dayGridPlugin]} />
+          </MainCalendarWrapper>
+
           <h1>Home page</h1>
           <br />
           <Link to="/login">Move to Login</Link>
