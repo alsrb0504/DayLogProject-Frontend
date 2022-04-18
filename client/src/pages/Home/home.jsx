@@ -4,6 +4,7 @@ import GlobalHeader from "../../components/modules/globalHeader";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
+import axios from "axios";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -15,8 +16,13 @@ const Home = (props) => {
 
   // 로그아웃
   // localStrage의 access_token을 지워버림.
-  const onLogout = () => {
+  const onLogout = async () => {
     localStorage.clear();
+
+    // 로그아웃 api 호출.
+    // 성공 후에 cookie에 refresh 토큰이 없는 것을 확인해야 함.
+    await axios.delete("/api/members/logout");
+
     navigate("/login");
   };
 
