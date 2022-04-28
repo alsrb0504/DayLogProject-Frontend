@@ -4,12 +4,12 @@ import delete_icon from "../../assets/icons/delete.svg";
 
 const TodoItem = ({ todo }) => {
   return (
-    <li>
-      <button>
-        <img src={check_icon} alt="check icon" />
+    <li className="todo-item">
+      <button className="check-btn">
+        <img className="check-btn-img" src={check_icon} alt="check icon" />
       </button>
-      <span>{todo.Content}</span>
-      <button>
+      <span className="todo-item-content">{todo.Content}</span>
+      <button className="delete-btn">
         <img src={delete_icon} alt="delete icon" />
       </button>
     </li>

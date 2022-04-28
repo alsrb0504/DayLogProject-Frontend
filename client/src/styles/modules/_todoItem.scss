@@ -1,0 +1,35 @@
+.todo-item {
+  @include flexbox(flex-start);
+
+  height: 40px;
+  padding: 0 12px 0 18px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background-color: $secondary;
+
+  .check-btn {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid $primary;
+    background-color: white;
+    cursor: pointer;
+    transition: transform 100ms ease-in-out;
+
+    &:hover,
+    &:active {
+      transform: scale(1.1);
+    }
+  }
+
+  &-content {
+    flex: 1;
+    font-size: $font-size-16;
+    font-weight: 700;
+    color: $white;
+  }
+
+  .delete-btn {
+    cursor: pointer;
+  }
+}

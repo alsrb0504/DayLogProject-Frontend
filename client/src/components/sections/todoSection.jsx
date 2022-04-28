@@ -13,6 +13,34 @@ const TodoSection = (props) => {
             Content: "투두리스트",
           }}
         />
+
+        <TodoItem
+          todo={{
+            State: false,
+            Content: "투두리스트",
+          }}
+        />
+
+        <TodoItem
+          todo={{
+            State: false,
+            Content: "투두리스트",
+          }}
+        />
+
+        <TodoItem
+          todo={{
+            State: false,
+            Content: "투두리스트",
+          }}
+        />
+
+        <TodoItem
+          todo={{
+            State: false,
+            Content: "투두리스트",
+          }}
+        />
       </ul>
     </section>
   );
