@@ -1,37 +1,105 @@
 .main-calendar {
-  @media screen and (max-width: $md-breakpoint) {
-    background-color: $blue-light;
+  background-color: $blue-light;
+  margin-bottom: 8px;
+
+  // body
+  .fc-view-harness {
+    height: 60vh !important;
+    background-color: $white;
+    margin-bottom: 8px;
   }
 
-  // header
-  .fc-header-toolbar {
-    height: 26px;
-    margin-bottom: 0 !important;
+  // mobile
+  @media screen and (max-width: $md-breakpoint) {
+    // monthly header
+    .fc-header-toolbar {
+      height: 26px;
+      margin-bottom: 0 !important;
 
-    .fc-toolbar-chunk {
-      @include flexbox;
-      height: 16px;
+      .fc-toolbar-chunk {
+        @include flexbox;
+        height: 16px;
 
-      .fc-toolbar-title {
-        font-size: $font-size-16;
+        .fc-toolbar-title {
+          font-size: $font-size-16;
+          font-weight: 600;
+        }
+
+        button {
+          width: 16px;
+          height: 16px;
+          padding: 0;
+          border: none;
+          color: $black;
+          background-color: transparent;
+
+          span {
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            line-height: 0;
+            transform: translateY(10%);
+          }
+        }
+      }
+    }
+
+    // calendar header
+    .fc-col-header {
+      margin-top: 6px;
+      &-cell {
         font-weight: 600;
       }
+    }
 
-      button {
-        width: 16px;
-        height: 16px;
-        padding: 0;
-        border: none;
-        color: $black;
-        background-color: transparent;
+    // border remove.
+    th {
+      border: none !important;
+    }
+    td {
+      border: none !important;
+    }
 
-        span {
-          width: 100%;
-          height: 100%;
-          font-size: 16px;
-          line-height: 0;
-          transform: translateY(10%);
-        }
+    .fc-scrollgrid {
+      border: 2px solid $primary !important;
+      border-radius: 10px;
+    }
+
+    // calendar body
+    .fc-view-harness {
+      height: 312px !important;
+    }
+
+    .fc-daygrid-day-frame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .fc-daygrid-day-top {
+        font-weight: 600;
+        // color: $text-dark;
+        color: $text-gray-1;
+      }
+
+      .fc-daygrid-day-events {
+        width: 0;
+      }
+    }
+
+    .fc-day-sun {
+      color: red;
+      a {
+        color: red;
+      }
+    }
+
+    .fc-day-today {
+      background-color: transparent !important;
+
+      a {
+        // color: pink;
+        border: 2.5px solid $primary;
+        border-radius: 50%;
       }
     }
   }
