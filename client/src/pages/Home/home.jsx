@@ -5,6 +5,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import axios from "axios";
+import TodoSection from "../../components/sections/todoSection";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -48,27 +49,23 @@ const Home = (props) => {
             />
           </MainCalendarWrapper>
 
-          <h1>Home page</h1>
-          <br />
-          <Link to="/login">Move to Login</Link>
-          <br />
-          <br />
-          <Link to="/signup">Move to Signup</Link>
+          <section className="home-bottom">
+            <TodoSection />
+            {/* <section className="todo-section">
+              <h3 className="todo-section-date">2022-04-29</h3>
+              <ul className="todo-container">
+                <li className="todo-container-item">
+                  <div>
+                    <span>#</span>
+                  </div>
+                  <div>투두리스트</div>
+                  <span>X</span>
+                </li>
+              </ul>
+            </section> */}
+          </section>
 
-          <br />
-          <br />
-          <br />
-
-          {logined && (
-            <button className="btn-primary" onClick={onLogout}>
-              Logout
-            </button>
-          )}
-          {!logined && (
-            <button className="btn-primary" onClick={onLogin}>
-              Login
-            </button>
-          )}
+          {/*  */}
         </div>
       </div>
     </div>
