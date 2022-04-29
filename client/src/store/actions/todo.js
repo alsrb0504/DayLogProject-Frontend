@@ -16,7 +16,7 @@ export const getOneDayTodos = (date) => {
 };
 
 export const changeTodoAsync = (idx) => async (dispatch, getState) => {
-  console.log(idx);
+  // console.log(idx);
 
   dispatch({
     type: CHANGE_TODO_STATE_START,
@@ -70,4 +70,8 @@ export const changeTodoAsync = (idx) => async (dispatch, getState) => {
     console.error(e);
     dispatch({ type: CHANGE_TODO_STATE_FAIL });
   }
+};
+
+export const AddTodoAsync = (content) => async (dispatch, getState) => {
+  //
 };

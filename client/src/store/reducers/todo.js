@@ -58,6 +58,26 @@ const initState = {
         },
       ],
     },
+    {
+      date: "2022-04-30",
+      todos: [
+        {
+          content: "4월 30일 투두리스트 1",
+          state: false,
+          todo_no: 11111,
+        },
+        {
+          content: "4월 30일 투두리스트 2",
+          state: true,
+          todo_no: 22222,
+        },
+        {
+          content: "4월 30일 투두리스트 3",
+          state: false,
+          todo_no: 33333,
+        },
+      ],
+    },
   ],
   // today_todos: {
   //   date: "2022-04-29",
@@ -80,24 +100,24 @@ const initState = {
   //   ],
   // },
   selected_day_todos: {
-    // date: "2022-04-29",
-    // todos: [
-    //   {
-    //     content: "4월 29일 투두리스트 1",
-    //     state: false,
-    //     todo_no: 11111,
-    //   },
-    //   {
-    //     content: "4월 29일 투두리스트 2",
-    //     state: true,
-    //     todo_no: 22222,
-    //   },
-    //   {
-    //     content: "4월 29일 투두리스트 3",
-    //     state: false,
-    //     todo_no: 33333,
-    //   },
-    // ],
+    date: "2022-04-30",
+    todos: [
+      {
+        content: "4월 30일 투두리스트 1",
+        state: false,
+        todo_no: 11111,
+      },
+      {
+        content: "4월 30일 투두리스트 2",
+        state: true,
+        todo_no: 22222,
+      },
+      {
+        content: "4월 30일 투두리스트 3",
+        state: false,
+        todo_no: 33333,
+      },
+    ],
   },
 };
 

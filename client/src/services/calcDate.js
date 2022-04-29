@@ -1,84 +1,168 @@
-// 추후 캘린더에서 날짜 선택시 바뀌는 것도 만들어야 함.
+// 맨 처음 홈화면으로 이동했을 때, 오늘 날짜 계산 함수.
+export function toDayInfo() {
+  const today = new Date();
 
-export default function calcDate(data) {
-  if (data === undefined) {
-    const date = new Date();
-    const date_string =
-      //
-      `${getDayString(date.getDay())}, ${getMonthString(
-        date.getMonth()
-      )} ${date.getDate()}`;
+  const date_info = today.toString().split(" ");
+  const day = changeDayFull(date_info[0]);
+  const mm = changeMonthInt(date_info[1]);
+  const dd = date_info[2];
+  const yy = date_info[3];
 
-    return date_string;
-  } else {
-    console.log("2022-04-29");
+  return {
+    date: `${yy}-${mm}-${dd}`,
+    day: day,
+  };
+}
+
+export function printDayInfo(info) {
+  const [yy, mm, dd] = info.date.split("-");
+
+  return `${info.day}, ${changeMonthFromIntToFull(mm)} ${dd}`;
+}
+
+export function changeDayFull(day) {
+  switch (day) {
+    case "Sun":
+      return "Sunday";
+    case "Mon":
+      return "Monday";
+    case "Tue":
+      return "Tuesday";
+    case "Wed":
+      return "Wednesday";
+    case "Thu":
+      return "Thursday";
+    case "Fri":
+      return "Friday";
+    case "Sat":
+      return "Saturday";
+    default:
+      return "day";
   }
 }
 
-function getDayString(day) {
-  switch (day) {
-    case 0: {
-      return "Sunday";
+export function changeMonthFull(month) {
+  switch (month) {
+    case "Jan": {
+      return "January";
     }
-    case 1: {
-      return "Monday";
+    case "Feb": {
+      return "February";
     }
-    case 2: {
-      return "Tuesday";
+    case "Mar": {
+      return "March";
     }
-    case 3: {
-      return "Wednesday";
+    case "Apr": {
+      return "April";
     }
-    case 4: {
-      return "Thursday";
+    case "May": {
+      return "May";
     }
-    case 5: {
-      return "Friday";
+    case "Jun": {
+      return "June";
     }
-    case 6: {
-      return "Saturday";
+    case "Jul": {
+      return "July";
+    }
+    case "Aug": {
+      return "August";
+    }
+    case "Sep": {
+      return "September";
+    }
+    case "Oct": {
+      return "October";
+    }
+    case "Nov": {
+      return "November";
+    }
+    case "Dec": {
+      return "December";
     }
     default:
       return "";
   }
 }
 
-function getMonthString(month) {
+export function changeMonthInt(month) {
   switch (month) {
-    case 0: {
+    case "Jan": {
+      return "01";
+    }
+    case "Feb": {
+      return "02";
+    }
+    case "Mar": {
+      return "03";
+    }
+    case "Apr": {
+      return "04";
+    }
+    case "May": {
+      return "05";
+    }
+    case "Jun": {
+      return "06";
+    }
+    case "Jul": {
+      return "07";
+    }
+    case "Aug": {
+      return "08";
+    }
+    case "Sep": {
+      return "09";
+    }
+    case "Oct": {
+      return "10";
+    }
+    case "Nov": {
+      return "11";
+    }
+    case "Dec": {
+      return "12";
+    }
+    default:
+      return "";
+  }
+}
+
+function changeMonthFromIntToFull(month) {
+  switch (month) {
+    case "01": {
       return "January";
     }
-    case 1: {
+    case "02": {
       return "February";
     }
-    case 2: {
+    case "03": {
       return "March";
     }
-    case 3: {
+    case "04": {
       return "April";
     }
-    case 4: {
+    case "05": {
       return "May";
     }
-    case 5: {
+    case "06": {
       return "June";
     }
-    case 6: {
+    case "07": {
       return "July";
     }
-    case 7: {
+    case "08": {
       return "August";
     }
-    case 8: {
+    case "09": {
       return "September";
     }
-    case 9: {
+    case "10": {
       return "October";
     }
-    case 10: {
+    case "11": {
       return "November";
     }
-    case 11: {
+    case "12": {
       return "December";
     }
     default:

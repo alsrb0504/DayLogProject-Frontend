@@ -81,8 +81,9 @@
         color: $text-gray-1;
       }
 
+      // 모바일에서는 일정 이벤트 노출 안 됨.
       .fc-daygrid-day-events {
-        width: 0;
+        display: none;
       }
     }
 

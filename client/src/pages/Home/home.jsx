@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GlobalHeader from "../../components/modules/globalHeader";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
 import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import axios from "axios";
 import TodoSection from "../../components/sections/todoSection";
@@ -12,22 +13,28 @@ import todo_icon from "../../assets/icons/todo.svg";
 import memo_icon from "../../assets/icons/memo.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
-import calcDate from "../../services/calcDate";
+import {
+  calcDate,
+  changeDayFull,
+  printDayInfo,
+  toDayInfo,
+} from "../../services/calcDate";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
 
   const [selected, setSelected] = useState(true);
-  const [selected_date, setSelectedDate] = useState(calcDate());
+  const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  const onClickDate = () => {
+  const onClickDate = (info) => {
     // 날짜 선택 시, 버튼창 뜨도록...
-    setSelected(!selected);
-
-    // 추가로 선택 날짜 바뀌도록
-    // 캘린더에서 날짜 정보 받아야 함.
-    // setSelectedDate();
+    const date = info.dateStr;
+    const day = info.date.toString().split(" ")[0];
+    setSelectedDate({
+      date,
+      day: changeDayFull(day),
+    });
   };
 
   useEffect(() => {
@@ -73,17 +80,29 @@ const Home = (props) => {
 
           <MainCalendarWrapper>
             <FullCalendar //
-              plugins={[dayGridPlugin]}
+              plugins={[dayGridPlugin, interactionPlugin]}
               headerToolbar={{
                 start: "",
                 center: "prev title next",
                 end: "",
               }}
+              eventClick={function () {
+                alert("hi");
+              }}
+              events={[
+                {
+                  title: "test1",
+                  date: "2022-04-20",
+                },
+              ]}
+              dateClick={(info) => {
+                onClickDate(info);
+              }}
             />
           </MainCalendarWrapper>
 
           <section className="home-bottom">
-            <TodoSection />
+            <TodoSection date={printDayInfo(selectedDate)} />
           </section>
 
           {selected && (
@@ -95,7 +114,7 @@ const Home = (props) => {
             </section>
           )}
 
-          <TodoPopup date={selected_date} />
+          {/* <TodoPopup date={selectedDate} /> */}
         </div>
       </div>
     </div>
