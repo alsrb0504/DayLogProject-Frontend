@@ -10,10 +10,19 @@ import CircularButton from "../../components/modules/circularButton";
 import todo_icon from "../../assets/icons/todo.svg";
 import memo_icon from "../../assets/icons/memo.svg";
 import water_icon from "../../assets/icons/water-black.svg";
+import delete_icon from "../../assets/icons/delete-black.svg";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
+
+  const [selected, setSelected] = useState(true);
+
+  const onClickDate = () => {
+    // 날짜 선택 시, 버튼창 뜨도록...
+    console.log("hi");
+    setSelected(!selected);
+  };
 
   useEffect(() => {
     // console.log(logined);
@@ -31,7 +40,8 @@ const Home = (props) => {
     navigate("/login");
   };
 
-  // 아이콘 버튼을 통해 이동하는 함수
+  //
+  // 아이콘 버튼을 통해 이동하는 함수들
   const openTodo = () => {
     // todo 팝업 오픈
   };
@@ -68,25 +78,16 @@ const Home = (props) => {
 
           <section className="home-bottom">
             <TodoSection />
-            {/* <section className="todo-section">
-              <h3 className="todo-section-date">2022-04-29</h3>
-              <ul className="todo-container">
-                <li className="todo-container-item">
-                  <div>
-                    <span>#</span>
-                  </div>
-                  <div>투두리스트</div>
-                  <span>X</span>
-                </li>
-              </ul>
-            </section> */}
           </section>
 
-          <section className="btns-section">
-            <CircularButton icon={todo_icon} onClick={openTodo} />
-            <CircularButton icon={memo_icon} onClick={moveMemo} />
-            <CircularButton icon={water_icon} onClick={moveMenstruation} />
-          </section>
+          {selected && (
+            <section className="btns-section">
+              <CircularButton icon={todo_icon} onClick={openTodo} />
+              <CircularButton icon={memo_icon} onClick={moveMemo} />
+              <CircularButton icon={water_icon} onClick={moveMenstruation} />
+              <CircularButton icon={delete_icon} onClick={onClickDate} />
+            </section>
+          )}
         </div>
       </div>
     </div>
