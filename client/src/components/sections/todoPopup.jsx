@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import AddButton from "../modules/addButton";
 import InputContainer from "../modules/inputContainer";
 import Todolist from "../modules/todolist";
 
@@ -27,7 +28,7 @@ const TodoPopup = (props) => {
             }
           />
         </form>
-        <button>+</button>
+        <AddButton used="todo" onClick={onSubmit} />
       </div>
 
       <section>
