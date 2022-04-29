@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import check_icon from "../../assets/icons/check.svg";
 import delete_icon from "../../assets/icons/delete.svg";
+import { changeTodoAsync } from "../../store/actions/todo";
 
 const TodoItem = ({ todo }) => {
-  const [check, setCheck] = useState(todo.state);
+  const dispatch = useDispatch();
 
   const handleCheck = () => {
-    setCheck(!check);
+    dispatch(changeTodoAsync(todo.todo_no));
 
     // 이것도 리덕스에 액션 발생시켜서
     // 상태변경하고 이 상태변경을 todo에서 감지해서
@@ -24,7 +25,7 @@ const TodoItem = ({ todo }) => {
   return (
     <li className="todo-item">
       <button className="check-btn" onClick={handleCheck}>
-        {check && (
+        {todo.state && (
           <img className="check-btn-img" src={check_icon} alt="check icon" />
         )}
       </button>

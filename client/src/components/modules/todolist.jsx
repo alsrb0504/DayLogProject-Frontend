@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import TodoItem from "./todoItem";
 
 const Todolist = (props) => {
-  const todos = useSelector((state) => state.todo.today_todos.todos);
+  const todos = useSelector((state) => state.todo.selected_day_todos.todos);
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
 
   return (
     <ul>

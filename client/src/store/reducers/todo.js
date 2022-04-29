@@ -2,9 +2,15 @@ import {
   ADD_TODO,
   GET_ONEDAY_TODO,
   REMOVE_TODO,
-  CHANGE_TODO_STATE,
+  CHANGE_TODO_STATE_START,
+  CHANGE_TODO_STATE_SUCCESS,
 } from "../actions/types";
 
+// 월간 todos : month_todos 와
+// 일간 todos : selected_day_todos
+// 일간 todos는 기본값으로는 서버에서 오늘 날짜의 todos 목록을
+// 주고 만약 캘린더에서 선택하면 해당 날짜의 todos로
+// 자체 selected_day_todos 업데이트.
 const initState = {
   month_todos: [
     {
@@ -53,7 +59,27 @@ const initState = {
       ],
     },
   ],
-  today_todos: {
+  // today_todos: {
+  //   date: "2022-04-29",
+  //   todos: [
+  //     {
+  //       content: "4월 29일 투두리스트 1",
+  //       state: false,
+  //       todo_no: 11111,
+  //     },
+  //     {
+  //       content: "4월 29일 투두리스트 2",
+  //       state: true,
+  //       todo_no: 22222,
+  //     },
+  //     {
+  //       content: "4월 29일 투두리스트 3",
+  //       state: false,
+  //       todo_no: 33333,
+  //     },
+  //   ],
+  // },
+  selected_day_todos: {
     date: "2022-04-29",
     todos: [
       {
@@ -83,8 +109,12 @@ const todoReducer = (state = initState, action) => {
     case REMOVE_TODO: {
       return { ...state };
     }
-    case CHANGE_TODO_STATE: {
+    case CHANGE_TODO_STATE_START: {
       return { ...state };
+    }
+    case CHANGE_TODO_STATE_SUCCESS: {
+      console.log(action);
+      return { ...state, selected_day_todos: action.payload };
     }
     case GET_ONEDAY_TODO: {
       return { ...state };

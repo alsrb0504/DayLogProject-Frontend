@@ -64,8 +64,6 @@ const Home = (props) => {
               </ul>
             </section> */}
           </section>
-
-          {/*  */}
         </div>
       </div>
     </div>
