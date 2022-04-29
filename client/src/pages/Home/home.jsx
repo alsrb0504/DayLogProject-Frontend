@@ -19,6 +19,7 @@ import {
   toDayInfo,
 } from "../../services/calcDate";
 import { useSelector } from "react-redux";
+import OverLay from "../../components/modules/overLay";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -88,6 +89,8 @@ const Home = (props) => {
     <div className="container">
       <div className="row">
         <div className="col-sm-4">
+          {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
+
           <GlobalHeader />
 
           <MainCalendarWrapper>
