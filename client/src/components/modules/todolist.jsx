@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import EmptyText from "./emptyText";
 import TodoItem from "./todoItem";
 
 const Todolist = (props) => {
   const todos = useSelector((state) => state.todo.selected_day_todos.todos);
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
   return (
     <ul>
@@ -15,7 +11,12 @@ const Todolist = (props) => {
         todos.map((todo) => <TodoItem todo={todo} key={todo.todo_no} />)}
 
       {/* 오늘의 todo가 없을 경우 : 미구현 */}
-      {!todos && <span>오늘의 todo가 없습니다. </span>}
+      {!todos && (
+        <EmptyText
+          text="오늘의 할 일이 없습니다.<br/>
+         할 일을 추가해보세요."
+        />
+      )}
     </ul>
   );
 };
