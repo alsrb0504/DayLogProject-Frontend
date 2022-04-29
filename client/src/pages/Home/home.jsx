@@ -7,21 +7,27 @@ import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import axios from "axios";
 import TodoSection from "../../components/sections/todoSection";
 import CircularButton from "../../components/modules/circularButton";
+import TodoPopup from "../../components/sections/todoPopup";
 import todo_icon from "../../assets/icons/todo.svg";
 import memo_icon from "../../assets/icons/memo.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
+import calcDate from "../../services/calcDate";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
 
   const [selected, setSelected] = useState(true);
+  const [selected_date, setSelectedDate] = useState(calcDate());
 
   const onClickDate = () => {
     // 날짜 선택 시, 버튼창 뜨도록...
-    console.log("hi");
     setSelected(!selected);
+
+    // 추가로 선택 날짜 바뀌도록
+    // 캘린더에서 날짜 정보 받아야 함.
+    // setSelectedDate();
   };
 
   useEffect(() => {
@@ -88,6 +94,8 @@ const Home = (props) => {
               <CircularButton icon={delete_icon} onClick={onClickDate} />
             </section>
           )}
+
+          <TodoPopup date={selected_date} />
         </div>
       </div>
     </div>
