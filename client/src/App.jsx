@@ -10,6 +10,7 @@ import SignUpPasswd from "./pages/Signup/signUpPasswd";
 import SignUpEmail from "./pages/Signup/signUpEmail";
 import SignUpNickname from "./pages/Signup/signUpNickname";
 import SignUpName from "./pages/Signup/signUpName";
+import Menstruation from "./pages/Menstruation/menstruation";
 
 function App() {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ function App() {
           <Route path="nickname" element={<SignUpNickname />} />
           <Route path="name" element={<SignUpName />} />
         </Route>
+        <Route path="/menstruation" element={<Menstruation />} />
       </Routes>
     </div>
   );

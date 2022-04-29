@@ -78,6 +78,7 @@ const Home = (props) => {
 
   const moveMenstruation = () => {
     // 생리 설정 페이지 이동
+    navigate("/menstruation");
   };
 
   // 현재 필요없는 코드.
