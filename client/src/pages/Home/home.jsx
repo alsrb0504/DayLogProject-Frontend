@@ -24,7 +24,7 @@ const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
 
-  const [selected, setSelected] = useState(true);
+  const [isToggle, setIsToggle] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
   // 월간 Todo 목록.
@@ -36,6 +36,8 @@ const Home = (props) => {
   // 캘린더 날짜 클릭 이벤트
   // 날짜 선택 시, 버튼창 뜨도록...
   const onClickDate = (info) => {
+    setIsToggle(true);
+
     const date = info.dateStr;
     const day = info.date.toString().split(" ")[0];
     setSelectedDate({
@@ -117,20 +119,23 @@ const Home = (props) => {
             />
           </section>
 
-          {selected && (
+          {isToggle && (
             <section className="btns-section">
               <CircularButton icon={todo_icon} onClick={openTodo} />
               <CircularButton icon={memo_icon} onClick={moveMemo} />
               <CircularButton icon={water_icon} onClick={moveMenstruation} />
-              <CircularButton icon={delete_icon} onClick={onClickDate} />
+              <CircularButton
+                icon={delete_icon}
+                onClick={() => setIsToggle(false)}
+              />
             </section>
           )}
 
-          <TodoPopup
+          {/* <TodoPopup
             date={printDayInfo(selectedDate)}
             // select_todo가 없다면 undefined 전달
             todos={select_todos && select_todos.todos}
-          />
+          /> */}
         </div>
       </div>
     </div>
