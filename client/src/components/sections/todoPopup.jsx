@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import AddButton from "../modules/addButton";
 import InputContainer from "../modules/inputContainer";
 import Todolist from "../modules/todolist";
+import close_btn_icon from "../../assets/icons/close-btn.svg";
 
 const TodoPopup = (props) => {
   const { register, handleSubmit } = useForm();
@@ -12,11 +13,13 @@ const TodoPopup = (props) => {
   };
 
   return (
-    <div>
-      <button>x</button>
-      <h2>Monday, March 3</h2>
+    <div className="todo-popup">
+      <button className="todo-popup-close-btn">
+        <img src={close_btn_icon} alt="" />
+      </button>
+      <h2 className="todo-popup-title">Monday, March 3</h2>
 
-      <div>
+      <div className="todo-popup-form">
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputContainer
             children={
@@ -31,7 +34,7 @@ const TodoPopup = (props) => {
         <AddButton used="todo" onClick={onSubmit} />
       </div>
 
-      <section>
+      <section className="todo-popup-section">
         <Todolist />
       </section>
     </div>
