@@ -10,8 +10,6 @@ import TodoSection from "./todoSection";
 const TodoPopup = ({ date, todos }) => {
   const { register, handleSubmit } = useForm();
 
-  console.log(date, todos);
-
   const onSubmit = (content) => {
     console.log(content);
     console.log("submit");
