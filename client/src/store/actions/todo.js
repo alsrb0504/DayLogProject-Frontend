@@ -194,5 +194,80 @@ export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
 };
 
 export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
-  // console.log(idx);
+  console.log(idx);
+  try {
+    // const res = await axios.post(`api/todolipostst?no=${idx}`);
+    // const month_todos = res.data.todos;
+
+    const month_todos = [
+      {
+        date: "2022-04-01",
+        todos: [
+          {
+            content: "4월 1일 투두리스트 1",
+            state: false,
+            todo_no: 13224,
+          },
+          {
+            content: "4월 1일 투두리스트 2",
+            state: false,
+            todo_no: 23144,
+          },
+          {
+            content: "4월 1일 투두리스트 3",
+            state: true,
+            todo_no: 56454,
+          },
+          {
+            content: "4월 1일 투두리스트 4",
+            state: false,
+            todo_no: 25463,
+          },
+        ],
+      },
+      {
+        date: "2022-04-18",
+        todos: [
+          {
+            content: "4월 18일 투두리스트 1",
+            state: false,
+            todo_no: 23534,
+          },
+          {
+            content: "4월 18일 투두리스트 2",
+            state: true,
+            todo_no: 23434,
+          },
+          {
+            content: "4월 18일 투두리스트 3",
+            state: false,
+            todo_no: 12345,
+          },
+        ],
+      },
+      {
+        date: "2022-04-30",
+        todos: [
+          {
+            content: "4월 30일 투두리스트 2",
+            state: true,
+            todo_no: 22222,
+          },
+          {
+            content: "4월 30일 투두리스트 3",
+            state: false,
+            todo_no: 33333,
+          },
+        ],
+      },
+    ];
+
+    dispatch({
+      type: ADD_TODO_SUCCESS,
+      payload: month_todos,
+    });
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: ADD_TODO_FAIL });
+  }
 };

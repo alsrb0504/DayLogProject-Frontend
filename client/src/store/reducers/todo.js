@@ -1,5 +1,4 @@
 import {
-  REMOVE_TODO,
   CHANGE_TODO_STATE_SUCCESS,
   ADD_TODO_SUCCESS,
   ADD_TODO_FAIL,
@@ -92,7 +91,7 @@ const todoReducer = (state = initState, action) => {
       return { ...state };
     }
     case REMOVE_TODO_SUCCESS: {
-      return { ...state };
+      return { ...state, month_todos: action.payload };
     }
     case REMOVE_TODO_FAIL: {
       return { ...state };

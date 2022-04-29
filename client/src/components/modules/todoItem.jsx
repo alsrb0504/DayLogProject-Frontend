@@ -1,25 +1,17 @@
 import { useDispatch } from "react-redux";
 import check_icon from "../../assets/icons/check.svg";
 import delete_icon from "../../assets/icons/delete.svg";
-import { changeTodoAsync } from "../../store/actions/todo";
+import { changeTodoAsync, RemoveTodoAsync } from "../../store/actions/todo";
 
 const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
 
   const handleCheck = () => {
     dispatch(changeTodoAsync(todo.todo_no));
-
-    // 이것도 리덕스에 액션 발생시켜서
-    // 상태변경하고 이 상태변경을 todo에서 감지해서
-    // 다시 렌더링
   };
 
   const handleDelete = () => {
-    // 흠.. 원래는 todo에 가서 지워야 하는데
-    // 난 리덕스를 쓸 거란 말이지
-    // 그러면 리덕스로 액션 발생시키고
-    // 지우는 이벤트 후에, 서버와 통신해줘야 겠지..?
-    console.log("hi");
+    dispatch(RemoveTodoAsync(todo.todo_no));
   };
 
   return (
