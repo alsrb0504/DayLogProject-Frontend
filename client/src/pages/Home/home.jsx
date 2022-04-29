@@ -109,8 +109,9 @@ const Home = (props) => {
           </MainCalendarWrapper>
 
           <section className="home-bottom">
+            <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
+
             <TodoSection
-              date={printDayInfo(selectedDate)}
               // select_todo가 없다면 undefined 전달
               todos={select_todos && select_todos.todos}
             />
@@ -125,7 +126,11 @@ const Home = (props) => {
             </section>
           )}
 
-          {/* <TodoPopup date={printDayInfo(selectedDate)} /> */}
+          <TodoPopup
+            date={printDayInfo(selectedDate)}
+            // select_todo가 없다면 undefined 전달
+            todos={select_todos && select_todos.todos}
+          />
         </div>
       </div>
     </div>
