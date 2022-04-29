@@ -25,22 +25,34 @@
           font-weight: 600;
         }
 
-        button {
-          width: 16px;
-          height: 16px;
+        .fc-customPrev-button,
+        .fc-customNext-button {
+          font-size: 24px;
+          font-weight: 700;
           padding: 0;
           border: none;
           color: $black;
+          outline: none;
           background-color: transparent;
+          transform: translateY(-5%);
+          box-shadow: none;
 
-          span {
-            width: 100%;
-            height: 100%;
-            font-size: 16px;
-            line-height: 0;
-            transform: translateY(10%);
+          &:active,
+          &:hover,
+          &:focus {
+            box-shadow: none !important;
+            background-color: transparent !important;
           }
+          // span {
+          //   width: 100%;
+          //   height: 100%;
+          //   font-size: 16px;
+          //   line-height: 0;
+          //   transform: translateY(10%);
+          // }
         }
+
+        // fc-customPrev-button
       }
     }
 

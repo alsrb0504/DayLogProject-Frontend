@@ -97,7 +97,7 @@ const Home = (props) => {
           plugins={[dayGridPlugin, interactionPlugin]}
           headerToolbar={{
             start: "",
-            center: "prev title next",
+            center: "customPrev title customNext",
             end: "",
           }}
           eventClick={function () {
@@ -111,6 +111,20 @@ const Home = (props) => {
           ]}
           dateClick={(info) => {
             onClickDate(info);
+          }}
+          customButtons={{
+            customPrev: {
+              text: "<",
+              click: () => {
+                // alert("prev");
+              },
+            },
+            customNext: {
+              text: ">",
+              click: () => {
+                alert("next");
+              },
+            },
           }}
         />
       </MainCalendarWrapper>
