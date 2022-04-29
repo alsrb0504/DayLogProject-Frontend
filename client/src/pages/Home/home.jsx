@@ -6,6 +6,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import axios from "axios";
 import TodoSection from "../../components/sections/todoSection";
+import CircularButton from "../../components/modules/circularButton";
+import todo_icon from "../../assets/icons/todo.svg";
+import memo_icon from "../../assets/icons/memo.svg";
+import water_icon from "../../assets/icons/water-black.svg";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -25,6 +29,19 @@ const Home = (props) => {
     await axios.delete("/api/members/logout");
 
     navigate("/login");
+  };
+
+  // 아이콘 버튼을 통해 이동하는 함수
+  const openTodo = () => {
+    // todo 팝업 오픈
+  };
+
+  const moveMemo = () => {
+    // 일정 관리 페이지 이동
+  };
+
+  const moveMenstruation = () => {
+    // 생리 설정 페이지 이동
   };
 
   // 현재 필요없는 코드.
@@ -63,6 +80,12 @@ const Home = (props) => {
                 </li>
               </ul>
             </section> */}
+          </section>
+
+          <section className="btns-section">
+            <CircularButton icon={todo_icon} onClick={openTodo} />
+            <CircularButton icon={memo_icon} onClick={moveMemo} />
+            <CircularButton icon={water_icon} onClick={moveMenstruation} />
           </section>
         </div>
       </div>
