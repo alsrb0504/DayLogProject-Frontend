@@ -6,8 +6,8 @@ const CircularButton = ({ icon, onClick }) => {
   };
 
   return (
-    <button onClick={handleClick}>
-      <img src={icon} alt="아이콘 버튼" />
+    <button className="circle-btn" onClick={handleClick}>
+      <img className="circle-btn-img" src={icon} alt="아이콘 버튼" />
     </button>
   );
 };
