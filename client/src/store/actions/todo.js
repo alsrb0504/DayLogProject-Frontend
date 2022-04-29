@@ -4,6 +4,8 @@ import {
   CHANGE_TODO_STATE_SUCCESS,
   ADD_TODO_SUCCESS,
   ADD_TODO_FAIL,
+  CHANGE_TODO_CALENDAR_SUCCESS,
+  CHANGE_TODO_CALENDAR_FAIL,
 } from "./types";
 
 // Todo popup에서 체크 변경 시,
@@ -269,5 +271,86 @@ export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
   } catch (e) {
     console.error(e);
     dispatch({ type: ADD_TODO_FAIL });
+  }
+};
+
+// Todo calendar에서 달 변경
+export const changeTodoCalendar = (month) => async (dispatch, getState) => {
+  console.log(month);
+  try {
+    // const res = await axios.post(`api/todolipostst/calendar?month=${month}`);
+    // const month_todos = res.data.todos;
+
+    // 테스트용 3월
+    const month_todos = [
+      {
+        date: "2022-03-01",
+        todos: [
+          {
+            content: "3월 1일 투두리스트 1",
+            state: false,
+            todo_no: 243,
+          },
+          {
+            content: "3월 1일 투두리스트 2",
+            state: false,
+            todo_no: 1233,
+          },
+          {
+            content: "3월 1일 투두리스트 3",
+            state: true,
+            todo_no: 2324,
+          },
+          {
+            content: "3월 1일 투두리스트 4",
+            state: false,
+            todo_no: 12,
+          },
+        ],
+      },
+      {
+        date: "2022-04-18",
+        todos: [
+          {
+            content: "3월 18일 투두리스트 1",
+            state: false,
+            todo_no: 342,
+          },
+          {
+            content: "3월 18일 투두리스트 2",
+            state: true,
+            todo_no: 566,
+          },
+          {
+            content: "3월 18일 투두리스트 3",
+            state: false,
+            todo_no: 569,
+          },
+        ],
+      },
+      {
+        date: "2022-04-30",
+        todos: [
+          {
+            content: "3월 30일 투두리스트 2",
+            state: true,
+            todo_no: 876,
+          },
+          {
+            content: "3월 30일 투두리스트 3",
+            state: false,
+            todo_no: 567,
+          },
+        ],
+      },
+    ];
+
+    dispatch({
+      type: CHANGE_TODO_CALENDAR_SUCCESS,
+      payload: month_todos,
+    });
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: CHANGE_TODO_CALENDAR_FAIL });
   }
 };

@@ -5,6 +5,8 @@ import {
   CHANGE_TODO_STATE_FAIL,
   REMOVE_TODO_SUCCESS,
   REMOVE_TODO_FAIL,
+  CHANGE_TODO_CALENDAR_SUCCESS,
+  CHANGE_TODO_CALENDAR_FAIL,
 } from "../actions/types";
 
 // 월간 todos : month_todos 와
@@ -97,11 +99,15 @@ const todoReducer = (state = initState, action) => {
       return { ...state };
     }
     case CHANGE_TODO_STATE_SUCCESS: {
-      console.log(action);
       return { ...state, month_todos: action.payload };
     }
     case CHANGE_TODO_STATE_FAIL: {
-      console.log(action);
+      return { ...state };
+    }
+    case CHANGE_TODO_CALENDAR_SUCCESS: {
+      return { ...state, month_todos: action.payload };
+    }
+    case CHANGE_TODO_CALENDAR_FAIL: {
       return { ...state };
     }
     default:
