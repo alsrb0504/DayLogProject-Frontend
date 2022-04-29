@@ -6,6 +6,8 @@ import {
   ADD_TODO_FAIL,
   CHANGE_TODO_CALENDAR_SUCCESS,
   CHANGE_TODO_CALENDAR_FAIL,
+  REMOVE_TODO_SUCCESS,
+  REMOVE_TODO_FAIL,
 } from "./types";
 
 // Todo popup에서 체크 변경 시,
@@ -265,12 +267,12 @@ export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
     ];
 
     dispatch({
-      type: ADD_TODO_SUCCESS,
+      type: REMOVE_TODO_SUCCESS,
       payload: month_todos,
     });
   } catch (e) {
     console.error(e);
-    dispatch({ type: ADD_TODO_FAIL });
+    dispatch({ type: REMOVE_TODO_FAIL });
   }
 };
 
