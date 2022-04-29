@@ -4,13 +4,15 @@ import AddButton from "../modules/addButton";
 import InputContainer from "../modules/inputContainer";
 import close_btn_icon from "../../assets/icons/close-btn.svg";
 import TodoSection from "./todoSection";
+import { useDispatch } from "react-redux";
+import { AddTodoAsync } from "../../store/actions/todo";
 
-const TodoPopup = ({ date, todos, closePopup }) => {
+const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (content) => {
-    console.log(content);
-    console.log("submit");
+    dispatch(AddTodoAsync(content, dateFormat.date));
   };
 
   return (

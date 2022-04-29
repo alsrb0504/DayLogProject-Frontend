@@ -137,6 +137,7 @@ const Home = (props) => {
           {isTodoPopup && (
             <TodoPopup
               date={printDayInfo(selectedDate)}
+              dateFormat={selectedDate}
               // select_todo가 없다면 undefined 전달
               todos={select_todos && select_todos.todos}
               closePopup={closeTodoPopup}

@@ -1,70 +1,95 @@
 import axios from "axios";
 import {
   CHANGE_TODO_STATE_FAIL,
-  CHANGE_TODO_STATE_START,
   CHANGE_TODO_STATE_SUCCESS,
-  GET_ONEDAY_TODO,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAIL,
 } from "./types";
 
-export const getOneDayTodos = (date) => {
-  return {
-    type: GET_ONEDAY_TODO,
-    payload: {
-      date,
-    },
-  };
-};
-
+// Todo popup에서 체크 변경 시,
+// 변경한 todo의 인덱스를 서버로 전달.
+// 서버에서 해당 todo의 상태 변경 후,
+// month_todos를 다시 전달 받았으면 함.
 export const changeTodoAsync = (idx) => async (dispatch, getState) => {
   // console.log(idx);
 
-  dispatch({
-    type: CHANGE_TODO_STATE_START,
-  });
-
   try {
-    // 서버에 상태 변경되었다고 알림
-    // 받아올 필요가 없긴 한데..
-    // 프론트에서는 상태가 변경된 것이 저장됨.
-    // 근데 새로고침하면 이 상태가 날라가는데
-    // 새로고침 시, 다시 todolist 전체 요청? 아니면
-    // 이 통신을 통해 상태 변경 후, 다시 업데이트?
-    // 다시 업데이트가 좋을 거 같은데
-
-    // 서버에서 인덱스를 받아서 해당 날짜의
-    // 업데이트 된 todos 목록을 받아와 줬으면 좋겠는데
-    // 인덱스만 가지고 찾을 수 있을까?
-    // 날짜도 같이 보내줘야 하나..
-
     // 해당 날짜
     // const res = await axios.post(`/api/todolist/check?todo=${idx}`);
-    // const todos = res.data.todos;
+    // const month_todos = res.data.todos;
 
-    // 로컬 테스트용 todos 제거해야 함.
-    const todos = {
-      date: "2022-04-29",
-      todos: [
-        {
-          content: "4월 29일 투두리스트 1",
-          state: true,
-          todo_no: 11111,
-        },
-        {
-          content: "4월 29일 투두리스트 2",
-          state: true,
-          todo_no: 22222,
-        },
-        {
-          content: "4월 29일 투두리스트 3",
-          state: false,
-          todo_no: 33333,
-        },
-      ],
-    };
+    // 로컬 테스트용 month_todos 제거해야 함.
+    const month_todos = [
+      {
+        date: "2022-04-01",
+        todos: [
+          {
+            content: "4월 1일 투두리스트 1",
+            state: false,
+            todo_no: 13224,
+          },
+          {
+            content: "4월 1일 투두리스트 2",
+            state: false,
+            todo_no: 23144,
+          },
+          {
+            content: "4월 1일 투두리스트 3",
+            state: true,
+            todo_no: 56454,
+          },
+          {
+            content: "4월 1일 투두리스트 4",
+            state: false,
+            todo_no: 25463,
+          },
+        ],
+      },
+      {
+        date: "2022-04-18",
+        todos: [
+          {
+            content: "4월 18일 투두리스트 1",
+            state: false,
+            todo_no: 23534,
+          },
+          {
+            content: "4월 18일 투두리스트 2",
+            state: true,
+            todo_no: 23434,
+          },
+          {
+            content: "4월 18일 투두리스트 3",
+            state: false,
+            todo_no: 12345,
+          },
+        ],
+      },
+      {
+        date: "2022-04-30",
+        todos: [
+          {
+            content: "4월 30일 투두리스트 1",
+            state: true,
+            todo_no: 11111,
+          },
+          {
+            content: "4월 30일 투두리스트 2",
+            state: true,
+            todo_no: 22222,
+          },
+          {
+            content: "4월 30일 투두리스트 3",
+            state: false,
+            todo_no: 33333,
+          },
+        ],
+      },
+    ];
 
     dispatch({
       type: CHANGE_TODO_STATE_SUCCESS,
-      payload: todos,
+      payload: month_todos,
     });
   } catch (e) {
     console.error(e);
@@ -72,6 +97,102 @@ export const changeTodoAsync = (idx) => async (dispatch, getState) => {
   }
 };
 
-export const AddTodoAsync = (content) => async (dispatch, getState) => {
-  //
+// Todo popup에서 투두리스트 추가
+// 내용과 날짜 전달
+// 동일하게 month_todos로 바꿔서 전달받아야 하는데...
+export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
+  console.log(content, date);
+
+  try {
+    // const res = await axios.post("api/todolipostst", {
+    //   content,
+    //   date,
+    // });
+    // const month_todos = res.data.todos;
+
+    const month_todos = [
+      {
+        date: "2022-04-01",
+        todos: [
+          {
+            content: "4월 1일 투두리스트 1",
+            state: false,
+            todo_no: 13224,
+          },
+          {
+            content: "4월 1일 투두리스트 2",
+            state: false,
+            todo_no: 23144,
+          },
+          {
+            content: "4월 1일 투두리스트 3",
+            state: true,
+            todo_no: 56454,
+          },
+          {
+            content: "4월 1일 투두리스트 4",
+            state: false,
+            todo_no: 25463,
+          },
+        ],
+      },
+      {
+        date: "2022-04-18",
+        todos: [
+          {
+            content: "4월 18일 투두리스트 1",
+            state: false,
+            todo_no: 23534,
+          },
+          {
+            content: "4월 18일 투두리스트 2",
+            state: true,
+            todo_no: 23434,
+          },
+          {
+            content: "4월 18일 투두리스트 3",
+            state: false,
+            todo_no: 12345,
+          },
+        ],
+      },
+      {
+        date: "2022-04-30",
+        todos: [
+          {
+            content: "4월 30일 투두리스트 1",
+            state: true,
+            todo_no: 11111,
+          },
+          {
+            content: "4월 30일 투두리스트 2",
+            state: true,
+            todo_no: 22222,
+          },
+          {
+            content: "4월 30일 투두리스트 3",
+            state: false,
+            todo_no: 33333,
+          },
+          {
+            content: "4월 30일 추가한 투두리스트",
+            state: false,
+            todo_no: 44444,
+          },
+        ],
+      },
+    ];
+
+    dispatch({
+      type: ADD_TODO_SUCCESS,
+      payload: month_todos,
+    });
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: ADD_TODO_FAIL });
+  }
+};
+
+export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
+  // console.log(idx);
 };

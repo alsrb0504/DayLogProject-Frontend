@@ -1,9 +1,11 @@
 import {
-  ADD_TODO,
-  GET_ONEDAY_TODO,
   REMOVE_TODO,
-  CHANGE_TODO_STATE_START,
   CHANGE_TODO_STATE_SUCCESS,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAIL,
+  CHANGE_TODO_STATE_FAIL,
+  REMOVE_TODO_SUCCESS,
+  REMOVE_TODO_FAIL,
 } from "../actions/types";
 
 // 월간 todos : month_todos 와
@@ -79,64 +81,28 @@ const initState = {
       ],
     },
   ],
-  // today_todos: {
-  //   date: "2022-04-29",
-  //   todos: [
-  //     {
-  //       content: "4월 29일 투두리스트 1",
-  //       state: false,
-  //       todo_no: 11111,
-  //     },
-  //     {
-  //       content: "4월 29일 투두리스트 2",
-  //       state: true,
-  //       todo_no: 22222,
-  //     },
-  //     {
-  //       content: "4월 29일 투두리스트 3",
-  //       state: false,
-  //       todo_no: 33333,
-  //     },
-  //   ],
-  // },
-  selected_day_todos: {
-    date: "2022-04-30",
-    todos: [
-      {
-        content: "4월 30일 투두리스트 1",
-        state: false,
-        todo_no: 11111,
-      },
-      {
-        content: "4월 30일 투두리스트 2",
-        state: true,
-        todo_no: 22222,
-      },
-      {
-        content: "4월 30일 투두리스트 3",
-        state: false,
-        todo_no: 33333,
-      },
-    ],
-  },
 };
 
 const todoReducer = (state = initState, action) => {
   switch (action.type) {
-    case ADD_TODO: {
+    case ADD_TODO_SUCCESS: {
+      return { ...state, month_todos: action.payload };
+    }
+    case ADD_TODO_FAIL: {
       return { ...state };
     }
-    case REMOVE_TODO: {
+    case REMOVE_TODO_SUCCESS: {
       return { ...state };
     }
-    case CHANGE_TODO_STATE_START: {
+    case REMOVE_TODO_FAIL: {
       return { ...state };
     }
     case CHANGE_TODO_STATE_SUCCESS: {
       console.log(action);
-      return { ...state, selected_day_todos: action.payload };
+      return { ...state, month_todos: action.payload };
     }
-    case GET_ONEDAY_TODO: {
+    case CHANGE_TODO_STATE_FAIL: {
+      console.log(action);
       return { ...state };
     }
     default:
