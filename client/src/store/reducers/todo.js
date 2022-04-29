@@ -44,7 +44,7 @@ const initState = {
         {
           content: "4월 18일 투두리스트 1",
           state: false,
-          todo_no: 23434,
+          todo_no: 23534,
         },
         {
           content: "4월 18일 투두리스트 2",

@@ -14,11 +14,11 @@ import memo_icon from "../../assets/icons/memo.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
 import {
-  calcDate,
   changeDayFull,
   printDayInfo,
   toDayInfo,
 } from "../../services/calcDate";
+import { useSelector } from "react-redux";
 
 const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
@@ -27,8 +27,15 @@ const Home = (props) => {
   const [selected, setSelected] = useState(true);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
+  // 월간 Todo 목록.
+  const month_todos = useSelector((state) => state.todo.month_todos);
+  const select_todos = month_todos.find(
+    (daily_todos) => daily_todos.date === selectedDate.date
+  );
+
+  // 캘린더 날짜 클릭 이벤트
+  // 날짜 선택 시, 버튼창 뜨도록...
   const onClickDate = (info) => {
-    // 날짜 선택 시, 버튼창 뜨도록...
     const date = info.dateStr;
     const day = info.date.toString().split(" ")[0];
     setSelectedDate({
@@ -102,7 +109,11 @@ const Home = (props) => {
           </MainCalendarWrapper>
 
           <section className="home-bottom">
-            <TodoSection date={printDayInfo(selectedDate)} />
+            <TodoSection
+              date={printDayInfo(selectedDate)}
+              // select_todo가 없다면 undefined 전달
+              todos={select_todos && select_todos.todos}
+            />
           </section>
 
           {selected && (
@@ -114,7 +125,7 @@ const Home = (props) => {
             </section>
           )}
 
-          {/* <TodoPopup date={selectedDate} /> */}
+          {/* <TodoPopup date={printDayInfo(selectedDate)} /> */}
         </div>
       </div>
     </div>
