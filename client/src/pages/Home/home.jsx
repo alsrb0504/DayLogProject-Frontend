@@ -87,68 +87,64 @@ const Home = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-4">
-          {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
+    <div>
+      {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
 
-          <GlobalHeader />
+      <GlobalHeader />
 
-          <MainCalendarWrapper>
-            <FullCalendar //
-              plugins={[dayGridPlugin, interactionPlugin]}
-              headerToolbar={{
-                start: "",
-                center: "prev title next",
-                end: "",
-              }}
-              eventClick={function () {
-                alert("hi");
-              }}
-              events={[
-                {
-                  title: "test1",
-                  date: "2022-04-20",
-                },
-              ]}
-              dateClick={(info) => {
-                onClickDate(info);
-              }}
-            />
-          </MainCalendarWrapper>
+      <MainCalendarWrapper>
+        <FullCalendar //
+          plugins={[dayGridPlugin, interactionPlugin]}
+          headerToolbar={{
+            start: "",
+            center: "prev title next",
+            end: "",
+          }}
+          eventClick={function () {
+            alert("hi");
+          }}
+          events={[
+            {
+              title: "test1",
+              date: "2022-04-20",
+            },
+          ]}
+          dateClick={(info) => {
+            onClickDate(info);
+          }}
+        />
+      </MainCalendarWrapper>
 
-          <section className="home-bottom">
-            <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
+      <section className="home-bottom">
+        <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
 
-            <TodoSection
-              // select_todo가 없다면 undefined 전달
-              todos={select_todos && select_todos.todos}
-            />
-          </section>
+        <TodoSection
+          // select_todo가 없다면 undefined 전달
+          todos={select_todos && select_todos.todos}
+        />
+      </section>
 
-          {isToggle && (
-            <section className="btns-section">
-              <CircularButton icon={todo_icon} onClick={openTodoPopup} />
-              <CircularButton icon={memo_icon} onClick={() => {}} />
-              <CircularButton icon={water_icon} onClick={moveMenstruation} />
-              <CircularButton
-                icon={delete_icon}
-                onClick={() => setIsToggle(false)}
-              />
-            </section>
-          )}
+      {isToggle && (
+        <section className="btns-section">
+          <CircularButton icon={todo_icon} onClick={openTodoPopup} />
+          <CircularButton icon={memo_icon} onClick={() => {}} />
+          <CircularButton icon={water_icon} onClick={moveMenstruation} />
+          <CircularButton
+            icon={delete_icon}
+            onClick={() => setIsToggle(false)}
+          />
+        </section>
+      )}
 
-          {isTodoPopup && (
-            <TodoPopup
-              date={printDayInfo(selectedDate)}
-              dateFormat={selectedDate}
-              // select_todo가 없다면 undefined 전달
-              todos={select_todos && select_todos.todos}
-              closePopup={closeTodoPopup}
-            />
-          )}
-        </div>
-      </div>
+      {isTodoPopup && (
+        <TodoPopup
+          date={printDayInfo(selectedDate)}
+          dateFormat={selectedDate}
+          // select_todo가 없다면 undefined 전달
+          todos={select_todos && select_todos.todos}
+          closePopup={closeTodoPopup}
+        />
+      )}
     </div>
   );
 };

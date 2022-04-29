@@ -18,48 +18,37 @@ const Menstruation = (props) => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-4">
-          <section className="signup-container">
-            <InputHeader text="홈으로" onClick={moveHome} />
+    <section className="signup-container">
+      <InputHeader text="홈으로" onClick={moveHome} />
 
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <InputContainer
-                children={
-                  <input
-                    type="date"
-                    placeholder="2022.04.30"
-                    {...register("start_date", { required: true })}
-                  />
-                }
-                size="col-sm-3 col-md-4"
-                label="시작날짜를 입력하세요."
-              />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputContainer
+          children={
+            <input
+              type="date"
+              placeholder="2022.04.30"
+              {...register("start_date", { required: true })}
+            />
+          }
+          size="col-sm-3 col-md-4"
+          label="시작날짜를 입력하세요."
+        />
 
-              <InputContainer
-                children={
-                  <input
-                    type="text"
-                    placeholder="주기를 입력하세요."
-                    {...register("cycle", { required: true })}
-                  />
-                }
-                size="col-sm-3 col-md-4"
-                label="주기를 입력하세요."
-              />
+        <InputContainer
+          children={
+            <input
+              type="text"
+              placeholder="주기를 입력하세요."
+              {...register("cycle", { required: true })}
+            />
+          }
+          size="col-sm-3 col-md-4"
+          label="주기를 입력하세요."
+        />
 
-              <Button
-                text="저장"
-                type="submit"
-                color="btn-primary"
-                size="btn-40"
-              />
-            </form>
-          </section>
-        </div>
-      </div>
-    </div>
+        <Button text="저장" type="submit" color="btn-primary" size="btn-40" />
+      </form>
+    </section>
   );
 };
 

@@ -61,18 +61,24 @@ function App() {
 
   return (
     <div className="tablet-container">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />}>
-          <Route index element={<SignUpId />} />
-          <Route path="password" element={<SignUpPasswd />} />
-          <Route path="email" element={<SignUpEmail />} />
-          <Route path="nickname" element={<SignUpNickname />} />
-          <Route path="name" element={<SignUpName />} />
-        </Route>
-        <Route path="/menstruation" element={<Menstruation />} />
-      </Routes>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />}>
+                <Route index element={<SignUpId />} />
+                <Route path="password" element={<SignUpPasswd />} />
+                <Route path="email" element={<SignUpEmail />} />
+                <Route path="nickname" element={<SignUpNickname />} />
+                <Route path="name" element={<SignUpName />} />
+              </Route>
+              <Route path="/menstruation" element={<Menstruation />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
