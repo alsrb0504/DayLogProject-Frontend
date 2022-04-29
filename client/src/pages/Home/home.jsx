@@ -25,6 +25,7 @@ const Home = (props) => {
   const navigate = useNavigate();
 
   const [isToggle, setIsToggle] = useState(false);
+  const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
   // 월간 Todo 목록.
@@ -64,12 +65,14 @@ const Home = (props) => {
 
   //
   // 아이콘 버튼을 통해 이동하는 함수들
-  const openTodo = () => {
+  const openTodoPopup = () => {
     // todo 팝업 오픈
+    setIsTodoPopup(true);
   };
 
-  const moveMemo = () => {
+  const closeTodoPopup = () => {
     // 일정 관리 페이지 이동
+    setIsTodoPopup(false);
   };
 
   const moveMenstruation = () => {
@@ -121,8 +124,8 @@ const Home = (props) => {
 
           {isToggle && (
             <section className="btns-section">
-              <CircularButton icon={todo_icon} onClick={openTodo} />
-              <CircularButton icon={memo_icon} onClick={moveMemo} />
+              <CircularButton icon={todo_icon} onClick={openTodoPopup} />
+              <CircularButton icon={memo_icon} onClick={() => {}} />
               <CircularButton icon={water_icon} onClick={moveMenstruation} />
               <CircularButton
                 icon={delete_icon}
@@ -131,11 +134,14 @@ const Home = (props) => {
             </section>
           )}
 
-          {/* <TodoPopup
-            date={printDayInfo(selectedDate)}
-            // select_todo가 없다면 undefined 전달
-            todos={select_todos && select_todos.todos}
-          /> */}
+          {isTodoPopup && (
+            <TodoPopup
+              date={printDayInfo(selectedDate)}
+              // select_todo가 없다면 undefined 전달
+              todos={select_todos && select_todos.todos}
+              closePopup={closeTodoPopup}
+            />
+          )}
         </div>
       </div>
     </div>

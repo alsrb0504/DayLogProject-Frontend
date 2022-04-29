@@ -2,12 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import AddButton from "../modules/addButton";
 import InputContainer from "../modules/inputContainer";
-import Todolist from "../modules/todolist";
 import close_btn_icon from "../../assets/icons/close-btn.svg";
-import EmptyText from "../modules/emptyText";
 import TodoSection from "./todoSection";
 
-const TodoPopup = ({ date, todos }) => {
+const TodoPopup = ({ date, todos, closePopup }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (content) => {
@@ -17,7 +15,7 @@ const TodoPopup = ({ date, todos }) => {
 
   return (
     <div className="todo-popup">
-      <button className="todo-popup-close-btn">
+      <button className="todo-popup-close-btn" onClick={closePopup}>
         <img src={close_btn_icon} alt="" />
       </button>
       <h2 className="todo-popup-title">{date}</h2>
