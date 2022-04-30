@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GlobalHeader from "../../components/modules/globalHeader";
 import FullCalendar from "@fullcalendar/react";
@@ -18,12 +18,16 @@ import {
   printDayInfo,
   toDayInfo,
 } from "../../services/calcDate";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import OverLay from "../../components/modules/overLay";
+import { changeTodoCalendar } from "../../store/actions/todo";
 
 const Home = (props) => {
-  const [logined, setLogined] = useState(localStorage.getItem("access_token"));
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const calendarRef = useRef();
+
+  const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
   const [isToggle, setIsToggle] = useState(false);
   const [isTodoPopup, setIsTodoPopup] = useState(false);
@@ -46,6 +50,27 @@ const Home = (props) => {
       date,
       day: changeDayFull(day),
     });
+  };
+
+  // 캘린더 달 prev, next 클릭 이벤트
+  // calendar api를 이용하여 현재 년도와 달 정보 획득
+  // 이전, 다음 달 이동 기능.
+  const movePrevMonth = () => {
+    const calendarApi = calendarRef.current._calendarApi;
+    const { viewTitle } = calendarApi.getCurrentData();
+    const [month, year] = viewTitle.split(" ");
+    dispatch(changeTodoCalendar("prev", month, year));
+
+    calendarApi.prev();
+  };
+
+  const moveNextMonth = () => {
+    const calendarApi = calendarRef.current._calendarApi;
+    const { viewTitle } = calendarApi.getCurrentData();
+    const [month, year] = viewTitle.split(" ");
+    dispatch(changeTodoCalendar("next", month, year));
+
+    calendarApi.next();
   };
 
   useEffect(() => {
@@ -94,6 +119,7 @@ const Home = (props) => {
 
       <MainCalendarWrapper>
         <FullCalendar //
+          ref={calendarRef}
           plugins={[dayGridPlugin, interactionPlugin]}
           headerToolbar={{
             start: "",
@@ -115,14 +141,14 @@ const Home = (props) => {
           customButtons={{
             customPrev: {
               text: "<",
-              click: () => {
-                // alert("prev");
+              click: function () {
+                movePrevMonth();
               },
             },
             customNext: {
               text: ">",
               click: () => {
-                alert("next");
+                moveNextMonth();
               },
             },
           }}

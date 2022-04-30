@@ -14,10 +14,34 @@ export function toDayInfo() {
   };
 }
 
-export function printDayInfo(info) {
-  const [yy, mm, dd] = info.date.split("-");
+export function calcMonthYear(move, month, year) {
+  let yy = Number(year);
+  let mm = changeFullMonthInt(month);
 
-  return `${info.day}, ${changeMonthFromIntToFull(mm)} ${dd}`;
+  if (move === "prev") {
+    if (mm - 1 > 0) {
+      mm -= 1;
+    } else {
+      yy -= 1;
+      mm = 12;
+    }
+  }
+  if (move === "next") {
+    if (mm + 1 < 13) {
+      mm += 1;
+    } else {
+      yy += 1;
+      mm = 1;
+    }
+  }
+
+  return { yy, mm };
+}
+
+export function printDayInfo(info) {
+  const dateInfo = info.date.split("-");
+
+  return `${info.day}, ${changeMonthFromIntToFull(dateInfo[1])} ${dateInfo[2]}`;
 }
 
 export function changeDayFull(day) {
@@ -121,6 +145,49 @@ export function changeMonthInt(month) {
     }
     case "Dec": {
       return "12";
+    }
+    default:
+      return "";
+  }
+}
+
+function changeFullMonthInt(month) {
+  switch (month) {
+    case "January": {
+      return 1;
+    }
+    case "February": {
+      return 2;
+    }
+    case "March": {
+      return 3;
+    }
+    case "April": {
+      return 4;
+    }
+    case "May": {
+      return 5;
+    }
+    case "June": {
+      return 6;
+    }
+    case "July": {
+      return 7;
+    }
+    case "August": {
+      return 8;
+    }
+    case "September": {
+      return 9;
+    }
+    case "October": {
+      return 10;
+    }
+    case "November": {
+      return 11;
+    }
+    case "December": {
+      return 12;
     }
     default:
       return "";
