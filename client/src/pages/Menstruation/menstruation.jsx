@@ -28,6 +28,11 @@ const Menstruation = (props) => {
     navigate("/");
   };
 
+  const checkDate = (date) => {
+    const year = date.split("-")[0];
+    return year < 2022 ? "최근 날짜를 선택하세요." : true;
+  };
+
   return (
     <section className="signup-container">
       <InputHeader text="홈으로" onClick={moveHome} />
@@ -35,11 +40,21 @@ const Menstruation = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input
-              type="date"
-              placeholder="2022.04.30"
-              {...register("start_date", { required: true })}
-            />
+            <>
+              <input
+                type="date"
+                placeholder="2022-04-30"
+                {...register("start_date", {
+                  required: "날짜를 선택해주세요.",
+                  validate: { checkDate },
+                })}
+              />
+              {errors.start_date && (
+                <span className="input-error-message">
+                  {errors.start_date.message}
+                </span>
+              )}
+            </>
           }
           size="col-sm-3 col-md-4"
           label="시작날짜를 입력하세요."
@@ -49,7 +64,7 @@ const Menstruation = (props) => {
           children={
             <>
               <input
-                type="text"
+                type="number"
                 placeholder="주기를 입력하세요."
                 {...register("cycle", {
                   required: true,
@@ -63,7 +78,11 @@ const Menstruation = (props) => {
                   },
                 })}
               />
-              {/* {errors.cycle && <span>{errors.cycle.message}</span>} */}
+              {errors.cycle && (
+                <span className="input-error-message">
+                  {errors.cycle.message}
+                </span>
+              )}
             </>
           }
           size="col-sm-3 col-md-4"
