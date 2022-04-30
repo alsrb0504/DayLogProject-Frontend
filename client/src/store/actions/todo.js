@@ -20,7 +20,7 @@ export const changeTodoAsync = (idx) => async (dispatch, getState) => {
 
   try {
     // 해당 날짜
-    // const res = await axios.post(`/api/todolist/check?todo=${idx}`);
+    // const res = await axios.post(`/api/todolist/check?no=${idx}`);
     // const month_todos = res.data.todos;
 
     // 로컬 테스트용 month_todos 제거해야 함.
@@ -110,8 +110,8 @@ export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
 
   try {
     // const res = await axios.post("api/todolipostst", {
-    //   content,
     //   date,
+    //   content,
     // });
     // const month_todos = res.data.todos;
 
@@ -201,7 +201,7 @@ export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
 export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
   console.log(idx);
   try {
-    // const res = await axios.post(`api/todolipostst?no=${idx}`);
+    // const res = await axios.delete(`api/todolipostst?no=${idx}`);
     // const month_todos = res.data.todos;
 
     const month_todos = [
