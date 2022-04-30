@@ -10,6 +10,7 @@ import SignUpPasswd from "./pages/Signup/signUpPasswd";
 import SignUpEmail from "./pages/Signup/signUpEmail";
 import SignUpNickname from "./pages/Signup/signUpNickname";
 import SignUpName from "./pages/Signup/signUpName";
+import Menstruation from "./pages/Menstruation/menstruation";
 
 function App() {
   const navigate = useNavigate();
@@ -60,17 +61,24 @@ function App() {
 
   return (
     <div className="tablet-container">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />}>
-          <Route index element={<SignUpId />} />
-          <Route path="password" element={<SignUpPasswd />} />
-          <Route path="email" element={<SignUpEmail />} />
-          <Route path="nickname" element={<SignUpNickname />} />
-          <Route path="name" element={<SignUpName />} />
-        </Route>
-      </Routes>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-4">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />}>
+                <Route index element={<SignUpId />} />
+                <Route path="password" element={<SignUpPasswd />} />
+                <Route path="email" element={<SignUpEmail />} />
+                <Route path="nickname" element={<SignUpNickname />} />
+                <Route path="name" element={<SignUpName />} />
+              </Route>
+              <Route path="/menstruation" element={<Menstruation />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -16,16 +16,25 @@
 @import "./mixins/button";
 @import "./mixins/flexbox";
 @import "./mixins/position";
+@import "./mixins/popup";
 
 // modules.scss
 @import "./modules/button";
 @import "./modules/inputContainer";
 @import "./modules/inputHeader";
 @import "./modules/globalHeader";
+@import "./modules/todoItem";
+@import "./modules/circurlarButton";
+@import "./modules/addButton";
+@import "./modules/emptyText";
+@import "./modules/overlay";
 
 // sections.scss
 @import "./sections/signupContainer";
 @import "./sections/mainCalendarWrapper";
+@import "./sections/todoSection";
+@import "./sections/todoPopup";
 
 // pages
 @import "./pages/login";
+@import "./pages/home";

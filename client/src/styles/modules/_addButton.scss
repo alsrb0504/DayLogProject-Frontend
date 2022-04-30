@@ -1,0 +1,22 @@
+.add-btn {
+  transition: opacity 50ms ease-in-out;
+
+  &:hover,
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.todo {
+  // 기본 40px 크기
+  img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+// 일정
+.memo {
+  width: 60px;
+  height: 60px;
+}

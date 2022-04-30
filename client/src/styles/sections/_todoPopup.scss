@@ -1,0 +1,49 @@
+.todo-popup {
+  @include popup-setting;
+
+  max-width: 550px;
+  height: 80vh;
+  min-height: 80vh;
+  max-height: 80vh;
+  overflow: hidden;
+
+  &-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transition: opacity 100ms ease-in-out;
+
+    &:hover,
+    &:active {
+      opacity: 0.6;
+    }
+  }
+
+  &-title {
+    color: $primary;
+    font-size: $font-size-24;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  &-form {
+    @include flexbox(space-between);
+    margin-bottom: 8px;
+
+    form {
+      flex: 1;
+      margin-right: 16px;
+
+      // 여기만 inputcontainer에 마진 제거
+      div {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-section {
+    max-height: 80%;
+    overflow: scroll;
+  }
+}

@@ -6,6 +6,23 @@ https://github.com/alsrb0504/CapStoneProject
 백엔드 저장소
 https://github.com/seunghyeonjung/DayLogProject-Backend
 
+---
+
+### Todo
+
+- 로그인 성공하면, 현재 달 todo 요청해서 redux 저장.
+
+- todo 통신 시, 모든 요청에 `month_todo` 내용을 요구
+
+  - 구현하다보니 하루씩 `todo`를 관리하기가 너무 복잡해서...
+
+- 기존 todo api 설계에서 `투두리스트 조회`는 사용하지 않음.
+- `투두리스트 캘린더 조회`에서 년도가 바뀌는 경우를 고려
+
+  - 쿼리에 년도 정보도 같이 보내야 할 듯.
+
+---
+
 ### 로그아웃
 
 - 테스트 조건
