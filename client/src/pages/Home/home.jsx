@@ -75,7 +75,13 @@ const Home = (props) => {
 
   useEffect(() => {
     // console.log(logined);
-  }, [logined]);
+    // 만약 로그인 페이지 이동이 귀찮다면
+    // 이 부분 주석 해제해서 사용
+    /*
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) navigate("/login");
+    */
+  }, [navigate]);
 
   // 로그아웃
   // localStrage의 access_token을 지워버림.
