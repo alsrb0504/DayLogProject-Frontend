@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { signupNickname } from "../../store/actions/signup";
 
 const SignUpNickname = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,11 +32,28 @@ const SignUpNickname = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input
-              type="text"
-              placeholder="닉네임을 입력하세요"
-              {...register("nickname", { required: true })}
-            />
+            <>
+              <input
+                type="text"
+                placeholder="닉네임을 입력하세요"
+                {...register("nickname", {
+                  required: true,
+                  minLength: {
+                    value: 2,
+                    message: "닉네임이 너무 짧습니다.",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "닉네임이 너무 깁니다.",
+                  },
+                })}
+              />
+              {errors.nickname && (
+                <span className="input-error-message">
+                  {errors.nickname.message}
+                </span>
+              )}
+            </>
           }
           size="col-sm-3 col-md-4"
           label="닉네임을 입력하세요."

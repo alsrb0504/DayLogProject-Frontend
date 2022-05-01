@@ -8,7 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { signupPasswd } from "../../store/actions/signup";
 
 const SignUpPasswd = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -35,11 +39,28 @@ const SignUpPasswd = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input
-              type="password"
-              placeholder="비밀번호를 입력하세요."
-              {...register("password1", { required: true })}
-            />
+            <>
+              <input
+                type="password"
+                placeholder="비밀번호를 입력하세요."
+                {...register("password1", {
+                  required: true,
+                  minLength: {
+                    value: 4,
+                    message: "비밀번호가 너무 짧습니다.",
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: "비밀번호가 너무 깁니다.",
+                  },
+                })}
+              />
+              {errors.password1 && (
+                <span className="input-error-message">
+                  {errors.password1.message}
+                </span>
+              )}
+            </>
           }
           size="col-sm-3 col-md-4"
           label="비밀번호를 입력하세요."
@@ -47,11 +68,28 @@ const SignUpPasswd = (props) => {
 
         <InputContainer
           children={
-            <input
-              type="password"
-              placeholder="비밀번호를 재입력 하세요."
-              {...register("password2", { required: true })}
-            />
+            <>
+              <input
+                type="password"
+                placeholder="비밀번호를 재입력 하세요."
+                {...register("password2", {
+                  required: true,
+                  minLength: {
+                    value: 4,
+                    message: "비밀번호가 너무 짧습니다.",
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: "비밀번호가 너무 깁니다.",
+                  },
+                })}
+              />
+              {errors.password2 && (
+                <span className="input-error-message">
+                  {errors.password2.message}
+                </span>
+              )}
+            </>
           }
           size="col-sm-3 col-md-4"
           label="비밀번호를 재입력 하세요."

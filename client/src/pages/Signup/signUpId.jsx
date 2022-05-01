@@ -8,7 +8,11 @@ import { useDispatch } from "react-redux";
 import { signupIdAsync } from "../../store/actions/signup";
 
 const SignUpId = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = (id) => {
@@ -30,11 +34,26 @@ const SignUpId = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
-            <input
-              type="text"
-              {...register("id", { required: true })}
-              placeholder="아이디를 입력하세요."
-            />
+            <>
+              <input
+                type="text"
+                {...register("id", {
+                  required: true,
+                  minLength: {
+                    value: 4,
+                    message: "아이디가 너무 짧습니다.",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "아이디가 너무 깁니다.",
+                  },
+                })}
+                placeholder="아이디를 입력하세요."
+              />
+              {errors.id && (
+                <span className="input-error-message">{errors.id.message}</span>
+              )}
+            </>
           }
           size="col-sm-3 col-md-4"
           label="아이디를 입력하세요."
