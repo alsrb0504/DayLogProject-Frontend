@@ -7,7 +7,13 @@ import {
 } from "../actions/types";
 
 const initState = {
-  month_cycle: [],
+  month_cycle: [
+    {
+      start_date: "2022-05-15",
+      due_date: "2022-05-12",
+      cycle: 28,
+    },
+  ],
 
   /* 주기 정보 양식
     {

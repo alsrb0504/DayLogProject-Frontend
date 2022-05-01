@@ -84,11 +84,13 @@ export const requestCycleAsync = () => {
         // 1. 주기 정보 있는 경우.
         data: {
           message: "FILL",
-          cycle_data: {
-            start_date: "2022-05-15",
-            due_date: "2022-05-12",
-            cycle: 28,
-          },
+          cycle_data: [
+            {
+              start_date: "2022-05-15",
+              due_date: "2022-05-12",
+              cycle: 28,
+            },
+          ],
         },
 
         // 2. 주기 정보 없는 경우.
