@@ -10,6 +10,7 @@ import {
   REMOVE_TODO_SUCCESS,
   REMOVE_TODO_FAIL,
 } from "./types";
+import { getAuthHeader } from '../../services/authHeader';
 
 // Todo popup에서 체크 변경 시,
 // 변경한 todo의 인덱스를 서버로 전달.
@@ -284,72 +285,12 @@ export const changeTodoCalendar =
     const { yy, mm } = calcMonthYear(text, month, year);
 
     try {
-      // const res = await axios.post(`api/todolipostst/calendar?year=${yy}&month=${mm}`);
-      // const month_todos = res.data.todos;
-
-      // 테스트용 3월
-      const month_todos = [
-        {
-          date: "2022-03-01",
-          todos: [
-            {
-              content: "3월 1일 투두리스트 1",
-              state: false,
-              todo_no: 243,
-            },
-            {
-              content: "3월 1일 투두리스트 2",
-              state: false,
-              todo_no: 1233,
-            },
-            {
-              content: "3월 1일 투두리스트 3",
-              state: true,
-              todo_no: 2324,
-            },
-            {
-              content: "3월 1일 투두리스트 4",
-              state: false,
-              todo_no: 12,
-            },
-          ],
-        },
-        {
-          date: "2022-04-18",
-          todos: [
-            {
-              content: "3월 18일 투두리스트 1",
-              state: false,
-              todo_no: 342,
-            },
-            {
-              content: "3월 18일 투두리스트 2",
-              state: true,
-              todo_no: 566,
-            },
-            {
-              content: "3월 18일 투두리스트 3",
-              state: false,
-              todo_no: 569,
-            },
-          ],
-        },
-        {
-          date: "2022-04-30",
-          todos: [
-            {
-              content: "3월 30일 투두리스트 2",
-              state: true,
-              todo_no: 876,
-            },
-            {
-              content: "3월 30일 투두리스트 3",
-              state: false,
-              todo_no: 567,
-            },
-          ],
-        },
-      ];
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem('access_token')}`;
+      const res = await axios.get(`api/todolist/calendar?month=${mm}&year=${yy}`);
+      console.log(res.data);
+      const month_todos = res.data;  
 
       dispatch({
         type: CHANGE_TODO_CALENDAR_SUCCESS,
