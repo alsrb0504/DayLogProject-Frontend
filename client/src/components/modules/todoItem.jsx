@@ -17,11 +17,11 @@ const TodoItem = ({ todo }) => {
   return (
     <li className="todo-item">
       <button className="check-btn" onClick={handleCheck}>
-        {todo.state && (
+        {'true' === todo.todo_checked && (
           <img className="check-btn-img" src={check_icon} alt="check icon" />
         )}
       </button>
-      <span className="todo-item-content">{todo.content}</span>
+      <span className="todo-item-content">{todo.todo_content}</span>
       <button className="delete-btn" onClick={handleDelete}>
         <img src={delete_icon} alt="delete icon" />
       </button>
