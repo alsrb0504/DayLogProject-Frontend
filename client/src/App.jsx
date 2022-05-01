@@ -4,12 +4,12 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home/home";
 import { useEffect } from "react";
 import axios from "axios";
-import SignUp from "./pages/Signup/signUp";
-import SignUpId from "./pages/Signup/signUpId";
-import SignUpPasswd from "./pages/Signup/signUpPasswd";
-import SignUpEmail from "./pages/Signup/signUpEmail";
-import SignUpNickname from "./pages/Signup/signUpNickname";
-import SignUpName from "./pages/Signup/signUpName";
+import SignUp from "./pages/SignUp/signUp";
+import SignUpId from "./pages/SignUp/signUpId";
+import SignUpPasswd from "./pages/SignUp/signUpPasswd";
+import SignUpEmail from "./pages/SignUp/signUpEmail";
+import SignUpNickname from "./pages/SignUp/signUpNickname";
+import SignUpName from "./pages/SignUp/signUpName";
 import Menstruation from "./pages/Menstruation/menstruation";
 
 function App() {
