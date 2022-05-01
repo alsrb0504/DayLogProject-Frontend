@@ -105,6 +105,7 @@ const todoReducer = (state = initState, action) => {
       return { ...state };
     }
     case CHANGE_TODO_CALENDAR_SUCCESS: {
+      console.log(action.payload);
       return { ...state, month_todos: action.payload };
     }
     case CHANGE_TODO_CALENDAR_FAIL: {
