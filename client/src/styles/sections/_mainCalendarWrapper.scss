@@ -89,7 +89,6 @@
 
       .fc-daygrid-day-top {
         font-weight: 600;
-        // color: $text-dark;
         color: $text-gray-1;
       }
 
@@ -106,11 +105,13 @@
       }
     }
 
+    // 오늘 날짜 표시
     .fc-day-today {
       background-color: transparent !important;
 
-      a {
-        // color: pink;
+      .fc-daygrid-day-top {
+        @include flexbox(center);
+        min-width: 29px;
         border: 2.5px solid $primary;
         border-radius: 50%;
       }
