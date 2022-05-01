@@ -1,4 +1,10 @@
-import { CYCLE_CHANGE_FAIL, CYCLE_CHANGE_SUCCESS } from "../actions/types";
+import {
+  CYCLE_CHANGE_FAIL,
+  CYCLE_CHANGE_SUCCESS,
+  CYCLE_INFO_REQUEST_EMPTY,
+  CYCLE_INFO_REQUEST_FAIL,
+  CYCLE_INFO_REQUEST_SUCCESS,
+} from "../actions/types";
 
 const initState = {
   start_date: "",
@@ -18,6 +24,26 @@ const cycleReducer = (state = initState, action) => {
       };
     }
     case CYCLE_CHANGE_FAIL: {
+      return {
+        ...state,
+      };
+    }
+    case CYCLE_INFO_REQUEST_SUCCESS: {
+      console.log("cycle request success: ", action.payload);
+      const { start_date, due_date, cycle } = action.payload;
+      return {
+        ...state,
+        start_date,
+        due_date,
+        cycle,
+      };
+    }
+    case CYCLE_INFO_REQUEST_EMPTY: {
+      return {
+        ...state,
+      };
+    }
+    case CYCLE_INFO_REQUEST_FAIL: {
       return {
         ...state,
       };

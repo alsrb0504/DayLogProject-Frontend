@@ -4,9 +4,13 @@ import logoBold from "../../assets/img/logo-bold.svg";
 import menu from "../../assets/icons/menu.svg";
 import water from "../../assets/icons/water.svg";
 import yellowWater from "../../assets/icons/yellow-water.svg";
+import { requestCycleAsync } from "../../store/actions/cycle";
+import { useDispatch } from "react-redux";
 
 const GlobalHeader = (props) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   // 생리 달력 기능 표시를 위한 상태
   // 추후 useSelector로 전환
@@ -20,6 +24,8 @@ const GlobalHeader = (props) => {
     // 생리 달력 on/off 기능
     // 처음 클릭 시, 설정으로 이동?
     setOnMenstruation(!onMenstruation);
+
+    dispatch(requestCycleAsync());
   };
 
   const handleLogo = () => {
