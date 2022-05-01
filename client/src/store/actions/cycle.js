@@ -7,8 +7,9 @@ import {
   CYCLE_INFO_REQUEST_SUCCESS,
 } from "./types";
 
-// 생리 정보 추가 함수
+// 생리 정보 추가 함수 (갱신);
 // 시작일과 주기를 전달해서 정보를 받고 홈으로 이동.
+
 export const changeCycleAsync = (data) => {
   const { start_date, cycle } = data;
 
@@ -24,11 +25,18 @@ export const changeCycleAsync = (data) => {
       */
 
       // Local test 용 주기 정보
-      const cycle_data = {
-        start_date: "2022-05-15",
-        due_date: "2022-05-12",
-        cycle: 28,
-      };
+      const cycle_data = [
+        {
+          start: "2022-05-1",
+          due_date: "2022-05-12",
+          cycle: 28,
+        },
+        // {
+        //   start_date: "2022-05-29",
+        //   due_date: "2022-05-12",
+        //   cycle: 28,
+        // },
+      ];
 
       dispatch({
         type: CYCLE_CHANGE_SUCCESS,
@@ -62,7 +70,13 @@ export const requestCycleAsync = () => {
       // 서버 데이터 예시
       // res.data = {
       //   message: "EMPTY", // or "FILL",
-      //   cycle_date: {},
+      //   cycle_date: [
+      //     {
+      //       start_date: "2022-05-15",
+      //       due_date: "2022-05-12",
+      //       cycle: 28,
+      //     },
+      //   ],
       // };
 
       // 로컬 테스트용
@@ -80,7 +94,7 @@ export const requestCycleAsync = () => {
         // 2. 주기 정보 없는 경우.
         // data: {
         //   message: "EMPTY",
-        //   cycle_data: {},
+        //   cycle_data: [],
         // },
       };
 
@@ -109,3 +123,20 @@ export const requestCycleAsync = () => {
     }
   };
 };
+
+const month_schedules = [
+  {
+    schedule_no: 123,
+    title: "일정 1",
+    content: "월요일 8시 정기 회의",
+    start_date: "2022-05-02",
+    end_date: "2022-05-02",
+  },
+  {
+    schedule_no: 233,
+    title: "일정 2",
+    content: "캡스톤 준비",
+    start_date: "2022-05-05",
+    end_date: "2022-05-12",
+  },
+];
