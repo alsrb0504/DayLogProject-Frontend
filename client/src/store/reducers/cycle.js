@@ -32,18 +32,15 @@ const cycleReducer = (state = initState, action) => {
       };
     }
     case CYCLE_INFO_REQUEST_SUCCESS: {
-      console.log("cycle request success: ", action.payload);
-      const { start_date, due_date, cycle } = action.payload;
       return {
         ...state,
-        start_date,
-        due_date,
-        cycle,
+        month_cycle: action.payload,
       };
     }
     case CYCLE_INFO_REQUEST_EMPTY: {
       return {
         ...state,
+        month_cycle: [],
       };
     }
     case CYCLE_INFO_REQUEST_FAIL: {

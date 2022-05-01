@@ -123,20 +123,3 @@ export const requestCycleAsync = () => {
     }
   };
 };
-
-const month_schedules = [
-  {
-    schedule_no: 123,
-    title: "일정 1",
-    content: "월요일 8시 정기 회의",
-    start_date: "2022-05-02",
-    end_date: "2022-05-02",
-  },
-  {
-    schedule_no: 233,
-    title: "일정 2",
-    content: "캡스톤 준비",
-    start_date: "2022-05-05",
-    end_date: "2022-05-12",
-  },
-];
