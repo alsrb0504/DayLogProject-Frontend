@@ -77,7 +77,9 @@ const Home = (props) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
-    dispatch(changeTodoCalendar("next", month, year));
+    // dispatch(changeTodoCalendar("next", month, year));
+
+    dispatch(RequestCycleAsync(month, year));
 
     calendarApi.next();
   };
