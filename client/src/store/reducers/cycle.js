@@ -23,6 +23,7 @@ const cycleReducer = (state = initState, action) => {
         cycle,
         start_dates,
         due_dates,
+        toggled: "NO",
       };
     }
     case CYCLE_CHANGE_FAIL: {
@@ -31,6 +32,7 @@ const cycleReducer = (state = initState, action) => {
         cycle: 0,
         start_dates: [],
         due_dates: [],
+        toggled: "EMPTY",
       };
     }
     case CYCLE_INFO_REQUEST_SUCCESS: {
@@ -39,6 +41,7 @@ const cycleReducer = (state = initState, action) => {
         cycle: action.payload.cycle,
         start_dates: action.payload.start_dates,
         due_dates: action.payload.due_dates,
+        toggled: "NO",
       };
     }
     case CYCLE_INFO_REQUEST_EMPTY: {
@@ -47,11 +50,13 @@ const cycleReducer = (state = initState, action) => {
         cycle: 0,
         start_dates: [],
         due_dates: [],
+        toggled: "EMPTY",
       };
     }
     case CYCLE_INFO_REQUEST_FAIL: {
       return {
         ...state,
+        toggled: "EMPTY",
       };
     }
     case CYCLE_TOGGLE_CHANGE: {
