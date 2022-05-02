@@ -1,37 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import GlobalHeader from "../../components/modules/globalHeader";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import GlobalHeader from "../../components/modules/globalHeader";
+import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import TodoSection from "../../components/sections/todoSection";
 import CircularButton from "../../components/modules/circularButton";
 import TodoPopup from "../../components/sections/todoPopup";
+import OverLay from "../../components/modules/overLay";
 import todo_icon from "../../assets/icons/todo.svg";
 import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
-import {
-  changeDayFull,
-  printDayInfo,
-  toDayInfo,
-} from "../../services/calcDate";
-import { useDispatch, useSelector } from "react-redux";
-import OverLay from "../../components/modules/overLay";
-import { changeTodoCalendar } from "../../store/actions/todo";
-import { RequestSchedules } from "../../store/actions/schedule";
-import { RequestCycleAsync } from "../../store/actions/cycle";
-import {
-  GetCalendarMonthYear,
-  MakeCalendarEvents,
-} from "../../services/calendar";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { printDayInfo, toDayInfo } from "../../services/calcDate";
 
 const Home = (props) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const calendarRef = useRef();
 
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
@@ -44,34 +28,6 @@ const Home = (props) => {
   const select_todos = month_todos.find(
     (daily_todos) => daily_todos.date === selectedDate.date
   );
-
-  // 캘린더 이벤트 생성 함수.
-  const events = MakeCalendarEvents();
-
-  // 캘린더 날짜 클릭 이벤트
-  // 날짜 선택 시, 버튼창 뜨도록...
-  const onClickDate = (info) => {
-    setIsToggle(true);
-
-    const date = info.dateStr;
-    const day = info.date.toString().split(" ")[0];
-    setSelectedDate({
-      date,
-      day: changeDayFull(day),
-    });
-  };
-
-  // 캘린더 달 prev, next 클릭 이벤트
-  const movePrevMonth = () => {
-    const calendarApi = calendarRef.current._calendarApi;
-    const { month, year } = GetCalendarMonthYear(calendarApi);
-
-    //  dispatch(changeTodoCalendar("prev", month, year));
-    //  dispatch(RequestSchedules("prev", month, year));
-    dispatch(RequestCycleAsync(month, year));
-
-    calendarApi.prev();
-  };
 
   // 로그인 관련
   useEffect(() => {
@@ -94,15 +50,6 @@ const Home = (props) => {
     await axios.delete("/api/members/logout");
 
     navigate("/login");
-  };
-  const moveNextMonth = () => {
-    const calendarApi = calendarRef.current._calendarApi;
-    const { month, year } = GetCalendarMonthYear(calendarApi);
-
-    //  // dispatch(changeTodoCalendar("next", month, year));
-    dispatch(RequestCycleAsync(month, year));
-
-    calendarApi.next();
   };
   // ======================================
   //
@@ -131,38 +78,10 @@ const Home = (props) => {
 
       <GlobalHeader />
 
-      <MainCalendarWrapper>
-        <FullCalendar //
-          ref={calendarRef}
-          plugins={[dayGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            start: "",
-            center: "customPrev title customNext",
-            end: "",
-          }}
-          eventClick={function () {
-            alert("hi");
-          }}
-          events={events}
-          dateClick={(info) => {
-            onClickDate(info);
-          }}
-          customButtons={{
-            customPrev: {
-              text: "<",
-              click: function () {
-                movePrevMonth();
-              },
-            },
-            customNext: {
-              text: ">",
-              click: () => {
-                moveNextMonth();
-              },
-            },
-          }}
-        />
-      </MainCalendarWrapper>
+      <MainCalendarWrapper
+        setIsToggle={setIsToggle}
+        setSelectedDate={setSelectedDate}
+      ></MainCalendarWrapper>
 
       <section className="home-bottom">
         <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
