@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AddButton from "../../../components/modules/addButton";
 import InputHeader from "../../../components/modules/inputHeader";
+import ScheduleSection from "../../../components/sections/scheduleSection";
 import { printDayInfo } from "../../../services/calcDate";
 
 const ScheduleHome = () => {
@@ -30,6 +31,8 @@ const ScheduleHome = () => {
     <div>
       <InputHeader text="홈으로" onClick={moveHome} />
       <h2>{printDayInfo(location.state)}</h2>
+
+      <ScheduleSection date={location.state.date} />
 
       <AddButton used="schedule" onClick={moveAddSchedule} />
     </div>
