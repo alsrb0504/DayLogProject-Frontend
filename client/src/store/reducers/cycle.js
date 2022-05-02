@@ -23,7 +23,7 @@ const cycleReducer = (state = initState, action) => {
         cycle,
         start_dates,
         due_dates,
-        toggled: "NO",
+        toggled: state.toggled === "EMPTY" ? "NO" : state.toggled,
       };
     }
     case CYCLE_CHANGE_FAIL: {
