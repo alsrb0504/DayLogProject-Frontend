@@ -95,13 +95,25 @@
         position: absolute !important;
 
         .fc-daygrid-event-harness {
-          // 생리 이벤트의 경우
+          // 생리 시작일
           .menstruation {
             width: 31px;
             height: 31px;
             border: none;
             // background-color: transparent;
             background-color: $yellow;
+            border-radius: 50%;
+
+            z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.
+          }
+
+          .menstruation-due-date {
+            width: 31px;
+            height: 31px;
+            border: 3px dotted $yellow;
+            // background-color: $yellow;
+            background-color: transparent;
+
             border-radius: 50%;
 
             z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.

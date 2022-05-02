@@ -53,6 +53,11 @@ const Home = (props) => {
       date: "2022-04-29",
       classNames: ["menstruation"],
     },
+    {
+      title: "4월 예정일",
+      date: "2022-04-26",
+      classNames: ["menstruation-due-date"],
+    },
   ];
 
   // 월간 Todo 목록.
