@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import ScheduleList from "../modules/schedulelist";
 
 const ScheduleSection = ({ date }) => {
   // console.log(date);
@@ -14,7 +15,8 @@ const ScheduleSection = ({ date }) => {
 
   return (
     <section>
-      <ul>{schedules && schedules.map((item, idx) => <p>{item.title}</p>)}</ul>
+      {/* <ul>{schedules && schedules.map((item, idx) => <p>{item.title}</p>)}</ul> */}
+      <ScheduleList schedules={schedules} />
     </section>
   );
 };
