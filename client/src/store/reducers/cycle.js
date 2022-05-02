@@ -15,14 +15,20 @@ const initState = {
 const cycleReducer = (state = initState, action) => {
   switch (action.type) {
     case CYCLE_CHANGE_SUCCESS: {
+      const { cycle, start_dates, due_dates } = action.payload;
       return {
         ...state,
-        month_cycle: action.payload,
+        cycle,
+        start_dates,
+        due_dates,
       };
     }
     case CYCLE_CHANGE_FAIL: {
       return {
         ...state,
+        cycle: 0,
+        start_dates: [],
+        due_dates: [],
       };
     }
     case CYCLE_INFO_REQUEST_SUCCESS: {
