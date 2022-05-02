@@ -11,6 +11,9 @@ import SignUpEmail from "./pages/SignUp/signUpEmail";
 import SignUpNickname from "./pages/SignUp/signUpNickname";
 import SignUpName from "./pages/SignUp/signUpName";
 import Menstruation from "./pages/Menstruation/menstruation";
+import Schedule from "./pages/Schedule/schedule";
+import ScheduleHome from "./pages/Schedule/Details/scheduleHome";
+import ScheduleAdd from "./pages/Schedule/Details/scheduleAdd";
 
 function App() {
   const navigate = useNavigate();
@@ -73,6 +76,10 @@ function App() {
                 <Route path="email" element={<SignUpEmail />} />
                 <Route path="nickname" element={<SignUpNickname />} />
                 <Route path="name" element={<SignUpName />} />
+              </Route>
+              <Route path="/schedule" element={<Schedule />}>
+                <Route index element={<ScheduleHome />} />
+                <Route path="add" element={<ScheduleAdd />} />
               </Route>
               <Route path="/menstruation" element={<Menstruation />} />
             </Routes>

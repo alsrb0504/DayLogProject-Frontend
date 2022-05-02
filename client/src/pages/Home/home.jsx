@@ -10,7 +10,7 @@ import TodoSection from "../../components/sections/todoSection";
 import CircularButton from "../../components/modules/circularButton";
 import TodoPopup from "../../components/sections/todoPopup";
 import todo_icon from "../../assets/icons/todo.svg";
-import memo_icon from "../../assets/icons/memo.svg";
+import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
 import {
@@ -21,6 +21,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import OverLay from "../../components/modules/overLay";
 import { changeTodoCalendar } from "../../store/actions/todo";
+import { RequestSchedules } from "../../store/actions/schedule";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -41,12 +42,22 @@ const Home = (props) => {
     {
       title: "start_date",
       date: "2022-05-14",
-      classNames: ["menstruation"],
+      classNames: ["menstruation-start-date"],
     },
     {
       title: "start_date",
       date: "2022-05-04",
-      classNames: ["menstruation"],
+      classNames: ["menstruation-start-date"],
+    },
+    {
+      title: "4월 start_date",
+      date: "2022-04-29",
+      classNames: ["menstruation-start-date"],
+    },
+    {
+      title: "4월 예정일",
+      date: "2022-04-26",
+      classNames: ["menstruation-due-date"],
     },
   ];
 
@@ -77,6 +88,7 @@ const Home = (props) => {
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
     dispatch(changeTodoCalendar("prev", month, year));
+    dispatch(RequestSchedules("prev", month, year));
 
     // 흠.. 여기서, 생리 정보를 받아오고
     //
@@ -124,6 +136,12 @@ const Home = (props) => {
 
   const closeTodoPopup = () => {
     setIsTodoPopup(false);
+  };
+
+  const moveSchedule = () => {
+    // navigate("/schedule");
+
+    navigate("/schedule", { state: selectedDate });
   };
 
   const moveMenstruation = () => {
@@ -187,7 +205,7 @@ const Home = (props) => {
       {isToggle && (
         <section className="btns-section">
           <CircularButton icon={todo_icon} onClick={openTodoPopup} />
-          <CircularButton icon={memo_icon} onClick={() => {}} />
+          <CircularButton icon={schedule_icon} onClick={moveSchedule} />
           <CircularButton icon={water_icon} onClick={moveMenstruation} />
           <CircularButton
             icon={delete_icon}
