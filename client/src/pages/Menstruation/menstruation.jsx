@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/modules/button";
 import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
-import { changeCycleAsync } from "../../store/actions/cycle";
+import { RequestCycleAsync } from "../../store/actions/cycle";
 
 const Menstruation = (props) => {
   const {
@@ -17,20 +17,27 @@ const Menstruation = (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    // console.log(start_date, cycle);
-
-    dispatch(changeCycleAsync(data));
-    // cycle 입력 숫자로 확인 기능 추가해야 함.
-    console.log(data);
+    dispatch(RequestCycleAsync(data));
+    // console.log(data);
   };
 
   const moveHome = () => {
     navigate("/");
   };
 
-  const checkDate = (date) => {
+  const checkYear = (date) => {
     const year = date.split("-")[0];
-    return year < 2022 ? "최근 날짜를 선택하세요." : true;
+    if (year < 2021 || year > 2022) {
+      return "년도를 다시 확인해주세요.";
+    }
+    return true;
+  };
+
+  const checkCycle = (date) => {
+    if (date < 21 || date > 40) {
+      return "주기를 다시 확인해주세요.";
+    }
+    return true;
   };
 
   return (
@@ -46,7 +53,7 @@ const Menstruation = (props) => {
                 placeholder="2022-04-30"
                 {...register("start_date", {
                   required: "날짜를 선택해주세요.",
-                  validate: { checkDate },
+                  validate: { checkYear },
                 })}
               />
               {errors.start_date && (
@@ -76,6 +83,7 @@ const Menstruation = (props) => {
                     value: 2,
                     message: "주기가 너무 깁니다.",
                   },
+                  validate: { checkCycle },
                 })}
               />
               {errors.cycle && (

@@ -22,6 +22,8 @@ import { useDispatch, useSelector } from "react-redux";
 import OverLay from "../../components/modules/overLay";
 import { changeTodoCalendar } from "../../store/actions/todo";
 import { RequestSchedules } from "../../store/actions/schedule";
+import { RequestCycleAsync } from "../../store/actions/cycle";
+import { MakeCalendarEvents } from "../../services/calendar";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -34,32 +36,8 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  // 리덕스 생리 저장소 이용.
-  // 음.. 캘린더 관련 파일을 새로 만드는 게 좋을 듯.
-  // events는 생리 주기 정보, 할 일 목록을 리덕스에서 각각 받아와서
-  // 캘린더에 맞는 형식으로 수정한 후, event 목록에 추가해서 state로 관리?
-  const events = [
-    {
-      title: "start_date",
-      date: "2022-05-14",
-      classNames: ["menstruation-start-date"],
-    },
-    {
-      title: "start_date",
-      date: "2022-05-04",
-      classNames: ["menstruation-start-date"],
-    },
-    {
-      title: "4월 start_date",
-      date: "2022-04-29",
-      classNames: ["menstruation-start-date"],
-    },
-    {
-      title: "4월 예정일",
-      date: "2022-04-26",
-      classNames: ["menstruation-due-date"],
-    },
-  ];
+  // 캘린더 이벤트 생성 함수.
+  const events = MakeCalendarEvents();
 
   // 월간 Todo 목록.
   const month_todos = useSelector((state) => state.todo.month_todos);
@@ -87,11 +65,10 @@ const Home = (props) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
-    dispatch(changeTodoCalendar("prev", month, year));
-    dispatch(RequestSchedules("prev", month, year));
+    //  dispatch(changeTodoCalendar("prev", month, year));
+    //  dispatch(RequestSchedules("prev", month, year));
 
-    // 흠.. 여기서, 생리 정보를 받아오고
-    //
+    dispatch(RequestCycleAsync(month, year));
 
     calendarApi.prev();
   };
@@ -100,7 +77,9 @@ const Home = (props) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
-    dispatch(changeTodoCalendar("next", month, year));
+    // dispatch(changeTodoCalendar("next", month, year));
+
+    dispatch(RequestCycleAsync(month, year));
 
     calendarApi.next();
   };
