@@ -51,8 +51,6 @@ export const RequestSchedules =
         month_scheduls = res.data.month_scheduls;
       }
 
-      console.log("month_schedlues ", month_scheduls);
-
       dispatch({
         type: SCHEDULE_REQUEST_SUCCESS,
         payload: month_scheduls,
