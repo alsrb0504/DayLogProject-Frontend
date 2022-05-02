@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import OverLay from "../../components/modules/overLay";
 import { changeTodoCalendar } from "../../store/actions/todo";
 import { RequestSchedules } from "../../store/actions/schedule";
+import { RequestCycleAsync } from "../../store/actions/cycle";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -87,11 +88,10 @@ const Home = (props) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
-    dispatch(changeTodoCalendar("prev", month, year));
-    dispatch(RequestSchedules("prev", month, year));
+    //  dispatch(changeTodoCalendar("prev", month, year));
+    //  dispatch(RequestSchedules("prev", month, year));
 
-    // 흠.. 여기서, 생리 정보를 받아오고
-    //
+    dispatch(RequestCycleAsync(month, year));
 
     calendarApi.prev();
   };

@@ -7,21 +7,9 @@ import {
 } from "../actions/types";
 
 const initState = {
-  month_cycle: [
-    {
-      start_date: "2022-05-15",
-      due_date: "2022-05-12",
-      cycle: 28,
-    },
-  ],
-
-  /* 주기 정보 양식
-    {
-      start_date: "",
-      due_date: "",
-      cycle: "",
-    };
-*/
+  cycle: 0,
+  start_dates: [],
+  due_dates: [],
 };
 
 const cycleReducer = (state = initState, action) => {
@@ -40,13 +28,17 @@ const cycleReducer = (state = initState, action) => {
     case CYCLE_INFO_REQUEST_SUCCESS: {
       return {
         ...state,
-        month_cycle: action.payload,
+        cycle: action.payload.cycle,
+        start_dates: action.payload.start_dates,
+        due_dates: action.payload.due_dates,
       };
     }
     case CYCLE_INFO_REQUEST_EMPTY: {
       return {
         ...state,
-        month_cycle: [],
+        cycle: 0,
+        start_dates: [],
+        due_dates: [],
       };
     }
     case CYCLE_INFO_REQUEST_FAIL: {

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { changeMonthInt } from "../../services/calcDate";
 import {
   CYCLE_CHANGE_FAIL,
   CYCLE_CHANGE_SUCCESS,
@@ -31,7 +32,7 @@ export const changeCycleAsync = (data) => {
       // Local test 용 주기 정보
       const cycle_data = [
         {
-          start: "2022-05-1",
+          start_date: "2022-05-01",
           due_date: "2022-05-12",
           cycle: 28,
         },
@@ -60,71 +61,72 @@ export const changeCycleAsync = (data) => {
 // 일단 구현 가능한지 테스트용
 // 테스트 기능으로 홈에서 물방울 눌렀을 때 정보를 받아오도록 구현
 // 추후에는 로그인 시, 달력 이동 시, 다른 정보들과 같이 받아올 것.
-export const requestCycleAsync = () => {
-  const date_info = new Date();
-
-  const year = date_info.getFullYear();
-  const month = date_info.getMonth();
+export const RequestCycleAsync = (mm, yy) => {
+  const month = changeMonthInt(mm);
 
   return async (dispatch, getState, { history }) => {
     try {
-      // 주기 정보 요청 통신 부분
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("access_token")}`;
 
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `Bearer ${localStorage.getItem("access_token")}`;
-
-      // const res = axios.post(`/api/members/cycle?year=${year}&month=${month}`);
-
-      // 서버 데이터 예시
-      // res.data = {
-      //   message: "EMPTY", // or "FILL",
-      //   cycle_date: [
-      //     {
-      //       start_date: "2022-05-15",
-      //       due_date: "2022-05-12",
-      //       cycle: 28,
-      //     },
-      //   ],
-      // };
+      const res = axios.post(`/api/members/cycle?year=${yy}&month=${month}`);
 
       // 로컬 테스트용
-      const res = {
-        // 1. 주기 정보 있는 경우.
-        data: {
-          message: "FILL",
-          cycle_data: [
-            {
-              start_date: "2022-05-15",
-              due_date: "2022-05-12",
-              cycle: 28,
-            },
-          ],
-        },
 
-        // 2. 주기 정보 없는 경우.
-        // data: {
-        //   message: "EMPTY",
-        //   cycle_data: [],
-        // },
-      };
+      // 로컬 테스트용 코드 : 79 ~ 104 제거.
+      // 1. 주기 정보 있는 경우.
+      // const res = {
+      //   data: {
+      //     message: "FILL",
+      //     cycle: 28,
+      //     dates: [
+      //       {
+      //         type: "START_DATE",
+      //         date: "2022-04-5",
+      //       },
+      //       {
+      //         type: "START_DATE",
+      //         date: "2022-05-03",
+      //       },
+      //       {
+      //         type: "DUE_DATE",
+      //         date: "2022-05-01",
+      //       },
+      //     ],
+      //   },
+      // };
+      // 2. 주기 정보가 없는 경우
+      // const res = {
+      //   data: {
+      //     message: "EMPTY",
+      //   },
+      // };
 
-      // 1. 서버에 주기 정보가 있는 경우
       if (res.data.message === "FILL") {
-        // 통신 시, 주석 제거.
-        // const cycle_data = res.data.cycle_data;
+        const start_dates = [];
+        const due_dates = [];
 
-        // Local test 용 주기 정보
-        const cycle_data = res.data.cycle_data;
+        res.data.dates.forEach((date) => {
+          if (date.type === "START_DATE") {
+            start_dates.push(date);
+          } else if (date.type === "DUE_DATE") {
+            due_dates.push(date);
+          }
+        });
 
         dispatch({
           type: CYCLE_INFO_REQUEST_SUCCESS,
-          payload: cycle_data,
+          payload: {
+            cycle: res.data.cycle,
+            start_dates,
+            due_dates,
+          },
         });
       }
       // 2. 서버에 주기 정보가 없는 경우
       // 주기 정보 입력 페이지로 이동.
-      else {
+      else if (res.data.message === "EMPTY") {
         dispatch({ type: CYCLE_INFO_REQUEST_EMPTY });
         history.push("/menstruation");
       }
