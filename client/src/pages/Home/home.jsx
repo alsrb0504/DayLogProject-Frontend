@@ -23,7 +23,10 @@ import OverLay from "../../components/modules/overLay";
 import { changeTodoCalendar } from "../../store/actions/todo";
 import { RequestSchedules } from "../../store/actions/schedule";
 import { RequestCycleAsync } from "../../store/actions/cycle";
-import { MakeCalendarEvents } from "../../services/calendar";
+import {
+  GetCalendarMonthYear,
+  MakeCalendarEvents,
+} from "../../services/calendar";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -63,11 +66,10 @@ const Home = (props) => {
   // 이전, 다음 달 이동 기능.
   const movePrevMonth = () => {
     const calendarApi = calendarRef.current._calendarApi;
-    const { viewTitle } = calendarApi.getCurrentData();
-    const [month, year] = viewTitle.split(" ");
+    const { month, year } = GetCalendarMonthYear(calendarApi);
+
     //  dispatch(changeTodoCalendar("prev", month, year));
     //  dispatch(RequestSchedules("prev", month, year));
-
     dispatch(RequestCycleAsync(month, year));
 
     calendarApi.prev();
@@ -75,10 +77,9 @@ const Home = (props) => {
 
   const moveNextMonth = () => {
     const calendarApi = calendarRef.current._calendarApi;
-    const { viewTitle } = calendarApi.getCurrentData();
-    const [month, year] = viewTitle.split(" ");
-    // dispatch(changeTodoCalendar("next", month, year));
+    const { month, year } = GetCalendarMonthYear(calendarApi);
 
+    //  // dispatch(changeTodoCalendar("next", month, year));
     dispatch(RequestCycleAsync(month, year));
 
     calendarApi.next();
