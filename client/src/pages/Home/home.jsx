@@ -138,6 +138,12 @@ const Home = (props) => {
     setIsTodoPopup(false);
   };
 
+  const moveSchedule = () => {
+    // navigate("/schedule");
+
+    navigate("/schedule", { state: selectedDate });
+  };
+
   const moveMenstruation = () => {
     // 생리 설정 페이지 이동
     navigate("/menstruation");
@@ -199,7 +205,7 @@ const Home = (props) => {
       {isToggle && (
         <section className="btns-section">
           <CircularButton icon={todo_icon} onClick={openTodoPopup} />
-          <CircularButton icon={schedule_icon} onClick={() => {}} />
+          <CircularButton icon={schedule_icon} onClick={moveSchedule} />
           <CircularButton icon={water_icon} onClick={moveMenstruation} />
           <CircularButton
             icon={delete_icon}
