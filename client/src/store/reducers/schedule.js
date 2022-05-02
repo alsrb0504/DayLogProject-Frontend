@@ -1,4 +1,6 @@
 import {
+  SCHEDULE_ADD_FAIL,
+  SCHEDULE_ADD_SUCCESS,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
 } from "../actions/types";
@@ -31,7 +33,13 @@ const scheduleReducer = (state = initState, action) => {
       return { ...state, month_schedules: action.payload };
     }
     case SCHEDULE_REQUEST_FAIL: {
-      return { ...state };
+      return { ...state, month_schedules: [] };
+    }
+    case SCHEDULE_ADD_SUCCESS: {
+      return { ...state, month_schedules: action.payload };
+    }
+    case SCHEDULE_ADD_FAIL: {
+      return { ...state, month_schedules: [] };
     }
     default:
       return { ...state };
