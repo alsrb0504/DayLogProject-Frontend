@@ -69,6 +69,13 @@
     }
 
     // calendar body
+    // 남은 달 날짜들 예외 설정.
+    .fc-day-other {
+      .menstruation {
+        opacity: 0.3;
+      }
+    }
+
     .fc-view-harness {
       height: 312px !important;
     }
