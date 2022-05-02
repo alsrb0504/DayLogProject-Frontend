@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RequestCycleAsync } from "../store/actions/cycle";
+import { useSelector } from "react-redux";
 
 // 캘린더 이벤트 생성 함수.
 // 추후 일정도 추가.
@@ -47,6 +46,4 @@ export const GetCalendarMonthYear = (calendarApi) => {
   const [month, year] = viewTitle.split(" ");
 
   return { month, year };
-
-  // calendarApi.next();
 };

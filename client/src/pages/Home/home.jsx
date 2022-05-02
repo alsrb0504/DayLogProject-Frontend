@@ -62,8 +62,6 @@ const Home = (props) => {
   };
 
   // 캘린더 달 prev, next 클릭 이벤트
-  // calendar api를 이용하여 현재 년도와 달 정보 획득
-  // 이전, 다음 달 이동 기능.
   const movePrevMonth = () => {
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
