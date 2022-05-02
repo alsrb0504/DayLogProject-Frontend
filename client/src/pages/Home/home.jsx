@@ -33,6 +33,23 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
+  // 리덕스 생리 저장소 이용.
+  // 음.. 캘린더 관련 파일을 새로 만드는 게 좋을 듯.
+  // events는 생리 주기 정보, 할 일 목록을 리덕스에서 각각 받아와서
+  // 캘린더에 맞는 형식으로 수정한 후, event 목록에 추가해서 state로 관리?
+  const events = [
+    {
+      title: "start_date",
+      date: "2022-05-14",
+      classNames: ["menstruation"],
+    },
+    {
+      title: "start_date",
+      date: "2022-05-04",
+      classNames: ["menstruation"],
+    },
+  ];
+
   // 월간 Todo 목록.
   const month_todos = useSelector((state) => state.todo.month_todos);
   const select_todos = month_todos.find(
@@ -60,6 +77,9 @@ const Home = (props) => {
     const { viewTitle } = calendarApi.getCurrentData();
     const [month, year] = viewTitle.split(" ");
     dispatch(changeTodoCalendar("prev", month, year));
+
+    // 흠.. 여기서, 생리 정보를 받아오고
+    //
 
     calendarApi.prev();
   };
@@ -97,13 +117,12 @@ const Home = (props) => {
 
   //
   // 아이콘 버튼을 통해 이동하는 함수들
+  // todo 팝업 오픈
   const openTodoPopup = () => {
-    // todo 팝업 오픈
     setIsTodoPopup(true);
   };
 
   const closeTodoPopup = () => {
-    // 일정 관리 페이지 이동
     setIsTodoPopup(false);
   };
 
@@ -135,12 +154,7 @@ const Home = (props) => {
           eventClick={function () {
             alert("hi");
           }}
-          events={[
-            {
-              title: "test1",
-              date: "2022-04-20",
-            },
-          ]}
+          events={events}
           dateClick={(info) => {
             onClickDate(info);
           }}
