@@ -26,7 +26,7 @@ export const RequestSchedules =
       const res = {
         data: {
           haveSchedules: true,
-          month_scheduls: [
+          month_schedules: [
             {
               schedule_no: 233,
               title: "일정 2",
@@ -46,14 +46,14 @@ export const RequestSchedules =
       };
       const haveSchdeuls = false;
 
-      let month_scheduls = [];
+      let month_schedules = [];
       if (haveSchdeuls) {
-        month_scheduls = res.data.month_scheduls;
+        month_schedules = res.data.month_schedules;
       }
 
       dispatch({
         type: SCHEDULE_REQUEST_SUCCESS,
-        payload: month_scheduls,
+        payload: month_schedules,
       });
     } catch (e) {
       console.log(e);
