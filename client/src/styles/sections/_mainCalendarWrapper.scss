@@ -71,7 +71,8 @@
     // calendar body
     // 남은 달 날짜들 예외 설정.
     .fc-day-other {
-      .menstruation {
+      .menstruation-start-date,
+      .menstruation-due-date {
         opacity: 0.3;
       }
     }
@@ -95,28 +96,26 @@
         position: absolute !important;
 
         .fc-daygrid-event-harness {
-          // 생리 시작일
-          .menstruation {
+          // 생리 관련 이벤트 공통 설정
+          .menstruation-start-date,
+          .menstruation-due-date {
             width: 31px;
             height: 31px;
-            border: none;
-            // background-color: transparent;
-            background-color: $yellow;
             border-radius: 50%;
 
             z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.
           }
 
+          // 생리 시작일
+          .menstruation-start-date {
+            border: none;
+            background-color: $yellow;
+          }
+
+          // 생리 예정일
           .menstruation-due-date {
-            width: 31px;
-            height: 31px;
             border: 3px dotted $yellow;
-            // background-color: $yellow;
             background-color: transparent;
-
-            border-radius: 50%;
-
-            z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.
           }
 
           .fc-event-title {

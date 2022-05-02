@@ -41,17 +41,17 @@ const Home = (props) => {
     {
       title: "start_date",
       date: "2022-05-14",
-      classNames: ["menstruation"],
+      classNames: ["menstruation-start-date"],
     },
     {
       title: "start_date",
       date: "2022-05-04",
-      classNames: ["menstruation"],
+      classNames: ["menstruation-start-date"],
     },
     {
       title: "4월 start_date",
       date: "2022-04-29",
-      classNames: ["menstruation"],
+      classNames: ["menstruation-start-date"],
     },
     {
       title: "4월 예정일",
