@@ -39,14 +39,14 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  // 캘린더 이벤트 생성 함수.
-  const events = MakeCalendarEvents();
-
   // 월간 Todo 목록.
   const month_todos = useSelector((state) => state.todo.month_todos);
   const select_todos = month_todos.find(
     (daily_todos) => daily_todos.date === selectedDate.date
   );
+
+  // 캘린더 이벤트 생성 함수.
+  const events = MakeCalendarEvents();
 
   // 캘린더 날짜 클릭 이벤트
   // 날짜 선택 시, 버튼창 뜨도록...
@@ -73,16 +73,7 @@ const Home = (props) => {
     calendarApi.prev();
   };
 
-  const moveNextMonth = () => {
-    const calendarApi = calendarRef.current._calendarApi;
-    const { month, year } = GetCalendarMonthYear(calendarApi);
-
-    //  // dispatch(changeTodoCalendar("next", month, year));
-    dispatch(RequestCycleAsync(month, year));
-
-    calendarApi.next();
-  };
-
+  // 로그인 관련
   useEffect(() => {
     // console.log(logined);
     // 만약 로그인 페이지 이동이 귀찮다면
@@ -104,10 +95,19 @@ const Home = (props) => {
 
     navigate("/login");
   };
+  const moveNextMonth = () => {
+    const calendarApi = calendarRef.current._calendarApi;
+    const { month, year } = GetCalendarMonthYear(calendarApi);
 
+    //  // dispatch(changeTodoCalendar("next", month, year));
+    dispatch(RequestCycleAsync(month, year));
+
+    calendarApi.next();
+  };
+  // ======================================
   //
-  // 아이콘 버튼을 통해 이동하는 함수들
-  // todo 팝업 오픈
+
+  // todo 팝업 오픈 관련 및 화면 이동 함수들
   const openTodoPopup = () => {
     setIsTodoPopup(true);
   };
@@ -117,20 +117,13 @@ const Home = (props) => {
   };
 
   const moveSchedule = () => {
-    // navigate("/schedule");
-
     navigate("/schedule", { state: selectedDate });
   };
 
   const moveMenstruation = () => {
-    // 생리 설정 페이지 이동
     navigate("/menstruation");
   };
-
-  // 현재 필요없는 코드.
-  const onLogin = () => {
-    navigate("/login");
-  };
+  // ======================================
 
   return (
     <div>
