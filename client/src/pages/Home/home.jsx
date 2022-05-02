@@ -10,7 +10,7 @@ import TodoSection from "../../components/sections/todoSection";
 import CircularButton from "../../components/modules/circularButton";
 import TodoPopup from "../../components/sections/todoPopup";
 import todo_icon from "../../assets/icons/todo.svg";
-import memo_icon from "../../assets/icons/memo.svg";
+import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon from "../../assets/icons/delete-black.svg";
 import {
@@ -197,7 +197,7 @@ const Home = (props) => {
       {isToggle && (
         <section className="btns-section">
           <CircularButton icon={todo_icon} onClick={openTodoPopup} />
-          <CircularButton icon={memo_icon} onClick={() => {}} />
+          <CircularButton icon={schedule_icon} onClick={() => {}} />
           <CircularButton icon={water_icon} onClick={moveMenstruation} />
           <CircularButton
             icon={delete_icon}
