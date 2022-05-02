@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/modules/button";
 import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
-import { ChangeCycleAsync } from "../../store/actions/cycle";
+import { RequestCycleAsync } from "../../store/actions/cycle";
 
 const Menstruation = (props) => {
   const {
@@ -17,8 +17,8 @@ const Menstruation = (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(ChangeCycleAsync(data));
-    console.log(data);
+    dispatch(RequestCycleAsync(data));
+    // console.log(data);
   };
 
   const moveHome = () => {

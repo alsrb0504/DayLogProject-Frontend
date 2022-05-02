@@ -25,7 +25,7 @@ const ClassifyDates = (dateArr) => {
 };
 
 // 생리 정보 추가 함수 (갱신);
-export const ChangeCycleAsync = (data) => {
+export const RequestCycleAsync = (data) => {
   const { start_date, cycle } = data;
 
   return async (dispatch, getState, { history }) => {
@@ -56,15 +56,15 @@ export const ChangeCycleAsync = (data) => {
             dates: [
               {
                 type: "START_DATE",
-                date: "2022-04-29",
+                date: "2022-05-04",
               },
               {
                 type: "START_DATE",
-                date: "2022-05-03",
+                date: "2022-05-28",
               },
               {
                 type: "DUE_DATE",
-                date: "2022-05-01",
+                date: "2022-05-30",
               },
             ],
           },
@@ -92,7 +92,7 @@ export const ChangeCycleAsync = (data) => {
 };
 
 // 추후에는 로그인 시, 달력 이동 시, 다른 정보들과 같이 받아올 것.
-export const RequestCycleAsync = (mm, yy) => {
+export const ChangeCycleAsync = (mm, yy) => {
   const month = changeMonthInt(mm);
 
   return async (dispatch, getState, { history }) => {
@@ -112,15 +112,15 @@ export const RequestCycleAsync = (mm, yy) => {
           dates: [
             {
               type: "START_DATE",
-              date: "2022-04-5",
+              date: "2022-05-15",
             },
             {
               type: "START_DATE",
-              date: "2022-05-03",
+              date: "2022-05-04",
             },
             {
               type: "DUE_DATE",
-              date: "2022-05-01",
+              date: "2022-05-27",
             },
           ],
         },
