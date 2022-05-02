@@ -36,37 +36,8 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  // 리덕스 생리 저장소 이용.
-  // 음.. 캘린더 관련 파일을 새로 만드는 게 좋을 듯.
-  // events는 생리 주기 정보, 할 일 목록을 리덕스에서 각각 받아와서
-  // 캘린더에 맞는 형식으로 수정한 후, event 목록에 추가해서 state로 관리?
-  const startArr = useSelector((state) => state.cycle.start_dates);
-  const dueArr = useSelector((state) => state.cycle.due_dates);
-
-  const events = MakeCalendarEvents(startArr, dueArr);
-  console.log(events);
-  // const events = [
-  //   {
-  //     title: "start_date",
-  //     date: "2022-05-14",
-  //     classNames: ["menstruation-start-date"],
-  //   },
-  //   {
-  //     title: "start_date",
-  //     date: "2022-05-04",
-  //     classNames: ["menstruation-start-date"],
-  //   },
-  //   {
-  //     title: "4월 start_date",
-  //     date: "2022-04-29",
-  //     classNames: ["menstruation-start-date"],
-  //   },
-  //   {
-  //     title: "4월 예정일",
-  //     date: "2022-04-26",
-  //     classNames: ["menstruation-due-date"],
-  //   },
-  // ];
+  // 캘린더 이벤트 생성 함수.
+  const events = MakeCalendarEvents();
 
   // 월간 Todo 목록.
   const month_todos = useSelector((state) => state.todo.month_todos);
