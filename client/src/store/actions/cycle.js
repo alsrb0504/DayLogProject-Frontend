@@ -8,9 +8,23 @@ import {
   CYCLE_INFO_REQUEST_SUCCESS,
 } from "./types";
 
-// 생리 정보 추가 함수 (갱신);
-// 시작일과 주기를 전달해서 정보를 받고 홈으로 이동.
+// 서버로부터 전달받은 (시작, 예정일) 날짜들 분류 함수
+const ClassifyDates = (dateArr) => {
+  const startArr = [];
+  const dueArr = [];
 
+  dateArr.forEach((date) => {
+    if (date.type === "START_DATE") {
+      startArr.push(date);
+    } else if (date.type === "DUE_DATE") {
+      dueArr.push(date);
+    }
+  });
+
+  return { startArr, dueArr };
+};
+
+// 생리 정보 추가 함수 (갱신);
 export const ChangeCycleAsync = (data) => {
   const { start_date, cycle } = data;
 
@@ -143,17 +157,4 @@ export const RequestCycleAsync = (mm, yy) => {
   };
 };
 
-const ClassifyDates = (dateArr) => {
-  const startArr = [];
-  const dueArr = [];
-
-  dateArr.forEach((date) => {
-    if (date.type === "START_DATE") {
-      startArr.push(date);
-    } else if (date.type === "DUE_DATE") {
-      dueArr.push(date);
-    }
-  });
-
-  return { startArr, dueArr };
-};
+export const CycleToggleEmpty = () => {};

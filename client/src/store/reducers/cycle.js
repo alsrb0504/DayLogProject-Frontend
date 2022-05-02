@@ -4,12 +4,14 @@ import {
   CYCLE_INFO_REQUEST_EMPTY,
   CYCLE_INFO_REQUEST_FAIL,
   CYCLE_INFO_REQUEST_SUCCESS,
+  CYCLE_TOGGLE_CHANGE,
 } from "../actions/types";
 
 const initState = {
   cycle: 0,
   start_dates: [],
   due_dates: [],
+  toggled: "ON", // "ON" | "OFF" | "EMPTY"
 };
 
 const cycleReducer = (state = initState, action) => {
@@ -50,6 +52,12 @@ const cycleReducer = (state = initState, action) => {
     case CYCLE_INFO_REQUEST_FAIL: {
       return {
         ...state,
+      };
+    }
+    case CYCLE_TOGGLE_CHANGE: {
+      return {
+        ...state,
+        toggled: state.toggled === "ON" ? "OFF" : "ON",
       };
     }
     default: {
