@@ -17,6 +17,10 @@ export const changeCycleAsync = (data) => {
     try {
       // 주기 정보 등록(갱신) 통신 부분
       /*
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("access_token")}`;
+      
       const res = axios.post("/api/members/cycle/new", {
         start: start_date,
         cycle,
@@ -65,6 +69,11 @@ export const requestCycleAsync = () => {
   return async (dispatch, getState, { history }) => {
     try {
       // 주기 정보 요청 통신 부분
+
+      // axios.defaults.headers.common[
+      //   "Authorization"
+      // ] = `Bearer ${localStorage.getItem("access_token")}`;
+
       // const res = axios.post(`/api/members/cycle?year=${year}&month=${month}`);
 
       // 서버 데이터 예시
