@@ -8,6 +8,25 @@ https://github.com/seunghyeonjung/DayLogProject-Backend
 
 ---
 
+### 로그인 페이지 이동 관련
+
+```javascript
+// 선택 1
+// header의 로고 클릭 => login 페이지 이동
+// globalHeader.jsx 32~33 줄 => 추후 제거할 것.
+// navigate("/");
+navigate("/login");
+
+// 선택 2
+// app.jsx 80~84줄 주석 제거
+// 토큰 없으면 자동으로 로그인 페이지 이동.
+// 단 만료된 것은 보장 못 함.
+const accessToken = localStorage.getItem("access_token");
+if (!accessToken) navigate("/login");
+```
+
+---
+
 ### Todo
 
 - 로그인 성공하면, 현재 달 todo 요청해서 redux 저장.

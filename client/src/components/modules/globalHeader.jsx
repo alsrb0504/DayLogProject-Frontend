@@ -29,7 +29,8 @@ const GlobalHeader = (props) => {
   };
 
   const handleLogo = () => {
-    navigate("/");
+    // navigate("/");
+    navigate("/login");
   };
 
   return (

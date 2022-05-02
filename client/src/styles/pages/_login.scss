@@ -4,6 +4,17 @@
   @include column-flexbox(center, center);
   width: 100%;
   max-width: 400px;
+
+  // 예외
+  // 로그인 페이지만 margin-bottom 사이즈 변경
+  // 버튼도
+  .input-container-36 {
+    margin-bottom: 16px;
+  }
+
+  button {
+    margin-bottom: 12px;
+  }
 }
 
 .logo {
