@@ -11,7 +11,7 @@ const initState = {
   cycle: 0,
   start_dates: [],
   due_dates: [],
-  toggled: "ON", // "ON" | "OFF" | "EMPTY"
+  toggled: "EMPTY", // "ON" | "OFF" | "EMPTY"
 };
 
 const cycleReducer = (state = initState, action) => {
