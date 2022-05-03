@@ -35,13 +35,10 @@ export const SetCurSchedules = (date_info) => (dispatch, getState) => {
 // 여기서는 달 전체를 기준으로 가져오는 거니까
 // Home.jsx에서만 호출
 // 전달된 선택된 날짜를 기준으로 cur_schdules 분류
-export const RequestSchedulesAsync =
-  (text, month, year) => async (dispatch, getState) => {
-    const { yy, mm } = calcMonthYear(text, month, year);
-
-    try {
-      // 테스트 시에는
-      /*
+export const RequestSchedulesAsync = (yy, mm) => async (dispatch, getState) => {
+  try {
+    // 테스트 시에는
+    /*
       const res = await axios.get(
         `api/schedule/calendar?month=${mm}&year=${yy}`
       );
@@ -52,74 +49,74 @@ export const RequestSchedulesAsync =
       const haveSchdeuls = res.data.haveSchedules;
       */
 
-      // 로컬 테스트용
-      const haveSchedules = true;
-      const res = {
-        data: {
-          haveSchedules: true,
-          month_schedules: [
-            {
-              schedule_no: 233,
-              title: "일정 2",
-              content: "캡스톤 준비",
-              start_date: "2022-05-02",
-              end_date: "2022-05-12",
-            },
-            {
-              schedule_no: 213,
-              title: "일정 3",
-              content: "캡스톤 준비 2",
-              start_date: "2022-05-05",
-              end_date: "2022-05-12",
-            },
-            {
-              schedule_no: 243,
-              title: "테스트 일정 1",
-              content: "캡스톤 준비 2",
-              start_date: "2022-04-05",
-              end_date: "2022-05-30",
-            },
-            {
-              schedule_no: 253,
-              title: "테스트 일정 3 3",
-              content: "캡스톤 준비 2",
-              start_date: "2022-05-06",
-              end_date: "2022-05-20",
-            },
-            {
-              schedule_no: 263,
-              title: "테스트 일정 2 3",
-              content: "캡스톤 준비 2",
-              start_date: "2022-05-02",
-              end_date: "2022-05-20",
-            },
-          ],
-        },
-      };
+    // 로컬 테스트용
+    const haveSchedules = true;
+    const res = {
+      data: {
+        haveSchedules: true,
+        month_schedules: [
+          {
+            schedule_no: 233,
+            title: "일정 2",
+            content: "캡스톤 준비",
+            start_date: "2022-05-02",
+            end_date: "2022-05-12",
+          },
+          {
+            schedule_no: 213,
+            title: "일정 3",
+            content: "캡스톤 준비 2",
+            start_date: "2022-05-05",
+            end_date: "2022-05-12",
+          },
+          {
+            schedule_no: 243,
+            title: "테스트 일정 1",
+            content: "캡스톤 준비 2",
+            start_date: "2022-04-05",
+            end_date: "2022-05-30",
+          },
+          {
+            schedule_no: 253,
+            title: "테스트 일정 3 3",
+            content: "캡스톤 준비 2",
+            start_date: "2022-05-06",
+            end_date: "2022-05-20",
+          },
+          {
+            schedule_no: 263,
+            title: "테스트 일정 2 3",
+            content: "캡스톤 준비 2",
+            start_date: "2022-05-02",
+            end_date: "2022-05-20",
+          },
+        ],
+      },
+    };
 
-      // 1. 일정 정보가 존재하는 경우.
-      if (haveSchedules === true) {
-        let month_schedules = res.data.month_schedules;
+    // 1. 일정 정보가 존재하는 경우.
+    if (haveSchedules === true) {
+      let month_schedules = res.data.month_schedules;
 
-        dispatch({
-          type: SCHEDULE_REQUEST_SUCCESS,
-          payload: { month_schedules },
-        });
-      }
-      // 2. 일정 정보가 존재하지 않는 경우
-      else {
-        dispatch({
-          type: SCHEDULE_REQUEST_EMPTY,
-        });
-      }
-    } catch (e) {
-      console.log(e);
-      console.log(e.message);
       dispatch({
-        type: SCHEDULE_REQUEST_FAIL,
+        type: SCHEDULE_REQUEST_SUCCESS,
+        payload: { month_schedules },
       });
     }
-  };
+    // 2. 일정 정보가 존재하지 않는 경우
+    else {
+      dispatch({
+        type: SCHEDULE_REQUEST_EMPTY,
+      });
+    }
+  } catch (e) {
+    console.log(e);
+    console.log(e.message);
+    dispatch({
+      type: SCHEDULE_REQUEST_FAIL,
+    });
+  }
+};
 
 export const AddSchedulesAsync =
   (data, date, day) =>
