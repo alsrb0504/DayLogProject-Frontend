@@ -9,7 +9,10 @@ import {
 } from "../../services/calendar";
 import { RequestCycleAsync } from "../../store/actions/cycle";
 import { changeDayFull } from "../../services/calcDate";
-import { RequestSchedulesAsync } from "../../store/actions/schedule";
+import {
+  RequestSchedulesAsync,
+  SetCurSchedules,
+} from "../../store/actions/schedule";
 
 const MainCalendarWrapper = ({
   setIsToggle,
@@ -56,6 +59,8 @@ const MainCalendarWrapper = ({
       date,
       day: changeDayFull(day),
     });
+
+    dispatch(SetCurSchedules(info.dateStr));
   };
 
   return (

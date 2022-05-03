@@ -1,6 +1,7 @@
 import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
+  SCHEDULE_CUR_SCHEDULE_SET,
   SCHEDULE_REQUEST_EMPTY,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
@@ -16,7 +17,7 @@ const initState = {
       title: "일정 2",
       content: "캡스톤 준비",
       start_date: "2022-05-02",
-      end_date: "2022-05-4",
+      end_date: "2022-05-04",
     },
     {
       schedule_no: 213,
@@ -43,6 +44,14 @@ const scheduleReducer = (state = initState, action) => {
     }
     case SCHEDULE_REQUEST_FAIL: {
       return { ...state, month_schedules: [] };
+    }
+    case SCHEDULE_CUR_SCHEDULE_SET: {
+      console.log(action);
+      console.log(action.payload.cur_schedules);
+      return {
+        ...state,
+        cur_schedules: action.payload.cur_schedules,
+      };
     }
     case SCHEDULE_ADD_SUCCESS: {
       return { ...state, month_schedules: action.payload };

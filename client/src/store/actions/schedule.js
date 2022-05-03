@@ -3,6 +3,7 @@ import { calcMonthYear, isIncludeDate } from "../../services/calcDate";
 import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
+  SCHEDULE_CUR_SCHEDULE_SET,
   SCHEDULE_REQUEST_EMPTY,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
@@ -17,11 +18,17 @@ const ClassifyDates = (scheduleArr, date) => {
   return curScheduleArr;
 };
 
-// 추가로 그냥 날짜 클릭 했을 때, cur_schedule만 수정하는
-// action 함수 필요.
+// 캘린더 날짜 클릭 시,
+// cur_schedules를 바꾸는 action 함수.
+export const SetCurSchedules = (date_info) => (dispatch, getState) => {
+  const month_schedules = getState().schedule.month_schedules;
+  const cur_schedules = ClassifyDates(month_schedules, date_info);
 
-// 날짜 => 버튼으로 scheduleHome 이동 시,
-// cur_schedules를 바꾸는 action 함수 생성.
+  dispatch({
+    type: SCHEDULE_CUR_SCHEDULE_SET,
+    payload: { cur_schedules },
+  });
+};
 
 // 여기서는 달 전체를 기준으로 가져오는 거니까
 // Home.jsx에서만 호출
