@@ -4,6 +4,8 @@ import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
   SCHEDULE_CUR_SCHEDULE_SET,
+  SCHEDULE_REMOVE_FAIL,
+  SCHEDULE_REMOVE_SUCCESS,
   SCHEDULE_REQUEST_EMPTY,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
@@ -26,7 +28,7 @@ export const SetCurSchedules = (date_info) => (dispatch, getState) => {
 
   dispatch({
     type: SCHEDULE_CUR_SCHEDULE_SET,
-    payload: { cur_schedules },
+    payload: { cur_schedules, cur_date: date_info },
   });
 };
 
@@ -188,3 +190,59 @@ export const AddSchedulesAsync =
       });
     }
   };
+
+export const RemoveScheduleAsync = (idx) => async (dispatch, getState) => {
+  const cur_date = getState().schedule.cur_date;
+
+  try {
+    // const res = await axios.delete(`/api/schedule?no=${idx}`);
+
+    // true & false
+    // const haveSchdeuls = res.data.haveSchedules;
+
+    // if (haveSchdeuls) {
+    //   month_schedules = res.data.month_schedules;
+    // }
+
+    // 로컬 테스트용
+    const haveSchdeuls = true;
+    const res = {
+      data: {
+        haveSchedules: true,
+        month_schedules: [
+          {
+            schedule_no: 233,
+            title: "일정 2",
+            content: "캡스톤 준비",
+            start_date: "2022-05-02",
+            end_date: "2022-05-20",
+          },
+          {
+            schedule_no: 212,
+            title: "일정 4",
+            content: "캡스톤 준비",
+            start_date: "2022-05-02",
+            end_date: "2022-05-16",
+          },
+        ],
+      },
+    };
+
+    // 1. 데이터가 있을 경우만 존재?
+    if (haveSchdeuls === true) {
+      const month_schedules = res.data.month_schedules;
+      const cur_schedules = ClassifyDates(month_schedules, cur_date);
+
+      dispatch({
+        type: SCHEDULE_REMOVE_SUCCESS,
+        payload: { month_schedules, cur_schedules },
+      });
+    }
+  } catch (e) {
+    console.error(e.message);
+    console.log(e.message);
+    dispatch({
+      type: SCHEDULE_REMOVE_FAIL,
+    });
+  }
+};
