@@ -14,9 +14,15 @@ import Menstruation from "./pages/Menstruation/menstruation";
 import Schedule from "./pages/Schedule/schedule";
 import ScheduleHome from "./pages/Schedule/Details/scheduleHome";
 import ScheduleAdd from "./pages/Schedule/Details/scheduleAdd";
+import { SetAuthHeader } from "./services/auth";
 
 function App() {
   const navigate = useNavigate();
+
+  // req.header에 access_token 삽입.
+  useEffect(() => {
+    SetAuthHeader();
+  });
 
   /*
   useEffect(() => {

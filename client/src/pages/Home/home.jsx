@@ -30,13 +30,6 @@ const Home = (props) => {
     (daily_todos) => daily_todos.date === selectedDate.date
   );
 
-  // 로그인 관련
-  // 새로고침 시, localStorage에 access_token을 req.header에 삽입.
-  useEffect(() => {
-    // console.log(logined);
-    SetAuthHeader();
-  }, [navigate]);
-
   // 로그아웃
   // localStrage의 access_token을 지워버림.
   const onLogout = async () => {
