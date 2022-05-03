@@ -46,15 +46,13 @@ const scheduleReducer = (state = initState, action) => {
       return { ...state, month_schedules: [] };
     }
     case SCHEDULE_CUR_SCHEDULE_SET: {
-      console.log(action);
-      console.log(action.payload.cur_schedules);
       return {
         ...state,
         cur_schedules: action.payload.cur_schedules,
       };
     }
     case SCHEDULE_ADD_SUCCESS: {
-      return { ...state, month_schedules: action.payload };
+      return { ...state, month_schedules: action.payload.month_schedules };
     }
     case SCHEDULE_ADD_FAIL: {
       return { ...state, month_schedules: [] };

@@ -96,9 +96,7 @@ export const RequestSchedulesAsync =
       };
 
       // 1. 일정 정보가 존재하는 경우.
-      // 통신 시에는 94번줄 주석 및 93번줄 실행
       if (haveSchedules === true) {
-        // if (haveSchdeuls) {
         let month_schedules = res.data.month_schedules;
 
         dispatch({
@@ -121,12 +119,10 @@ export const RequestSchedulesAsync =
     }
   };
 
-export const AddSchedules =
-  (data) =>
+export const AddSchedulesAsync =
+  (data, date, day) =>
   async (dispatch, getState, { history }) => {
     try {
-      console.log(data);
-
       // const res = await axios.post("/api/schedule", {
       //   data,
       // });
@@ -173,19 +169,17 @@ export const AddSchedules =
         },
       };
 
-      let month_schedules = [];
-      if (haveSchdeuls) {
-        month_schedules = res.data.month_schedules;
+      // 1. 데이터가 있을 경우만 존재?
+      if (haveSchdeuls === true) {
+        const month_schedules = res.data.month_schedules;
+
+        dispatch({
+          type: SCHEDULE_ADD_SUCCESS,
+          payload: { month_schedules },
+        });
       }
 
-      console.log(month_schedules);
-
-      dispatch({
-        type: SCHEDULE_ADD_SUCCESS,
-        payload: month_schedules,
-      });
-
-      history.push("/");
+      history.push(`/schedule?date=${date}&day=${day}`);
     } catch (e) {
       console.error(e);
       console.log(e.message);

@@ -1,10 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
-import { AddSchedules } from "../../../store/actions/schedule";
+import { AddSchedulesAsync } from "../../../store/actions/schedule";
 
 const ScheduleAdd = (props) => {
   const {
@@ -14,6 +14,9 @@ const ScheduleAdd = (props) => {
   } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const date = searchParams.get("date");
+  const day = searchParams.get("day");
 
   // 일단은 그냥 홈으로 이동
   // date 객체를 옮겨줘야 함.
@@ -22,9 +25,8 @@ const ScheduleAdd = (props) => {
   };
 
   const onSubmit = (data) => {
-    //
     // console.log(data);
-    dispatch(AddSchedules(data));
+    dispatch(AddSchedulesAsync(data, date, day));
   };
 
   return (

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ScheduleList from "../modules/schedulelist";
 
-const ScheduleSection = ({ date }) => {
+const ScheduleSection = () => {
   // console.log(date);
 
   // 일단은 모든 리스트를 뜨게 하고
