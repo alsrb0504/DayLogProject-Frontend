@@ -52,7 +52,11 @@ const scheduleReducer = (state = initState, action) => {
       };
     }
     case SCHEDULE_ADD_SUCCESS: {
-      return { ...state, month_schedules: action.payload.month_schedules };
+      return {
+        ...state,
+        month_schedules: action.payload.month_schedules,
+        cur_schedules: action.payload.cur_schedules,
+      };
     }
     case SCHEDULE_ADD_FAIL: {
       return { ...state, month_schedules: [] };

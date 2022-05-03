@@ -148,7 +148,7 @@ export const AddSchedulesAsync =
               title: "일정 2",
               content: "캡스톤 준비",
               start_date: "2022-05-02",
-              end_date: "2022-05-4",
+              end_date: "2022-05-04",
             },
             {
               schedule_no: 213,
@@ -171,10 +171,11 @@ export const AddSchedulesAsync =
       // 1. 데이터가 있을 경우만 존재?
       if (haveSchdeuls === true) {
         const month_schedules = res.data.month_schedules;
+        const cur_schedules = ClassifyDates(month_schedules, date);
 
         dispatch({
           type: SCHEDULE_ADD_SUCCESS,
-          payload: { month_schedules },
+          payload: { month_schedules, cur_schedules },
         });
       }
 
