@@ -79,26 +79,22 @@ export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
 
 // Todo calendar에서 달 변경
 // 년도가 변경될 수도 있어서 년도 정보도 같이 보내야 할 듯.
-export const changeTodoCalendar =
-  (text, month, year) => async (dispatch, getState) => {
-    const { yy, mm } = calcMonthYear(text, month, year);
+export const changeTodoCalendar = (yy, mm) => async (dispatch, getState) => {
+  try {
+    console.log(mm, yy);
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
+    const res = await axios.get(`api/todolist/calendar?month=${mm}&year=${yy}`);
+    console.log(res.data);
+    const month_todos = res.data;
 
-    try {
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${localStorage.getItem("access_token")}`;
-      const res = await axios.get(
-        `api/todolist/calendar?month=${mm}&year=${yy}`
-      );
-      console.log(res.data);
-      const month_todos = res.data;
-
-      dispatch({
-        type: CHANGE_TODO_CALENDAR_SUCCESS,
-        payload: month_todos,
-      });
-    } catch (e) {
-      console.error(e);
-      dispatch({ type: CHANGE_TODO_CALENDAR_FAIL });
-    }
-  };
+    dispatch({
+      type: CHANGE_TODO_CALENDAR_SUCCESS,
+      payload: month_todos,
+    });
+  } catch (e) {
+    console.error(e);
+    dispatch({ type: CHANGE_TODO_CALENDAR_FAIL });
+  }
+};
