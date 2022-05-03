@@ -54,7 +54,6 @@ const Home = (props) => {
   };
 
   const moveSchedule = () => {
-    // navigate("/schedule", { state: selectedDate });
     navigate(`/schedule?date=${selectedDate.date}&day=${selectedDate.day}`);
   };
 

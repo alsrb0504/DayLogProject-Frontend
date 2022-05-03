@@ -25,7 +25,6 @@ const ScheduleAdd = (props) => {
   };
 
   const onSubmit = (data) => {
-    // console.log(data);
     dispatch(AddSchedulesAsync(data, date, day));
   };
 

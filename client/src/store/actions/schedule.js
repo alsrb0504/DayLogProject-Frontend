@@ -138,7 +138,6 @@ export const AddSchedulesAsync =
       // }
 
       // 로컬 테스트용
-
       const haveSchdeuls = true;
       const res = {
         data: {
