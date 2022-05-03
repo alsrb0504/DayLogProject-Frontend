@@ -20,6 +20,7 @@ const ScheduleHome = () => {
     navigate("/schedule/add");
   };
 
+  // 예외 처리 : url 주소로 "/schedule"로 바로 접속 시,
   // date 정보가 없다면 홈으로 이동.
   useEffect(() => {
     if (location.state === null) {

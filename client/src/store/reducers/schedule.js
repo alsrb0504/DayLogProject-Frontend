@@ -1,6 +1,7 @@
 import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
+  SCHEDULE_REQUEST_EMPTY,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
 } from "../actions/types";
@@ -25,12 +26,20 @@ const initState = {
       end_date: "2022-05-12",
     },
   ],
+
+  cur_schedules: [],
 };
 
 const scheduleReducer = (state = initState, action) => {
   switch (action.type) {
     case SCHEDULE_REQUEST_SUCCESS: {
-      return { ...state, month_schedules: action.payload };
+      return { ...state, month_schedules: action.payload.month_schedules };
+    }
+    case SCHEDULE_REQUEST_EMPTY: {
+      return {
+        ...state,
+        month_schedules: [],
+      };
     }
     case SCHEDULE_REQUEST_FAIL: {
       return { ...state, month_schedules: [] };

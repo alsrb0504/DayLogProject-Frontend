@@ -71,6 +71,7 @@ const Home = (props) => {
       <MainCalendarWrapper
         setIsToggle={setIsToggle}
         setSelectedDate={setSelectedDate}
+        selectedDate={selectedDate}
       ></MainCalendarWrapper>
 
       <section className="home-bottom">

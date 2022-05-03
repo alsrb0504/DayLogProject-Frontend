@@ -9,8 +9,13 @@ import {
 } from "../../services/calendar";
 import { RequestCycleAsync } from "../../store/actions/cycle";
 import { changeDayFull } from "../../services/calcDate";
+import { RequestSchedulesAsync } from "../../store/actions/schedule";
 
-const MainCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
+const MainCalendarWrapper = ({
+  setIsToggle,
+  setSelectedDate,
+  selectedDate,
+}) => {
   const calendarRef = useRef();
   const dispatch = useDispatch();
 
@@ -21,9 +26,10 @@ const MainCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   const movePrevMonth = () => {
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
+    const cur_date = selectedDate.date;
 
     //  dispatch(changeTodoCalendar("prev", month, year));
-    //  dispatch(RequestSchedules("prev", month, year));
+    dispatch(RequestSchedulesAsync("prev", month, year, cur_date));
     dispatch(RequestCycleAsync(month, year));
 
     calendarApi.prev();

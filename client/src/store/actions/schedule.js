@@ -1,26 +1,42 @@
 import axios from "axios";
-import { calcMonthYear } from "../../services/calcDate";
+import { calcMonthYear, isIncludeDate } from "../../services/calcDate";
 import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
+  SCHEDULE_REQUEST_EMPTY,
   SCHEDULE_REQUEST_FAIL,
   SCHEDULE_REQUEST_SUCCESS,
 } from "./types";
 
-export const RequestSchedules =
+// date를 기준으로 해당하는 일정 배열 반환 함수.
+const ClassifyDates = (scheduleArr, date) => {
+  const curScheduleArr = scheduleArr.filter((schedule) =>
+    isIncludeDate(date, schedule.start_date, schedule.end_date)
+  );
+
+  return curScheduleArr;
+};
+
+// 추가로 그냥 날짜 클릭 했을 때, cur_schedule만 수정하는
+// action 함수 필요.
+
+// 날짜 => 버튼으로 scheduleHome 이동 시,
+// cur_schedules를 바꾸는 action 함수 생성.
+
+// 여기서는 달 전체를 기준으로 가져오는 거니까
+// Home.jsx에서만 호출
+// 전달된 선택된 날짜를 기준으로 cur_schdules 분류
+export const RequestSchedulesAsync =
   (text, month, year) => async (dispatch, getState) => {
     const { yy, mm } = calcMonthYear(text, month, year);
 
     try {
+      // 테스트 시에는
       /*
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${localStorage.getItem("access_token")}`;
       const res = await axios.get(
         `api/schedule/calendar?month=${mm}&year=${yy}`
       );
 
-      // 확인용.
       console.log(res.data);
 
       // true & false
@@ -28,6 +44,7 @@ export const RequestSchedules =
       */
 
       // 로컬 테스트용
+      const haveSchedules = true;
       const res = {
         data: {
           haveSchedules: true,
@@ -37,7 +54,7 @@ export const RequestSchedules =
               title: "일정 2",
               content: "캡스톤 준비",
               start_date: "2022-05-02",
-              end_date: "2022-05-4",
+              end_date: "2022-05-12",
             },
             {
               schedule_no: 213,
@@ -46,20 +63,48 @@ export const RequestSchedules =
               start_date: "2022-05-05",
               end_date: "2022-05-12",
             },
+            {
+              schedule_no: 243,
+              title: "테스트 일정 1",
+              content: "캡스톤 준비 2",
+              start_date: "2022-04-05",
+              end_date: "2022-05-30",
+            },
+            {
+              schedule_no: 253,
+              title: "테스트 일정 3 3",
+              content: "캡스톤 준비 2",
+              start_date: "2022-05-06",
+              end_date: "2022-05-20",
+            },
+            {
+              schedule_no: 263,
+              title: "테스트 일정 2 3",
+              content: "캡스톤 준비 2",
+              start_date: "2022-05-02",
+              end_date: "2022-05-20",
+            },
           ],
         },
       };
-      const haveSchdeuls = false;
 
-      let month_schedules = [];
-      if (haveSchdeuls) {
-        month_schedules = res.data.month_schedules;
+      // 1. 일정 정보가 존재하는 경우.
+      // 통신 시에는 94번줄 주석 및 93번줄 실행
+      if (haveSchedules === true) {
+        // if (haveSchdeuls) {
+        let month_schedules = res.data.month_schedules;
+
+        dispatch({
+          type: SCHEDULE_REQUEST_SUCCESS,
+          payload: { month_schedules },
+        });
       }
-
-      dispatch({
-        type: SCHEDULE_REQUEST_SUCCESS,
-        payload: month_schedules,
-      });
+      // 2. 일정 정보가 존재하지 않는 경우
+      else {
+        dispatch({
+          type: SCHEDULE_REQUEST_EMPTY,
+        });
+      }
     } catch (e) {
       console.log(e);
       console.log(e.message);
@@ -73,13 +118,9 @@ export const AddSchedules =
   (data) =>
   async (dispatch, getState, { history }) => {
     try {
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `Bearer ${localStorage.getItem("access_token")}`;
+      console.log(data);
 
-      // console.log(data);
-
-      // const res = await axios.post("api/schedule/", {
+      // const res = await axios.post("/api/schedule", {
       //   data,
       // });
 
@@ -94,6 +135,7 @@ export const AddSchedules =
       // }
 
       // 로컬 테스트용
+
       const haveSchdeuls = true;
       const res = {
         data: {
