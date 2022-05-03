@@ -13,6 +13,7 @@ import delete_icon from "../../assets/icons/delete-black.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
+import { SetAuthHeader } from "../../services/auth";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -30,14 +31,10 @@ const Home = (props) => {
   );
 
   // 로그인 관련
+  // 새로고침 시, localStorage에 access_token을 req.header에 삽입.
   useEffect(() => {
     // console.log(logined);
-    // 만약 로그인 페이지 이동이 귀찮다면
-    // 이 부분 주석 해제해서 사용
-    /*
-    const accessToken = localStorage.getItem("access_token");
-    if (!accessToken) navigate("/login");
-    */
+    SetAuthHeader();
   }, [navigate]);
 
   // 로그아웃

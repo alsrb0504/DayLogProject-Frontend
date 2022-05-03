@@ -10,8 +10,6 @@ import {
   REMOVE_TODO_SUCCESS,
   REMOVE_TODO_FAIL,
 } from "./types";
-import { getAuthHeader } from '../../services/authHeader';
-
 
 export const changeTodoAsync = (idx) => async (dispatch, getState) => {
   // console.log(idx);
@@ -20,7 +18,7 @@ export const changeTodoAsync = (idx) => async (dispatch, getState) => {
     // 해당 날짜
     axios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${localStorage.getItem('access_token')}`;
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
     const res = await axios.get(`/api/todolist/check?no=${idx}`);
     const month_todos = res.data;
 
@@ -43,13 +41,13 @@ export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
   try {
     axios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${localStorage.getItem('access_token')}`;
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
     const res = await axios.post("api/todolist", {
-       date,
-       content : content.content,
-     });
+      date,
+      content: content.content,
+    });
     const month_todos = res.data;
-     console.log(month_todos);
+    console.log(month_todos);
     dispatch({
       type: ADD_TODO_SUCCESS,
       payload: month_todos,
@@ -65,11 +63,9 @@ export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
   try {
     axios.defaults.headers.common[
       "Authorization"
-    ] = `Bearer ${localStorage.getItem('access_token')}`;
-   const res = await axios.delete(`api/todolist?no=${idx}`);
-   const month_todos = res.data;
-
-    
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
+    const res = await axios.delete(`api/todolist?no=${idx}`);
+    const month_todos = res.data;
 
     dispatch({
       type: REMOVE_TODO_SUCCESS,
@@ -90,10 +86,12 @@ export const changeTodoCalendar =
     try {
       axios.defaults.headers.common[
         "Authorization"
-      ] = `Bearer ${localStorage.getItem('access_token')}`;
-      const res = await axios.get(`api/todolist/calendar?month=${mm}&year=${yy}`);
+      ] = `Bearer ${localStorage.getItem("access_token")}`;
+      const res = await axios.get(
+        `api/todolist/calendar?month=${mm}&year=${yy}`
+      );
       console.log(res.data);
-      const month_todos = res.data;  
+      const month_todos = res.data;
 
       dispatch({
         type: CHANGE_TODO_CALENDAR_SUCCESS,
