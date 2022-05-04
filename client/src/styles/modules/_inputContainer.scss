@@ -37,19 +37,9 @@
   }
 }
 
-// 예외
-// inputContainer에 직접적으로 존재하지 않고
-// children 속성의 input에 부가적으로 존재하는 span
-.input-error-message {
-  color: $secondary;
-  font-weight: 600;
-  font-size: $font-size-14;
-  padding: 8px 8px;
-  border-radius: 8px;
-  width: 100%;
-  position: absolute;
-  bottom: -80%;
-  left: -2%;
+// 입력 에러 시 input-container 강조효과
+.input-error {
+  border: 5px solid $primary;
 }
 
 // chrome input 자동으로 색 채워지는 거 방지.
