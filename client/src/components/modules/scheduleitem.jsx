@@ -1,5 +1,5 @@
 import React from "react";
-import delete_icon from "../../assets/icons/delete.svg";
+import delete_icon from "../../assets/icons/delete-icon.svg";
 import delete_icon_black from "../../assets/icons/delete-icon-black.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

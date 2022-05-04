@@ -9,7 +9,7 @@ import OverLay from "../../components/modules/overLay";
 import todo_icon from "../../assets/icons/todo.svg";
 import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
-import delete_icon from "../../assets/icons/delete-black.svg";
+import delete_icon from "../../assets/icons/delete-icon-black-bold.svg";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
@@ -54,6 +54,7 @@ const Home = (props) => {
   };
 
   const moveSchedule = () => {
+    // navigate("/schedule", { state: selectedDate });
     navigate(`/schedule?date=${selectedDate.date}&day=${selectedDate.day}`);
   };
 
