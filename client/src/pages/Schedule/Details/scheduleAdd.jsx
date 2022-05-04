@@ -119,9 +119,8 @@ const ScheduleAdd = (props) => {
                   },
                 })}
                 placeholder="일정 내용"
-              >
-                {errors.content && alert(errors.content.message)}
-              </textarea>
+              ></textarea>
+              {errors.content && alert(errors.content.message)}
             </>
           }
         />
