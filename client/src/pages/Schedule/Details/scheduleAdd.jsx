@@ -20,10 +20,6 @@ const ScheduleAdd = (props) => {
   const date = searchParams.get("date");
   const day = searchParams.get("day");
 
-  const moveHome = () => {
-    navigate("/");
-  };
-
   // 일단은 그냥 홈으로 이동
   // date 객체를 옮겨줘야 함.
   const moveBack = () => {
