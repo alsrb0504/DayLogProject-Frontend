@@ -33,7 +33,7 @@ const ScheduleAdd = (props) => {
   return (
     <div>
       <InputHeader text="일정 목록으로" onClick={moveBack} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="schedule-form" onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
             <>
@@ -63,54 +63,60 @@ const ScheduleAdd = (props) => {
           label="일정 제목을 입력하세요."
         />
 
-        <div>
-          <InputContainer
-            children={
-              <>
-                <input
-                  type="date"
-                  {...register("start_date", {
-                    required: "시작 날짜를 선택해주세요.",
-                  })}
-                  placeholder="시작 날짜"
-                />
-                {errors.start_date && (
-                  <span className="input-error-message">
-                    {errors.start_date.message}
-                  </span>
-                )}
-              </>
-            }
-            size="col-sm-3 col-md-4"
-            label="시작 날짜"
-          />
+        <div className="schedule-form-date col-sm-3">
+          <div className="schedule-form-date-input">
+            <InputContainer
+              children={
+                <>
+                  <input
+                    type="date"
+                    {...register("start_date", {
+                      required: "시작 날짜를 선택해주세요.",
+                    })}
+                    placeholder="시작 날짜"
+                  />
+                  {errors.start_date && (
+                    <span className="input-error-message">
+                      {errors.start_date.message}
+                    </span>
+                  )}
+                </>
+              }
+              size="col-sm-4 col-md-4"
+              label="시작 날짜"
+            />
+          </div>
+          <span className="schedule-form-date-divider">~</span>
 
-          <InputContainer
-            children={
-              <>
-                <input
-                  type="date"
-                  {...register("end_date", {
-                    required: "종료 날짜를 선택해주세요.",
-                  })}
-                  placeholder="종료 날짜"
-                />
-                {errors.end_date && (
-                  <span className="input-error-message">
-                    {errors.end_date.message}
-                  </span>
-                )}
-              </>
-            }
-            size="col-sm-3 col-md-4"
-            label="종료 날짜"
-          />
+          <div className="schedule-form-date-input">
+            <InputContainer
+              children={
+                <>
+                  <input
+                    type="date"
+                    {...register("end_date", {
+                      required: "종료 날짜를 선택해주세요.",
+                    })}
+                    placeholder="종료 날짜"
+                  />
+                  {errors.end_date && (
+                    <span className="input-error-message">
+                      {errors.end_date.message}
+                    </span>
+                  )}
+                </>
+              }
+              size="col-sm-4 col-md-4"
+              label="종료 날짜"
+            />
+          </div>
         </div>
 
         <InputTextarea
           children={
             <>
               <textarea
+                className="schedule-form-textarea"
                 {...register("content", {
                   required: "일정 내용을 기록하세요.",
                 })}
@@ -125,23 +131,24 @@ const ScheduleAdd = (props) => {
             </>
           }
         />
-
-        <section>
-          <Button
-            text="취소"
-            type="button"
-            color="btn-secondary"
-            size="btn-40 col-sm-1"
-            onClick={moveBack}
-          />
-          <Button
-            text="완료"
-            type="submit"
-            color="btn-primary"
-            size="btn-40 col-sm-1"
-          />
-        </section>
       </form>
+
+      <section className="schedule-form-btn-section col-sm-2">
+        <Button
+          text="취소"
+          type="button"
+          color="btn-secondary"
+          size="btn-40 col-sm-4"
+          onClick={moveBack}
+        />
+        <Button
+          text="완료"
+          type="submit"
+          color="btn-primary"
+          size="btn-40 col-sm-4"
+          onClick={handleSubmit(onSubmit)}
+        />
+      </section>
     </div>
   );
 };
