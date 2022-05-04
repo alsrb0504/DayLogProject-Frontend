@@ -36,7 +36,7 @@ const ScheduleAdd = (props) => {
 
   return (
     <div>
-      <InputHeader text="일정 목록으로" onClick={moveHome} />
+      <InputHeader text="일정 목록으로" onClick={moveBack} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
