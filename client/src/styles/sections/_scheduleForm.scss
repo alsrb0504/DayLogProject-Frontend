@@ -1,0 +1,31 @@
+.schedule-form {
+  &-date {
+    @include flexbox(space-between);
+
+    &-input {
+      @include column-flexbox(flex-start, flex-start);
+      flex: 1;
+    }
+
+    &-divider {
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: $font-size-20;
+    }
+  }
+
+  &-textarea {
+    @include textareaSetting(220px);
+  }
+
+  &-btn-section {
+    @include absolute-bottom-right(16px);
+    @include flexbox;
+
+    button:first-child {
+      margin-right: 20px;
+    }
+  }
+}
