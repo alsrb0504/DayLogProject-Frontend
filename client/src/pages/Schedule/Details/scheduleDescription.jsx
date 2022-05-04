@@ -110,7 +110,7 @@ const ScheduleDescription = (props) => {
 
       <section>
         <Button
-          text="편집"
+          text="뒤로"
           type="button"
           color="btn-secondary"
           size="btn-40 col-sm-1"
