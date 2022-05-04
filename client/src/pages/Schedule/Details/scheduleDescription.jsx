@@ -31,7 +31,7 @@ const ScheduleDescription = (props) => {
   return (
     <div>
       <InputHeader text="일정 목록으로" onClick={moveBack} />
-      <main>
+      <main className="schedule-form">
         <InputContainer
           children={
             <>
@@ -50,77 +50,87 @@ const ScheduleDescription = (props) => {
                   },
                 })}
                 placeholder="일정 제목"
+                disabled="disabled"
               />
             </>
           }
-          size="col-sm-3 col-md-4"
+          size="col-sm-4 col-md-4"
           label="일정 제목을 입력하세요."
         />
 
-        <div>
-          <InputContainer
-            children={
-              <>
-                <input
-                  type="date"
-                  value={schedule.start_date}
-                  {...register("start_date", {
-                    required: "시작 날짜를 선택해주세요.",
-                  })}
-                  placeholder="시작 날짜"
-                />
-              </>
-            }
-            size="col-sm-3 col-md-4"
-            label="시작 날짜"
-          />
+        <div className="schedule-form-date col-sm-4">
+          <div className="schedule-form-date-input">
+            <InputContainer
+              children={
+                <>
+                  <input
+                    type="date"
+                    value={schedule.start_date}
+                    {...register("start_date", {
+                      required: "시작 날짜.",
+                    })}
+                    placeholder="시작 날짜"
+                    disabled="disabled"
+                  />
+                </>
+              }
+              size="col-sm-4 col-md-4"
+              label="시작 날짜"
+            />
+          </div>
+          <span className="schedule-form-date-divider">~</span>
 
-          <InputContainer
-            children={
-              <>
-                <input
-                  type="date"
-                  value={schedule.end_date}
-                  {...register("end_date", {
-                    required: "종료 날짜를 선택해주세요.",
-                  })}
-                  placeholder="종료 날짜"
-                />
-              </>
-            }
-            size="col-sm-3 col-md-4"
-            label="종료 날짜"
-          />
+          <div className="schedule-form-date-input">
+            <InputContainer
+              children={
+                <>
+                  <input
+                    type="date"
+                    value={schedule.end_date}
+                    {...register("end_date", {
+                      required: "종료 날짜",
+                    })}
+                    placeholder="종료 날짜"
+                    disabled="disabled"
+                  />
+                </>
+              }
+              size="col-sm-4 col-md-4"
+              label="종료 날짜"
+            />
+          </div>
         </div>
 
         <InputTextarea
           children={
             <>
               <textarea
+                className="schedule-form-textarea"
                 {...register("content", {
                   required: "일정 내용을 기록하세요.",
                 })}
                 placeholder="일정 내용"
                 defaultValue={schedule.content}
+                readOnly="readonly"
               ></textarea>
             </>
           }
         />
       </main>
 
-      <section>
+      <section className="schedule-form-btn-section col-sm-2">
         <Button
           text="뒤로"
           type="button"
           color="btn-secondary"
-          size="btn-40 col-sm-1"
+          size="btn-40 col-sm-4"
           onClick={moveBack}
         />
         <Button
           text="삭제"
           type="submit"
           color="btn-primary"
-          size="btn-40 col-sm-1"
+          size="btn-40 col-sm-4"
           onClick={handleRemove}
         />
       </section>
