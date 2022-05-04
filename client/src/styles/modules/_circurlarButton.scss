@@ -18,6 +18,11 @@
   }
 
   &-delete {
-    background-color: pink;
+    background-color: $primary;
+    border-color: $primary;
+
+    img {
+      width: 40%;
+    }
   }
 }
