@@ -1,29 +1,31 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
 import InputTextarea from "../../../components/modules/inputTextarea";
+import { RemoveScheduleAsync } from "../../../store/actions/schedule";
 
 const ScheduleDescription = (props) => {
   const { register, handleSubmit } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const schedule = location.state.schedule;
   const date = searchParams.get("date");
   const day = searchParams.get("day");
 
-  console.log(schedule);
-
   const moveBack = () => {
     navigate(`/schedule?date=${date}&day=${day}`);
   };
 
   const handleRemove = () => {
-    console.log("remove");
+    dispatch(RemoveScheduleAsync(schedule.schedule_no));
+    navigate(`/schedule?date=${date}&day=${day}`);
   };
 
   return (
