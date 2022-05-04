@@ -36,6 +36,7 @@ const SignUpNickname = (props) => {
               <input
                 type="text"
                 placeholder="닉네임을 입력하세요"
+                autoFocus={true}
                 {...register("nickname", {
                   required: true,
                   minLength: {

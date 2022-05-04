@@ -35,6 +35,7 @@ const SignUpEmail = (props) => {
             <input
               type="email"
               placeholder="이메일을 입력하세요"
+              autoFocus={true}
               {...register("email", { required: true })}
             />
           }

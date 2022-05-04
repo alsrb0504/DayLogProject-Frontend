@@ -69,6 +69,7 @@ const Menstruation = (props) => {
               <input
                 type="number"
                 placeholder="주기를 입력하세요."
+                autoFocus={true}
                 {...register("cycle", {
                   required: true,
                   minLength: {

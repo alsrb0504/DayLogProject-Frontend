@@ -58,6 +58,7 @@ const ScheduleAdd = (props) => {
                   },
                 })}
                 placeholder="일정 제목"
+                autoFocus={true}
               />
             </>
           }

@@ -33,6 +33,7 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
               <input
                 type="text"
                 placeholder="투두리스트를 추가하세요."
+                autoFocus={true}
                 {...register("content", { required: true })}
               />
             }

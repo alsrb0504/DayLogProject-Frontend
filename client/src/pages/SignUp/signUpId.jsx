@@ -37,6 +37,8 @@ const SignUpId = (props) => {
             <>
               <input
                 type="text"
+                placeholder="아이디를 입력하세요."
+                autoFocus={true}
                 {...register("id", {
                   required: true,
                   minLength: {
@@ -48,7 +50,6 @@ const SignUpId = (props) => {
                     message: "아이디가 너무 깁니다.",
                   },
                 })}
-                placeholder="아이디를 입력하세요."
               />
               {errors.id && alert(errors.id.message)}
             </>

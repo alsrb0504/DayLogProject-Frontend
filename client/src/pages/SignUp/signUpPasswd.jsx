@@ -43,6 +43,7 @@ const SignUpPasswd = (props) => {
               <input
                 type="password"
                 placeholder="비밀번호를 입력하세요."
+                autoFocus={true}
                 {...register("password1", {
                   required: true,
                   minLength: {

@@ -25,6 +25,7 @@ const LoginForm = () => {
             <input
               type="text"
               placeholder="아이디를 입력하세요."
+              autoFocus={true}
               {...register("id", {
                 required: true,
                 maxLength: {

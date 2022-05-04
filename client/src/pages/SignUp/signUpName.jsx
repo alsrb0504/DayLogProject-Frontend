@@ -38,6 +38,7 @@ const SignUpName = (props) => {
               <input
                 type="text"
                 placeholder="이름을 입력하세요"
+                autoFocus={true}
                 {...register("name", {
                   required: true,
                   maxLength: {
