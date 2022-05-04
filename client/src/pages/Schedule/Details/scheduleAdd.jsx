@@ -27,6 +27,13 @@ const ScheduleAdd = (props) => {
   };
 
   const onSubmit = (data) => {
+    const { start_date, end_date } = data;
+
+    if (start_date > end_date) {
+      alert("시작일은 종료일보다 이를 수 없습니다.");
+      return;
+    }
+
     dispatch(AddSchedulesAsync(data, date, day));
   };
 
@@ -133,7 +140,7 @@ const ScheduleAdd = (props) => {
           type="submit"
           color="btn-primary"
           size="btn-40 col-sm-4"
-          // onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
         />
       </section>
     </div>
