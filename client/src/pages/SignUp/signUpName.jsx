@@ -38,6 +38,7 @@ const SignUpName = (props) => {
               <input
                 type="text"
                 placeholder="이름을 입력하세요"
+                autoFocus={true}
                 {...register("name", {
                   required: true,
                   maxLength: {
@@ -46,15 +47,12 @@ const SignUpName = (props) => {
                   },
                 })}
               />
-              {errors.name && (
-                <span className="input-error-message">
-                  {errors.name.message}
-                </span>
-              )}
+              {errors.name && alert(errors.name.message)}
             </>
           }
           size="col-sm-3 col-md-4"
           label="이름을 입력하세요."
+          error={errors.name && "input-error"}
         />
 
         <Button text="완료" type="submit" color="btn-primary" size="btn-40" />

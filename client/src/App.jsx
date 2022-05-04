@@ -14,9 +14,16 @@ import Menstruation from "./pages/Menstruation/menstruation";
 import Schedule from "./pages/Schedule/schedule";
 import ScheduleHome from "./pages/Schedule/Details/scheduleHome";
 import ScheduleAdd from "./pages/Schedule/Details/scheduleAdd";
+import { SetAuthHeader } from "./services/auth";
+import ScheduleDescription from "./pages/Schedule/Details/scheduleDescription";
 
 function App() {
   const navigate = useNavigate();
+
+  // req.header에 access_token 삽입.
+  useEffect(() => {
+    SetAuthHeader();
+  });
 
   /*
   useEffect(() => {
@@ -80,6 +87,7 @@ function App() {
               <Route path="/schedule" element={<Schedule />}>
                 <Route index element={<ScheduleHome />} />
                 <Route path="add" element={<ScheduleAdd />} />
+                <Route path="description" element={<ScheduleDescription />} />
               </Route>
               <Route path="/menstruation" element={<Menstruation />} />
             </Routes>

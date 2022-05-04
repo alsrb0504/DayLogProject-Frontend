@@ -56,15 +56,11 @@ const Menstruation = (props) => {
                   validate: { checkYear },
                 })}
               />
-              {errors.start_date && (
-                <span className="input-error-message">
-                  {errors.start_date.message}
-                </span>
-              )}
             </>
           }
           size="col-sm-3 col-md-4"
           label="시작날짜를 입력하세요."
+          error={errors.start_date && "input-error"}
         />
 
         <InputContainer
@@ -73,6 +69,7 @@ const Menstruation = (props) => {
               <input
                 type="number"
                 placeholder="주기를 입력하세요."
+                autoFocus={true}
                 {...register("cycle", {
                   required: true,
                   minLength: {
@@ -86,15 +83,11 @@ const Menstruation = (props) => {
                   validate: { checkCycle },
                 })}
               />
-              {errors.cycle && (
-                <span className="input-error-message">
-                  {errors.cycle.message}
-                </span>
-              )}
             </>
           }
           size="col-sm-3 col-md-4"
           label="주기를 입력하세요."
+          error={errors.cycle && "input-error"}
         />
 
         <Button text="저장" type="submit" color="btn-primary" size="btn-40" />

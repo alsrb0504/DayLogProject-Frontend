@@ -36,6 +36,7 @@ const SignUpNickname = (props) => {
               <input
                 type="text"
                 placeholder="닉네임을 입력하세요"
+                autoFocus={true}
                 {...register("nickname", {
                   required: true,
                   minLength: {
@@ -48,15 +49,12 @@ const SignUpNickname = (props) => {
                   },
                 })}
               />
-              {errors.nickname && (
-                <span className="input-error-message">
-                  {errors.nickname.message}
-                </span>
-              )}
+              {errors.nickname && alert(errors.nickname.message)}
             </>
           }
           size="col-sm-3 col-md-4"
           label="닉네임을 입력하세요."
+          error={errors.nickname && "input-error"}
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

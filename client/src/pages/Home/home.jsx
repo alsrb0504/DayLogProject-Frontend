@@ -1,34 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import GlobalHeader from "../../components/modules/globalHeader";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import GlobalHeader from "../../components/modules/globalHeader";
+import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import TodoSection from "../../components/sections/todoSection";
 import CircularButton from "../../components/modules/circularButton";
 import TodoPopup from "../../components/sections/todoPopup";
+import OverLay from "../../components/modules/overLay";
 import todo_icon from "../../assets/icons/todo.svg";
 import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
-import delete_icon from "../../assets/icons/delete-black.svg";
-import {
-  changeDayFull,
-  printDayInfo,
-  toDayInfo,
-} from "../../services/calcDate";
-import { useDispatch, useSelector } from "react-redux";
-import OverLay from "../../components/modules/overLay";
-import { changeTodoCalendar } from "../../store/actions/todo";
-import { RequestSchedules } from "../../store/actions/schedule";
-import { RequestCycleAsync } from "../../store/actions/cycle";
-import { MakeCalendarEvents } from "../../services/calendar";
+import delete_icon_white from "../../assets/icons/close-icon-white.svg";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { printDayInfo, toDayInfo } from "../../services/calcDate";
+import { SetAuthHeader } from "../../services/auth";
 
 const Home = (props) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const calendarRef = useRef();
 
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
@@ -36,63 +24,11 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  // 캘린더 이벤트 생성 함수.
-  const events = MakeCalendarEvents();
-
   // 월간 Todo 목록.
   const month_todos = useSelector((state) => state.todo.month_todos);
   const select_todos = month_todos.find(
     (daily_todos) => daily_todos.date === selectedDate.date
   );
-
-  // 캘린더 날짜 클릭 이벤트
-  // 날짜 선택 시, 버튼창 뜨도록...
-  const onClickDate = (info) => {
-    setIsToggle(true);
-
-    const date = info.dateStr;
-    const day = info.date.toString().split(" ")[0];
-    setSelectedDate({
-      date,
-      day: changeDayFull(day),
-    });
-  };
-
-  // 캘린더 달 prev, next 클릭 이벤트
-  // calendar api를 이용하여 현재 년도와 달 정보 획득
-  // 이전, 다음 달 이동 기능.
-  const movePrevMonth = () => {
-    const calendarApi = calendarRef.current._calendarApi;
-    const { viewTitle } = calendarApi.getCurrentData();
-    const [month, year] = viewTitle.split(" ");
-    //  dispatch(changeTodoCalendar("prev", month, year));
-    //  dispatch(RequestSchedules("prev", month, year));
-
-    dispatch(RequestCycleAsync(month, year));
-
-    calendarApi.prev();
-  };
-
-  const moveNextMonth = () => {
-    const calendarApi = calendarRef.current._calendarApi;
-    const { viewTitle } = calendarApi.getCurrentData();
-    const [month, year] = viewTitle.split(" ");
-    // dispatch(changeTodoCalendar("next", month, year));
-
-    dispatch(RequestCycleAsync(month, year));
-
-    calendarApi.next();
-  };
-
-  useEffect(() => {
-    // console.log(logined);
-    // 만약 로그인 페이지 이동이 귀찮다면
-    // 이 부분 주석 해제해서 사용
-    /*
-    const accessToken = localStorage.getItem("access_token");
-    if (!accessToken) navigate("/login");
-    */
-  }, [navigate]);
 
   // 로그아웃
   // localStrage의 access_token을 지워버림.
@@ -105,10 +41,10 @@ const Home = (props) => {
 
     navigate("/login");
   };
-
+  // ======================================
   //
-  // 아이콘 버튼을 통해 이동하는 함수들
-  // todo 팝업 오픈
+
+  // todo 팝업 오픈 관련 및 화면 이동 함수들
   const openTodoPopup = () => {
     setIsTodoPopup(true);
   };
@@ -118,20 +54,14 @@ const Home = (props) => {
   };
 
   const moveSchedule = () => {
-    // navigate("/schedule");
-
-    navigate("/schedule", { state: selectedDate });
+    // navigate("/schedule", { state: selectedDate });
+    navigate(`/schedule?date=${selectedDate.date}&day=${selectedDate.day}`);
   };
 
   const moveMenstruation = () => {
-    // 생리 설정 페이지 이동
     navigate("/menstruation");
   };
-
-  // 현재 필요없는 코드.
-  const onLogin = () => {
-    navigate("/login");
-  };
+  // ======================================
 
   return (
     <div>
@@ -139,38 +69,11 @@ const Home = (props) => {
 
       <GlobalHeader />
 
-      <MainCalendarWrapper>
-        <FullCalendar //
-          ref={calendarRef}
-          plugins={[dayGridPlugin, interactionPlugin]}
-          headerToolbar={{
-            start: "",
-            center: "customPrev title customNext",
-            end: "",
-          }}
-          eventClick={function () {
-            alert("hi");
-          }}
-          events={events}
-          dateClick={(info) => {
-            onClickDate(info);
-          }}
-          customButtons={{
-            customPrev: {
-              text: "<",
-              click: function () {
-                movePrevMonth();
-              },
-            },
-            customNext: {
-              text: ">",
-              click: () => {
-                moveNextMonth();
-              },
-            },
-          }}
-        />
-      </MainCalendarWrapper>
+      <MainCalendarWrapper
+        setIsToggle={setIsToggle}
+        setSelectedDate={setSelectedDate}
+        selectedDate={selectedDate}
+      ></MainCalendarWrapper>
 
       <section className="home-bottom">
         <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
@@ -187,8 +90,9 @@ const Home = (props) => {
           <CircularButton icon={schedule_icon} onClick={moveSchedule} />
           <CircularButton icon={water_icon} onClick={moveMenstruation} />
           <CircularButton
-            icon={delete_icon}
+            icon={delete_icon_white}
             onClick={() => setIsToggle(false)}
+            option="circle-btn-delete"
           />
         </section>
       )}

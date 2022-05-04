@@ -14,6 +14,14 @@ export function toDayInfo() {
   };
 }
 
+export function isIncludeDate(date, start, end) {
+  if (date >= start && date <= end) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export function calcMonthYear(move, month, year) {
   let yy = Number(year);
   let mm = changeFullMonthInt(month);

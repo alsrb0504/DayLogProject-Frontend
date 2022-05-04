@@ -17,6 +17,8 @@
 @import "./mixins/flexbox";
 @import "./mixins/position";
 @import "./mixins/popup";
+@import "./mixins/absolute";
+@import "./mixins/textarea";
 
 // modules.scss
 @import "./modules/button";
@@ -34,7 +36,9 @@
 @import "./sections/mainCalendarWrapper";
 @import "./sections/todoSection";
 @import "./sections/todoPopup";
+@import "./sections/scheduleForm";
 
 // pages
 @import "./pages/login";
 @import "./pages/home";
+@import "./pages/schedule";

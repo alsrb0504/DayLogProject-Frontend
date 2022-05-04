@@ -25,6 +25,7 @@ const LoginForm = () => {
             <input
               type="text"
               placeholder="아이디를 입력하세요."
+              autoFocus={true}
               {...register("id", {
                 required: true,
                 maxLength: {
@@ -33,11 +34,9 @@ const LoginForm = () => {
                 },
               })}
             />
-            {errors.id && (
-              <span className="input-error-message">{errors.id.message}</span>
-            )}
           </>
         }
+        error={errors.id && "input-error"}
       />
 
       <InputContainer
@@ -61,6 +60,7 @@ const LoginForm = () => {
             )}
           </>
         }
+        error={errors.password && "input-error"}
       />
 
       <Button text="로그인" type="submit" color="btn-primary" size="btn-40" />

@@ -37,6 +37,8 @@ const SignUpId = (props) => {
             <>
               <input
                 type="text"
+                placeholder="아이디를 입력하세요."
+                autoFocus={true}
                 {...register("id", {
                   required: true,
                   minLength: {
@@ -48,15 +50,13 @@ const SignUpId = (props) => {
                     message: "아이디가 너무 깁니다.",
                   },
                 })}
-                placeholder="아이디를 입력하세요."
               />
-              {errors.id && (
-                <span className="input-error-message">{errors.id.message}</span>
-              )}
+              {errors.id && alert(errors.id.message)}
             </>
           }
           size="col-sm-3 col-md-4"
           label="아이디를 입력하세요."
+          error={errors.id && "input-error"}
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

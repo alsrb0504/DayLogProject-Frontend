@@ -9,7 +9,11 @@ import { AddTodoAsync } from "../../store/actions/todo";
 
 const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = (content) => {
     dispatch(AddTodoAsync(content, dateFormat.date));
@@ -29,9 +33,11 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
               <input
                 type="text"
                 placeholder="투두리스트를 추가하세요."
+                autoFocus={true}
                 {...register("content", { required: true })}
               />
             }
+            error={errors.content && "input-error"}
           />
         </form>
         <AddButton used="todo" onClick={handleSubmit(onSubmit)} />
