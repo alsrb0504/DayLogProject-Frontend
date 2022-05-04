@@ -3,10 +3,14 @@ import ScheduleItem from "./scheduleitem";
 
 const ScheduleList = ({ schedules }) => {
   return (
-    <ul>
+    <ul className="schedule-container">
       {schedules &&
-        schedules.map((schedule) => (
-          <ScheduleItem key={schedule.schedule_no} schedule={schedule} />
+        schedules.map((schedule, idx) => (
+          <ScheduleItem
+            key={schedule.schedule_no}
+            schedule={schedule}
+            color={idx % 3}
+          />
         ))}
     </ul>
   );

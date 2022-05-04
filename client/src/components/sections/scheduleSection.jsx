@@ -6,9 +6,9 @@ const ScheduleSection = () => {
   const schedules = useSelector((state) => state.schedule.cur_schedules);
 
   return (
-    <section>
+    <main className="schedule-main">
       <ScheduleList schedules={schedules} />
-    </section>
+    </main>
   );
 };
 

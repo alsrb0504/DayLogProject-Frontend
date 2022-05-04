@@ -30,11 +30,13 @@ const ScheduleHome = () => {
   return (
     <div>
       <InputHeader text="홈으로" onClick={moveHome} />
-      <h2>{printDayInfo({ date, day })}</h2>
+      <h2 className="schedule-date">{printDayInfo({ date, day })}</h2>
 
       <ScheduleSection />
 
-      <AddButton used="schedule" onClick={moveAddSchedule} />
+      <div className="schedule-add-btn">
+        <AddButton used="schedule" onClick={moveAddSchedule} />
+      </div>
     </div>
   );
 };

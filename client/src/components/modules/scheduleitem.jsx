@@ -1,10 +1,11 @@
 import React from "react";
+import delete_icon from "../../assets/icons/delete.svg";
+import delete_icon_black from "../../assets/icons/delete-icon-black.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import delete_icon from "../../assets/icons/delete.svg";
 import { RemoveScheduleAsync } from "../../store/actions/schedule";
 
-const ScheduleItem = ({ schedule }) => {
+const ScheduleItem = ({ schedule, color }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,13 +25,17 @@ const ScheduleItem = ({ schedule }) => {
   };
 
   return (
-    <li>
-      <div className="text-area" onClick={handleClick}>
-        <h3>{schedule.title}</h3>
-        <span>{`${schedule.start_date} ~ ${schedule.end_date}`}</span>
+    <li className={`schedule-item schedule-item-${color}`}>
+      <div className="schedule-item-text" onClick={handleClick}>
+        <h3 className="schedule-item-title">{schedule.title}</h3>
+        <span className="schedule-item-date">{`${schedule.start_date} ~ ${schedule.end_date}`}</span>
       </div>
-      <button onClick={handleRemove} style={{ backgroundColor: "powderblue" }}>
-        <img src={delete_icon} alt="" />
+      <button className="schedule-item-delete-btn" onClick={handleRemove}>
+        {color === 2 ? (
+          <img src={delete_icon_black} alt="검은 지우기 아이콘" />
+        ) : (
+          <img src={delete_icon} alt="지우기 아이콘" />
+        )}
       </button>
     </li>
   );

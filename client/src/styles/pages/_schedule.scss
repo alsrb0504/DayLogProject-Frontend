@@ -1,0 +1,76 @@
+.schedule {
+  // 추후 todo popup, bade popup 등의 날짜 정보와 공통된 스타일 특성
+  // 으로 분리
+  &-date {
+    color: $primary;
+    font-size: $font-size-24;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 16px;
+
+    background-color: pink;
+  }
+
+  &-main {
+    background-color: orange;
+
+    .schedule-container {
+      background-color: pink;
+
+      .schedule-item {
+        background-color: powderblue;
+
+        @include flexbox(space-between);
+        padding: 16px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        color: $white;
+        font-weight: 700;
+
+        &-title {
+          font-size: $font-size-16;
+          margin-bottom: 4px;
+        }
+
+        &-date {
+          font-size: $font-size-12;
+        }
+
+        &-delete-btn {
+          width: 24px;
+          height: 24px;
+          transition: transform 100ms ease-in-out;
+
+          &:active,
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+
+        // 색상 1, 2, 3번
+        &-0 {
+          background-color: $secondary;
+        }
+
+        &-1 {
+          background-color: $primary;
+        }
+
+        &-2 {
+          background-color: $yellow;
+
+          color: $text-dark;
+        }
+      }
+    }
+  }
+
+  &-add-btn {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: aqua;
+  }
+}
