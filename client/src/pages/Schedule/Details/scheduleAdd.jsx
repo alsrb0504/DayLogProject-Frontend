@@ -46,24 +46,20 @@ const ScheduleAdd = (props) => {
                     message: "일정이 너무 짧습니다.",
                   },
                   maxLength: {
-                    value: 50,
+                    value: 100,
                     message: "일정이 너무 깁니다.",
                   },
                 })}
                 placeholder="일정 제목"
               />
-              {errors.title && (
-                <span className="input-error-message">
-                  {errors.title.message}
-                </span>
-              )}
             </>
           }
-          size="col-sm-3 col-md-4"
+          size="col-sm-4 col-md-4"
           label="일정 제목을 입력하세요."
+          error={errors.title && "input-error"}
         />
 
-        <div className="schedule-form-date col-sm-3">
+        <div className="schedule-form-date col-sm-4">
           <div className="schedule-form-date-input">
             <InputContainer
               children={
@@ -71,19 +67,15 @@ const ScheduleAdd = (props) => {
                   <input
                     type="date"
                     {...register("start_date", {
-                      required: "시작 날짜를 선택해주세요.",
+                      required: "시작 날짜 선택",
                     })}
                     placeholder="시작 날짜"
                   />
-                  {errors.start_date && (
-                    <span className="input-error-message">
-                      {errors.start_date.message}
-                    </span>
-                  )}
                 </>
               }
               size="col-sm-4 col-md-4"
               label="시작 날짜"
+              error={errors.start_date && "input-error"}
             />
           </div>
           <span className="schedule-form-date-divider">~</span>
@@ -95,19 +87,15 @@ const ScheduleAdd = (props) => {
                   <input
                     type="date"
                     {...register("end_date", {
-                      required: "종료 날짜를 선택해주세요.",
+                      required: "종료 날짜 선택",
                     })}
                     placeholder="종료 날짜"
                   />
-                  {errors.end_date && (
-                    <span className="input-error-message">
-                      {errors.end_date.message}
-                    </span>
-                  )}
                 </>
               }
               size="col-sm-4 col-md-4"
               label="종료 날짜"
+              error={errors.end_date && "input-error"}
             />
           </div>
         </div>
@@ -118,15 +106,14 @@ const ScheduleAdd = (props) => {
               <textarea
                 className="schedule-form-textarea"
                 {...register("content", {
-                  required: "일정 내용을 기록하세요.",
+                  maxLength: {
+                    value: 225,
+                    message: "일정 내용이 너무 깁니다.",
+                  },
                 })}
                 placeholder="일정 내용"
               >
-                {errors.content && (
-                  <span className="input-error-message">
-                    {errors.content.message}
-                  </span>
-                )}
+                {errors.content && alert(errors.content.message)}
               </textarea>
             </>
           }
@@ -146,7 +133,7 @@ const ScheduleAdd = (props) => {
           type="submit"
           color="btn-primary"
           size="btn-40 col-sm-4"
-          onClick={handleSubmit(onSubmit)}
+          // onClick={handleSubmit(onSubmit)}
         />
       </section>
     </div>
