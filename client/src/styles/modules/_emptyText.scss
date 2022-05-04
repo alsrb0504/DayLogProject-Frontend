@@ -1,10 +1,18 @@
 .text {
-  padding: 4px 8px;
+  padding: 8px 8px;
   border-radius: 10px;
-  font-size: $font-size-20;
-  font-weight: 600;
-  line-height: 2rem;
+  font-size: $font-size-16;
+  // font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5rem;
+  text-align: center;
   white-space: pre-line;
+
+  //1. 흰 배경에 파랑 클씨
+  // color: $primary;
+  // border: 1px solid $primary;
+
+  // 2. 하늘색 배경에 흰 글씨
   color: $white;
   background-color: $secondary;
 }
