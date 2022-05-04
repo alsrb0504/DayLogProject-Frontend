@@ -55,15 +55,12 @@ const SignUpPasswd = (props) => {
                   },
                 })}
               />
-              {errors.password1 && (
-                <span className="input-error-message">
-                  {errors.password1.message}
-                </span>
-              )}
+              {errors.password1 && alert(errors.password1.message)}
             </>
           }
           size="col-sm-3 col-md-4"
           label="비밀번호를 입력하세요."
+          error={errors.password1 && "input-error"}
         />
 
         <InputContainer
@@ -84,15 +81,14 @@ const SignUpPasswd = (props) => {
                   },
                 })}
               />
-              {errors.password2 && (
-                <span className="input-error-message">
-                  {errors.password2.message}
-                </span>
-              )}
+              {errors.password2 &&
+                errors.password2 &&
+                alert(errors.password2.message)}
             </>
           }
           size="col-sm-3 col-md-4"
           label="비밀번호를 재입력 하세요."
+          error={errors.password2 && "input-error"}
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />

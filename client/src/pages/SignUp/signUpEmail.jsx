@@ -8,7 +8,11 @@ import InputHeader from "../../components/modules/inputHeader";
 import { signupEmail } from "../../store/actions/signup";
 
 const SignUpEmail = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,6 +40,7 @@ const SignUpEmail = (props) => {
           }
           size="col-sm-3 col-md-4 "
           label="이메일을 입력하세요."
+          error={errors.email && "input-error"}
         />
 
         <Button text="다음" type="submit" color="btn-primary" size="btn-40" />
