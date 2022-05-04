@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
 import { AddSchedulesAsync } from "../../../store/actions/schedule";
@@ -18,10 +19,14 @@ const ScheduleAdd = (props) => {
   const date = searchParams.get("date");
   const day = searchParams.get("day");
 
+  const moveHome = () => {
+    navigate("/");
+  };
+
   // 일단은 그냥 홈으로 이동
   // date 객체를 옮겨줘야 함.
   const moveBack = () => {
-    navigate("/");
+    navigate(`/schedule?date=${date}&day=${day}`);
   };
 
   const onSubmit = (data) => {
@@ -30,7 +35,7 @@ const ScheduleAdd = (props) => {
 
   return (
     <div>
-      <InputHeader text="일정 목록으로" onClick={moveBack} />
+      <InputHeader text="일정 목록으로" onClick={moveHome} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
@@ -126,7 +131,22 @@ const ScheduleAdd = (props) => {
           size="col-sm-3 col-md-4"
           label="일정 내용"
         />
-        <button type="submit">완료</button>
+        <section>
+          <Button
+            text="취소"
+            type="button"
+            color="btn-secondary"
+            size="btn-40 col-sm-1"
+            onClick={moveBack}
+          />
+          <Button
+            text="완료"
+            type="submit"
+            color="btn-primary"
+            size="btn-40 col-sm-1"
+            onClick={onSubmit}
+          />
+        </section>
       </form>
     </div>
   );
