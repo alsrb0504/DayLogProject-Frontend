@@ -31,6 +31,8 @@ const store = createStore(
   )
 );
 
+// React.strictMode 나중에 지울 것
+// alert 2번씩 뜸.
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
