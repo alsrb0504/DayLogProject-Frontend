@@ -1,13 +1,22 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import delete_icon from "../../assets/icons/delete.svg";
 import { RemoveScheduleAsync } from "../../store/actions/schedule";
 
 const ScheduleItem = ({ schedule }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const date = useSelector((state) => state.schedule.cur_date);
+  const day = useSelector((state) => state.schedule.cur_day);
+
   const handleClick = () => {
-    console.log("click");
+    navigate(`/schedule/description?date=${date}&day=${day}`, {
+      state: {
+        schedule: schedule,
+      },
+    });
   };
 
   const handleRemove = () => {

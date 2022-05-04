@@ -1,48 +1,41 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
 import InputTextarea from "../../../components/modules/inputTextarea";
-import { AddSchedulesAsync } from "../../../store/actions/schedule";
 
-const ScheduleAdd = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const ScheduleDescription = (props) => {
+  const { register, handleSubmit } = useForm();
+  const location = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const schedule = location.state.schedule;
   const date = searchParams.get("date");
   const day = searchParams.get("day");
 
-  const moveHome = () => {
-    navigate("/");
-  };
+  console.log(schedule);
 
-  // 일단은 그냥 홈으로 이동
-  // date 객체를 옮겨줘야 함.
   const moveBack = () => {
     navigate(`/schedule?date=${date}&day=${day}`);
   };
 
-  const onSubmit = (data) => {
-    dispatch(AddSchedulesAsync(data, date, day));
+  const handleRemove = () => {
+    console.log("remove");
   };
 
   return (
     <div>
-      <InputHeader text="일정 목록으로" onClick={moveHome} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <InputHeader text="일정 목록으로" onClick={moveBack} />
+      <main>
         <InputContainer
           children={
             <>
               <input
                 type="text"
+                value={schedule.title}
                 {...register("title", {
                   required: "일정 제목을 입력해주세요.",
                   minLength: {
@@ -56,11 +49,6 @@ const ScheduleAdd = (props) => {
                 })}
                 placeholder="일정 제목"
               />
-              {errors.title && (
-                <span className="input-error-message">
-                  {errors.title.message}
-                </span>
-              )}
             </>
           }
           size="col-sm-3 col-md-4"
@@ -73,16 +61,12 @@ const ScheduleAdd = (props) => {
               <>
                 <input
                   type="date"
+                  value={schedule.start_date}
                   {...register("start_date", {
                     required: "시작 날짜를 선택해주세요.",
                   })}
                   placeholder="시작 날짜"
                 />
-                {errors.start_date && (
-                  <span className="input-error-message">
-                    {errors.start_date.message}
-                  </span>
-                )}
               </>
             }
             size="col-sm-3 col-md-4"
@@ -94,16 +78,12 @@ const ScheduleAdd = (props) => {
               <>
                 <input
                   type="date"
+                  value={schedule.end_date}
                   {...register("end_date", {
                     required: "종료 날짜를 선택해주세요.",
                   })}
                   placeholder="종료 날짜"
                 />
-                {errors.end_date && (
-                  <span className="input-error-message">
-                    {errors.end_date.message}
-                  </span>
-                )}
               </>
             }
             size="col-sm-3 col-md-4"
@@ -119,35 +99,31 @@ const ScheduleAdd = (props) => {
                   required: "일정 내용을 기록하세요.",
                 })}
                 placeholder="일정 내용"
-              >
-                {errors.content && (
-                  <span className="input-error-message">
-                    {errors.content.message}
-                  </span>
-                )}
-              </textarea>
+                defaultValue={schedule.content}
+              ></textarea>
             </>
           }
         />
+      </main>
 
-        <section>
-          <Button
-            text="취소"
-            type="button"
-            color="btn-secondary"
-            size="btn-40 col-sm-1"
-            onClick={moveBack}
-          />
-          <Button
-            text="완료"
-            type="submit"
-            color="btn-primary"
-            size="btn-40 col-sm-1"
-          />
-        </section>
-      </form>
+      <section>
+        <Button
+          text="편집"
+          type="button"
+          color="btn-secondary"
+          size="btn-40 col-sm-1"
+          onClick={moveBack}
+        />
+        <Button
+          text="삭제"
+          type="submit"
+          color="btn-primary"
+          size="btn-40 col-sm-1"
+          onClick={handleRemove}
+        />
+      </section>
     </div>
   );
 };
 
-export default ScheduleAdd;
+export default ScheduleDescription;
