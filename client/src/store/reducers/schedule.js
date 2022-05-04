@@ -39,6 +39,7 @@ const initState = {
 
   cur_schedules: [],
   cur_date: "2022-05-05",
+  cur_day: "Thursday",
 };
 
 const scheduleReducer = (state = initState, action) => {
@@ -60,6 +61,7 @@ const scheduleReducer = (state = initState, action) => {
         ...state,
         cur_schedules: action.payload.cur_schedules,
         cur_date: action.payload.cur_date,
+        cur_day: action.payload.cur_day,
       };
     }
     case SCHEDULE_ADD_SUCCESS: {

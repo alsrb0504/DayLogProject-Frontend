@@ -22,15 +22,16 @@ const ClassifyDates = (scheduleArr, date) => {
 
 // 캘린더 날짜 클릭 시,
 // cur_schedules를 바꾸는 action 함수.
-export const SetCurSchedules = (date_info) => (dispatch, getState) => {
-  const month_schedules = getState().schedule.month_schedules;
-  const cur_schedules = ClassifyDates(month_schedules, date_info);
+export const SetCurSchedules =
+  (date_info, day_info) => (dispatch, getState) => {
+    const month_schedules = getState().schedule.month_schedules;
+    const cur_schedules = ClassifyDates(month_schedules, date_info);
 
-  dispatch({
-    type: SCHEDULE_CUR_SCHEDULE_SET,
-    payload: { cur_schedules, cur_date: date_info },
-  });
-};
+    dispatch({
+      type: SCHEDULE_CUR_SCHEDULE_SET,
+      payload: { cur_schedules, cur_date: date_info, cur_day: day_info },
+    });
+  };
 
 // 여기서는 달 전체를 기준으로 가져오는 거니까
 // Home.jsx에서만 호출

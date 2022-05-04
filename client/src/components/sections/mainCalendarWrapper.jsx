@@ -57,13 +57,15 @@ const MainCalendarWrapper = ({
     setIsToggle(true);
 
     const date = info.dateStr;
-    const day = info.date.toString().split(" ")[0];
+    const shortDay_info = info.date.toString().split(" ")[0];
+    const day = changeDayFull(shortDay_info);
+
     setSelectedDate({
       date,
-      day: changeDayFull(day),
+      day,
     });
 
-    dispatch(SetCurSchedules(info.dateStr));
+    dispatch(SetCurSchedules(date, day));
   };
 
   return (
