@@ -16,6 +16,18 @@
 
     .schedule-container {
       background-color: pink;
+      padding-top: 8px;
+      max-height: 65vh;
+      overflow-y: scroll;
+      border-radius: 20px;
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
 
       .schedule-item {
         background-color: powderblue;
@@ -27,9 +39,16 @@
         color: $white;
         font-weight: 700;
 
+        &-text {
+          width: 70%;
+        }
+
         &-title {
-          font-size: $font-size-16;
           margin-bottom: 4px;
+          font-size: $font-size-16;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }
 
         &-date {
