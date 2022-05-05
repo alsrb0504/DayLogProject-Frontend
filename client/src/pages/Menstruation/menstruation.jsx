@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/modules/button";
 import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
+import { toDayInfo } from "../../services/calcDate";
 import { RequestCycleAsync } from "../../store/actions/cycle";
 
 const Menstruation = (props) => {
@@ -26,6 +27,12 @@ const Menstruation = (props) => {
   };
 
   const checkYear = (date) => {
+    const cur_date = toDayInfo().date;
+    if (cur_date > date) {
+      alert("시작일은 현재 날 이후만 선택 가능합니다.");
+      return false;
+    }
+
     const year = date.split("-")[0];
     if (year < 2021 || year > 2022) {
       return "년도를 다시 확인해주세요.";
