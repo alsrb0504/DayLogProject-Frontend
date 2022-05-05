@@ -28,7 +28,7 @@ const Menstruation = (props) => {
 
   const checkYear = (date) => {
     const cur_date = toDayInfo().date;
-    if (cur_date > date) {
+    if (cur_date < date) {
       alert("시작일은 현재 날 이후만 선택 가능합니다.");
       return false;
     }
