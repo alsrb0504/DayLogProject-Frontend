@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
 import { SetAuthHeader } from "../../services/auth";
+import SideSlideNavigation from "../../components/sections/sideSlideNavigation";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
   const [isToggle, setIsToggle] = useState(false);
+  // const [sidebarToggle, setSidebarToggle] = useState(true);
+
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 

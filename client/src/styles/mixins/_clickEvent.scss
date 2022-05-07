@@ -1,0 +1,26 @@
+@mixin ScaleEffect($scale: 1.05) {
+  transition: all 100ms ease-in-out;
+
+  &:active,
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin OpacityEffect($opacity: 0.6, $time: 50ms) {
+  transition: all $time ease-in-out;
+
+  &:active,
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+@mixin menuColorEffect($color: $yellow, $time: 50ms) {
+  transition: all $time ease-in-out;
+
+  &:active,
+  &:hover {
+    background-color: $color;
+  }
+}

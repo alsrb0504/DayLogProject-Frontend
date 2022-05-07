@@ -19,6 +19,7 @@
 @import "./mixins/popup";
 @import "./mixins/absolute";
 @import "./mixins/textarea";
+@import "./mixins/clickEvent";
 
 // modules.scss
 @import "./modules/button";
@@ -30,6 +31,7 @@
 @import "./modules/addButton";
 @import "./modules/emptyText";
 @import "./modules/overlay";
+@import "./modules/navMenuItem";
 
 // sections.scss
 @import "./sections/signupContainer";
@@ -37,6 +39,7 @@
 @import "./sections/todoSection";
 @import "./sections/todoPopup";
 @import "./sections/scheduleForm";
+@import "./sections/sideSlideNavigation";
 
 // pages
 @import "./pages/login";
