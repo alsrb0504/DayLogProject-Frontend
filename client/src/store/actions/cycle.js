@@ -49,7 +49,14 @@ export const RequestCycleAsync = (data) => {
       history.push("/");
     } catch (e) {
       console.error(e);
-      alert("생리 정보 업데이트를 실패했습니다.");
+      console.error(e.data.message);
+
+      if (e.message === 400) {
+        alert(e.data.message);
+      } else {
+        alert("생리 정보 업데이트를 실패했습니다.");
+      }
+
       dispatch({ type: CYCLE_CHANGE_FAIL });
       history.push("/");
     }
