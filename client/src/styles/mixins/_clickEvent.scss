@@ -6,3 +6,12 @@
     transform: scale($scale);
   }
 }
+
+@mixin OpacityEffect($opacity: 0.6, $time: 50ms) {
+  transition: all $time ease-in-out;
+
+  &:active,
+  &:hover {
+    opacity: 0.6;
+  }
+}
