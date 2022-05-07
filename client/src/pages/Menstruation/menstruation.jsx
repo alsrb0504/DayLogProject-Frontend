@@ -19,7 +19,6 @@ const Menstruation = (props) => {
 
   const onSubmit = (data) => {
     dispatch(RequestCycleAsync(data));
-    // console.log(data);
   };
 
   const moveHome = () => {
@@ -29,7 +28,7 @@ const Menstruation = (props) => {
   const checkYear = (date) => {
     const cur_date = toDayInfo().date;
     if (cur_date < date) {
-      alert("시작일은 현재 날 이후만 선택 가능합니다.");
+      alert("시작일은 현재 날 이전만 선택 가능합니다.");
       return false;
     }
 
