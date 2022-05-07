@@ -1,0 +1,8 @@
+@mixin ScaleEffect($scale: 1.05) {
+  transition: all 100ms ease-in-out;
+
+  &:active,
+  &:hover {
+    transform: scale($scale);
+  }
+}
