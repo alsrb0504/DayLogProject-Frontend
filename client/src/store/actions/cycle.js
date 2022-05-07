@@ -31,45 +31,10 @@ export const RequestCycleAsync = (data) => {
   return async (dispatch, getState, { history }) => {
     try {
       // 주기 정보 등록(갱신) 통신 부분
-      /*
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${localStorage.getItem("access_token")}`;
-
-      const res = axios.post("/api/members/cycle/new", {
+      const res = await axios.post("/api/members/cycle/new", {
         start: start_date,
         cycle,
       });
-
-      // 통신 테스트 후 수정할 것.
-      // 나중에 기능 테스트 완료되면 dispatch 부분에 
-      // cycle: res.data.cycle_data.cycle  => cycle_data.cycle 로 수정
-      // ClassifyDates () 의 인자도 수정.
-      // const cycle_data = res.data.cycle_data;
-      */
-
-      // Local test 용 주기 정보
-      const res = {
-        data: {
-          cycle_data: {
-            cycle: 32,
-            dates: [
-              {
-                type: "START_DATE",
-                date: "2022-05-04",
-              },
-              {
-                type: "START_DATE",
-                date: "2022-05-28",
-              },
-              {
-                type: "DUE_DATE",
-                date: "2022-05-30",
-              },
-            ],
-          },
-        },
-      };
 
       const { startArr, dueArr } = ClassifyDates(res.data.cycle_data.dates);
 
