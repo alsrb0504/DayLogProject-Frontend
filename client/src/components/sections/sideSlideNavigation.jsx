@@ -45,6 +45,12 @@ const SideSlideNavigation = (props) => {
     // navigate('/myPage');
   };
 
+  const onLogout = () => {
+    // 추후 로그아웃 기능 추가.
+    alert("구현 중");
+    return;
+  };
+
   return (
     <div className="slide-bar">
       <header className="slide-bar-header">
@@ -66,6 +72,7 @@ const SideSlideNavigation = (props) => {
           <NavMenuItem name="뱃지 컬렉션" onClick={moveBadge} />
           <NavMenuItem name="공유 일기 게시판" onClick={moveBoard} />
           <NavMenuItem name="마이 페이지 및 설정" onClick={moveMypage} />
+          <NavMenuItem name="로그아웃" onClick={onLogout} />
         </ul>
       </nav>
     </div>
