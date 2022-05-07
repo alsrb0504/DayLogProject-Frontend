@@ -46,20 +46,20 @@ const SideSlideNavigation = (props) => {
   };
 
   return (
-    <div>
-      <header>
-        <button>
+    <div className="slide-bar">
+      <header className="slide-bar-header">
+        <button className="slide-bar-header-menu-icon">
           <img src={MenuWhiteIcon} alt="메뉴 접기 아이콘" />
         </button>
-        <div>
-          <div>
+        <div className="slide-bar-header-user">
+          <div className="slide-bar-header-user-profile">
             <img src={DefaultProfile} alt="프로필 사진" />
           </div>
-          <span>닉네임</span>
+          <span className="slide-bar-header-user-name">닉네임닉네임</span>
         </div>
       </header>
-      <nav>
-        <ul>
+      <nav className="slide-bar-nav">
+        <ul className="slide-bar-nav-container">
           <NavMenuItem name="홈" move={moveHome} />
           <NavMenuItem name="일기" move={moveDiary} />
           <NavMenuItem name="식단" move={moveDiet} />

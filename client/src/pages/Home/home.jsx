@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
 import { SetAuthHeader } from "../../services/auth";
+import SideSlideNavigation from "../../components/sections/sideSlideNavigation";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -66,6 +67,8 @@ const Home = (props) => {
   return (
     <div>
       {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
+
+      <SideSlideNavigation />
 
       <GlobalHeader />
 
