@@ -15,3 +15,12 @@
     opacity: 0.6;
   }
 }
+
+@mixin menuColorEffect($color: $yellow, $time: 50ms) {
+  transition: all $time ease-in-out;
+
+  &:active,
+  &:hover {
+    background-color: $color;
+  }
+}

@@ -4,7 +4,7 @@ import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
 import DefaultProfile from "../../assets/img/default-profile.svg";
 import NavMenuItem from "../modules/navMenu";
 
-const SideSlideNavigation = ({ closeToggle }) => {
+const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   // 추후 유저가 로그인하면 유저 정보를 저장하는 redux 구현
   // 이후 useSelector로 유저의 닉니엠과 프로필 이미지를 가져와서
   // 아래 메뉴들 구성
@@ -56,7 +56,9 @@ const SideSlideNavigation = ({ closeToggle }) => {
   };
 
   return (
-    <div className="slide-bar">
+    <div
+      className={`slide-bar ${isOpen ? "slide-bar-open" : "slide-bar-close"} `}
+    >
       <header className="slide-bar-header">
         <button className="slide-bar-header-menu-icon" onClick={closeMenu}>
           <img src={MenuWhiteIcon} alt="메뉴 접기 아이콘" />

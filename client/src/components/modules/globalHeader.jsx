@@ -42,12 +42,12 @@ const GlobalHeader = (props) => {
 
   return (
     <>
-      {sidebarToggle && (
-        <>
-          <OverLay onClick={closeSideNavigation} />
-          <SideSlideNavigation closeToggle={closeSideNavigation} />
-        </>
-      )}
+      <SideSlideNavigation
+        isOpen={sidebarToggle}
+        closeToggle={closeSideNavigation}
+      />
+      {sidebarToggle && <OverLay onClick={closeSideNavigation} />}
+
       <header className="global-header">
         <div className="menu-icon" onClick={openSideNavigation}>
           <img src={menu} alt="메뉴 아이콘" />
