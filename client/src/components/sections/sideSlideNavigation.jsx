@@ -4,12 +4,16 @@ import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
 import DefaultProfile from "../../assets/img/default-profile.svg";
 import NavMenuItem from "../modules/navMenu";
 
-const SideSlideNavigation = (props) => {
+const SideSlideNavigation = ({ closeToggle }) => {
   // 추후 유저가 로그인하면 유저 정보를 저장하는 redux 구현
   // 이후 useSelector로 유저의 닉니엠과 프로필 이미지를 가져와서
   // 아래 메뉴들 구성
 
   const navigate = useNavigate();
+
+  const closeMenu = () => {
+    closeToggle();
+  };
 
   const moveHome = () => {
     navigate("/");
@@ -54,7 +58,7 @@ const SideSlideNavigation = (props) => {
   return (
     <div className="slide-bar">
       <header className="slide-bar-header">
-        <button className="slide-bar-header-menu-icon">
+        <button className="slide-bar-header-menu-icon" onClick={closeMenu}>
           <img src={MenuWhiteIcon} alt="메뉴 접기 아이콘" />
         </button>
         <div className="slide-bar-header-user">

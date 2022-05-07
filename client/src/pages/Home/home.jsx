@@ -22,6 +22,8 @@ const Home = (props) => {
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
   const [isToggle, setIsToggle] = useState(false);
+  // const [sidebarToggle, setSidebarToggle] = useState(true);
+
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
@@ -67,8 +69,6 @@ const Home = (props) => {
   return (
     <div>
       {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
-
-      <SideSlideNavigation />
 
       <GlobalHeader />
 
