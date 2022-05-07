@@ -39,7 +39,7 @@ export const SetCurSchedules =
 export const RequestSchedulesAsync = (yy, mm) => async (dispatch, getState) => {
   try {
     // 테스트 시에는
-    /*
+    
       const res = await axios.get(
         `api/schedule/calendar?month=${mm}&year=${yy}`
       );
@@ -47,53 +47,11 @@ export const RequestSchedulesAsync = (yy, mm) => async (dispatch, getState) => {
       console.log(res.data);
 
       // true & false
-      const haveSchdeuls = res.data.haveSchedules;
-      */
+      const haveSchedules = res.data.haveSchedules;
+      
 
     // 로컬 테스트용
-    const haveSchedules = true;
-    const res = {
-      data: {
-        haveSchedules: true,
-        month_schedules: [
-          {
-            schedule_no: 233,
-            title: "일정 2",
-            content: "캡스톤 준비",
-            start_date: "2022-05-02",
-            end_date: "2022-05-12",
-          },
-          {
-            schedule_no: 213,
-            title: "일정 3",
-            content: "캡스톤 준비 2",
-            start_date: "2022-05-05",
-            end_date: "2022-05-12",
-          },
-          {
-            schedule_no: 243,
-            title: "테스트 일정 1",
-            content: "캡스톤 준비 2",
-            start_date: "2022-04-05",
-            end_date: "2022-05-30",
-          },
-          {
-            schedule_no: 253,
-            title: "테스트 일정 3 3",
-            content: "캡스톤 준비 2",
-            start_date: "2022-05-06",
-            end_date: "2022-05-20",
-          },
-          {
-            schedule_no: 263,
-            title: "테스트 일정 2 3",
-            content: "캡스톤 준비 2",
-            start_date: "2022-05-02",
-            end_date: "2022-05-20",
-          },
-        ],
-      },
-    };
+    
 
     // 1. 일정 정보가 존재하는 경우.
     if (haveSchedules === true) {
@@ -123,53 +81,23 @@ export const AddSchedulesAsync =
   (data, date, day) =>
   async (dispatch, getState, { history }) => {
     try {
-      // const res = await axios.post("/api/schedule", {
-      //   data,
-      // });
+       const {title, content, start_date, end_date } = data;
+       const res = await axios.post("/api/schedule", {
+        title, content, start_date, end_date
+       });
 
       // 확인용.
       // console.log(res.data);
 
       // true & false
-      // const haveSchdeuls = res.data.haveSchedules;
+       const haveSchedules = res.data.haveSchedules;
 
-      // if (haveSchdeuls) {
-      //   month_schedules = res.data.month_schedules;
-      // }
 
       // 로컬 테스트용
-      const haveSchdeuls = true;
-      const res = {
-        data: {
-          haveSchedules: true,
-          month_schedules: [
-            {
-              schedule_no: 233,
-              title: "일정 2",
-              content: "캡스톤 준비",
-              start_date: "2022-05-02",
-              end_date: "2022-05-04",
-            },
-            {
-              schedule_no: 213,
-              title: "일정 3",
-              content: "캡스톤 준비 2",
-              start_date: "2022-05-05",
-              end_date: "2022-05-12",
-            },
-            {
-              schedule_no: 243,
-              title: "추가된 일정",
-              content: "추가",
-              start_date: "2022-05-10",
-              end_date: "2022-05-24",
-            },
-          ],
-        },
-      };
+      
 
       // 1. 데이터가 있을 경우만 존재?
-      if (haveSchdeuls === true) {
+      if (haveSchedules === true) {
         const month_schedules = res.data.month_schedules;
         const cur_schedules = ClassifyDates(month_schedules, date);
 
@@ -193,41 +121,18 @@ export const RemoveScheduleAsync = (idx) => async (dispatch, getState) => {
   const cur_date = getState().schedule.cur_date;
 
   try {
-    // const res = await axios.delete(`/api/schedule?no=${idx}`);
+     const res = await axios.delete(`/api/schedule?no=${idx}`);
 
     // true & false
-    // const haveSchdeuls = res.data.haveSchedules;
+     const haveSchedules = res.data.haveSchedules;
 
-    // if (haveSchdeuls) {
-    //   month_schedules = res.data.month_schedules;
-    // }
+     
 
     // 로컬 테스트용
-    const haveSchdeuls = true;
-    const res = {
-      data: {
-        haveSchedules: true,
-        month_schedules: [
-          {
-            schedule_no: 233,
-            title: "일정 2",
-            content: "캡스톤 준비",
-            start_date: "2022-05-02",
-            end_date: "2022-05-20",
-          },
-          {
-            schedule_no: 212,
-            title: "일정 4",
-            content: "캡스톤 준비",
-            start_date: "2022-05-02",
-            end_date: "2022-05-16",
-          },
-        ],
-      },
-    };
+    
 
     // 1. 데이터가 있을 경우만 존재?
-    if (haveSchdeuls === true) {
+    if (haveSchedules === true) {
       const month_schedules = res.data.month_schedules;
       const cur_schedules = ClassifyDates(month_schedules, cur_date);
 

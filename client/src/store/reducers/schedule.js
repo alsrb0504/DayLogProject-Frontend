@@ -13,71 +13,7 @@ const initState = {
   // month_schedules: [],
 
   // 로컬 테스트용
-  month_schedules: [
-    {
-      schedule_no: 233,
-      title: "일정 2",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-20",
-    },
-    {
-      schedule_no: 213,
-      title: "일정 3",
-      content: "캡스톤 준비 2",
-      start_date: "2022-05-05",
-      end_date: "2022-05-12",
-    },
-    {
-      schedule_no: 212,
-      title: "일정 4",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-16",
-    },
-    {
-      schedule_no: 233,
-      title: "일정 2",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-20",
-    },
-    {
-      schedule_no: 213,
-      title: "일정 3dddddddddddddddddddddd ddddddddddddddddddddddddddddddd",
-      content: "캡스톤 준비 2",
-      start_date: "2022-05-05",
-      end_date: "2022-05-12",
-    },
-    {
-      schedule_no: 212,
-      title: "일정 4",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-16",
-    },
-    {
-      schedule_no: 233,
-      title: "일정 2",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-20",
-    },
-    {
-      schedule_no: 213,
-      title: "일정 3",
-      content: "캡스톤 준비 2",
-      start_date: "2022-05-05",
-      end_date: "2022-05-12",
-    },
-    {
-      schedule_no: 212,
-      title: "일정 4",
-      content: "캡스톤 준비",
-      start_date: "2022-05-02",
-      end_date: "2022-05-16",
-    },
-  ],
+  month_schedules: [],
 
   cur_schedules: [],
   cur_date: "2022-05-05",
