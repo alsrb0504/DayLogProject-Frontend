@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavMenu = ({ name, move }) => {
+const NavMenuItem = ({ name, move }) => {
   return (
     <li onClick={move}>
       <span>{name}</span>
@@ -8,4 +8,4 @@ const NavMenu = ({ name, move }) => {
   );
 };
 
-export default NavMenu;
+export default NavMenuItem;

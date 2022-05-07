@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
 import DefaultProfile from "../../assets/img/default-profile.svg";
-import NavMenu from "../modules/navMenu";
+import NavMenuItem from "../modules/navMenu";
 
 const SideSlideNavigation = (props) => {
   // 추후 유저가 로그인하면 유저 정보를 저장하는 redux 구현
@@ -60,12 +60,12 @@ const SideSlideNavigation = (props) => {
       </header>
       <nav>
         <ul>
-          <NavMenu name="홈" move={moveHome} />
-          <NavMenu name="일기" move={moveDiary} />
-          <NavMenu name="식단" move={moveDiet} />
-          <NavMenu name="뱃지 컬렉션" move={moveBadge} />
-          <NavMenu name="공유 일기 게시판" move={moveBoard} />
-          <NavMenu name="마이 페이지 및 설정" move={moveMypage} />
+          <NavMenuItem name="홈" move={moveHome} />
+          <NavMenuItem name="일기" move={moveDiary} />
+          <NavMenuItem name="식단" move={moveDiet} />
+          <NavMenuItem name="뱃지 컬렉션" move={moveBadge} />
+          <NavMenuItem name="공유 일기 게시판" move={moveBoard} />
+          <NavMenuItem name="마이 페이지 및 설정" move={moveMypage} />
         </ul>
       </nav>
     </div>
