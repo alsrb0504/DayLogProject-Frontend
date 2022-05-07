@@ -6,8 +6,8 @@ const NavMenuItem = ({ name, onClick }) => {
   };
 
   return (
-    <li onClick={handleClick}>
-      <span>{name}</span>
+    <li className="slide-bar-nav-item" onClick={handleClick}>
+      <span className="slide-bar-nav-item-name">{name}</span>
     </li>
   );
 };
