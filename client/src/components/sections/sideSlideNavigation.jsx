@@ -60,12 +60,12 @@ const SideSlideNavigation = (props) => {
       </header>
       <nav className="slide-bar-nav">
         <ul className="slide-bar-nav-container">
-          <NavMenuItem name="홈" move={moveHome} />
-          <NavMenuItem name="일기" move={moveDiary} />
-          <NavMenuItem name="식단" move={moveDiet} />
-          <NavMenuItem name="뱃지 컬렉션" move={moveBadge} />
-          <NavMenuItem name="공유 일기 게시판" move={moveBoard} />
-          <NavMenuItem name="마이 페이지 및 설정" move={moveMypage} />
+          <NavMenuItem name="홈" onClick={moveHome} />
+          <NavMenuItem name="일기" onClick={moveDiary} />
+          <NavMenuItem name="식단" onClick={moveDiet} />
+          <NavMenuItem name="뱃지 컬렉션" onClick={moveBadge} />
+          <NavMenuItem name="공유 일기 게시판" onClick={moveBoard} />
+          <NavMenuItem name="마이 페이지 및 설정" onClick={moveMypage} />
         </ul>
       </nav>
     </div>

@@ -1,8 +1,12 @@
 import React from "react";
 
-const NavMenuItem = ({ name, move }) => {
+const NavMenuItem = ({ name, onClick }) => {
+  const handleClick = () => {
+    onClick();
+  };
+
   return (
-    <li onClick={move}>
+    <li onClick={handleClick}>
       <span>{name}</span>
     </li>
   );
