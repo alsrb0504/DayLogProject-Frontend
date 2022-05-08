@@ -45,7 +45,7 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   };
 
   return (
-    <div className="main-calendar">
+    <div className="diary-calendar">
       <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, interactionPlugin]}

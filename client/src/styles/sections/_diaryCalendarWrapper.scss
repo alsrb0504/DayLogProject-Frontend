@@ -1,0 +1,64 @@
+// $img-size: 23px;
+
+// 뒤에 겹치도록하는 옵션
+$img-size: 30px;
+
+.diary-calendar {
+  @include calendarSetting;
+
+  .fc-daygrid-day-events {
+    position: absolute;
+    // top: 65%;
+
+    // 뒤에 겹치도록하는 옵션
+    top: 15%;
+    left: 21%;
+
+    .fc-event-title {
+      display: none !important;
+    }
+
+    .diary-event {
+      // 뒤에 겹치도록하는 옵션
+      opacity: 0.65;
+
+      border: none;
+      background-color: transparent;
+
+      width: $img-size;
+      height: $img-size;
+
+      background-size: $img-size;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .diary-event-1 {
+      background-image: url("../../assets/img/hearts/heart-red.svg");
+    }
+
+    .diary-event-2 {
+      background-image: url("../../assets/img/hearts/heart-orange.svg");
+    }
+
+    .diary-event-3 {
+      background-image: url("../../assets/img/hearts/heart-yellow.svg");
+    }
+
+    .diary-event-4 {
+      background-image: url("../../assets/img/hearts/heart-green.svg");
+    }
+
+    .diary-event-5 {
+      background-image: url("../../assets/img/hearts/heart-sky.svg");
+    }
+
+    .diary-event-6 {
+      background-image: url("../../assets/img/hearts/heart-blue.svg");
+    }
+
+    .diary-event-7 {
+      background-image: url("../../assets/img/hearts/heart-purple.svg");
+    }
+  }
+}
