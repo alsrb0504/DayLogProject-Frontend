@@ -6,6 +6,8 @@ import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
 import InputTextarea from "../../../components/modules/inputTextarea";
 import check_icon from "../../../assets/icons/check.svg";
+import OverLay from "../../../components/modules/overLay";
+import EmotionPopup from "../../../components/sections/emotionPopup";
 
 const DiaryAdd = (props) => {
   const navigate = useNavigate();
@@ -16,23 +18,70 @@ const DiaryAdd = (props) => {
   } = useForm();
 
   const [check, setCheck] = useState(false);
+  const [emotion, setEmotion] = useState(0);
+  const [openPopup, setOpenPopup] = useState(false);
 
   const handleCheck = () => {
     setCheck(!check);
   };
 
   const onSubmit = (data) => {
-    console.log(check);
+    // popUp 오픈을 위한 코드
+    if (emotion === 0) {
+      openEmotionPopup();
+      return;
+    }
 
-    console.log(data);
+    //
+    console.log("check : ", check);
+    console.log("emotion : ", emotion);
+    console.log("data : ", data);
+
+    // 완료하면 popup 종료
+    // 추가 통신
+    // 홈으로 이동은 redux에서 처리
+
+    // 일단은 팝업 끄는 걸로
+    closeEmotionPopup();
   };
 
   const moveBack = () => {
     navigate("/diary");
   };
 
+  const openEmotionPopup = () => {
+    setOpenPopup(true);
+  };
+
+  const closeEmotionPopup = () => {
+    setOpenPopup(false);
+  };
+
+  // popup에서 handleSubmit을 이용하기 위해
+  // 버튼 미리 생성.
+  const submitBtn = (
+    <Button
+      text="완료"
+      type="submit"
+      color="btn-primary"
+      size="btn-40 col-sm-4"
+      onClick={handleSubmit(onSubmit)}
+    />
+  );
+
   return (
     <div>
+      {openPopup && (
+        <>
+          <OverLay onClick={closeEmotionPopup} />
+          <EmotionPopup
+            close={closeEmotionPopup}
+            setEmotion={setEmotion}
+            submitBtn={submitBtn}
+          />
+        </>
+      )}
+
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,10 +91,10 @@ const DiaryAdd = (props) => {
               <>
                 <input
                   type="date"
+                  placeholder="시작 날짜"
                   {...register("date", {
                     required: "시작 날짜 선택",
                   })}
-                  placeholder="시작 날짜"
                 />
               </>
             }
@@ -60,10 +109,10 @@ const DiaryAdd = (props) => {
             <>
               <textarea
                 className="schedule-form-textarea"
+                placeholder="일정 내용"
                 {...register("content", {
                   required: true,
                 })}
-                placeholder="일정 내용"
               ></textarea>
             </>
           }
@@ -72,19 +121,10 @@ const DiaryAdd = (props) => {
           // error={errors.date && "input-error"}
         />
 
-        {/* <Button
-          text="사진 추가"
-          color="btn-primary"
-          size="btn-40 col-sm-2"
-          type="file"
-        /> */}
-
         <button className="btn-primary btn-40 col-sm-2">
-          <input type="file" {...register("file")} />
+          <input type="file" accept="image/*" {...register("file")} />
         </button>
 
-        {/* 체크 아이콘 useState로 상태 관리해서 */}
-        {/* form 데이터 이용할 때, 추가해서 사용 */}
         <div>
           <span>사진을 추가하시겠습니까?</span>
           <div onClick={handleCheck} style={{ backgroundColor: "pink" }}>
