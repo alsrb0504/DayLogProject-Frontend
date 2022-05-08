@@ -20,6 +20,7 @@
 @import "./mixins/absolute";
 @import "./mixins/textarea";
 @import "./mixins/clickEvent";
+@import "./mixins/calendar";
 
 // modules.scss
 @import "./modules/button";
@@ -41,6 +42,7 @@
 @import "./sections/todoPopup";
 @import "./sections/scheduleForm";
 @import "./sections/sideSlideNavigation";
+@import "./sections/diaryCalendarWrapper";
 
 // pages
 @import "./pages/login";
