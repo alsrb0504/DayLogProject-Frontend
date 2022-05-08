@@ -8,21 +8,24 @@ import InputTextarea from "../../../components/modules/inputTextarea";
 import check_icon from "../../../assets/icons/check.svg";
 import OverLay from "../../../components/modules/overLay";
 import EmotionPopup from "../../../components/sections/emotionPopup";
+import { useDispatch } from "react-redux";
+import { AddDiaryAsync } from "../../../store/actions/diary";
 
 const DiaryAdd = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [check, setCheck] = useState(false);
+  const [shared, setShared] = useState(false);
   const [emotion, setEmotion] = useState(0);
   const [openPopup, setOpenPopup] = useState(false);
 
-  const handleCheck = () => {
-    setCheck(!check);
+  const handleShared = () => {
+    setShared(!shared);
   };
 
   const onSubmit = (data) => {
@@ -32,10 +35,13 @@ const DiaryAdd = (props) => {
       return;
     }
 
-    //
-    console.log("check : ", check);
-    console.log("emotion : ", emotion);
-    console.log("data : ", data);
+    const date = data.date;
+    const content = data.content;
+    const image = data.file[0];
+
+    // console.log(image);
+
+    dispatch(AddDiaryAsync(date, content, image, emotion, shared));
 
     // 완료하면 popup 종료
     // 추가 통신
@@ -131,8 +137,8 @@ const DiaryAdd = (props) => {
 
         <div className="diary-form-shared col-sm-2">
           <span>공유 하시겠습니까?</span>
-          <div className="diary-form-shared-container" onClick={handleCheck}>
-            {check && <img src={check_icon} alt="check icon" />}
+          <div className="diary-form-shared-container" onClick={handleShared}>
+            {shared && <img src={check_icon} alt="check icon" />}
           </div>
         </div>
       </form>
