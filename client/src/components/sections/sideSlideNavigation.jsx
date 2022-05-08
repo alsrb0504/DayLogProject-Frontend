@@ -20,9 +20,7 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   };
 
   const moveDiary = () => {
-    alert("구현 중");
-    return;
-    // navigate("/diary");
+    navigate("/diary");
   };
 
   const moveDiet = () => {
