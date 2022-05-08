@@ -2,11 +2,13 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useRef } from "react";
-import { GetCalendarMonthYear } from "../../services/calendar";
+import { GetCalendarMonthYear, MakeDiaryEvents } from "../../services/calendar";
 import { calcMonthYear, changeDayFull } from "../../services/calcDate";
 
 const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   const calendarRef = useRef();
+
+  const events = MakeDiaryEvents();
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
@@ -52,6 +54,7 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
           center: "customPrev title customNext",
           end: "",
         }}
+        events={events}
         dateClick={(info) => {
           onClickDate(info);
         }}

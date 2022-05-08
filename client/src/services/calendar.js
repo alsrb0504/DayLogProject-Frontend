@@ -41,6 +41,23 @@ export const MakeCalendarEvents = () => {
   return events;
 };
 
+// 일기 이벤트를 만드는 함수.
+export const MakeDiaryEvents = () => {
+  const diarys = useSelector((state) => state.diary.month_diary);
+  const events = [];
+
+  diarys.forEach((diary, idx) => {
+    events.push({
+      id: diary.diary_no,
+      title: diary.content,
+      date: diary.date,
+      classNames: [`diary-event diary-event-${diary.emotion}`],
+    });
+  });
+
+  return events;
+};
+
 export const GetCalendarMonthYear = (calendarApi) => {
   const { viewTitle } = calendarApi.getCurrentData();
   const [month, year] = viewTitle.split(" ");
