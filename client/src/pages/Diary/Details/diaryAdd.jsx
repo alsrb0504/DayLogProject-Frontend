@@ -84,8 +84,8 @@ const DiaryAdd = (props) => {
 
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="schedule-form-date-input">
+      <form className="diary-form diary-add" onSubmit={handleSubmit(onSubmit)}>
+        <div className="diary-form-date-input">
           <InputContainer
             children={
               <>
@@ -108,7 +108,9 @@ const DiaryAdd = (props) => {
           children={
             <>
               <textarea
-                className="schedule-form-textarea"
+                className={`diary-form-textarea ${
+                  errors.content ? "textarea-error" : ""
+                }`}
                 placeholder="일정 내용"
                 {...register("content", {
                   required: true,
@@ -121,15 +123,15 @@ const DiaryAdd = (props) => {
           // error={errors.date && "input-error"}
         />
 
-        <button className="btn-primary btn-40 col-sm-2">
+        <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">
+          <span>사진 추가</span>
           <input type="file" accept="image/*" {...register("file")} />
         </button>
 
-        <div>
-          <span>사진을 추가하시겠습니까?</span>
-          <div onClick={handleCheck} style={{ backgroundColor: "pink" }}>
+        <div className="diary-form-shared col-sm-2">
+          <span>공유 하시겠습니까?</span>
+          <div className="diary-form-shared-container" onClick={handleCheck}>
             {check && <img src={check_icon} alt="check icon" />}
-            check
           </div>
         </div>
       </form>
