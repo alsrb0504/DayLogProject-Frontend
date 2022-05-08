@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const DiaryHome = (props) => {
   const navigate = useNavigate();
 
-  const [isToggle, setIsToggle] = useState(false);
+  const [isToggle, setIsToggle] = useState(true);
 
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
