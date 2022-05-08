@@ -42,13 +42,6 @@ const DiaryAdd = (props) => {
     // console.log(image);
 
     dispatch(AddDiaryAsync(date, content, image, emotion, shared));
-
-    // 완료하면 popup 종료
-    // 추가 통신
-    // 홈으로 이동은 redux에서 처리
-
-    // 일단은 팝업 끄는 걸로
-    closeEmotionPopup();
   };
 
   const moveBack = () => {
