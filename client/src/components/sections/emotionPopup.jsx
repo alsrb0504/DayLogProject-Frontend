@@ -9,53 +9,29 @@ import heart_purple from "../../assets/img/hearts/heart-purple.svg";
 import EmotionItem from "../modules/emotionItem";
 import Button from "../modules/button";
 
+const Hearts = [
+  heart_red,
+  heart_orange,
+  heart_yellow,
+  heart_green,
+  heart_sky,
+  heart_blue,
+  heart_purple,
+];
+
 const EmotionPopup = ({ close, emotion, setEmotion, submitBtn }) => {
   return (
     <div className="emotion-popup">
       <h2 className="emotion-popup-title">오늘의 기분</h2>
       <ul className="emotion-popup-container">
-        <EmotionItem
-          idx="1"
-          img={heart_red}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="2"
-          img={heart_orange}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="3"
-          img={heart_yellow}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="4"
-          img={heart_green}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="5"
-          img={heart_sky}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="6"
-          img={heart_blue}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
-        <EmotionItem
-          idx="7"
-          img={heart_purple}
-          curEmotion={emotion}
-          setEmotion={setEmotion}
-        />
+        {Hearts.map((heart, index) => (
+          <EmotionItem
+            idx={index + 1}
+            img={heart}
+            curEmotion={emotion}
+            setEmotion={setEmotion}
+          />
+        ))}
       </ul>
       <div className="emotion-popup-btns">
         <Button
