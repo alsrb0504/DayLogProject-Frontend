@@ -61,10 +61,10 @@ const DiaryAdd = (props) => {
   // 버튼 미리 생성.
   const submitBtn = (
     <Button
-      text="완료"
+      text={emotion === 0 ? "선택" : "완료"}
       type="submit"
-      color="btn-primary"
-      size="btn-40 col-sm-4"
+      color={emotion === 0 ? "btn-secondary" : "btn-primary"}
+      size="btn-40 col-sm-1"
       onClick={handleSubmit(onSubmit)}
     />
   );
@@ -76,6 +76,7 @@ const DiaryAdd = (props) => {
           <OverLay onClick={closeEmotionPopup} />
           <EmotionPopup
             close={closeEmotionPopup}
+            emotion={emotion}
             setEmotion={setEmotion}
             submitBtn={submitBtn}
           />

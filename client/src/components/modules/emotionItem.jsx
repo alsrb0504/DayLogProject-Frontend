@@ -1,12 +1,23 @@
 import React from "react";
 
-const EmotionItem = ({ idx, img, setEmotion }) => {
+const EmotionItem = ({ idx, img, curEmotion, setEmotion }) => {
+  const index = Number(idx);
+
   const handleClick = () => {
-    setEmotion(Number(idx));
+    if (index === curEmotion) {
+      setEmotion(0);
+    } else {
+      setEmotion(index);
+    }
   };
 
   return (
-    <li onClick={handleClick}>
+    <li
+      className={`emotion-popup-item ${
+        curEmotion === index ? "emotion-popup-item-selected" : ""
+      }`}
+      onClick={handleClick}
+    >
       <div>
         <img src={img} alt="heart img" />
       </div>
