@@ -7,7 +7,7 @@ import {
   GetCalendarMonthYear,
   MakeCalendarEvents,
 } from "../../services/calendar";
-import { RequestCycleAsync } from "../../store/actions/cycle";
+import { ChangeCycleAsync, RequestCycleAsync } from "../../store/actions/cycle";
 import { calcMonthYear, changeDayFull } from "../../services/calcDate";
 import {
   RequestSchedulesAsync,
@@ -34,7 +34,7 @@ const MainCalendarWrapper = ({
 
     // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
-    dispatch(RequestCycleAsync(month, year));
+    dispatch(ChangeCycleAsync(month, year));
 
     calendarApi.prev();
   };
@@ -46,7 +46,7 @@ const MainCalendarWrapper = ({
 
     // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
-    dispatch(RequestCycleAsync(month, year));
+    dispatch(ChangeCycleAsync(month, year));
 
     calendarApi.next();
   };
