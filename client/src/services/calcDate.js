@@ -52,6 +52,12 @@ export function printDayInfo(info) {
   return `${info.day}, ${changeMonthFromIntToFull(dateInfo[1])} ${dateInfo[2]}`;
 }
 
+export function printDayInfoForDate(info) {
+  const dateInfo = info.split("-");
+
+  return `${changeMonthFromIntToFull(dateInfo[1])} ${dateInfo[2]}`;
+}
+
 export function changeDayFull(day) {
   switch (day) {
     case "Sun":
