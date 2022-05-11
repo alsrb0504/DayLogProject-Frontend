@@ -19,17 +19,25 @@ export const AddDiaryAsync =
   async (dispatch, getState, { history }) => {
     // console.log(date, content, image, emotion, share);
 
+    const formData = new FormData();
+    formData.append('files', image);
+
+    for (var key of formData.entries()) {
+      console.log(key[0] + ", " + key[1]);
+    }
+
     try {
-      // const res = await axios.post("/api/diary", {
-      //   date,
-      //   content,
-      //   image,
-      //   emotion,
-      //   share,
-      // });
+      const res = await axios({
+        method: "post",
+        url: " /api/diary",
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       // 로컬 테스트 코드
-      const res = {
+      /*const res = {
         data: {
           month_diary: [
             {
@@ -124,7 +132,7 @@ export const AddDiaryAsync =
             },
           ],
         },
-      };
+      };*/
 
       const { month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
@@ -149,11 +157,11 @@ export const AddDiaryAsync =
 
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
-    // const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
+     const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
 
-    // console.log(res.data);
+     console.log(res.data);
 
-    const res = {
+    /*const res = {
       data: {
         message: "FILL",
         month_diary: [
@@ -209,7 +217,7 @@ export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
           },
         ],
       },
-    };
+    };*/
 
     // 해당 달, 일기 목록이 없을 경우.
     if (res.data.message === "EMPTY") {
