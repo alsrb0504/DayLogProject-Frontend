@@ -5,11 +5,65 @@ import {
   DIARY_REQUEST_EMPTY,
   DIARY_REQUEST_FAIL,
   DIARY_REQUEST_SUCCESS,
+  DIARY_SELECT_FAIL,
+  DIARY_SELECT_SUCCESS,
 } from "./types";
 
 const ClassifyDiary = (monthArr) => {
   const sharedArr = monthArr.filter((diary) => diary.shared === true);
   return sharedArr;
+};
+
+export const findDiary = (date) => async (dispatch, getState) => {
+  console.log(date);
+
+  const month_diary = getState().diary.month_diary;
+
+  console.log(month_diary);
+
+  const found = month_diary.find((diary) => diary.date === date);
+
+  if (found) {
+    console.log(found);
+  } else {
+    console.log("존재하지 않음");
+    return;
+  }
+
+  try {
+    const res = await axios.get(`/api/diary?no=${found.diary_no}`);
+
+    // 테스트
+    // const res = {
+    //   data: {
+    //     date: "2022-05-01",
+    //     emotion: 2,
+    //     diary_no: 13,
+    //     like_count: 0,
+    //     shared: false,
+    //     content: "5월 1일 일기",
+
+    //     member_id: "test user",
+    //     image: "",
+    //   },
+    // };
+
+    const selected_diary = res.data;
+
+    dispatch({
+      type: DIARY_SELECT_SUCCESS,
+      payload: {
+        selected_diary,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    console.error(e.message);
+
+    dispatch({
+      type: DIARY_SELECT_FAIL,
+    });
+  }
 };
 
 export const AddDiaryAsync =
@@ -237,3 +291,54 @@ export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
     });
   }
 };
+
+export const SelectDiaryAsync =
+  (diary_no) =>
+  async (dispatch, getState, { history }) => {
+    console.log(diary_no);
+    try {
+      //
+      const res = await axios.get(`/api/diary?no=${diary_no}`);
+
+      const diary = res.data;
+
+      // 기존 다이어리 데이터에서
+      // 작성자 id 와 image url 추가.
+
+      // 로컬 테스트 용
+      const test_diary = {
+        member_id: "aa",
+        image: "", // 서버에 저장된 이미지의 주소
+
+        date: "2022-05-03",
+        emothion: 1, // 1 ~ 7
+        diary_no: 333,
+        like_count: 100,
+        share: true,
+        content: "일기 내용",
+      };
+
+      dispatch({
+        type: DIARY_SELECT_SUCCESS,
+
+        payload: {
+          // selected_dairy: diary,
+          selected_dairy: test_diary,
+        },
+      });
+
+      // 해당 조회 페이지로 이동.
+      // 쿼리로 정보 줘도 괜찮고
+      // 안줘도 redux에 정보 있어서 괜찮.
+      // history()
+    } catch (e) {
+      // 없을 경우 에러로 주었으면 함.
+
+      console.error(e);
+      console.error(e.message);
+
+      dispatch({
+        type: DIARY_SELECT_FAIL,
+      });
+    }
+  };

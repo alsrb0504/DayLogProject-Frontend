@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { GetCalendarMonthYear, MakeDiaryEvents } from "../../services/calendar";
 import { calcMonthYear, changeDayFull } from "../../services/calcDate";
 import { useDispatch } from "react-redux";
-import { RequestDiaryAsync } from "../../store/actions/diary";
+import { findDiary, RequestDiaryAsync } from "../../store/actions/diary";
 
 const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   const dispatch = useDispatch();
@@ -49,6 +49,14 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
       date,
       day,
     });
+
+    // 해당 날짜에 일기가 존재한다면
+    // 페이지 이동
+
+    console.log(info);
+    console.log(date);
+
+    dispatch(findDiary(date));
 
     // dispatch(SetCurSchedules(date, day));
   };

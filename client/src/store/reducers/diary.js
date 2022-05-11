@@ -4,6 +4,8 @@ import {
   DIARY_REQUEST_SUCCESS,
   DIARY_REQUEST_EMPTY,
   DIARY_REQUEST_FAIL,
+  DIARY_SELECT_SUCCESS,
+  DIARY_SELECT_FAIL,
 } from "../actions/types";
 
 const initState = {
@@ -139,10 +141,6 @@ const diaryReducer = (state = initState, action) => {
         shared_diary,
       };
     }
-    case DIARY_REQUEST_FAIL:
-    case DIARY_REQUEST_EMPTY: {
-      return { ...state };
-    }
     case DIARY_ADD_SUCCESS: {
       const { month_diary, current_diary, shared_diary } = action.payload;
       return {
@@ -152,10 +150,17 @@ const diaryReducer = (state = initState, action) => {
         shared_diary,
       };
     }
-    case DIARY_ADD_FAIL: {
+    case DIARY_SELECT_SUCCESS: {
       return {
         ...state,
+        selected_diary: action.payload.selected_diary,
       };
+    }
+    case DIARY_SELECT_FAIL:
+    case DIARY_ADD_FAIL:
+    case DIARY_REQUEST_FAIL:
+    case DIARY_REQUEST_EMPTY: {
+      return { ...state };
     }
     default:
       return { ...state };

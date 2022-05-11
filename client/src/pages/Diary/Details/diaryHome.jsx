@@ -26,7 +26,7 @@ const DiaryHome = (props) => {
   useEffect(() => {
     const { yy, mm } = toDayYYMM();
     dispatch(RequestDiaryAsync(yy, Number(mm)));
-  });
+  }, []);
 
   return (
     <>
