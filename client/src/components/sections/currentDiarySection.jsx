@@ -8,12 +8,12 @@ const CurrentDiarySection = ({ selectedDate }) => {
   console.log(cur_dairys);
 
   return (
-    <section className="home-bottom-date">
-      <h2>최근 일기</h2>
+    <section className="current-diary">
+      <h2 className="current-diary-title">최근 일기</h2>
 
-      <ul>
-        {cur_dairys.map((diary) => (
-          <DiaryItem idx={diary.diary_no} diary={diary} />
+      <ul className="current-diary-container">
+        {cur_dairys.map((diary, idx) => (
+          <DiaryItem key={idx} diary={diary} />
         ))}
       </ul>
     </section>

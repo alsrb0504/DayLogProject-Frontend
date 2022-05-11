@@ -1,7 +1,7 @@
 import React from "react";
 import { printDayInfoForDate } from "../../services/calcDate";
 
-const DiaryItem = ({ idx, diary }) => {
+const DiaryItem = ({ diary }) => {
   // 클릭 시 이동은 추후 구현.
 
   return (
