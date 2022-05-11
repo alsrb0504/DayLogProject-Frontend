@@ -19,25 +19,46 @@ export const AddDiaryAsync =
   async (dispatch, getState, { history }) => {
     // console.log(date, content, image, emotion, share);
 
-    const formData = new FormData();
-    formData.append('files', image);
-
-    for (var key of formData.entries()) {
-      console.log(key[0] + ", " + key[1]);
-    }
-
     try {
-      const res = await axios({
-        method: "post",
-        url: " /api/diary",
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      // 사용자가 이미지를 추가한 경우
+      if (image !== undefined) {
+        // 1. 사진만 FormData에 담아 먼저 보냄.
+        const formData = new FormData();
+        formData.append("files", image);
+
+        const formData_res = await axios({
+          method: "post",
+          url: " /api/diary/image",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        /* 나중에 FormData 문제 시, 확인을 위한 코드 
+      for (var key of formData.entries()) {
+        console.log(key[0] + ", " + key[1]);
+      }
+      */
+        if (formData_res.data.message !== true) {
+          console.log("formData post failed");
+
+          return;
+        }
+      }
+
+      // 사진이 없는 경우 or
+      // 2. formData 이후 통신.
+      const res = await axios.post("/api/diary", {
+        content,
+        date,
+        emotion,
+        share,
       });
 
+      /*
       // 로컬 테스트 코드
-      /*const res = {
+      const res = {
         data: {
           month_diary: [
             {
@@ -132,7 +153,8 @@ export const AddDiaryAsync =
             },
           ],
         },
-      };*/
+      };
+      */
 
       const { month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
@@ -157,9 +179,9 @@ export const AddDiaryAsync =
 
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
-     const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
+    const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
 
-     console.log(res.data);
+    console.log(res.data);
 
     /*const res = {
       data: {
