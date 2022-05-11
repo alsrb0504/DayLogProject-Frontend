@@ -14,58 +14,6 @@ const ClassifyDiary = (monthArr) => {
   return sharedArr;
 };
 
-export const findDiary = (date) => async (dispatch, getState) => {
-  console.log(date);
-
-  const month_diary = getState().diary.month_diary;
-
-  console.log(month_diary);
-
-  const found = month_diary.find((diary) => diary.date === date);
-
-  if (found) {
-    console.log(found);
-  } else {
-    console.log("존재하지 않음");
-    return;
-  }
-
-  try {
-    const res = await axios.get(`/api/diary?no=${found.diary_no}`);
-
-    // 테스트
-    // const res = {
-    //   data: {
-    //     date: "2022-05-01",
-    //     emotion: 2,
-    //     diary_no: 13,
-    //     like_count: 0,
-    //     shared: false,
-    //     content: "5월 1일 일기",
-
-    //     member_id: "test user",
-    //     image: "",
-    //   },
-    // };
-
-    const selected_diary = res.data;
-
-    dispatch({
-      type: DIARY_SELECT_SUCCESS,
-      payload: {
-        selected_diary,
-      },
-    });
-  } catch (e) {
-    console.error(e);
-    console.error(e.message);
-
-    dispatch({
-      type: DIARY_SELECT_FAIL,
-    });
-  }
-};
-
 export const AddDiaryAsync =
   (date, content, image, emotion, share) =>
   async (dispatch, getState, { history }) => {
@@ -342,3 +290,16 @@ export const SelectDiaryAsync =
       });
     }
   };
+
+export const findDiary = (date) => (dispatch, getState) => {
+  const month_diary = getState().diary.month_diary;
+  const found = month_diary.find((diary) => diary.date === date);
+
+  // 해당 날짜에 일기가 없는 경우
+  if (!found) {
+    // console.log("not found");
+    return;
+  }
+
+  dispatch(SelectDiaryAsync(found.diary_no));
+};
