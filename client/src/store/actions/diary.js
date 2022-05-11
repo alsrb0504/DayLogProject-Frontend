@@ -147,9 +147,67 @@ export const AddDiaryAsync =
 
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
-    const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
+    // const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
 
-    console.log(res.data);
+    // console.log(res.data);
+
+    const res = {
+      data: {
+        message: "FILL",
+        month_diary: [
+          {
+            date: "2022-05-04",
+            emotion: 1,
+            diary_no: 504,
+            like_count: 100,
+            shared: false,
+            content: "5월 4일 일기",
+          },
+          {
+            date: "2022-05-06",
+            emotion: 6,
+            diary_no: 34,
+            like_count: 12,
+            shared: true,
+            content: "5월 6일 일기",
+          },
+          {
+            date: "2022-05-08",
+            emotion: 3,
+            diary_no: 10,
+            like_count: 10,
+            shared: false,
+            content: "5월 8일 일기",
+          },
+          {
+            date: "2022-05-09",
+            emotion: 5,
+            diary_no: 230,
+            like_count: 20,
+            shared: false,
+            content: "5월 9일 일기",
+          },
+        ],
+        current_diary: [
+          {
+            date: "2022-05-08",
+            emotion: 3,
+            diary_no: 10,
+            like_count: 10,
+            shared: false,
+            content: "5월 8일 일기",
+          },
+          {
+            date: "2022-05-09",
+            emotion: 5,
+            diary_no: 230,
+            like_count: 20,
+            shared: false,
+            content: "5월 9일 일기",
+          },
+        ],
+      },
+    };
 
     // 해당 달, 일기 목록이 없을 경우.
     if (res.data.message === "EMPTY") {
