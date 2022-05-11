@@ -5,7 +5,10 @@ import { useRef } from "react";
 import { GetCalendarMonthYear, MakeDiaryEvents } from "../../services/calendar";
 import { calcMonthYear, changeDayFull } from "../../services/calcDate";
 import { useDispatch } from "react-redux";
-import { findDiary, RequestDiaryAsync } from "../../store/actions/diary";
+import {
+  FindDiaryCalendar,
+  RequestDiaryAsync,
+} from "../../store/actions/diary";
 
 const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   const dispatch = useDispatch();
@@ -56,7 +59,7 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
     console.log(info);
     console.log(date);
 
-    dispatch(findDiary(date));
+    dispatch(FindDiaryCalendar(date));
 
     // dispatch(SetCurSchedules(date, day));
   };

@@ -291,7 +291,7 @@ export const SelectDiaryAsync =
     }
   };
 
-export const findDiary = (date) => (dispatch, getState) => {
+export const FindDiaryCalendar = (date) => (dispatch, getState) => {
   const month_diary = getState().diary.month_diary;
   const found = month_diary.find((diary) => diary.date === date);
 
