@@ -34,6 +34,7 @@
 @import "./modules/overlay";
 @import "./modules/navMenuItem";
 @import "./modules/emtionPopup.scss";
+@import "./modules/diaryItem";
 
 // sections.scss
 @import "./sections/signupContainer";
@@ -43,6 +44,7 @@
 @import "./sections/scheduleForm";
 @import "./sections/sideSlideNavigation";
 @import "./sections/diaryCalendarWrapper";
+@import "./sections/currentDiarySeciont";
 
 // pages
 @import "./pages/login";

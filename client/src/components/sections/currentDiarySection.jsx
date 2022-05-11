@@ -13,7 +13,7 @@ const CurrentDiarySection = ({ selectedDate }) => {
 
       <ul className="current-diary-container">
         {cur_dairys.map((diary, idx) => (
-          <DiaryItem key={idx} diary={diary} />
+          <DiaryItem key={idx} idx={idx} diary={diary} />
         ))}
       </ul>
     </section>
