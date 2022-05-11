@@ -1,27 +1,17 @@
-// $img-size: 23px;
-
-// 뒤에 겹치도록하는 옵션
-$img-size: 30px;
+$img-size: 20px;
 
 .diary-calendar {
   @include calendarSetting;
 
   .fc-daygrid-day-events {
     position: absolute;
-    // top: 65%;
-
-    // 뒤에 겹치도록하는 옵션
-    top: 15%;
-    // left: 21%;
+    top: 65%;
 
     .fc-event-title {
       display: none !important;
     }
 
     .diary-event {
-      // 뒤에 겹치도록하는 옵션
-      opacity: 0.65;
-
       width: $img-size;
       height: $img-size;
 
