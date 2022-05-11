@@ -13,6 +13,7 @@ const ClassifyDates = (dateArr) => {
   const startArr = [];
   const dueArr = [];
 
+  console.log(dateArr);
   dateArr.forEach((date) => {
     if (date.type === "START_DATE") {
       startArr.push(date);
@@ -49,7 +50,7 @@ export const RequestCycleAsync = (data) => {
       history.push("/");
     } catch (e) {
       console.error(e);
-      console.error(e.data.message);
+      //console.error(e.data.message);
 
       if (e.message === 400) {
         alert(e.data.message);
@@ -65,17 +66,15 @@ export const RequestCycleAsync = (data) => {
 
 // 추후에는 로그인 시, 달력 이동 시, 다른 정보들과 같이 받아올 것.
 export const ChangeCycleAsync = (mm, yy) => {
-  const month = changeMonthInt(mm);
+  //const month = changeMonthInt(mm);
 
   return async (dispatch, getState, { history }) => {
     try {
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `Bearer ${localStorage.getItem("access_token")}`;
+      
+      //console.log(yy,month,mm);
+      const res = await axios.post(`/api/members/cycle?year=${yy}&month=${mm}`);
 
-      // const res = axios.post(`/api/members/cycle?year=${yy}&month=${month}`);
-
-      // 로컬 테스트용 코드 : 79 ~ 104 제거.
+      /* 로컬 테스트용 코드 : 79 ~ 104 제거.
       // 1. 주기 정보 있는 경우.
       const res = {
         data: {
@@ -97,15 +96,17 @@ export const ChangeCycleAsync = (mm, yy) => {
           ],
         },
       };
+
+      */
       // 2. 주기 정보가 없는 경우
       // const res = {
       //   data: {
       //     message: "EMPTY",
       //   },
       // };
-
+      console.log(res.data);
       if (res.data.message === "FILL") {
-        const { startArr, dueArr } = ClassifyDates(res.data.dates);
+        const { startArr, dueArr } = ClassifyDates(res.data.cycle_data.dates);
 
         dispatch({
           type: CYCLE_INFO_REQUEST_SUCCESS,

@@ -175,7 +175,7 @@ export function changeMonthInt(month) {
   }
 }
 
-function changeFullMonthInt(month) {
+export function changeFullMonthInt(month) {
   switch (month) {
     case "January": {
       return 1;
