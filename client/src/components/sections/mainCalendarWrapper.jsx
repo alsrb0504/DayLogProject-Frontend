@@ -32,7 +32,7 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("prev", month, year);
 
-    // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+   dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
     dispatch(ChangeCycleAsync(calced_date.mm, calced_date.yy));
 
@@ -44,7 +44,7 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("next", month, year);
 
-    // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+   dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
     dispatch(ChangeCycleAsync( calced_date.mm, calced_date.yy));
 
