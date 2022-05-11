@@ -6,7 +6,7 @@ import EmptyText from "../modules/emptyText";
 const CurrentDiarySection = ({ selectedDate }) => {
   const cur_dairys = useSelector((state) => state.diary.current_diary);
 
-  const isEmpty = cur_dairys.length == 0 ? true : false;
+  const isEmpty = cur_dairys.length === 0 ? true : false;
 
   return (
     <section className="current-diary">
