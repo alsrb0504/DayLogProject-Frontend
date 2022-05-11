@@ -1,5 +1,11 @@
 import axios from "axios";
-import { DIARY_ADD_FAIL, DIARY_ADD_SUCCESS } from "./types";
+import {
+  DIARY_ADD_FAIL,
+  DIARY_ADD_SUCCESS,
+  DIARY_REQUEST_EMPTY,
+  DIARY_REQUEST_FAIL,
+  DIARY_REQUEST_SUCCESS,
+} from "./types";
 
 const ClassifyDiary = (monthArr) => {
   const sharedArr = monthArr.filter((diary) => diary.shared === true);
@@ -138,3 +144,38 @@ export const AddDiaryAsync =
       });
     }
   };
+
+export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
+  try {
+    const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
+
+    console.log(res.data);
+
+    // 해당 달, 일기 목록이 없을 경우.
+    if (res.data.message === "EMPTY") {
+      dispatch({
+        type: DIARY_REQUEST_EMPTY,
+      });
+    }
+
+    // 해당 달, 데이터가 있는 경우.
+    const { month_diary, current_diary } = res.data;
+    const shared_diary = ClassifyDiary(month_diary);
+
+    dispatch({
+      type: DIARY_REQUEST_SUCCESS,
+      payload: {
+        month_diary,
+        current_diary,
+        shared_diary,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    console.error(e.message);
+
+    dispatch({
+      type: DIARY_REQUEST_FAIL,
+    });
+  }
+};

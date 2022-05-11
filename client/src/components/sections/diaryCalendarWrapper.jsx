@@ -4,8 +4,11 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useRef } from "react";
 import { GetCalendarMonthYear, MakeDiaryEvents } from "../../services/calendar";
 import { calcMonthYear, changeDayFull } from "../../services/calcDate";
+import { useDispatch } from "react-redux";
+import { RequestDiaryAsync } from "../../store/actions/diary";
 
 const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
+  const dispatch = useDispatch();
   const calendarRef = useRef();
 
   const events = MakeDiaryEvents();
@@ -15,6 +18,9 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("prev", month, year);
+    const { yy, mm } = calced_date;
+
+    dispatch(RequestDiaryAsync(yy, mm));
 
     calendarApi.prev();
   };
@@ -23,6 +29,9 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("next", month, year);
+    const { yy, mm } = calced_date;
+
+    dispatch(RequestDiaryAsync(yy, mm));
 
     calendarApi.next();
   };
