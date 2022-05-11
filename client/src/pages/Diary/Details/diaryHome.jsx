@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import CircularButton from "../../../components/modules/circularButton";
 import GlobalHeader from "../../../components/modules/globalHeader";
 import DiaryCalendarWrapper from "../../../components/sections/diaryCalendarWrapper";
-import DiarySection from "../../../components/sections/diarySection";
 import add_btn_primary from "../../../assets/icons/plus-icon-primary.svg";
 import delete_icon_white from "../../../assets/icons/close-icon-white.svg";
 import { printDayInfo, toDayInfo } from "../../../services/calcDate";
 import { useNavigate } from "react-router-dom";
+import CurrentDiarySection from "../../../components/sections/currentDiarySection";
 
 const DiaryHome = (props) => {
   const navigate = useNavigate();
@@ -28,10 +28,12 @@ const DiaryHome = (props) => {
         selectedDate={selectedDate}
       />
 
-      <section className="home-bottom-date">
+      {/* <section className="home-bottom-date">
         {printDayInfo(selectedDate)}
       </section>
-      <DiarySection />
+      <DiarySection /> */}
+
+      <CurrentDiarySection selectedDate={selectedDate} />
 
       {isToggle && (
         <section className="btns-section">
