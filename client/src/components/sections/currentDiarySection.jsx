@@ -5,8 +5,6 @@ import DiaryItem from "../modules/diaryItem";
 const CurrentDiarySection = ({ selectedDate }) => {
   const cur_dairys = useSelector((state) => state.diary.current_diary);
 
-  console.log(cur_dairys);
-
   return (
     <section className="current-diary">
       <h2 className="current-diary-title">최근 일기</h2>
