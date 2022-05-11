@@ -11,6 +11,7 @@ const initState = {
   month_diary: [],
   shared_diary: [],
   current_diary: [],
+  selected_diary: {},
   /*
   // 로컬 테스트 용
   month_diary: [
