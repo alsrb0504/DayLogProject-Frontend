@@ -68,7 +68,8 @@ const initState = {
       diary_no: 14,
       like_count: 0,
       shared: true,
-      content: "5월 2일 일기",
+      content:
+        "5월 2일 일기 5월 2일 일기 5월 2일 일기 5월 2일 일기 5월 2일 일기 5월 2일 일기 5월 2일 일기",
     },
     {
       date: "2022-05-04",
