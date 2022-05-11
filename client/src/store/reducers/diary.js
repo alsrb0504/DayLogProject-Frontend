@@ -8,10 +8,10 @@ import {
 
 const initState = {
   // 기본 상태
-  // month_diary: [],
-  // shared_diary: [],
-  // current_diary: [],
-
+  month_diary: [],
+  shared_diary: [],
+  current_diary: [],
+  /*
   // 로컬 테스트 용
   month_diary: [
     {
@@ -124,6 +124,7 @@ const initState = {
       content: "5월 6일 일기",
     },
   ],
+  */
 };
 
 const diaryReducer = (state = initState, action) => {

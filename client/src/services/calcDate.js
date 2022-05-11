@@ -14,6 +14,16 @@ export function toDayInfo() {
   };
 }
 
+export function toDayYYMM() {
+  const today = new Date();
+  const date_info = today.toString().split(" ");
+
+  const mm = changeMonthInt(date_info[1]);
+  const yy = date_info[3];
+
+  return { yy, mm };
+}
+
 export function isIncludeDate(date, start, end) {
   if (date >= start && date <= end) {
     return true;
