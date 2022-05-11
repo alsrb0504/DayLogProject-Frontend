@@ -4,7 +4,7 @@ import GlobalHeader from "../../../components/modules/globalHeader";
 import DiaryCalendarWrapper from "../../../components/sections/diaryCalendarWrapper";
 import add_btn_primary from "../../../assets/icons/plus-icon-primary.svg";
 import delete_icon_white from "../../../assets/icons/close-icon-white.svg";
-import { printDayInfo, toDayInfo, toDayYYMM } from "../../../services/calcDate";
+import { toDayInfo, toDayYYMM } from "../../../services/calcDate";
 import { useNavigate } from "react-router-dom";
 import CurrentDiarySection from "../../../components/sections/currentDiarySection";
 import { useDispatch } from "react-redux";
@@ -36,11 +36,6 @@ const DiaryHome = (props) => {
         setSelectedDate={setSelectedDate}
         selectedDate={selectedDate}
       />
-
-      {/* <section className="home-bottom-date">
-        {printDayInfo(selectedDate)}
-      </section>
-      <DiarySection /> */}
 
       <CurrentDiarySection selectedDate={selectedDate} />
 
