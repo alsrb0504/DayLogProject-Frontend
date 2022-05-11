@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputTextarea = ({ children }) => {
+const InputTextarea = ({ children, error }) => {
   return (
     <>
       <div>{children}</div>

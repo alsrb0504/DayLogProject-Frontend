@@ -1,40 +1,29 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { GetCalendarMonthYear, MakeDiaryEvents } from "../../services/calendar";
+import { calcMonthYear, changeDayFull } from "../../services/calcDate";
 import { useDispatch } from "react-redux";
 import {
-  GetCalendarMonthYear,
-  MakeCalendarEvents,
-} from "../../services/calendar";
-import { ChangeCycleAsync, RequestCycleAsync } from "../../store/actions/cycle";
-import { calcMonthYear, changeDayFull } from "../../services/calcDate";
-import {
-  RequestSchedulesAsync,
-  SetCurSchedules,
-} from "../../store/actions/schedule";
-import { changeTodoCalendar } from "../../store/actions/todo";
+  FindDiaryCalendar,
+  RequestDiaryAsync,
+} from "../../store/actions/diary";
 
-const MainCalendarWrapper = ({
-  setIsToggle,
-  setSelectedDate,
-  selectedDate,
-}) => {
-  const calendarRef = useRef();
+const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
   const dispatch = useDispatch();
+  const calendarRef = useRef();
 
-  // 캘린더 이벤트 생성 함수.
-  const events = MakeCalendarEvents();
+  const events = MakeDiaryEvents();
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("prev", month, year);
+    const { yy, mm } = calced_date;
 
-    // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
-    dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
-    dispatch(ChangeCycleAsync(month, year));
+    dispatch(RequestDiaryAsync(yy, mm));
 
     calendarApi.prev();
   };
@@ -43,10 +32,9 @@ const MainCalendarWrapper = ({
     const calendarApi = calendarRef.current._calendarApi;
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("next", month, year);
+    const { yy, mm } = calced_date;
 
-    // dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
-    dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
-    dispatch(ChangeCycleAsync(month, year));
+    dispatch(RequestDiaryAsync(yy, mm));
 
     calendarApi.next();
   };
@@ -65,21 +53,26 @@ const MainCalendarWrapper = ({
       day,
     });
 
-    dispatch(SetCurSchedules(date, day));
+    // 해당 날짜에 일기가 존재한다면
+    // 페이지 이동
+
+    console.log(info);
+    console.log(date);
+
+    dispatch(FindDiaryCalendar(date));
+
+    // dispatch(SetCurSchedules(date, day));
   };
 
   return (
-    <div className="main-calendar">
-      <FullCalendar //
+    <div className="diary-calendar">
+      <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, interactionPlugin]}
         headerToolbar={{
           start: "",
           center: "customPrev title customNext",
           end: "",
-        }}
-        eventClick={function () {
-          alert("hi");
         }}
         events={events}
         dateClick={(info) => {
@@ -104,4 +97,4 @@ const MainCalendarWrapper = ({
   );
 };
 
-export default MainCalendarWrapper;
+export default DiaryCalendarWrapper;

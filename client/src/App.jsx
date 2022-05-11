@@ -16,6 +16,9 @@ import ScheduleHome from "./pages/Schedule/Details/scheduleHome";
 import ScheduleAdd from "./pages/Schedule/Details/scheduleAdd";
 import { SetAuthHeader } from "./services/auth";
 import ScheduleDescription from "./pages/Schedule/Details/scheduleDescription";
+import Diary from "./pages/Diary/diary";
+import DiaryHome from "./pages/Diary/Details/diaryHome";
+import DiaryAdd from "./pages/Diary/Details/diaryAdd";
 
 function App() {
   const navigate = useNavigate();
@@ -90,6 +93,10 @@ function App() {
                 <Route path="description" element={<ScheduleDescription />} />
               </Route>
               <Route path="/menstruation" element={<Menstruation />} />
+              <Route path="/diary" element={<Diary />}>
+                <Route index element={<DiaryHome />} />
+                <Route path="add" element={<DiaryAdd />} />
+              </Route>
             </Routes>
           </div>
         </div>
