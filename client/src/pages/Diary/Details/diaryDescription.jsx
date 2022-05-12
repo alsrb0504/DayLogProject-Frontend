@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputHeader from "../../../components/modules/inputHeader";
-import InputTextarea from "../../../components/modules/inputTextarea";
+import dummy_image from "../../../assets/img/dummy-image.png";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
@@ -16,44 +16,49 @@ const DiaryDescription = (props) => {
   };
 
   return (
-    <div>
+    <div className="diary-desc">
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
-      <main>
-        {image && <div>image section</div>}
-        <InputTextarea
-          children={
-            <div>
-              <textarea
-                className={`diary-form-textarea`}
-                placeholder="일정 내용"
-                defaultValue={content}
-              ></textarea>
-              <span>{date}</span>
-            </div>
-          }
-        />
+      <main className="diary-desc-main">
+        {image && (
+          <div className="diary-desc-main-image">
+            <img src={dummy_image} alt="일기 사진" />
+          </div>
+        )}
+
+        <div className="diary-desc-main-text">
+          <textarea
+            className={`diary-form-textarea`}
+            placeholder="일정 내용"
+            defaultValue={content}
+          ></textarea>
+          <span className="diary-date">{date}</span>
+        </div>
       </main>
 
-      <div>
-        <Button
-          text={`${shared ? "공유 해제" : "공유 설정"}`}
-          color="btn-tertiary"
-          size="btn-40 col-sm-2"
-          onClick={() => {}}
-        />
-        <Button
-          text="편집"
-          color="btn-secondary"
-          size="btn-40 col-sm-1"
-          onClick={() => {}}
-        />
-        <Button
-          text="삭제"
-          color="btn-primary"
-          size="btn-40 col-sm-1"
-          onClick={() => {}}
-        />
+      <div className="diary-desc-btns">
+        <div className="diary-desc-btns-share">
+          <Button
+            text={`${shared ? "공유 해제" : "공유 설정"}`}
+            color="btn-tertiary"
+            size="btn-40"
+            onClick={() => {}}
+          />
+        </div>
+        <div className="diary-desc-btns-two">
+          <Button
+            text="편집"
+            color="btn-secondary"
+            size="btn-40"
+            onClick={() => {}}
+          />
+          <Button
+            text="삭제"
+            color="btn-primary"
+            size="btn-40"
+            onClick={() => {}}
+          />
+        </div>
       </div>
     </div>
   );
