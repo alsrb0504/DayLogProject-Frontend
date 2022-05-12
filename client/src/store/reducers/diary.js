@@ -13,7 +13,15 @@ const initState = {
   month_diary: [],
   shared_diary: [],
   current_diary: [],
-  selected_diary: {},
+  selected_diary: {
+    date: "2022-05-01",
+    emotion: 2,
+    diary_no: 13,
+    like_count: 0,
+    shared: false,
+    content: "5월 1일 일기",
+    image: "",
+  },
   /*
   // 로컬 테스트 용
   month_diary: [
