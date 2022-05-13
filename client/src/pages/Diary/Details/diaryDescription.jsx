@@ -11,6 +11,7 @@ const DiaryDescription = (props) => {
   const navigate = useNavigate();
 
   const [removePopup, setRemovePopup] = useState(false);
+  const [sharePopup, setSharePopup] = useState(false);
 
   const diary = useSelector((state) => state.diary.selected_diary);
   const { image, shared, content, date, emotion, diary_no } = diary;
@@ -23,12 +24,24 @@ const DiaryDescription = (props) => {
     console.log("remove confirm");
   };
 
+  const confirmShare = () => {
+    console.log("share confirm");
+  };
+
   const closeRemovePopup = () => {
     setRemovePopup(false);
   };
 
   const openRemovePopup = () => {
     setRemovePopup(true);
+  };
+
+  const closeSharePopup = () => {
+    setSharePopup(false);
+  };
+
+  const openSharePopup = () => {
+    setSharePopup(true);
   };
 
   return (
@@ -39,6 +52,17 @@ const DiaryDescription = (props) => {
           <ConfirmPopup
             text="삭제하시겠습니까?"
             close={closeRemovePopup}
+            confirm={confirmRemove}
+          />
+        </>
+      )}
+
+      {sharePopup && (
+        <>
+          <OverLay onClick={closeSharePopup} />
+          <ConfirmPopup
+            text={`${shared ? "공유해제하시겠습니까?" : "공유하시겠습니까?"}`}
+            close={closeSharePopup}
             confirm={confirmRemove}
           />
         </>
@@ -69,7 +93,7 @@ const DiaryDescription = (props) => {
             text={`${shared ? "공유 해제" : "공유 설정"}`}
             color="btn-tertiary"
             size="btn-40"
-            onClick={() => {}}
+            onClick={openSharePopup}
           />
         </div>
         <div className="diary-desc-btns-two">
@@ -77,7 +101,7 @@ const DiaryDescription = (props) => {
             text="편집"
             color="btn-secondary"
             size="btn-40"
-            onClick={() => {}}
+            onClick={confirmShare}
           />
           <Button
             text="삭제"
