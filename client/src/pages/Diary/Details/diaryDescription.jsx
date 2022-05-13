@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputHeader from "../../../components/modules/inputHeader";
 import dummy_image from "../../../assets/img/dummy-image.png";
 import ConfirmPopup from "../../../components/modules/confirmPopup";
 import OverLay from "../../../components/modules/overLay";
+import { RemoveDiaryAsync } from "../../../store/actions/diary";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [removePopup, setRemovePopup] = useState(false);
   const [sharePopup, setSharePopup] = useState(false);
@@ -22,6 +24,7 @@ const DiaryDescription = (props) => {
 
   const confirmRemove = () => {
     console.log("remove confirm");
+    dispatch(RemoveDiaryAsync(diary_no));
   };
 
   const confirmShare = () => {
