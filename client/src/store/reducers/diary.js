@@ -6,6 +6,10 @@ import {
   DIARY_REQUEST_FAIL,
   DIARY_SELECT_SUCCESS,
   DIARY_SELECT_FAIL,
+  DIARY_REMOVE_SUCCESS_EMPTY,
+  DIARY_REMOVE_FAIL,
+  DIARY_REMOVE_SUCCESS_FILL,
+  DIARY_CHANGE_SHARE_FAIL,
 } from "../actions/types";
 
 const initState = {
@@ -13,7 +17,15 @@ const initState = {
   month_diary: [],
   shared_diary: [],
   current_diary: [],
-  selected_diary: {},
+  selected_diary: {
+    date: "2022-05-01",
+    emotion: 2,
+    diary_no: 13,
+    like_count: 0,
+    shared: false,
+    content: "5월 1일 일기",
+    image: "",
+  },
   /*
   // 로컬 테스트 용
   month_diary: [
@@ -141,6 +153,22 @@ const diaryReducer = (state = initState, action) => {
         shared_diary,
       };
     }
+    case DIARY_REMOVE_SUCCESS_FILL: {
+      const { month_diary, current_diary, shared_diary } = action.payload;
+      return {
+        ...state,
+        month_diary,
+        current_diary,
+        shared_diary,
+        selected_diary: {},
+      };
+    }
+    case DIARY_REMOVE_SUCCESS_EMPTY: {
+      return {
+        ...state,
+        selected_diary: {},
+      };
+    }
     case DIARY_ADD_SUCCESS: {
       const { month_diary, current_diary, shared_diary } = action.payload;
       return {
@@ -150,7 +178,8 @@ const diaryReducer = (state = initState, action) => {
         shared_diary,
       };
     }
-    case DIARY_SELECT_SUCCESS: {
+    case DIARY_SELECT_SUCCESS:
+    case DIARY_CHANGE_SHARE_FAIL: {
       return {
         ...state,
         selected_diary: action.payload.selected_diary,
@@ -159,7 +188,8 @@ const diaryReducer = (state = initState, action) => {
     case DIARY_SELECT_FAIL:
     case DIARY_ADD_FAIL:
     case DIARY_REQUEST_FAIL:
-    case DIARY_REQUEST_EMPTY: {
+    case DIARY_REQUEST_EMPTY:
+    case DIARY_REMOVE_FAIL: {
       return { ...state };
     }
     default:

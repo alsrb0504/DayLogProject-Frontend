@@ -19,6 +19,7 @@ import ScheduleDescription from "./pages/Schedule/Details/scheduleDescription";
 import Diary from "./pages/Diary/diary";
 import DiaryHome from "./pages/Diary/Details/diaryHome";
 import DiaryAdd from "./pages/Diary/Details/diaryAdd";
+import DiaryDescription from "./pages/Diary/Details/diaryDescription";
 
 function App() {
   const navigate = useNavigate();
@@ -96,6 +97,7 @@ function App() {
               <Route path="/diary" element={<Diary />}>
                 <Route index element={<DiaryHome />} />
                 <Route path="add" element={<DiaryAdd />} />
+                <Route path="description" element={<DiaryDescription />} />
               </Route>
             </Routes>
           </div>

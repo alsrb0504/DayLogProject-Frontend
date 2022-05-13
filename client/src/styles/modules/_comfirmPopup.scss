@@ -1,0 +1,32 @@
+.confirm-popup {
+  @include popup-setting;
+  @include column-flexbox(center, stretch);
+  padding: 40px 16px 24px 16px;
+  max-width: 360px;
+
+  &-text {
+    margin-bottom: 40px;
+    font-size: $font-size-20;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: center;
+    color: $text-dark;
+  }
+
+  &-btns {
+    @include flexbox;
+
+    button {
+      @include OpacityEffect;
+      width: 100px;
+
+      &:first-child {
+        margin-right: 8px;
+      }
+
+      &:last-child {
+        margin-left: 8px;
+      }
+    }
+  }
+}

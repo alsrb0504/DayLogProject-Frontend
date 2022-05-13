@@ -2,6 +2,12 @@ import axios from "axios";
 import {
   DIARY_ADD_FAIL,
   DIARY_ADD_SUCCESS,
+  DIARY_CHANGE_SHARE_FAIL,
+  DIARY_CHANGE_SHARE_SUCCESS_EMPTY,
+  DIARY_CHANGE_SHARE_SUCCESS_FILL,
+  DIARY_REMOVE_FAIL,
+  DIARY_REMOVE_SUCCESS_EMPTY,
+  DIARY_REMOVE_SUCCESS_FILL,
   DIARY_REQUEST_EMPTY,
   DIARY_REQUEST_FAIL,
   DIARY_REQUEST_SUCCESS,
@@ -19,25 +25,46 @@ export const AddDiaryAsync =
   async (dispatch, getState, { history }) => {
     // console.log(date, content, image, emotion, share);
 
-    const formData = new FormData();
-    formData.append('files', image);
-
-    for (var key of formData.entries()) {
-      console.log(key[0] + ", " + key[1]);
-    }
-
     try {
-      const res = await axios({
-        method: "post",
-        url: " /api/diary",
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      // 사용자가 이미지를 추가한 경우
+      if (image !== undefined) {
+        // 1. 사진만 FormData에 담아 먼저 보냄.
+        const formData = new FormData();
+        formData.append("files", image);
+
+        const formData_res = await axios({
+          method: "post",
+          url: " /api/diary/image",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        /* 나중에 FormData 문제 시, 확인을 위한 코드 
+      for (var key of formData.entries()) {
+        console.log(key[0] + ", " + key[1]);
+      }
+      */
+        if (formData_res.data.message !== true) {
+          console.log("formData post failed");
+
+          return;
+        }
+      }
+
+      // 사진이 없는 경우 or
+      // 2. formData 이후 통신.
+      const res = await axios.post("/api/diary", {
+        content,
+        date,
+        emotion,
+        share,
       });
 
+      /*
       // 로컬 테스트 코드
-      /*const res = {
+      const res = {
         data: {
           month_diary: [
             {
@@ -132,7 +159,8 @@ export const AddDiaryAsync =
             },
           ],
         },
-      };*/
+      };
+      */
 
       const { month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
@@ -155,11 +183,97 @@ export const AddDiaryAsync =
     }
   };
 
+export const RemoveDiaryAsync =
+  (diary_no) =>
+  async (dispatch, getState, { history }) => {
+    console.log(diary_no);
+
+    try {
+      const res = await axios.delete(`/api/diary?no=${diary_no}`);
+
+      // 해당 달, 일기 목록이 없을 경우.
+      if (res.data.message === "EMPTY") {
+        dispatch({
+          type: DIARY_REMOVE_SUCCESS_EMPTY,
+        });
+      }
+
+      // 해당 달, 데이터가 있는 경우.
+      const { month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
+
+      dispatch({
+        type: DIARY_REMOVE_SUCCESS_FILL,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+        },
+      });
+
+      history.push("/diary");
+    } catch (e) {
+      console.error(e);
+
+      console.log("diary remove action fail");
+      dispatch({
+        type: DIARY_REMOVE_FAIL,
+      });
+    }
+  };
+
+export const ChangeShareDiaryAsync =
+  (diary_no) =>
+  async (dispatch, getState, { history }) => {
+    console.log(diary_no);
+
+    try {
+      const res = await axios.get(`/api/diary/share?no=${diary_no}`);
+
+      // 회의 후 다시 구현.
+
+      // 해당 달, 일기 목록이 없을 경우.
+      if (res.data.message === "EMPTY") {
+        dispatch({
+          type: DIARY_CHANGE_SHARE_SUCCESS_EMPTY,
+        });
+      }
+
+      // 해당 달, 데이터가 있는 경우.
+      const { month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
+
+      dispatch({
+        type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+        },
+      });
+
+      history.push("/diary");
+
+      // 현재 페이지로 다시 와야 하는데
+      // 쿼리로 구분해줘야 하나?
+      // history.push("/diary/description");
+    } catch (e) {
+      console.error(e);
+
+      console.log("diary change share action fail");
+      dispatch({
+        type: DIARY_CHANGE_SHARE_FAIL,
+      });
+
+      history.push("/diary");
+    }
+  };
+
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
-     const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
+    const res = await axios.get(`/api/diary/calendar?year=${yy}&month=${mm}`);
 
-     console.log(res.data);
+    console.log(res.data);
 
     /*const res = {
       data: {
