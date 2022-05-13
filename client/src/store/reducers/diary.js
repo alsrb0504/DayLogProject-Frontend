@@ -143,7 +143,15 @@ const initState = {
 
 const diaryReducer = (state = initState, action) => {
   switch (action.type) {
-    case DIARY_REQUEST_SUCCESS:
+    case DIARY_REQUEST_SUCCESS: {
+      const { month_diary, current_diary, shared_diary } = action.payload;
+      return {
+        ...state,
+        month_diary,
+        current_diary,
+        shared_diary,
+      };
+    }
     case DIARY_REMOVE_SUCCESS_FILL: {
       const { month_diary, current_diary, shared_diary } = action.payload;
       return {
@@ -151,6 +159,13 @@ const diaryReducer = (state = initState, action) => {
         month_diary,
         current_diary,
         shared_diary,
+        selected_diary: {},
+      };
+    }
+    case DIARY_REMOVE_SUCCESS_EMPTY: {
+      return {
+        ...state,
+        selected_diary: {},
       };
     }
     case DIARY_ADD_SUCCESS: {
@@ -172,8 +187,7 @@ const diaryReducer = (state = initState, action) => {
     case DIARY_ADD_FAIL:
     case DIARY_REQUEST_FAIL:
     case DIARY_REQUEST_EMPTY:
-    case DIARY_REMOVE_FAIL:
-    case DIARY_REMOVE_SUCCESS_EMPTY: {
+    case DIARY_REMOVE_FAIL: {
       return { ...state };
     }
     default:
