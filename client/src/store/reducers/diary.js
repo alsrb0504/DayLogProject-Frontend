@@ -14,18 +14,18 @@ import {
 
 const initState = {
   // 기본 상태
-  month_diary: [],
-  shared_diary: [],
-  current_diary: [],
-  selected_diary: {
-    date: "2022-05-01",
-    emotion: 2,
-    diary_no: 13,
-    like_count: 0,
-    shared: false,
-    content: "5월 1일 일기",
-    image: "",
-  },
+  // month_diary: [],
+  // shared_diary: [],
+  // current_diary: [],
+  // selected_diary: {
+  //   date: "2022-05-01",
+  //   emotion: 2,
+  //   diary_no: 13,
+  //   like_count: 0,
+  //   shared: false,
+  //   content: "5월 1일 일기",
+  //   image: "",
+  // },
   /*
   // 로컬 테스트 용
   month_diary: [
@@ -139,6 +139,16 @@ const initState = {
       content: "5월 6일 일기",
     },
   ],
+  selected_diary: {
+    date: "2022-05-01",
+    emotion: 2,
+    diary_no: 13,
+    like_count: 0,
+    shared: false,
+    content: "5월 1일 일기",
+    image: "",
+  },
+
   */
 };
 

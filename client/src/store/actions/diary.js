@@ -40,7 +40,7 @@ export const AddDiaryAsync =
       if (image !== undefined) {
         // 1. 사진만 FormData에 담아 먼저 보냄.
         const formData = new FormData();
-        formData.append("files", image);
+        formData.append("image", image);
 
         res = await axios({
           method: "post",
