@@ -9,6 +9,7 @@ import {
   DIARY_REMOVE_SUCCESS_EMPTY,
   DIARY_REMOVE_FAIL,
   DIARY_REMOVE_SUCCESS_FILL,
+  DIARY_CHANGE_SHARE_FAIL,
 } from "../actions/types";
 
 const initState = {
@@ -177,7 +178,8 @@ const diaryReducer = (state = initState, action) => {
         shared_diary,
       };
     }
-    case DIARY_SELECT_SUCCESS: {
+    case DIARY_SELECT_SUCCESS:
+    case DIARY_CHANGE_SHARE_FAIL: {
       return {
         ...state,
         selected_diary: action.payload.selected_diary,

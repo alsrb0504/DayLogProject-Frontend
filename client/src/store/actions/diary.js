@@ -2,6 +2,9 @@ import axios from "axios";
 import {
   DIARY_ADD_FAIL,
   DIARY_ADD_SUCCESS,
+  DIARY_CHANGE_SHARE_FAIL,
+  DIARY_CHANGE_SHARE_SUCCESS_EMPTY,
+  DIARY_CHANGE_SHARE_SUCCESS_FILL,
   DIARY_REMOVE_FAIL,
   DIARY_REMOVE_SUCCESS_EMPTY,
   DIARY_REMOVE_SUCCESS_FILL,
@@ -216,6 +219,53 @@ export const RemoveDiaryAsync =
       dispatch({
         type: DIARY_REMOVE_FAIL,
       });
+    }
+  };
+
+export const ChangeShareDiaryAsync =
+  (diary_no) =>
+  async (dispatch, getState, { history }) => {
+    console.log(diary_no);
+
+    try {
+      const res = await axios.get(`/api/diary/share?no=${diary_no}`);
+
+      // 회의 후 다시 구현.
+
+      // 해당 달, 일기 목록이 없을 경우.
+      if (res.data.message === "EMPTY") {
+        dispatch({
+          type: DIARY_CHANGE_SHARE_SUCCESS_EMPTY,
+        });
+      }
+
+      // 해당 달, 데이터가 있는 경우.
+      const { month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
+
+      dispatch({
+        type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+        },
+      });
+
+      history.push("/diary");
+
+      // 현재 페이지로 다시 와야 하는데
+      // 쿼리로 구분해줘야 하나?
+      // history.push("/diary/description");
+    } catch (e) {
+      console.error(e);
+
+      console.log("diary change share action fail");
+      dispatch({
+        type: DIARY_CHANGE_SHARE_FAIL,
+      });
+
+      history.push("/diary");
     }
   };
 
