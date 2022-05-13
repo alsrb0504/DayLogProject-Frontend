@@ -13,7 +13,7 @@ const DiaryItem = ({ diary, idx }) => {
   const moveDiaryDesc = () => {
     dispatch(SelectDiaryAsync(diary.diary_no));
 
-    navigate("/diary/description");
+    // navigate("/diary/description");
     // 이동은 redux에서 처리
   };
 
