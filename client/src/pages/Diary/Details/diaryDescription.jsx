@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputHeader from "../../../components/modules/inputHeader";
 import dummy_image from "../../../assets/img/dummy-image.png";
+import ConfirmPopup from "../../../components/modules/confirmPopup";
+import OverLay from "../../../components/modules/overLay";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
+
+  const [removePopup, setRemovePopup] = useState(false);
 
   const diary = useSelector((state) => state.diary.selected_diary);
   const { image, shared, content, date, emotion, diary_no } = diary;
@@ -15,8 +19,31 @@ const DiaryDescription = (props) => {
     navigate("/diary");
   };
 
+  const confirmRemove = () => {
+    console.log("remove confirm");
+  };
+
+  const closeRemovePopup = () => {
+    setRemovePopup(false);
+  };
+
+  const openRemovePopup = () => {
+    setRemovePopup(true);
+  };
+
   return (
     <div className="diary-desc">
+      {removePopup && (
+        <>
+          <OverLay onClick={closeRemovePopup} />
+          <ConfirmPopup
+            text="삭제하시겠습니까?"
+            close={closeRemovePopup}
+            confirm={confirmRemove}
+          />
+        </>
+      )}
+
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
       <main className="diary-desc-main">
@@ -56,7 +83,7 @@ const DiaryDescription = (props) => {
             text="삭제"
             color="btn-primary"
             size="btn-40"
-            onClick={() => {}}
+            onClick={openRemovePopup}
           />
         </div>
       </div>
