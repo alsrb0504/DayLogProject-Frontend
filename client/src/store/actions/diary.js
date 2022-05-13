@@ -126,17 +126,10 @@ export const ChangeShareDiaryAsync =
     try {
       const res = await axios.get(`/api/diary/share?no=${diary_no}`);
 
-      // 회의 후 다시 구현.
-
-      // 해당 달, 일기 목록이 없을 경우.
-      if (res.data.message === "EMPTY") {
-        dispatch({
-          type: DIARY_CHANGE_SHARE_SUCCESS_EMPTY,
-        });
-      }
+      
 
       // 해당 달, 데이터가 있는 경우.
-      const { month_diary, current_diary } = res.data;
+      const { selected_diary, month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
 
       dispatch({
@@ -145,10 +138,11 @@ export const ChangeShareDiaryAsync =
           month_diary,
           current_diary,
           shared_diary,
+          selected_diary
         },
       });
 
-      history.push("/diary");
+      //history.push("/diary");
 
       // 현재 페이지로 다시 와야 하는데
       // 쿼리로 구분해줘야 하나?
@@ -265,10 +259,12 @@ export const SelectDiaryAsync =
     try {
       //
       const res = await axios.get(`/api/diary?no=${diary_idx}`);
-
+      console.log(res.data);
       const { member_id, date, content, emotion, shared, image, diary_no } =
         res.data;
+      
 
+      console.log(date, image);
       const diary = {
         member_id,
         date,
@@ -279,15 +275,17 @@ export const SelectDiaryAsync =
         diary_no,
       };
 
+      console.log(diary);
+
       dispatch({
         type: DIARY_SELECT_SUCCESS,
 
         payload: {
-          selected_dairy: diary,
+          selected_diary: diary,
         },
       });
 
-      history.psuh("/diary/description");
+      history.push("/diary/description");
 
       // 해당 조회 페이지로 이동.
       // 쿼리로 정보 줘도 괜찮고
