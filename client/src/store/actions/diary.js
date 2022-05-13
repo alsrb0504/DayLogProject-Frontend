@@ -121,14 +121,12 @@ export const RemoveDiaryAsync =
 export const ChangeShareDiaryAsync =
   (diary_no) =>
   async (dispatch, getState, { history }) => {
+    // 추후 해결방법 테스트 위함.
     console.log(diary_no);
 
     try {
       const res = await axios.get(`/api/diary/share?no=${diary_no}`);
 
-      
-
-      // 해당 달, 데이터가 있는 경우.
       const { selected_diary, month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
 
@@ -138,15 +136,16 @@ export const ChangeShareDiaryAsync =
           month_diary,
           current_diary,
           shared_diary,
-          selected_diary
+          selected_diary,
         },
       });
 
-      //history.push("/diary");
+      // 문제 : 공유 여부 변경이 한 번 정상적으로 수행되고 이후에는 diary_no가 전달이 되지 않는 문제 발생.
+      // 해결 방법 1 : redux 를 업데이트 한 다음, 페이지를 리프레쉬
+      history.push("/diary/description");
 
-      // 현재 페이지로 다시 와야 하는데
-      // 쿼리로 구분해줘야 하나?
-      // history.push("/diary/description");
+      // 해결 방법 2 : 상태 변경 시, 다이어리 홈으로 이동.
+      //history.push("/diary");
     } catch (e) {
       console.error(e);
 
@@ -262,7 +261,6 @@ export const SelectDiaryAsync =
       console.log(res.data);
       const { member_id, date, content, emotion, shared, image, diary_no } =
         res.data;
-      
 
       console.log(date, image);
       const diary = {
