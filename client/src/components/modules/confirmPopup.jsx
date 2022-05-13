@@ -3,9 +3,9 @@ import Button from "./button";
 
 const ConfirmPopup = ({ text, close, confirm }) => {
   return (
-    <div>
-      <span>{text}</span>
-      <div>
+    <div className="confirm-popup">
+      <span className="confirm-popup-text">{text}</span>
+      <div className="confirm-popup-btns">
         <Button
           text="취소"
           color="btn-secondary"
