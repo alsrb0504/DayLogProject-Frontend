@@ -26,141 +26,36 @@ export const AddDiaryAsync =
     // console.log(date, content, image, emotion, share);
 
     try {
-      // 사용자가 이미지를 추가한 경우
-      if (image !== undefined) {
-        // 1. 사진만 FormData에 담아 먼저 보냄.
-        const formData = new FormData();
-        formData.append("files", image);
-
-        const formData_res = await axios({
-          method: "post",
-          url: " /api/diary/image",
-          data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        /* 나중에 FormData 문제 시, 확인을 위한 코드 
-      for (var key of formData.entries()) {
-        console.log(key[0] + ", " + key[1]);
-      }
-      */
-        if (formData_res.data.message !== true) {
-          console.log("formData post failed");
-
-          return;
-        }
-      }
-
-      // 사진이 없는 경우 or
-      // 2. formData 이후 통신.
-      const res = await axios.post("/api/diary", {
+      // 1번째 요청 : 일기 추가 데이터만 보내는
+      let res = {};
+      res = await axios.post("/api/diary", {
         content,
         date,
         emotion,
         share,
       });
 
-      /*
-      // 로컬 테스트 코드
-      const res = {
-        data: {
-          month_diary: [
-            {
-              date: "2022-05-01",
-              emotion: 2,
-              diary_no: 13,
-              like_count: 0,
-              shared: false,
-              content: "5월 1일 일기",
-            },
-            {
-              date: "2022-05-02",
-              emotion: 3,
-              diary_no: 14,
-              like_count: 0,
-              shared: true,
-              content: "5월 2일 일기",
-            },
-            {
-              date: "2022-05-04",
-              emotion: 1,
-              diary_no: 504,
-              like_count: 100,
-              shared: false,
-              content: "5월 4일 일기",
-            },
-            {
-              date: "2022-05-06",
-              emotion: 6,
-              diary_no: 34,
-              like_count: 12,
-              shared: true,
-              content: "5월 6일 일기",
-            },
-            {
-              date: "2022-05-08",
-              emotion: 3,
-              diary_no: 10,
-              like_count: 10,
-              shared: false,
-              content: "5월 8일 일기",
-            },
-            {
-              date: "2022-05-09",
-              emotion: 5,
-              diary_no: 230,
-              like_count: 20,
-              shared: false,
-              content: "5월 9일 일기",
-            },
-          ],
-          current_diary: [
-            {
-              date: "2022-05-02",
-              emotion: 3,
-              diary_no: 14,
-              like_count: 0,
-              shared: true,
-              content: "5월 2일 일기",
-            },
-            {
-              date: "2022-05-04",
-              emotion: 1,
-              diary_no: 504,
-              like_count: 100,
-              shared: false,
-              content: "5월 4일 일기",
-            },
-            {
-              date: "2022-05-06",
-              emotion: 6,
-              diary_no: 34,
-              like_count: 12,
-              shared: true,
-              content: "5월 6일 일기",
-            },
-            {
-              date: "2022-05-08",
-              emotion: 3,
-              diary_no: 10,
-              like_count: 10,
-              shared: false,
-              content: "5월 8일 일기",
-            },
-            {
-              date: "2022-05-09",
-              emotion: 5,
-              diary_no: 230,
-              like_count: 20,
-              shared: false,
-              content: "5월 9일 일기",
-            },
-          ],
-        },
-      };
+      // 2번째 요청 : 사진이 있는 경우.
+      // res를 사진 추가된 버전의 response 응답으로 변경.
+      if (image !== undefined) {
+        // 1. 사진만 FormData에 담아 먼저 보냄.
+        const formData = new FormData();
+        formData.append("files", image);
+
+        res = await axios({
+          method: "post",
+          url: "/api/diary/image",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        /* 나중에 FormData 문제 시, 확인을 위한 코드 
+      for (var key of formData.entries()) {
+        console.log(key[0] + ", " + key[1]);
+      }
       */
+      }
 
       const { month_diary, current_diary } = res.data;
       const shared_diary = ClassifyDiary(month_diary);
@@ -180,6 +75,7 @@ export const AddDiaryAsync =
       dispatch({
         type: DIARY_ADD_FAIL,
       });
+      history.push("/diary");
     }
   };
 
