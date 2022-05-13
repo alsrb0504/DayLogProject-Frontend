@@ -259,39 +259,35 @@ export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
 };
 
 export const SelectDiaryAsync =
-  (diary_no) =>
+  (diary_idx) =>
   async (dispatch, getState, { history }) => {
-    console.log(diary_no);
+    console.log(diary_idx);
     try {
       //
-      const res = await axios.get(`/api/diary?no=${diary_no}`);
+      const res = await axios.get(`/api/diary?no=${diary_idx}`);
 
-      const diary = res.data;
+      const { member_id, date, content, emotion, shared, image, diary_no } =
+        res.data;
 
-      // 기존 다이어리 데이터에서
-      // 작성자 id 와 image url 추가.
-
-      // 로컬 테스트 용
-      const test_diary = {
-        member_id: "aa",
-        image: "", // 서버에 저장된 이미지의 주소
-
-        date: "2022-05-03",
-        emothion: 1, // 1 ~ 7
-        diary_no: 333,
-        like_count: 100,
-        share: true,
-        content: "일기 내용",
+      const diary = {
+        member_id,
+        date,
+        content,
+        emotion,
+        shared,
+        image,
+        diary_no,
       };
 
       dispatch({
         type: DIARY_SELECT_SUCCESS,
 
         payload: {
-          // selected_dairy: diary,
-          selected_dairy: test_diary,
+          selected_dairy: diary,
         },
       });
+
+      history.psuh("/diary/description");
 
       // 해당 조회 페이지로 이동.
       // 쿼리로 정보 줘도 괜찮고
