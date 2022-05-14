@@ -20,6 +20,8 @@ import Diary from "./pages/Diary/diary";
 import DiaryHome from "./pages/Diary/Details/diaryHome";
 import DiaryAdd from "./pages/Diary/Details/diaryAdd";
 import DiaryDescription from "./pages/Diary/Details/diaryDescription";
+import Board from "./pages/Board/board";
+import BoardHome from "./pages/Board/Details/boardHome";
 
 function App() {
   const navigate = useNavigate();
@@ -98,6 +100,9 @@ function App() {
                 <Route index element={<DiaryHome />} />
                 <Route path="add" element={<DiaryAdd />} />
                 <Route path="description" element={<DiaryDescription />} />
+              </Route>
+              <Route path="/board" element={<Board />}>
+                <Route index element={<BoardHome />} />
               </Route>
             </Routes>
           </div>
