@@ -25,6 +25,7 @@
 
   .board-nav {
     span {
+      @include OpacityEffect;
       display: inline-block;
       padding: 2px 0;
       width: 74px;
