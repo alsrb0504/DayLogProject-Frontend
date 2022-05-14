@@ -1,0 +1,41 @@
+.board-header {
+  position: relative;
+  margin-bottom: 8px;
+  height: 90px;
+  text-align: center;
+  z-index: 10;
+
+  &-bg {
+    @include absolute-top-left(0, 0);
+    width: 100vw;
+    max-width: 1024px;
+    height: 90px;
+    background-color: $tertiary;
+    z-index: -1;
+
+    // 모바일에서의 그 아.. 배경을 위해.
+    transform: translateX(-8px);
+  }
+
+  &-title {
+    font-size: $font-size-24;
+    color: $primary;
+    margin-bottom: 16px;
+  }
+
+  .board-nav {
+    span {
+      display: inline-block;
+      padding: 2px 0;
+      width: 74px;
+      cursor: pointer;
+    }
+
+    .board-nav-active {
+      color: $primary;
+      border-bottom: 1px solid $primary;
+
+      background-color: $white;
+    }
+  }
+}
