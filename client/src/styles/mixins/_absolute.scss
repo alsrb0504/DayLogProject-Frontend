@@ -3,3 +3,9 @@
   bottom: $bottom;
   right: $right;
 }
+
+@mixin absolute-top-left($top: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
