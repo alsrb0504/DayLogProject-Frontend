@@ -3,6 +3,8 @@ import {
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
   BOARD_LATEST_SUCCESS,
+  BOARD_REQUEST_DIARY_FAIL,
+  BOARD_REQUEST_DIARY_SUCCESS,
   BOARD_SCRAP_FAIL,
   BOARD_SCRAP_SUCCESS,
   BOARD_SECRET_FAIL,
@@ -34,11 +36,15 @@ const boardReducer = (state = initState, action) => {
     case BOARD_SCRAP_SUCCESS: {
       return { ...state, diary_list: action.payload.scrap_diary };
     }
+    case BOARD_REQUEST_DIARY_SUCCESS: {
+      return { ...state, selected_diary: action.payload.selected };
+    }
     case BOARD_LATEST_FAIL:
     case BOARD_HEARTEST_FAIL:
     case BOARD_SECRET_FAIL:
     case BOARD_SHARE_FAIL:
     case BOARD_SCRAP_FAIL:
+    case BOARD_REQUEST_DIARY_FAIL:
     default: {
       return { ...state };
     }
