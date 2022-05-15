@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import GlobalHeader from "../../../components/modules/globalHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
 
 const BoardHome = (props) => {
+  const navigate = useNavigate();
+
+  const moveMyPage = () => {
+    navigate("/board/myPage");
+  };
+
   return (
     <div className="board-home">
       <GlobalHeader />
@@ -21,7 +28,12 @@ const BoardHome = (props) => {
             <span>좋아요 순</span>
           </div>
 
-          <span className="board-home-nav-right board-nav-mypage">My Page</span>
+          <span
+            className="board-home-nav-right board-nav-mypage"
+            onClick={moveMyPage}
+          >
+            My Page
+          </span>
         </nav>
       </div>
       {/* 목록 */}
