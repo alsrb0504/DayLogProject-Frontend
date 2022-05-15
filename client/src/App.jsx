@@ -24,6 +24,7 @@ import Board from "./pages/Board/board";
 import BoardHome from "./pages/Board/Details/boardHome";
 import BoardMyPage from "./pages/Board/Details/boardMyPage";
 import BoardOther from "./pages/Board/Details/boardOther";
+import BoardDescription from "./pages/Board/Details/boardDescription";
 
 function App() {
   const navigate = useNavigate();
@@ -107,6 +108,7 @@ function App() {
                 <Route index element={<BoardHome />} />
                 <Route path="mypage" element={<BoardMyPage />} />
                 <Route path="other" element={<BoardOther />} />
+                <Route path="description" element={<BoardDescription />} />
               </Route>
             </Routes>
           </div>
