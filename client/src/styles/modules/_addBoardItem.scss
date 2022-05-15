@@ -1,0 +1,18 @@
+.board-add-item {
+  background-color: $blue-light !important;
+  border: none !important;
+
+  @include column-flexbox;
+
+  &-image {
+    margin-bottom: 12px;
+  }
+
+  &-text {
+    font-size: $font-size-14;
+    color: $text-dark;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1rem;
+  }
+}

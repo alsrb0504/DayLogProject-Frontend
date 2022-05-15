@@ -1,3 +1,4 @@
+import AddBoardItem from "../modules/addBoardItem";
 import BoardItem from "../modules/boardItem";
 
 const BoardContainer = (props) => {
@@ -6,6 +7,7 @@ const BoardContainer = (props) => {
   return (
     <main className="board-main">
       <ul className="board-container">
+        <AddBoardItem />
         <BoardItem />
         <BoardItem />
         <BoardItem />
