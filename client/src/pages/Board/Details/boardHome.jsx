@@ -12,7 +12,7 @@ const BoardHome = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [cate, setCate] = useState("latest");
+  const [cate, setCate] = useState("LATEST");
 
   const board_list = useSelector((state) => state.board.diary_list);
 
@@ -23,12 +23,12 @@ const BoardHome = (props) => {
 
   const setLatest = () => {
     dispatch(RequestLatestBoardAsync());
-    setCate("latest");
+    setCate("LATEST");
   };
 
   const setHeartest = () => {
     dispatch(RequestHeartestBoardAsync());
-    setCate("heartest");
+    setCate("HEARTEST");
   };
 
   const moveMyPage = () => {
@@ -50,13 +50,13 @@ const BoardHome = (props) => {
           <div className="board-home-nav-left">
             {/* 일단 최신순 선택되었다고 가정 */}
             <span
-              className={cate === "latest" ? "board-nav-active" : ""}
+              className={cate === "LATEST" ? "board-nav-active" : ""}
               onClick={setLatest}
             >
               최신순
             </span>
             <span
-              className={cate === "heartest" ? "board-nav-active" : ""}
+              className={cate === "HEARTEST" ? "board-nav-active" : ""}
               onClick={setHeartest}
             >
               좋아요 순
