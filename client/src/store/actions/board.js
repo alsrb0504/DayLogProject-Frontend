@@ -91,7 +91,7 @@ export const RequestHeartestBoardAsync = () => async (dispatch) => {
     console.error(e);
 
     alert("좋아요 순 조회 실패");
-    console.log("Request Latest Board Async func fail");
+    console.log("Request Heartest Board Async func fail");
 
     dispatch({
       type: BOARD_HEARTEST_FAIL,
