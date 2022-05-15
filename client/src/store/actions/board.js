@@ -6,6 +6,8 @@ import {
   BOARD_LATEST_SUCCESS,
   BOARD_REQUEST_DIARY_FAIL,
   BOARD_REQUEST_DIARY_SUCCESS,
+  BOARD_REQUEST_PROFILE_FAIL,
+  BOARD_REQUEST_PROFILE_SUCCESS,
   BOARD_SCRAP_FAIL,
   BOARD_SCRAP_SUCCESS,
   BOARD_SECRET_FAIL,
@@ -289,6 +291,60 @@ export const RequestBoardDiaryAsync =
 
       dispatch({
         type: BOARD_REQUEST_DIARY_FAIL,
+      });
+    }
+  };
+
+// 타인의 프로필 조회 요청 함수
+export const RequestBoardProfileAsync =
+  (user_id) =>
+  async (dispatch, getState, { history }) => {
+    try {
+      console.log(user_id);
+      // const res = await axios.get(`/api/board/profile?name=${user_id}`);
+      // const { writer_nickname, writer_profile, share_diary } = res.data;
+
+      // 테스트용
+      const writer_nickname = "닉네임01";
+      const writer_profile = null;
+      const share_diary = [
+        {
+          diary_no: 13,
+          content: "닉네임01이 공유한 일기 내용...",
+          image_url: null,
+          like_count: 100,
+          date: "2022-05-01",
+        },
+        {
+          diary_no: 14,
+          content: "닉네임01이 공유한 일기 내용 2...",
+          image_url: null,
+          like_count: 30,
+          date: "2022-05-03",
+        },
+      ];
+
+      dispatch({
+        type: BOARD_REQUEST_PROFILE_SUCCESS,
+        payload: {
+          share_diary,
+          selected_user_info: {
+            writer_nickname,
+            writer_profile,
+          },
+        },
+      });
+
+      // 유저 프로필 페이지로 이동.
+      history.push(`/board/other?writer_nickname=${writer_nickname}`);
+    } catch (e) {
+      console.error(e);
+
+      alert("타인의 프로필 조회 요청 실패");
+      console.log("타인의 프로필 조회 요청 실패");
+
+      dispatch({
+        type: BOARD_REQUEST_PROFILE_FAIL,
       });
     }
   };

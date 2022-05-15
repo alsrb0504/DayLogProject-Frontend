@@ -5,6 +5,8 @@ import {
   BOARD_LATEST_SUCCESS,
   BOARD_REQUEST_DIARY_FAIL,
   BOARD_REQUEST_DIARY_SUCCESS,
+  BOARD_REQUEST_PROFILE_FAIL,
+  BOARD_REQUEST_PROFILE_SUCCESS,
   BOARD_SCRAP_FAIL,
   BOARD_SCRAP_SUCCESS,
   BOARD_SECRET_FAIL,
@@ -16,7 +18,10 @@ import {
 const initState = {
   diary_list: [],
   selected_diary: {},
-  selected_user: {},
+  selected_user: {
+    writer_nickname: "",
+    writer_profile: "",
+  },
 };
 
 const boardReducer = (state = initState, action) => {
@@ -39,12 +44,20 @@ const boardReducer = (state = initState, action) => {
     case BOARD_REQUEST_DIARY_SUCCESS: {
       return { ...state, selected_diary: action.payload.selected };
     }
+    case BOARD_REQUEST_PROFILE_SUCCESS: {
+      return {
+        ...state,
+        diary_list: action.payload.share_diary,
+        selected_user: action.payload.selected_user_info,
+      };
+    }
     case BOARD_LATEST_FAIL:
     case BOARD_HEARTEST_FAIL:
     case BOARD_SECRET_FAIL:
     case BOARD_SHARE_FAIL:
     case BOARD_SCRAP_FAIL:
     case BOARD_REQUEST_DIARY_FAIL:
+    case BOARD_REQUEST_PROFILE_FAIL:
     default: {
       return { ...state };
     }

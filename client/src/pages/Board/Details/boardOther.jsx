@@ -26,7 +26,7 @@ const BoardOther = (props) => {
         </div>
       </div>
       {/* 목록 */}
-      <BoardContainer />
+      {/* <BoardContainer /> */}
     </div>
   );
 };

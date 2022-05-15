@@ -4,11 +4,13 @@ import default_profile from "../../../assets/img/default-profile.svg";
 import dummy_image from "../../../assets/img/dummy-image.png";
 import heart_icon from "../../../assets/icons/heart-pink-icon.svg";
 import star_icon from "../../../assets/icons/star-yellow-icon.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { RequestBoardProfileAsync } from "../../../store/actions/board";
 
 const BoardDescription = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const selected_diary = useSelector((state) => state.board.selected_diary);
   const {
@@ -17,6 +19,7 @@ const BoardDescription = (props) => {
     image_url,
     like_count,
     date,
+    writer_id,
     writer_nickname,
     writer_profile_url,
   } = selected_diary;
@@ -38,7 +41,7 @@ const BoardDescription = (props) => {
   };
 
   const moveProfile = () => {
-    navigate("/board/other?member=test");
+    dispatch(RequestBoardProfileAsync(writer_id));
   };
 
   return (
