@@ -16,11 +16,15 @@ const BoardDescription = (props) => {
     // 으로 갈지 결정.
   };
 
+  const moveProfile = () => {
+    navigate("/board/other?member=test");
+  };
+
   return (
     <div className="board-desc">
       <InputHeader text="이전으로" onClick={moveBack} />
 
-      <header className="board-desc-profile-info">
+      <header className="board-desc-profile-info" onClick={moveProfile}>
         <div className="board-desc-image-container">
           <img src={default_profile} alt="프로필" />
         </div>

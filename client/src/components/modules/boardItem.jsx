@@ -1,8 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import logo_image from "../../assets/img/logo-bold.svg";
 
 const BoardItem = (props) => {
+  const navigate = useNavigate();
+
+  const moveDescription = () => {
+    // 추후에는 redux에서 처리할 것.
+
+    navigate("/board/description");
+  };
+
   return (
-    <li className="board-item">
+    <li className="board-item" onClick={moveDescription}>
       <div className="board-item-image-container">
         {/* 이미지 존재 여부에 따라 img를 다르게 만들어야 함. */}
         <img
