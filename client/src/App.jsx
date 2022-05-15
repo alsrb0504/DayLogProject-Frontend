@@ -22,6 +22,7 @@ import DiaryAdd from "./pages/Diary/Details/diaryAdd";
 import DiaryDescription from "./pages/Diary/Details/diaryDescription";
 import Board from "./pages/Board/board";
 import BoardHome from "./pages/Board/Details/boardHome";
+import BoardMyPage from "./pages/Board/Details/boardMyPage";
 
 function App() {
   const navigate = useNavigate();
@@ -103,6 +104,7 @@ function App() {
               </Route>
               <Route path="/board" element={<Board />}>
                 <Route index element={<BoardHome />} />
+                <Route path="mypage" element={<BoardMyPage />} />
               </Route>
             </Routes>
           </div>
