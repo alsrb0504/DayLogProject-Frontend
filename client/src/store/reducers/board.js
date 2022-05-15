@@ -5,6 +5,8 @@ import {
   BOARD_LATEST_SUCCESS,
   BOARD_SECRET_FAIL,
   BOARD_SECRET_SUCCESS,
+  BOARD_SHARE_FAIL,
+  BOARD_SHARE_SUCCESS,
 } from "../actions/types";
 
 const initState = {
@@ -24,9 +26,13 @@ const boardReducer = (state = initState, action) => {
     case BOARD_SECRET_SUCCESS: {
       return { ...state, diary_list: action.payload.secret_diary };
     }
+    case BOARD_SHARE_SUCCESS: {
+      return { ...state, diary_list: action.payload.share_diary };
+    }
     case BOARD_LATEST_FAIL:
     case BOARD_HEARTEST_FAIL:
     case BOARD_SECRET_FAIL:
+    case BOARD_SHARE_FAIL:
     default: {
       return { ...state };
     }

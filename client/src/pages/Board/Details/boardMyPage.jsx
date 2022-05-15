@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
-import { RequestSecretBoardAsync } from "../../../store/actions/board";
+import {
+  RequestSecretBoardAsync,
+  RequestShareBoardAsync,
+} from "../../../store/actions/board";
 
 const BoardMyPage = (props) => {
   const navigate = useNavigate();
@@ -22,6 +25,11 @@ const BoardMyPage = (props) => {
   const setSecret = () => {
     dispatch(RequestSecretBoardAsync());
     setCate("SECRET");
+  };
+
+  const setShare = () => {
+    dispatch(RequestShareBoardAsync());
+    setCate("SHARE");
   };
 
   const moveHome = () => {
@@ -45,7 +53,7 @@ const BoardMyPage = (props) => {
               </span>
             </li>
             <li>
-              <span>공유</span>
+              <span onClick={setShare}>공유</span>
             </li>
             <li>
               <span>스크랩</span>

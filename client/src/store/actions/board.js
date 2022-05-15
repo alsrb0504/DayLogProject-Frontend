@@ -6,6 +6,8 @@ import {
   BOARD_LATEST_SUCCESS,
   BOARD_SECRET_FAIL,
   BOARD_SECRET_SUCCESS,
+  BOARD_SHARE_FAIL,
+  BOARD_SHARE_SUCCESS,
 } from "./types";
 
 // 최신순 조회 요청 함수
@@ -144,6 +146,55 @@ export const RequestSecretBoardAsync = () => async (dispatch) => {
 
     dispatch({
       type: BOARD_SECRET_FAIL,
+    });
+  }
+};
+
+// 마이 비밀 일기 조회 요청 함수
+export const RequestShareBoardAsync = () => async (dispatch) => {
+  try {
+    // const res = await axios.get("/api/board/mypage/share");
+    // const { share_diary } = res.data;
+
+    // 테스트용
+    const share_diary = [
+      {
+        diary_no: 13,
+        content: "공유 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "공유 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "공유 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
+
+    dispatch({
+      type: BOARD_SHARE_SUCCESS,
+      payload: {
+        share_diary,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+
+    alert("공유 일기 조회 실패");
+    console.log("Request Share Board Async func fail");
+
+    dispatch({
+      type: BOARD_SHARE_FAIL,
     });
   }
 };
