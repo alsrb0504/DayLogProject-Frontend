@@ -9,25 +9,9 @@ const BoardContainer = ({ boards, needAdd }) => {
       <ul className="board-container">
         {needAdd && <AddBoardItem />}
 
-        {boards.map((item, idx) => (
-          <BoardItem key={idx} />
+        {boards.map((diary) => (
+          <BoardItem key={diary.diary_no} diary={diary} />
         ))}
-        {/* <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem />
-        <BoardItem /> */}
       </ul>
     </main>
   );

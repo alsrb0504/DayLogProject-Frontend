@@ -58,8 +58,8 @@ export const RequestHeartestBoardAsync = () => async (dispatch) => {
     const heartest_diary = [
       {
         diary_no: 13,
-        content: "좋아요 일기 내용...",
-        image_url: "http://image.png",
+        content: "좋아요 일기 내용",
+        image_url: null,
         like_count: 100,
         date: "2022-05-01",
       },
