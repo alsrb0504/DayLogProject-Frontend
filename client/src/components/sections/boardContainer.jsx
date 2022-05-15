@@ -7,7 +7,6 @@ const BoardContainer = (props) => {
   return (
     <main className="board-main">
       <ul className="board-container">
-        <AddBoardItem />
         <BoardItem />
         <BoardItem />
         <BoardItem />
