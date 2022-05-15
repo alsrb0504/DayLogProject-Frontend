@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
 import {
+  RequestScrapBoardAsync,
   RequestSecretBoardAsync,
   RequestShareBoardAsync,
 } from "../../../store/actions/board";
@@ -19,7 +20,7 @@ const BoardMyPage = (props) => {
 
   // 페이지 로드 시, 한 번 최신순 조회 실행.
   useEffect(() => {
-    // dispatch(RequestSecretBoardAsync());
+    dispatch(RequestSecretBoardAsync());
   }, [dispatch]);
 
   const setSecret = () => {
@@ -30,6 +31,11 @@ const BoardMyPage = (props) => {
   const setShare = () => {
     dispatch(RequestShareBoardAsync());
     setCate("SHARE");
+  };
+
+  const setScrap = () => {
+    dispatch(RequestScrapBoardAsync());
+    setCate("SCRAP");
   };
 
   const moveHome = () => {
@@ -56,7 +62,7 @@ const BoardMyPage = (props) => {
               <span onClick={setShare}>공유</span>
             </li>
             <li>
-              <span>스크랩</span>
+              <span onClick={setScrap}>스크랩</span>
             </li>
           </ul>
         </nav>

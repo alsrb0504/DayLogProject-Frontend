@@ -4,6 +4,8 @@ import {
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
   BOARD_LATEST_SUCCESS,
+  BOARD_SCRAP_FAIL,
+  BOARD_SCRAP_SUCCESS,
   BOARD_SECRET_FAIL,
   BOARD_SECRET_SUCCESS,
   BOARD_SHARE_FAIL,
@@ -150,7 +152,7 @@ export const RequestSecretBoardAsync = () => async (dispatch) => {
   }
 };
 
-// 마이 비밀 일기 조회 요청 함수
+// 마이 공유 일기 조회 요청 함수
 export const RequestShareBoardAsync = () => async (dispatch) => {
   try {
     // const res = await axios.get("/api/board/mypage/share");
@@ -195,6 +197,55 @@ export const RequestShareBoardAsync = () => async (dispatch) => {
 
     dispatch({
       type: BOARD_SHARE_FAIL,
+    });
+  }
+};
+
+// 마이 스크랩 일기 조회 요청 함수
+export const RequestScrapBoardAsync = () => async (dispatch) => {
+  try {
+    // const res = await axios.get("/api/board/mypage/scrap");
+    // const { scrap_diary } = res.data;
+
+    // 테스트용
+    const scrap_diary = [
+      {
+        diary_no: 13,
+        content: "스크랩 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "스크랩 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "스크랩 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
+
+    dispatch({
+      type: BOARD_SCRAP_SUCCESS,
+      payload: {
+        scrap_diary,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+
+    alert("스크랩 일기 조회 실패");
+    console.log("Request Scrap Board Async func fail");
+
+    dispatch({
+      type: BOARD_SCRAP_FAIL,
     });
   }
 };
