@@ -1,9 +1,28 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
+import { RequestSecretBoardAsync } from "../../../store/actions/board";
 
 const BoardMyPage = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // SECRET or SHARE or SCRAP
+  const [cate, setCate] = useState("SECRET");
+
+  const board_list = useSelector((state) => state.board.diary_list);
+
+  // 페이지 로드 시, 한 번 최신순 조회 실행.
+  useEffect(() => {
+    // dispatch(RequestSecretBoardAsync());
+  }, [dispatch]);
+
+  const setSecret = () => {
+    dispatch(RequestSecretBoardAsync());
+    setCate("SECRET");
+  };
 
   const moveHome = () => {
     navigate("/board");
@@ -21,7 +40,9 @@ const BoardMyPage = (props) => {
         <nav className="board-nav board-myPage-nav">
           <ul>
             <li>
-              <span className="board-nav-active">비밀</span>
+              <span className="board-nav-active" onClick={setSecret}>
+                비밀
+              </span>
             </li>
             <li>
               <span>공유</span>
@@ -33,7 +54,7 @@ const BoardMyPage = (props) => {
         </nav>
       </div>
       {/* 목록 */}
-      <BoardContainer needAdd={true} />
+      <BoardContainer diary_list={board_list} needAdd={true} />
     </div>
   );
 };

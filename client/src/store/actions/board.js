@@ -4,6 +4,8 @@ import {
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
   BOARD_LATEST_SUCCESS,
+  BOARD_SECRET_FAIL,
+  BOARD_SECRET_SUCCESS,
 } from "./types";
 
 // 최신순 조회 요청 함수
@@ -93,6 +95,55 @@ export const RequestHeartestBoardAsync = () => async (dispatch) => {
 
     dispatch({
       type: BOARD_HEARTEST_FAIL,
+    });
+  }
+};
+
+// 마이 비밀 일기 조회 요청 함수
+export const RequestSecretBoardAsync = () => async (dispatch) => {
+  try {
+    // const res = await axios.get("/api/board/mypage/secret");
+    // const { secret_diary } = res.data;
+
+    // 테스트용
+    const secret_diary = [
+      {
+        diary_no: 13,
+        content: "비밀 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "비밀 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "비밀 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
+
+    dispatch({
+      type: BOARD_SECRET_SUCCESS,
+      payload: {
+        secret_diary,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+
+    alert("비밀 일기 조회 실패");
+    console.log("Request Secret Board Async func fail");
+
+    dispatch({
+      type: BOARD_SECRET_FAIL,
     });
   }
 };
