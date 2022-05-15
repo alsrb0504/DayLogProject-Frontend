@@ -54,15 +54,19 @@ const BoardMyPage = (props) => {
         <nav className="board-nav board-myPage-nav">
           <ul>
             <li>
-              <span className="board-nav-active" onClick={setSecret}>
+              <span className={checkCate(cate, "SECRET")} onClick={setSecret}>
                 비밀
               </span>
             </li>
             <li>
-              <span onClick={setShare}>공유</span>
+              <span className={checkCate(cate, "SHARE")} onClick={setShare}>
+                공유
+              </span>
             </li>
             <li>
-              <span onClick={setScrap}>스크랩</span>
+              <span className={checkCate(cate, "SCRAP")} onClick={setScrap}>
+                스크랩
+              </span>
             </li>
           </ul>
         </nav>
@@ -74,3 +78,7 @@ const BoardMyPage = (props) => {
 };
 
 export default BoardMyPage;
+
+function checkCate(curCate, cate) {
+  if (curCate === cate) return "board-nav-active";
+}
