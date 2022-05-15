@@ -1,10 +1,15 @@
-import dummy_image from "../../assets/img/dummy-image.png";
+import logo_image from "../../assets/img/logo-bold.svg";
 
 const BoardItem = (props) => {
   return (
     <li className="board-item">
       <div className="board-item-image-container">
-        <img className="board-item-image" src={dummy_image} alt="일기 사진" />
+        {/* 이미지 존재 여부에 따라 img를 다르게 만들어야 함. */}
+        <img
+          className="board-item-image board-item-image-logo"
+          src={logo_image}
+          alt="일기 사진"
+        />
       </div>
 
       <div className="board-item-text">
