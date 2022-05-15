@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GlobalHeader from "../../../components/modules/globalHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
-import { RequestLatestBoardAsync } from "../../../store/actions/board";
+import {
+  RequestHeartestBoardAsync,
+  RequestLatestBoardAsync,
+} from "../../../store/actions/board";
 
 const BoardHome = (props) => {
   const navigate = useNavigate();
@@ -15,6 +18,10 @@ const BoardHome = (props) => {
 
   const setLatest = () => {
     dispatch(RequestLatestBoardAsync());
+  };
+
+  const setHeartest = () => {
+    dispatch(RequestHeartestBoardAsync());
   };
 
   const moveMyPage = () => {
@@ -38,7 +45,7 @@ const BoardHome = (props) => {
             <span className="board-nav-active" onClick={setLatest}>
               최신순
             </span>
-            <span>좋아요 순</span>
+            <span onClick={setHeartest}>좋아요 순</span>
           </div>
 
           <span
