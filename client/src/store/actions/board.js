@@ -70,6 +70,13 @@ export const RequestHeartestBoardAsync = () => async (dispatch) => {
         like_count: 290,
         date: "2022-05-03",
       },
+      {
+        diary_no: 15,
+        content: "좋아요 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
     ];
 
     dispatch({

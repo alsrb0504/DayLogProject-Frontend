@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GlobalHeader from "../../../components/modules/globalHeader";
@@ -12,16 +12,23 @@ const BoardHome = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [cate, setCate] = useState("latest");
+
   const board_list = useSelector((state) => state.board.diary_list);
 
-  console.log(board_list);
+  // 페이지 로드 시, 한 번 최신순 조회 실행.
+  useEffect(() => {
+    dispatch(RequestLatestBoardAsync());
+  }, [dispatch]);
 
   const setLatest = () => {
     dispatch(RequestLatestBoardAsync());
+    setCate("latest");
   };
 
   const setHeartest = () => {
     dispatch(RequestHeartestBoardAsync());
+    setCate("heartest");
   };
 
   const moveMyPage = () => {
@@ -42,10 +49,18 @@ const BoardHome = (props) => {
         <nav className="board-nav board-home-nav">
           <div className="board-home-nav-left">
             {/* 일단 최신순 선택되었다고 가정 */}
-            <span className="board-nav-active" onClick={setLatest}>
+            <span
+              className={cate === "latest" ? "board-nav-active" : ""}
+              onClick={setLatest}
+            >
               최신순
             </span>
-            <span onClick={setHeartest}>좋아요 순</span>
+            <span
+              className={cate === "heartest" ? "board-nav-active" : ""}
+              onClick={setHeartest}
+            >
+              좋아요 순
+            </span>
           </div>
 
           <span
@@ -57,7 +72,7 @@ const BoardHome = (props) => {
         </nav>
       </div>
       {/* 목록 */}
-      <BoardContainer />
+      <BoardContainer boards={board_list} />
     </div>
   );
 };
