@@ -12,6 +12,7 @@ const BoardHome = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // LATEST or HEARTEST
   const [cate, setCate] = useState("LATEST");
 
   const board_list = useSelector((state) => state.board.diary_list);
@@ -72,7 +73,7 @@ const BoardHome = (props) => {
         </nav>
       </div>
       {/* 목록 */}
-      <BoardContainer boards={board_list} />
+      <BoardContainer diary_list={board_list} />
     </div>
   );
 };
