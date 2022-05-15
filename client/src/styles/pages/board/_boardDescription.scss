@@ -1,0 +1,102 @@
+.board-desc {
+  @include column-flexbox(flex-start, stretch);
+  min-height: 100vh;
+
+  .input-header {
+    margin-bottom: 8px;
+  }
+
+  &-profile-info {
+    @include flexbox(flex-start);
+    margin-bottom: 8px;
+    height: 42px;
+
+    .board-desc-image-container,
+    .board-desc-nickname {
+      @include OpacityEffect(0.9);
+      cursor: pointer;
+    }
+
+    .board-desc-image-container {
+      margin-right: 12px;
+      height: 100%;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .board-desc-nickname {
+      font-weight: 700;
+      color: $primary;
+    }
+  }
+
+  &-main {
+    @include column-flexbox(flex-start, stretch);
+    flex: 1;
+    margin-bottom: 12px;
+
+    &-image {
+      margin-bottom: 8px;
+      width: 100vw;
+      max-width: 1024px;
+      transform: translateX(-8px);
+
+      // 사진 길이가... 최소 길이만 설정.
+      min-height: 180px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &-text {
+      @include column-flexbox;
+      position: relative;
+      flex: 1;
+
+      textarea {
+        @include textareaSetting;
+        flex: 1;
+      }
+
+      .board-date {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+
+        color: $text-gray-4;
+        font-weight: 700;
+        font-size: 18px;
+      }
+    }
+  }
+
+  &-footer {
+    @include flexbox(space-between);
+
+    &-btn {
+      @include flexbox;
+      padding: 0 8px;
+      width: 40%;
+      max-width: 180px;
+
+      img {
+        width: 26px;
+        height: 26px;
+
+        margin-right: 8px;
+      }
+
+      .btn-star {
+        width: 24px;
+        margin-right: 4px;
+      }
+
+      span {
+        font-size: font-size-20;
+      }
+    }
+  }
+}

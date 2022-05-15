@@ -17,41 +17,42 @@ const BoardDescription = (props) => {
   };
 
   return (
-    <div>
+    <div className="board-desc">
       <InputHeader text="이전으로" onClick={moveBack} />
 
-      <header className="board-other-profile-info">
-        <div className="board-other-image-container">
+      <header className="board-desc-profile-info">
+        <div className="board-desc-image-container">
           <img src={default_profile} alt="프로필" />
         </div>
-        <span className="board-other-nickname">닉네임</span>
+        <span className="board-desc-nickname">닉네임</span>
       </header>
 
-      <main>
+      <main className="board-desc-main">
         {/* 이미지 유무에 따라 */}
-        {false && (
-          <div>
+        {true && (
+          <div className="board-desc-main-image">
             <img src={dummy_image} alt="일기 이미지" />
           </div>
         )}
 
-        <div className="diary-desc-main-text">
+        <div className="board-desc-main-text">
           <textarea
-            className={`diary-form-textarea`}
-            placeholder="일정 내용"
+            className={`board-form-textarea`}
+            defaultValue="일기 내용"
+            disabled
           ></textarea>
-          <span className="diary-date">2022-05-15</span>
+          <span className="board-date">2022-05-15</span>
         </div>
       </main>
 
-      <footer>
-        <button>
-          <img src={heart_icon} alt="하트 아이콘" />
+      <footer className="board-desc-footer">
+        <button className="board-desc-footer-btn btn-40 btn-outlined">
+          <img className="btn-heart" src={heart_icon} alt="하트 아이콘" />
           <span>11</span>
         </button>
 
-        <button>
-          <img src={star_icon} alt="별 아이콘" />
+        <button className="board-desc-footer-btn btn-40 btn-primary">
+          <img className="btn-star" src={star_icon} alt="별 아이콘" />
           <span>스크랩</span>
         </button>
       </footer>
