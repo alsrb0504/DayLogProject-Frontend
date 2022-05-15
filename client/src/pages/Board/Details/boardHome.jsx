@@ -1,10 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GlobalHeader from "../../../components/modules/globalHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
+import { RequestLatestBoardAsync } from "../../../store/actions/board";
 
 const BoardHome = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const board_list = useSelector((state) => state.board.diary_list);
+
+  console.log(board_list);
+
+  const setLatest = () => {
+    dispatch(RequestLatestBoardAsync());
+  };
 
   const moveMyPage = () => {
     navigate("/board/myPage");
@@ -24,7 +35,9 @@ const BoardHome = (props) => {
         <nav className="board-nav board-home-nav">
           <div className="board-home-nav-left">
             {/* 일단 최신순 선택되었다고 가정 */}
-            <span className="board-nav-active">최신순</span>
+            <span className="board-nav-active" onClick={setLatest}>
+              최신순
+            </span>
             <span>좋아요 순</span>
           </div>
 

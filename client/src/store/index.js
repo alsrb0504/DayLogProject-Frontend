@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import authReducer from "./reducers/auth";
+import boardReducer from "./reducers/board";
 import cycleReducer from "./reducers/cycle";
 import diaryReducer from "./reducers/diary";
 import scheduleReducer from "./reducers/schedule";
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   cycle: cycleReducer,
   schedule: scheduleReducer,
   diary: diaryReducer,
+  board: boardReducer,
 });
 
 export default rootReducer;
