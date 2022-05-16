@@ -16,6 +16,7 @@ import {
 } from "../actions/types";
 
 const initState = {
+  category: "LATEST", // 새로고침 시, 카테고리 유지를 위해.
   diary_list: [],
   selected_diary: {},
   selected_user: {
@@ -27,19 +28,41 @@ const initState = {
 const boardReducer = (state = initState, action) => {
   switch (action.type) {
     case BOARD_LATEST_SUCCESS: {
-      return { ...state, diary_list: action.payload.latest_diary };
+      return {
+        ...state,
+        category: "LATEST",
+        diary_list: action.payload.latest_diary,
+      };
     }
     case BOARD_HEARTEST_SUCCESS: {
-      return { ...state, diary_list: action.payload.heartest_diary };
+      return {
+        ...state,
+        category: "HEARTEST",
+        diary_list: action.payload.heartest_diary,
+      };
     }
     case BOARD_SECRET_SUCCESS: {
-      return { ...state, diary_list: action.payload.secret_diary };
+      return {
+        ...state,
+        category: "SECRET",
+
+        diary_list: action.payload.secret_diary,
+      };
     }
     case BOARD_SHARE_SUCCESS: {
-      return { ...state, diary_list: action.payload.share_diary };
+      return {
+        ...state,
+        category: "SHARE",
+
+        diary_list: action.payload.share_diary,
+      };
     }
     case BOARD_SCRAP_SUCCESS: {
-      return { ...state, diary_list: action.payload.scrap_diary };
+      return {
+        ...state,
+        category: "SCRAP",
+        diary_list: action.payload.scrap_diary,
+      };
     }
     case BOARD_REQUEST_DIARY_SUCCESS: {
       return { ...state, selected_diary: action.payload.selected };
@@ -59,7 +82,7 @@ const boardReducer = (state = initState, action) => {
     case BOARD_REQUEST_DIARY_FAIL:
     case BOARD_REQUEST_PROFILE_FAIL:
     default: {
-      return { ...state };
+      return state;
     }
   }
 };

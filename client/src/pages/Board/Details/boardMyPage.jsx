@@ -17,11 +17,31 @@ const BoardMyPage = (props) => {
   const [cate, setCate] = useState("SECRET");
 
   const board_list = useSelector((state) => state.board.diary_list);
+  const prev_cate = useSelector((state) => state.board.category);
 
   // 페이지 로드 시, 한 번 최신순 조회 실행.
   useEffect(() => {
-    dispatch(RequestSecretBoardAsync());
-  }, [dispatch]);
+    console.log(prev_cate);
+
+    switch (prev_cate) {
+      case "SHARE": {
+        dispatch(RequestShareBoardAsync());
+        setCate("SHARE");
+        break;
+      }
+      case "SCRAP": {
+        dispatch(RequestScrapBoardAsync());
+        setCate("SCRAP");
+        break;
+      }
+      case "SECRET":
+      default: {
+        dispatch(RequestSecretBoardAsync());
+        setCate("SECRET");
+        break;
+      }
+    }
+  }, [prev_cate, dispatch, navigate]);
 
   const setSecret = () => {
     dispatch(RequestSecretBoardAsync());
