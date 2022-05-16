@@ -7,6 +7,7 @@ import {
 } from "../../../store/actions/board";
 import GlobalHeader from "../../../components/modules/globalHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
+import { SetAuthHeader } from "../../../services/auth";
 
 const BoardHome = (props) => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ const BoardHome = (props) => {
 
   // 페이지 로드 시, 한 번 최신순 조회 실행.
   useEffect(() => {
+    SetAuthHeader();
+
     switch (prev_cate) {
       case "HEARTEST": {
         dispatch(RequestHeartestBoardAsync());

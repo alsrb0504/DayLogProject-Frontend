@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { SetAuthHeader } from "../../../services/auth";
 import {
   RequestScrapBoardAsync,
   RequestSecretBoardAsync,
@@ -24,6 +25,8 @@ const BoardMyPage = (props) => {
 
   // 페이지 로드 시, 한 번 최신순 조회 실행.
   useEffect(() => {
+    SetAuthHeader();
+
     switch (prev_cate) {
       case "SHARE": {
         dispatch(RequestShareBoardAsync());

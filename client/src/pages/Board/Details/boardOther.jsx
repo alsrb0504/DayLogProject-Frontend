@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
 import default_profile from "../../../assets/img/default-profile.svg";
+import { SetAuthHeader } from "../../../services/auth";
 
 const BoardOther = (props) => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const BoardOther = (props) => {
 
   // 새로고침 시, 리덕스 휘발성 때문에 일단 홈으로 이동.
   useEffect(() => {
+    SetAuthHeader();
+
     if (writer_nickname === "") {
       navigate("/board");
     }

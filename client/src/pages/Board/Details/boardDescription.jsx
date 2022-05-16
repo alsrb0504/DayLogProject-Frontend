@@ -7,6 +7,7 @@ import star_icon from "../../../assets/icons/star-yellow-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { RequestBoardProfileAsync } from "../../../store/actions/board";
+import { SetAuthHeader } from "../../../services/auth";
 
 const BoardDescription = (props) => {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const BoardDescription = (props) => {
   // 새로고침 시, 리덕스의 데이터가 사라지기 때문에
   // 게시판 홈으로 이동
   useEffect(() => {
+    SetAuthHeader();
+
     if (selected_diary.diary_no === undefined) {
       navigate("/board");
     }

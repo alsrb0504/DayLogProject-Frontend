@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import AddButton from "../../../components/modules/addButton";
 import InputHeader from "../../../components/modules/inputHeader";
 import ScheduleSection from "../../../components/sections/scheduleSection";
+import { SetAuthHeader } from "../../../services/auth";
 import { printDayInfo } from "../../../services/calcDate";
 
 const ScheduleHome = () => {
@@ -22,6 +23,8 @@ const ScheduleHome = () => {
 
   // 예외 처리 : url 주소로 "/schedule"로 바로 접속 시, 홈으로 이동.
   useEffect(() => {
+    SetAuthHeader();
+
     if (!date || !day) {
       navigate("/");
     }
