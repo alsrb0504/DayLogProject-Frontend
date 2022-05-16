@@ -6,7 +6,10 @@ import InputHeader from "../../../components/modules/inputHeader";
 import dummy_image from "../../../assets/img/dummy-image.png";
 import ConfirmPopup from "../../../components/modules/confirmPopup";
 import OverLay from "../../../components/modules/overLay";
-import { RemoveDiaryAsync, ChangeShareDiaryAsync} from "../../../store/actions/diary";
+import {
+  RemoveDiaryAsync,
+  ChangeShareDiaryAsync,
+} from "../../../store/actions/diary";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
@@ -17,8 +20,7 @@ const DiaryDescription = (props) => {
 
   const diary = useSelector((state) => state.diary.selected_diary);
   console.log(diary);
-  const {image, shared, content, date, emotion, diary_no } = diary;
-  
+  const { image, shared, content, date, emotion, diary_no } = diary;
 
   const moveBack = () => {
     navigate("/diary");
@@ -68,7 +70,7 @@ const DiaryDescription = (props) => {
         <>
           <OverLay onClick={closeSharePopup} />
           <ConfirmPopup
-            text={`${shared ?  "공유하시겠습니까?" :"공유해제하시겠습니까?"}`}
+            text={`${shared ? "공유해제하시겠습니까?" : "공유하시겠습니까?"}`}
             close={closeSharePopup}
             confirm={confirmShare}
           />
@@ -78,7 +80,7 @@ const DiaryDescription = (props) => {
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
       <main className="diary-desc-main">
-        {image!==null && (
+        {image !== null && (
           <div className="diary-desc-main-image">
             <img src={`http://localhost:3000/${image}`} alt="일기 사진" />
           </div>
@@ -97,7 +99,7 @@ const DiaryDescription = (props) => {
       <div className="diary-desc-btns">
         <div className="diary-desc-btns-share">
           <Button
-            text={`${shared ? "공유 설정" : "공유 해제"}`}
+            text={`${shared ? "공유 해제" : "공유 설정"}`}
             color="btn-tertiary"
             size="btn-40"
             onClick={openSharePopup}
