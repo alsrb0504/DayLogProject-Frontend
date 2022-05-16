@@ -7,6 +7,10 @@ import scheduleReducer from "./reducers/schedule";
 import signupReducer from "./reducers/signup";
 import todoReducer from "./reducers/todo";
 
+// Redux-persist
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 const rootReducer = combineReducers({
   auth: authReducer,
   signup: signupReducer,
@@ -17,4 +21,11 @@ const rootReducer = combineReducers({
   board: boardReducer,
 });
 
-export default rootReducer;
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;

@@ -10,9 +10,13 @@ import { CookiesProvider } from "react-cookie";
 import ReduxThunk from "redux-thunk";
 import logger from "redux-logger";
 
-import rootReducer from "./store";
 import { createBrowserHistory } from "history";
 import axios from "axios";
+
+// redux-persist
+import persistedReducer from "./store";
+import { persistStore } from "redux-persist"; //
+import { PersistGate } from "redux-persist/integration/react"; //
 
 // axios 기본 설정
 axios.defaults.withCredentials = true;
@@ -22,7 +26,7 @@ const customHistory = createBrowserHistory({
 });
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeWithDevTools(
     applyMiddleware(
       ReduxThunk.withExtraArgument({ history: customHistory }),
@@ -31,15 +35,19 @@ const store = createStore(
   )
 );
 
+const persistor = persistStore(store);
+
 // React.strictMode 나중에 지울 것
 // alert 2번씩 뜸.
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
       <Provider store={store}>
-        <HistoryRouter history={customHistory}>
-          <App />
-        </HistoryRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <HistoryRouter history={customHistory}>
+            <App />
+          </HistoryRouter>
+        </PersistGate>
       </Provider>
     </CookiesProvider>
   </React.StrictMode>,
