@@ -25,21 +25,35 @@ const BoardOther = (props) => {
   };
 
   return (
-    <div className="board-other">
+    <div className="board-profile">
       <InputHeader text="공유 게시판" onClick={moveHome} />
       {/* 파란 헤더 부분 */}
-      <div className="board-header board-other-header">
+      <div className="board-header board-profile-header">
         <div className="board-header-bg"></div>
 
-        <div className="board-other-profile-info">
-          <div className="board-other-image-container">
+        <div className="board-profile-info">
+          <div className="board-profile-image-container">
             <img
               src={writer_profile ? writer_profile : default_profile}
               alt="프로필 이미지"
             />
           </div>
-          <span className="board-other-nickname">{writer_nickname}</span>
+          <span className="board-profile-nickname">{writer_nickname}</span>
         </div>
+
+        <nav className="board-nav board-profile-nav">
+          <ul>
+            <li>
+              <span>비밀</span>
+            </li>
+            <li>
+              <span className="board-nav-active">공유</span>
+            </li>
+            <li>
+              <span>스크랩</span>
+            </li>
+          </ul>
+        </nav>
       </div>
       {/* 목록 */}
       <BoardContainer diary_list={board_list} />
