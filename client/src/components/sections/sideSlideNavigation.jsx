@@ -36,9 +36,7 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   };
 
   const moveBoard = () => {
-    alert("구현 중");
-    return;
-    // navigate('/board');
+    navigate("/board");
   };
 
   const moveMypage = () => {

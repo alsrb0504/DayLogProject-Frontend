@@ -20,6 +20,11 @@ import Diary from "./pages/Diary/diary";
 import DiaryHome from "./pages/Diary/Details/diaryHome";
 import DiaryAdd from "./pages/Diary/Details/diaryAdd";
 import DiaryDescription from "./pages/Diary/Details/diaryDescription";
+import Board from "./pages/Board/board";
+import BoardHome from "./pages/Board/Details/boardHome";
+import BoardMyPage from "./pages/Board/Details/boardMyPage";
+import BoardOther from "./pages/Board/Details/boardOther";
+import BoardDescription from "./pages/Board/Details/boardDescription";
 
 function App() {
   const navigate = useNavigate();
@@ -98,6 +103,12 @@ function App() {
                 <Route index element={<DiaryHome />} />
                 <Route path="add" element={<DiaryAdd />} />
                 <Route path="description" element={<DiaryDescription />} />
+              </Route>
+              <Route path="/board" element={<Board />}>
+                <Route index element={<BoardHome />} />
+                <Route path="mypage" element={<BoardMyPage />} />
+                <Route path="other" element={<BoardOther />} />
+                <Route path="description" element={<BoardDescription />} />
               </Route>
             </Routes>
           </div>

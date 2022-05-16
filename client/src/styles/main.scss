@@ -36,6 +36,7 @@
 @import "./modules/emtionPopup";
 @import "./modules/diaryItem";
 @import "./modules/comfirmPopup";
+@import "./modules/addBoardItem";
 
 // sections.scss
 @import "./sections/signupContainer";
@@ -53,3 +54,8 @@
 @import "./pages/schedule";
 @import "./pages/diary/diaryAdd.scss";
 @import "./pages/diary/diaryDescription";
+@import "./pages/board/boardCommon";
+@import "./pages/board/boardHome";
+@import "./pages/board/boardMyPage";
+@import "./pages/board/boardOther";
+@import "./pages/board/boardDescription";

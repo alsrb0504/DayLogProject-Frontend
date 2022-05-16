@@ -10,7 +10,7 @@ import {
   DIARY_REMOVE_FAIL,
   DIARY_REMOVE_SUCCESS_FILL,
   DIARY_CHANGE_SHARE_FAIL,
-  DIARY_CHANGE_SHARE_SUCCESS_FILL
+  DIARY_CHANGE_SHARE_SUCCESS_FILL,
 } from "../actions/types";
 
 const initState = {
@@ -207,7 +207,7 @@ const diaryReducer = (state = initState, action) => {
       return { ...state };
     }
     default:
-      return { ...state };
+      return state;
   }
 };
 

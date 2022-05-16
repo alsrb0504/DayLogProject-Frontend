@@ -112,7 +112,7 @@ const todoReducer = (state = initState, action) => {
       return { ...state };
     }
     default:
-      return { ...state };
+      return state;
   }
 };
 

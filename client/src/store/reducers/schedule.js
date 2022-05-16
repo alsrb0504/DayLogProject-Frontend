@@ -63,7 +63,7 @@ const scheduleReducer = (state = initState, action) => {
       return { ...state, month_schedules: [] };
     }
     default:
-      return { ...state };
+      return state;
   }
 };
 
