@@ -60,7 +60,7 @@ const BoardDescription = (props) => {
 
       <main className="board-desc-main">
         {/* 이미지 유무에 따라 */}
-        {true && (
+        {image_url && (
           <div className="board-desc-main-image">
             <img src={image_url ? image_url : dummy_image} alt="일기 이미지" />
           </div>
