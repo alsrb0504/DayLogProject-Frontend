@@ -1,43 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import GlobalHeader from "../../../components/modules/globalHeader";
-import BoardContainer from "../../../components/sections/boardContainer";
 import {
   RequestHeartestBoardAsync,
   RequestLatestBoardAsync,
 } from "../../../store/actions/board";
+import GlobalHeader from "../../../components/modules/globalHeader";
+import BoardContainer from "../../../components/sections/boardContainer";
 
 const BoardHome = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // LATEST or HEARTEST
-  const [cate, setCate] = useState("LATEST");
-
-  const board_list = useSelector((state) => state.board.diary_list);
   const prev_cate = useSelector((state) => state.board.category);
+  const board_list = useSelector((state) => state.board.diary_list);
 
   // 페이지 로드 시, 한 번 최신순 조회 실행.
   useEffect(() => {
-    // if (board_list.length === 0) {
-    // dispatch(RequestLatestBoardAsync());
-    // }
-    // dispatch(RequestHeartestBoardAsync());
-    // setCate("HEARTEST");
-
-    console.log(prev_cate);
-
     switch (prev_cate) {
       case "HEARTEST": {
         dispatch(RequestHeartestBoardAsync());
-        setCate("HEARTEST");
         break;
       }
       case "LATEST":
       default: {
         dispatch(RequestLatestBoardAsync());
-        setCate("LATEST");
         break;
       }
     }
@@ -45,12 +33,10 @@ const BoardHome = (props) => {
 
   const setLatest = () => {
     dispatch(RequestLatestBoardAsync());
-    setCate("LATEST");
   };
 
   const setHeartest = () => {
     dispatch(RequestHeartestBoardAsync());
-    setCate("HEARTEST");
   };
 
   const moveMyPage = () => {
@@ -72,13 +58,13 @@ const BoardHome = (props) => {
           <div className="board-home-nav-left">
             {/* 일단 최신순 선택되었다고 가정 */}
             <span
-              className={cate === "LATEST" ? "board-nav-active" : ""}
+              className={prev_cate === "LATEST" ? "board-nav-active" : ""}
               onClick={setLatest}
             >
               최신순
             </span>
             <span
-              className={cate === "HEARTEST" ? "board-nav-active" : ""}
+              className={prev_cate === "HEARTEST" ? "board-nav-active" : ""}
               onClick={setHeartest}
             >
               좋아요 순
