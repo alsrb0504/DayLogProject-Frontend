@@ -207,7 +207,7 @@ const diaryReducer = (state = initState, action) => {
       return { ...state };
     }
     default:
-      return { ...state };
+      return state;
   }
 };
 

@@ -80,7 +80,9 @@ const boardReducer = (state = initState, action) => {
     case BOARD_SHARE_FAIL:
     case BOARD_SCRAP_FAIL:
     case BOARD_REQUEST_DIARY_FAIL:
-    case BOARD_REQUEST_PROFILE_FAIL:
+    case BOARD_REQUEST_PROFILE_FAIL: {
+      return { ...state };
+    }
     default: {
       return state;
     }

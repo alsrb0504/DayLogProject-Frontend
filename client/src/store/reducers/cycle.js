@@ -65,7 +65,7 @@ const cycleReducer = (state = initState, action) => {
       };
     }
     default: {
-      return { ...state };
+      return state;
     }
   }
 };
