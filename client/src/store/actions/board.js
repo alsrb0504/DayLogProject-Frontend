@@ -19,26 +19,26 @@ import {
 // 최신순 조회 요청 함수
 export const RequestLatestBoardAsync = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/board/latest");
-    const { latest_diary } = res.data;
+    // const res = await axios.get("/api/board/latest");
+    // const { latest_diary } = res.data;
 
     // 테스트용
-    // const latest_diary = [
-    //   {
-    //     diary_no: 13,
-    //     content: "일기 내용...",
-    //     image_url: "http://image.png",
-    //     like_count: 100,
-    //     date: "2022-05-01",
-    //   },
-    //   {
-    //     diary_no: 14,
-    //     content: "일기 내용 2...",
-    //     image_url: null,
-    //     like_count: 30,
-    //     date: "2022-05-03",
-    //   },
-    // ];
+    const latest_diary = [
+      {
+        diary_no: 13,
+        content: "일기 내용...",
+        image_url: "http://image.png",
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "일기 내용 2...",
+        image_url: null,
+        like_count: 30,
+        date: "2022-05-03",
+      },
+    ];
 
     dispatch({
       type: BOARD_LATEST_SUCCESS,
@@ -61,33 +61,33 @@ export const RequestLatestBoardAsync = () => async (dispatch) => {
 // 좋아요 순 조회 요청 함수
 export const RequestHeartestBoardAsync = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/board/heart");
-    const { heartest_diary } = res.data;
+    // const res = await axios.get("/api/board/heart");
+    // const { heartest_diary } = res.data;
 
     // 테스트용
-    // const heartest_diary = [
-    //   {
-    //     diary_no: 13,
-    //     content: "좋아요 일기 내용",
-    //     image_url: null,
-    //     like_count: 100,
-    //     date: "2022-05-01",
-    //   },
-    //   {
-    //     diary_no: 14,
-    //     content: "좋아요 일기 내용 2...",
-    //     image_url: null,
-    //     like_count: 290,
-    //     date: "2022-05-03",
-    //   },
-    //   {
-    //     diary_no: 15,
-    //     content: "좋아요 일기 내용 3...",
-    //     image_url: null,
-    //     like_count: 300,
-    //     date: "2022-05-03",
-    //   },
-    // ];
+    const heartest_diary = [
+      {
+        diary_no: 13,
+        content: "좋아요 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "좋아요 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "좋아요 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
 
     dispatch({
       type: BOARD_HEARTEST_SUCCESS,
@@ -110,33 +110,33 @@ export const RequestHeartestBoardAsync = () => async (dispatch) => {
 // 마이 비밀 일기 조회 요청 함수
 export const RequestSecretBoardAsync = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/board/mypage/secret");
-    const { secret_diary } = res.data;
+    // const res = await axios.get("/api/board/mypage/secret");
+    // const { secret_diary } = res.data;
 
     // 테스트용
-    // const secret_diary = [
-    //   {
-    //     diary_no: 13,
-    //     content: "비밀 일기 내용",
-    //     image_url: null,
-    //     like_count: 100,
-    //     date: "2022-05-01",
-    //   },
-    //   {
-    //     diary_no: 14,
-    //     content: "비밀 일기 내용 2...",
-    //     image_url: null,
-    //     like_count: 290,
-    //     date: "2022-05-03",
-    //   },
-    //   {
-    //     diary_no: 15,
-    //     content: "비밀 일기 내용 3...",
-    //     image_url: null,
-    //     like_count: 300,
-    //     date: "2022-05-03",
-    //   },
-    // ];
+    const secret_diary = [
+      {
+        diary_no: 13,
+        content: "비밀 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "비밀 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "비밀 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
 
     dispatch({
       type: BOARD_SECRET_SUCCESS,
@@ -159,33 +159,33 @@ export const RequestSecretBoardAsync = () => async (dispatch) => {
 // 마이 공유 일기 조회 요청 함수
 export const RequestShareBoardAsync = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/board/mypage/share");
-    const { share_diary } = res.data;
+    // const res = await axios.get("/api/board/mypage/share");
+    // const { share_diary } = res.data;
 
     // 테스트용
-    // const share_diary = [
-    //   {
-    //     diary_no: 13,
-    //     content: "공유 일기 내용",
-    //     image_url: null,
-    //     like_count: 100,
-    //     date: "2022-05-01",
-    //   },
-    //   {
-    //     diary_no: 14,
-    //     content: "공유 일기 내용 2...",
-    //     image_url: null,
-    //     like_count: 290,
-    //     date: "2022-05-03",
-    //   },
-    //   {
-    //     diary_no: 15,
-    //     content: "공유 일기 내용 3...",
-    //     image_url: null,
-    //     like_count: 300,
-    //     date: "2022-05-03",
-    //   },
-    // ];
+    const share_diary = [
+      {
+        diary_no: 13,
+        content: "공유 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "공유 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "공유 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
 
     dispatch({
       type: BOARD_SHARE_SUCCESS,
@@ -208,33 +208,33 @@ export const RequestShareBoardAsync = () => async (dispatch) => {
 // 마이 스크랩 일기 조회 요청 함수
 export const RequestScrapBoardAsync = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/board/mypage/scrap");
-    const { scrap_diary } = res.data;
+    // const res = await axios.get("/api/board/mypage/scrap");
+    // const { scrap_diary } = res.data;
 
     // 테스트용
-    // const scrap_diary = [
-    //   {
-    //     diary_no: 13,
-    //     content: "스크랩 일기 내용",
-    //     image_url: null,
-    //     like_count: 100,
-    //     date: "2022-05-01",
-    //   },
-    //   {
-    //     diary_no: 14,
-    //     content: "스크랩 일기 내용 2...",
-    //     image_url: null,
-    //     like_count: 290,
-    //     date: "2022-05-03",
-    //   },
-    //   {
-    //     diary_no: 15,
-    //     content: "스크랩 일기 내용 3...",
-    //     image_url: null,
-    //     like_count: 300,
-    //     date: "2022-05-03",
-    //   },
-    // ];
+    const scrap_diary = [
+      {
+        diary_no: 13,
+        content: "스크랩 일기 내용",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+      },
+      {
+        diary_no: 14,
+        content: "스크랩 일기 내용 2...",
+        image_url: null,
+        like_count: 290,
+        date: "2022-05-03",
+      },
+      {
+        diary_no: 15,
+        content: "스크랩 일기 내용 3...",
+        image_url: null,
+        like_count: 300,
+        date: "2022-05-03",
+      },
+    ];
 
     dispatch({
       type: BOARD_SCRAP_SUCCESS,
@@ -259,20 +259,20 @@ export const RequestBoardDiaryAsync =
   (selected_diary_no) =>
   async (dispatch, getState, { history }) => {
     try {
-      const res = await axios.get(`/api/board/diary?no=${selected_diary_no}`);
-      const { selected } = res.data;
+      // const res = await axios.get(`/api/board/diary?no=${selected_diary_no}`);
+      // const { selected } = res.data;
 
       // 테스트용
-      // const selected = {
-      //   diary_no: 13,
-      //   content: "선택된 일기 내용...",
-      //   image_url: null,
-      //   like_count: 100,
-      //   date: "2022-05-01",
-      //   writer_id: "user01",
-      //   writer_nickname: "닉네임01",
-      //   writer_profile_url: null,
-      // };
+      const selected = {
+        diary_no: 13,
+        content: "선택된 일기 내용...",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+        writer_id: "user01",
+        writer_nickname: "닉네임01",
+        writer_profile_url: null,
+      };
 
       dispatch({
         type: BOARD_REQUEST_DIARY_SUCCESS,
@@ -301,28 +301,28 @@ export const RequestBoardProfileAsync =
   async (dispatch, getState, { history }) => {
     try {
       console.log(user_id);
-      const res = await axios.get(`/api/board/profile?name=${user_id}`);
-      const { writer_nickname, writer_profile, share_diary } = res.data;
+      // const res = await axios.get(`/api/board/profile?name=${user_id}`);
+      // const { writer_nickname, writer_profile, share_diary } = res.data;
 
       // 테스트용
-      // const writer_nickname = "닉네임01";
-      // const writer_profile = null;
-      // const share_diary = [
-      //   {
-      //     diary_no: 13,
-      //     content: "닉네임01이 공유한 일기 내용...",
-      //     image_url: null,
-      //     like_count: 100,
-      //     date: "2022-05-01",
-      //   },
-      //   {
-      //     diary_no: 14,
-      //     content: "닉네임01이 공유한 일기 내용 2...",
-      //     image_url: null,
-      //     like_count: 30,
-      //     date: "2022-05-03",
-      //   },
-      // ];
+      const writer_nickname = "닉네임01";
+      const writer_profile = null;
+      const share_diary = [
+        {
+          diary_no: 13,
+          content: "닉네임01이 공유한 일기 내용...",
+          image_url: null,
+          like_count: 100,
+          date: "2022-05-01",
+        },
+        {
+          diary_no: 14,
+          content: "닉네임01이 공유한 일기 내용 2...",
+          image_url: null,
+          like_count: 30,
+          date: "2022-05-03",
+        },
+      ];
 
       dispatch({
         type: BOARD_REQUEST_PROFILE_SUCCESS,
