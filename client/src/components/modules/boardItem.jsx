@@ -26,7 +26,7 @@ const BoardItem = ({ diary }) => {
         */}
         <img
           className="board-item-image board-item-image-logo"
-          src={image_url ? image_url : logo_image}
+          src={image_url ? `http://localhost:3001/${image_url}` : logo_image}
           alt="일기 사진"
         />
       </div>
