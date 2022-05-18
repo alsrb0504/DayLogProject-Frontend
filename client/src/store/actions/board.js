@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  BOARD_CHANGE_HEART_FAIL,
+  BOARD_CHANGE_HEART_SUCCESS,
   BOARD_HEARTEST_FAIL,
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
@@ -347,6 +349,46 @@ export const RequestBoardProfileAsync =
 
       dispatch({
         type: BOARD_REQUEST_PROFILE_FAIL,
+      });
+    }
+  };
+
+// 타인의 일기 조회 요청 함수
+export const ChangeHeartStateAsync =
+  (selected_diary_no) =>
+  async (dispatch, getState, { history }) => {
+    try {
+      // const res = await axios.get(`/api/board/like?no=${selected_diary_no}`);
+      // const { selected } = res.data;
+
+      // 테스트용
+      const selected = {
+        diary_no: 13,
+        content: "선택된 일기 내용...",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+        writer_id: "user01",
+        writer_nickname: "닉네임01",
+        writer_profile_url: null,
+        is_liked: false,
+        is_shared: false,
+      };
+
+      dispatch({
+        type: BOARD_CHANGE_HEART_SUCCESS,
+        payload: {
+          selected,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+
+      alert("좋아요 상태 변경 요청 실패");
+      console.log("좋아요 상태 변경 요청 실패");
+
+      dispatch({
+        type: BOARD_CHANGE_HEART_FAIL,
       });
     }
   };

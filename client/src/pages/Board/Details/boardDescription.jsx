@@ -8,7 +8,10 @@ import heart_empty_icon from "../../../assets/icons/heart-empty-pink-icon.svg";
 import star_empty_icon from "../../../assets/icons/star-empty-yellow-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { RequestBoardProfileAsync } from "../../../store/actions/board";
+import {
+  ChangeHeartStateAsync,
+  RequestBoardProfileAsync,
+} from "../../../store/actions/board";
 import { SetAuthHeader } from "../../../services/auth";
 
 const BoardDescription = (props) => {
@@ -38,6 +41,10 @@ const BoardDescription = (props) => {
       navigate("/board");
     }
   }, [navigate, selected_diary]);
+
+  const changeHeart = () => {
+    dispatch(ChangeHeartStateAsync(diary_no));
+  };
 
   const moveBack = () => {
     navigate("/board");
@@ -84,7 +91,10 @@ const BoardDescription = (props) => {
       </main>
 
       <footer className="board-desc-footer">
-        <button className="board-desc-footer-btn btn-40 btn-outlined">
+        <button
+          className="board-desc-footer-btn btn-40 btn-outlined"
+          onClick={changeHeart}
+        >
           <img
             className="btn-heart"
             src={is_liked ? heart_icon : heart_empty_icon}
