@@ -20,7 +20,7 @@ const DiaryDescription = (props) => {
 
   const diary = useSelector((state) => state.diary.selected_diary);
   console.log(diary);
-  const { image, shared, content, date, emotion, diary_no } = diary;
+  const { image_url, shared, content, date, emotion, diary_no } = diary;
 
   const moveBack = () => {
     navigate("/diary");
@@ -80,9 +80,9 @@ const DiaryDescription = (props) => {
       <InputHeader text="일기 홈으로" onClick={moveBack} />
 
       <main className="diary-desc-main">
-        {image !== null && (
+        {image_url !== null && (
           <div className="diary-desc-main-image">
-            <img src={`http://localhost:3000/${image}`} alt="일기 사진" />
+            <img src={image_url} alt="일기 사진" />
           </div>
         )}
 
