@@ -272,6 +272,8 @@ export const RequestBoardDiaryAsync =
         writer_id: "user01",
         writer_nickname: "닉네임01",
         writer_profile_url: null,
+        is_liked: true,
+        is_shared: false,
       };
 
       dispatch({
