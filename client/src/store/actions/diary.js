@@ -188,16 +188,16 @@ export const SelectDiaryAsync =
   async (dispatch, getState, { history }) => {
     try {
       const res = await axios.get(`/api/diary?no=${diary_idx}`);
-      const { member_id, date, content, emotion, shared, image, diary_no } =
+      const { member_id, date, content, emotion, shared, image_url, diary_no } =
         res.data;
-
+        console.log(image_url);
       const diary = {
         member_id,
         date,
         content,
         emotion,
         shared,
-        image,
+        image_url,
         diary_no,
       };
 
