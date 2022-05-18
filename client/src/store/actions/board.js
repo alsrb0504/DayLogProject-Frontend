@@ -2,6 +2,8 @@ import axios from "axios";
 import {
   BOARD_CHANGE_HEART_FAIL,
   BOARD_CHANGE_HEART_SUCCESS,
+  BOARD_CHANGE_SCRAP_FAIL,
+  BOARD_CHANGE_SCRAP_SUCCESS,
   BOARD_HEARTEST_FAIL,
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
@@ -353,10 +355,9 @@ export const RequestBoardProfileAsync =
     }
   };
 
-// 타인의 일기 조회 요청 함수
+// 게시글 좋아요 상태 변경 요청 함수
 export const ChangeHeartStateAsync =
-  (selected_diary_no) =>
-  async (dispatch, getState, { history }) => {
+  (selected_diary_no) => async (dispatch) => {
     try {
       // const res = await axios.get(`/api/board/like?no=${selected_diary_no}`);
       // const { selected } = res.data;
@@ -389,6 +390,45 @@ export const ChangeHeartStateAsync =
 
       dispatch({
         type: BOARD_CHANGE_HEART_FAIL,
+      });
+    }
+  };
+
+// 게시글 스크랩 상태 변경 요청 함수
+export const ChangeScrapStateAsync =
+  (selected_diary_no) => async (dispatch) => {
+    try {
+      // const res = await axios.get(`/api/board/scrap?no=${selected_diary_no}`);
+      // const { selected } = res.data;
+
+      // 테스트용
+      const selected = {
+        diary_no: 13,
+        content: "선택된 일기 내용...",
+        image_url: null,
+        like_count: 100,
+        date: "2022-05-01",
+        writer_id: "user01",
+        writer_nickname: "닉네임01",
+        writer_profile_url: null,
+        is_liked: false,
+        is_shared: true,
+      };
+
+      dispatch({
+        type: BOARD_CHANGE_SCRAP_SUCCESS,
+        payload: {
+          selected,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+
+      alert("스크랩 상태 변경 요청 실패");
+      console.log("스크랩 상태 변경 요청 실패");
+
+      dispatch({
+        type: BOARD_CHANGE_SCRAP_FAIL,
       });
     }
   };

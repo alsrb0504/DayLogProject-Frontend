@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   ChangeHeartStateAsync,
+  ChangeScrapStateAsync,
   RequestBoardProfileAsync,
 } from "../../../store/actions/board";
 import { SetAuthHeader } from "../../../services/auth";
@@ -44,6 +45,10 @@ const BoardDescription = (props) => {
 
   const changeHeart = () => {
     dispatch(ChangeHeartStateAsync(diary_no));
+  };
+
+  const changeScrap = () => {
+    dispatch(ChangeScrapStateAsync(diary_no));
   };
 
   const moveBack = () => {
@@ -103,7 +108,10 @@ const BoardDescription = (props) => {
           <span>{like_count}</span>
         </button>
 
-        <button className="board-desc-footer-btn btn-40 btn-primary">
+        <button
+          className="board-desc-footer-btn btn-40 btn-primary"
+          onClick={changeScrap}
+        >
           <img
             className="btn-star"
             src={is_shared ? star_icon : star_empty_icon}
