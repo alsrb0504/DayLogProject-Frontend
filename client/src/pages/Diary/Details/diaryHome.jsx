@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CurrentDiarySection from "../../../components/sections/currentDiarySection";
 import { useDispatch } from "react-redux";
 import { RequestDiaryAsync } from "../../../store/actions/diary";
+import { SetAuthHeader } from "../../../services/auth";
 
 const DiaryHome = (props) => {
   const navigate = useNavigate();
@@ -24,9 +25,11 @@ const DiaryHome = (props) => {
 
   // 처음 한 번만 일기 정보를 요청하도록 구현
   useEffect(() => {
+    SetAuthHeader();
+
     const { yy, mm } = toDayYYMM();
     dispatch(RequestDiaryAsync(yy, Number(mm)));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

@@ -4,9 +4,16 @@ import default_profile from "../../../assets/img/default-profile.svg";
 import dummy_image from "../../../assets/img/dummy-image.png";
 import heart_icon from "../../../assets/icons/heart-pink-icon.svg";
 import star_icon from "../../../assets/icons/star-yellow-icon.svg";
+import heart_empty_icon from "../../../assets/icons/heart-empty-pink-icon.svg";
+import star_empty_icon from "../../../assets/icons/star-empty-yellow-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { RequestBoardProfileAsync } from "../../../store/actions/board";
+import {
+  ChangeHeartStateAsync,
+  ChangeScrapStateAsync,
+  RequestBoardProfileAsync,
+} from "../../../store/actions/board";
+import { SetAuthHeader } from "../../../services/auth";
 
 const BoardDescription = (props) => {
   const navigate = useNavigate();
@@ -22,15 +29,27 @@ const BoardDescription = (props) => {
     writer_id,
     writer_nickname,
     writer_profile_url,
+    is_liked,
+    is_shared,
   } = selected_diary;
 
   // 새로고침 시, 리덕스의 데이터가 사라지기 때문에
   // 게시판 홈으로 이동
   useEffect(() => {
+    SetAuthHeader();
+
     if (selected_diary.diary_no === undefined) {
       navigate("/board");
     }
   }, [navigate, selected_diary]);
+
+  const changeHeart = () => {
+    dispatch(ChangeHeartStateAsync(diary_no));
+  };
+
+  const changeScrap = () => {
+    dispatch(ChangeScrapStateAsync(diary_no));
+  };
 
   const moveBack = () => {
     navigate("/board");
@@ -77,13 +96,27 @@ const BoardDescription = (props) => {
       </main>
 
       <footer className="board-desc-footer">
-        <button className="board-desc-footer-btn btn-40 btn-outlined">
-          <img className="btn-heart" src={heart_icon} alt="하트 아이콘" />
+        <button
+          className="board-desc-footer-btn btn-40 btn-outlined"
+          onClick={changeHeart}
+        >
+          <img
+            className="btn-heart"
+            src={is_liked ? heart_icon : heart_empty_icon}
+            alt="하트 아이콘"
+          />
           <span>{like_count}</span>
         </button>
 
-        <button className="board-desc-footer-btn btn-40 btn-primary">
-          <img className="btn-star" src={star_icon} alt="별 아이콘" />
+        <button
+          className="board-desc-footer-btn btn-40 btn-primary"
+          onClick={changeScrap}
+        >
+          <img
+            className="btn-star"
+            src={is_shared ? star_icon : star_empty_icon}
+            alt="별 아이콘"
+          />
           <span>스크랩</span>
         </button>
       </footer>

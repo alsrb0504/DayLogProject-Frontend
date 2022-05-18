@@ -1,4 +1,8 @@
 import {
+  BOARD_CHANGE_HEART_FAIL,
+  BOARD_CHANGE_HEART_SUCCESS,
+  BOARD_CHANGE_SCRAP_FAIL,
+  BOARD_CHANGE_SCRAP_SUCCESS,
   BOARD_HEARTEST_FAIL,
   BOARD_HEARTEST_SUCCESS,
   BOARD_LATEST_FAIL,
@@ -64,9 +68,6 @@ const boardReducer = (state = initState, action) => {
         diary_list: action.payload.scrap_diary,
       };
     }
-    case BOARD_REQUEST_DIARY_SUCCESS: {
-      return { ...state, selected_diary: action.payload.selected };
-    }
     case BOARD_REQUEST_PROFILE_SUCCESS: {
       return {
         ...state,
@@ -74,13 +75,20 @@ const boardReducer = (state = initState, action) => {
         selected_user: action.payload.selected_user_info,
       };
     }
+    case BOARD_REQUEST_DIARY_SUCCESS:
+    case BOARD_CHANGE_HEART_SUCCESS:
+    case BOARD_CHANGE_SCRAP_SUCCESS: {
+      return { ...state, selected_diary: action.payload.selected };
+    }
     case BOARD_LATEST_FAIL:
     case BOARD_HEARTEST_FAIL:
     case BOARD_SECRET_FAIL:
     case BOARD_SHARE_FAIL:
     case BOARD_SCRAP_FAIL:
     case BOARD_REQUEST_DIARY_FAIL:
-    case BOARD_REQUEST_PROFILE_FAIL: {
+    case BOARD_REQUEST_PROFILE_FAIL:
+    case BOARD_CHANGE_HEART_FAIL:
+    case BOARD_CHANGE_SCRAP_FAIL: {
       return { ...state };
     }
     default: {

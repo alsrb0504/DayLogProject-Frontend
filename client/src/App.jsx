@@ -32,7 +32,7 @@ function App() {
   // req.header에 access_token 삽입.
   useEffect(() => {
     SetAuthHeader();
-  });
+  }, []);
 
   /*
   useEffect(() => {
