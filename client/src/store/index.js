@@ -10,6 +10,7 @@ import todoReducer from "./reducers/todo";
 // Redux-persist
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import badgeReducer from "./reducers/badge";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   schedule: scheduleReducer,
   diary: diaryReducer,
   board: boardReducer,
+  badge: badgeReducer,
 });
 
 const persistConfig = {
