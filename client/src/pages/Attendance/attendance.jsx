@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestQAAsync } from "../../store/actions/qa";
 import GlobalHeader from "../../components/modules/globalHeader";
+import ChoiceItem from "../../components/modules/choiceItem";
 
 const Attendance = (props) => {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ const Attendance = (props) => {
 
         <ul>
           {choices.map((choice) => (
-            <li key={choice.index}>
-              <p>{choice.text}</p>
-            </li>
+            <ChoiceItem key={choice.index} choice={choice} />
           ))}
         </ul>
       </main>
