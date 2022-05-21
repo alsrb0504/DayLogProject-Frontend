@@ -4,6 +4,7 @@ import {
   BADGE_CHALLENGE_SUCCESS,
   BADGE_REQUEST_FAIL,
   BADGE_REQUEST_SUCCESS,
+  BADGE_SELECT,
 } from "./types";
 
 function FindChallengeBadge(badgeArr) {
@@ -134,4 +135,20 @@ export const ChangeBadgeStateAsync = (badge_no) => async (dispatch) => {
       type: BADGE_CHALLENGE_FAIL,
     });
   }
+};
+
+// 팝업으로 볼 뱃지 선택 함수
+export const selectBadge = (badge_no) => (dispatch, getState) => {
+  const badgeArr = getState().badge.badges;
+
+  console.log(badgeArr);
+
+  const select_badge = badgeArr.find((badge) => badge.badge_no === badge_no);
+
+  dispatch({
+    type: BADGE_SELECT,
+    payload: {
+      select_badge,
+    },
+  });
 };

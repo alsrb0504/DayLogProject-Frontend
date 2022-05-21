@@ -1,10 +1,13 @@
+import { useDispatch } from "react-redux";
 import dummy_badge from "../../assets/img/dummy-badge.svg";
+import { selectBadge } from "../../store/actions/badge";
 
-const BadgeItem = ({ badge, openPopup, selectBadge }) => {
+const BadgeItem = ({ badge, openPopup }) => {
+  const dispatch = useDispatch();
   const { badge_no, badge_name, badge_url, is_complete } = badge;
 
   const handleClickBadge = () => {
-    selectBadge(badge);
+    dispatch(selectBadge(badge_no));
     openPopup();
   };
 
