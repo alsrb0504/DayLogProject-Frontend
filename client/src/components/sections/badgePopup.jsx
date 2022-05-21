@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import close_btn_icon from "../../assets/icons/close-btn.svg";
 import dummy_badge from "../../assets/img/dummy-badge.svg";
@@ -20,10 +19,6 @@ const BadgePopup = ({ closePopup }) => {
     goal_count,
     is_complete,
   } = badge;
-
-  useEffect(() => {
-    console.log(badge);
-  }, [badge]);
 
   const ChallengeBadge = () => {
     dispatch(ChangeBadgeStateAsync(badge_no));

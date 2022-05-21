@@ -3,17 +3,35 @@ import EmptyText from "../modules/emptyText";
 import Todolist from "../modules/todolist";
 
 import dummy_badge from "../../assets/img/dummy-badge.svg";
+import { useState } from "react";
+import OverLay from "../modules/overLay";
+import BadgePopup from "./badgePopup";
 
 const TodoSection = ({ todos, is_home }) => {
+  const [badgeToggle, setBadgeToggle] = useState(false);
+
   const badge = useSelector((state) => state.badge.challenge_badge);
 
-  console.log(badge);
+  const openBadgePopup = () => {
+    setBadgeToggle(true);
+  };
+
+  const closeBadgePopup = () => {
+    setBadgeToggle(false);
+  };
 
   return (
     <section className="todo-section">
+      {badgeToggle && (
+        <>
+          <OverLay onClick={closeBadgePopup} />
+          <BadgePopup closePopup={closeBadgePopup} />
+        </>
+      )}
+
       {/* 도전 중인 뱃지 있다면 표시 */}
       {badge.badge_name && is_home && (
-        <div className="home-badge-container">
+        <div className="home-badge-container" onClick={openBadgePopup}>
           <div className="badge-image-container">
             {/* 뱃지 테스트 완료 후, 삭제 */}
             <img
@@ -29,6 +47,7 @@ const TodoSection = ({ todos, is_home }) => {
           </div>
         </div>
       )}
+
       {/* 투두리스트 섹션 */}
       {todos && <Todolist todos={todos} />}
       {!todos && (
