@@ -2,10 +2,13 @@ import React from "react";
 import GlobalHeader from "../../components/modules/globalHeader";
 import trophy_image from "../../assets/img/trophy.svg";
 import BadgeItem from "../../components/modules/badgeItem";
+import BadgePopup from "../../components/sections/badgePopup";
 
 const BadgeHome = (props) => {
   return (
     <div className="badge">
+      <BadgePopup />
+
       <GlobalHeader />
       <main className="badge-main">
         <div className="badge-trophy">

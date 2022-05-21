@@ -1,5 +1,3 @@
-import React from "react";
-
 import dummy_badge from "../../assets/img/dummy-badge.svg";
 
 const BadgeItem = ({ is_complete }) => {
