@@ -11,13 +11,6 @@ const initState = {
   month_emoji: [],
   selected_emoji_url: "",
   description: "",
-
-  // month_emoji: [
-  //   {
-  //     date: "2022-05-21",
-  //     emoji_url: null,
-  //   },
-  // ],
 };
 
 const qaReducer = (state = initState, action) => {
