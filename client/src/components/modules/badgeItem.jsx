@@ -2,13 +2,19 @@ import React from "react";
 
 import dummy_badge from "../../assets/img/dummy-badge.svg";
 
-const BadgeItem = (props) => {
+const BadgeItem = ({ is_complete }) => {
   return (
-    <li>
-      <div>
-        <img src={dummy_badge} alt="뱃지 이미지" />
+    <li className="badge-item">
+      <div className="badge-item-image-box">
+        {/* <img src={dummy_badge} alt="뱃지 이미지" /> */}
+
+        <img
+          className={is_complete ? "" : "is_complete"}
+          src={dummy_badge}
+          alt="뱃지 이미지"
+        />
       </div>
-      <q>뱃지 이름</q>
+      <q className="badge-item-title">뱃지 이름</q>
     </li>
   );
 };

@@ -5,21 +5,27 @@ import BadgeItem from "../../components/modules/badgeItem";
 
 const BadgeHome = (props) => {
   return (
-    <div className="badgeHome">
+    <div className="badge">
       <GlobalHeader />
-      <main>
-        <div>
+      <main className="badge-main">
+        <div className="badge-trophy">
           <img src={trophy_image} alt="트로피 이미지" />
         </div>
-        <ul>
+        <ul className="badge-container">
           <BadgeItem />
           <BadgeItem />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
           <BadgeItem />
           <BadgeItem />
-          <BadgeItem />
-          <BadgeItem />
-          <BadgeItem />
-          <BadgeItem />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
+          <BadgeItem is_complete={true} />
           <BadgeItem />
           <BadgeItem />
           <BadgeItem />
