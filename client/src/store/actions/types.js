@@ -95,3 +95,5 @@ export const BADGE_SELECT = "BADGE_SELECT";
 // QA 관련
 export const QA_REQUEST_SUCCESS = "QA_REQUEST_SUCCESS";
 export const QA_REQUEST_FAIL = "QA_REQUEST_FAIL";
+export const QA_RESULT_SUCCESS = "QA_RESULT_SUCCESS";
+export const QA_RESULT_FAIL = "QA_RESULT_FAIL";

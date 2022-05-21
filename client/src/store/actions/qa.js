@@ -1,5 +1,11 @@
 import axios from "axios";
-import { QA_REQUEST_FAIL, QA_REQUEST_SUCCESS } from "./types";
+import { toDayInfo } from "../../services/calcDate";
+import {
+  QA_REQUEST_FAIL,
+  QA_REQUEST_SUCCESS,
+  QA_RESULT_FAIL,
+  QA_RESULT_SUCCESS,
+} from "./types";
 
 // QA 질문지와 선택지 요청 함수
 export const RequestQAAsync = () => async (dispatch, getState) => {
@@ -38,6 +44,54 @@ export const RequestQAAsync = () => async (dispatch, getState) => {
 
     dispatch({
       type: QA_REQUEST_FAIL,
+    });
+  }
+};
+
+// QA 결과 전송 함수
+export const ResultQAAsync = (index) => async (dispatch, getState) => {
+  const date = toDayInfo();
+
+  console.log(date);
+
+  try {
+    // 결과 날짜를 꼭 보내야 할까?
+    // const res = await axios.post(`/api/QA?date=${date}&index=${index}`);
+    // const { selected_emoji_url, description, month_emoji } = res.data;
+
+    const selected_emoji_url = "../../assets/img/dummy-emoji.svg";
+    const description = "선택한 이미지 상세정보?";
+    const month_emoji = [
+      {
+        date: "2022-05-13",
+        emoji_url: "../../assets/img/dummy-emoji.svg",
+      },
+      {
+        date: "2022-05-13",
+        emoji_url: "../../assets/img/dummy-emoji.svg",
+      },
+      {
+        date: "2022-05-13",
+        emoji_url: "../../assets/img/dummy-emoji.svg",
+      },
+    ];
+
+    dispatch({
+      type: QA_RESULT_SUCCESS,
+      payload: {
+        selected_emoji_url,
+        description,
+        month_emoji,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+
+    alert("QA 결과 전송 실패");
+    console.log("QA 결과 전송 실패");
+
+    dispatch({
+      type: QA_RESULT_FAIL,
     });
   }
 };
