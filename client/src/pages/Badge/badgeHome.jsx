@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GlobalHeader from "../../components/modules/globalHeader";
 import trophy_image from "../../assets/img/trophy.svg";
 import BadgeItem from "../../components/modules/badgeItem";
 import BadgePopup from "../../components/sections/badgePopup";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestBadgeListAsync } from "../../store/actions/badge";
+import OverLay from "../../components/modules/overLay";
 
 const BadgeHome = (props) => {
   const dispatch = useDispatch();
+
+  const [badgeToggle, setBadgeToggle] = useState(true);
 
   const badge_list = useSelector((state) => state.badge.badges);
 
@@ -15,9 +18,22 @@ const BadgeHome = (props) => {
     dispatch(RequestBadgeListAsync());
   }, [dispatch]);
 
+  const openPopup = () => {
+    setBadgeToggle(true);
+  };
+
+  const closePopup = () => {
+    setBadgeToggle(false);
+  };
+
   return (
     <div className="badge">
-      {/* <BadgePopup /> */}
+      {badgeToggle && (
+        <>
+          <OverLay onClick={closePopup} />
+          <BadgePopup closePopup={closePopup} />
+        </>
+      )}
 
       <GlobalHeader />
       <main className="badge-main">
@@ -26,7 +42,11 @@ const BadgeHome = (props) => {
         </div>
         <ul className="badge-container">
           {badge_list.map((badge) => (
-            <BadgeItem key={badge.badge_no} badge={badge} />
+            <BadgeItem
+              key={badge.badge_no}
+              badge={badge}
+              openPopup={openPopup}
+            />
           ))}
         </ul>
       </main>

@@ -2,11 +2,7 @@ import close_btn_icon from "../../assets/icons/close-btn.svg";
 import dummy_badge from "../../assets/img/dummy-badge.svg";
 import Button from "../modules/button";
 
-const BadgePopup = (props) => {
-  const closePopup = () => {
-    console.log("close popup");
-  };
-
+const BadgePopup = ({ closePopup }) => {
   return (
     <div className="badge-popup">
       <button className="popup-close-btn" onClick={closePopup}>
