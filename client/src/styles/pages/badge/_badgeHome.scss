@@ -33,7 +33,7 @@
         width: 100%;
       }
 
-      .is_complete {
+      .not-achieve {
         opacity: 0.1;
       }
     }
@@ -69,6 +69,10 @@
           height: 100%;
           border-radius: 50%;
           overflow: hidden;
+        }
+
+        .not-achieve {
+          opacity: 0.1;
         }
       }
     }

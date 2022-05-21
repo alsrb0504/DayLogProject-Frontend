@@ -10,7 +10,8 @@ import OverLay from "../../components/modules/overLay";
 const BadgeHome = (props) => {
   const dispatch = useDispatch();
 
-  const [badgeToggle, setBadgeToggle] = useState(true);
+  const [badgeToggle, setBadgeToggle] = useState(false);
+  const [selectedBadge, setSelectedBadge] = useState(null);
 
   const badge_list = useSelector((state) => state.badge.badges);
 
@@ -31,7 +32,7 @@ const BadgeHome = (props) => {
       {badgeToggle && (
         <>
           <OverLay onClick={closePopup} />
-          <BadgePopup closePopup={closePopup} />
+          <BadgePopup badge={selectedBadge} closePopup={closePopup} />
         </>
       )}
 
@@ -46,6 +47,7 @@ const BadgeHome = (props) => {
               key={badge.badge_no}
               badge={badge}
               openPopup={openPopup}
+              selectBadge={setSelectedBadge}
             />
           ))}
         </ul>

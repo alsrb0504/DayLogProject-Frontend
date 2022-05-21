@@ -1,13 +1,18 @@
 import dummy_badge from "../../assets/img/dummy-badge.svg";
 
-const BadgeItem = ({ badge, openPopup }) => {
+const BadgeItem = ({ badge, openPopup, selectBadge }) => {
   const { badge_no, badge_name, badge_url, is_complete } = badge;
 
+  const handleClickBadge = () => {
+    selectBadge(badge);
+    openPopup();
+  };
+
   return (
-    <li className="badge-item" onClick={openPopup}>
+    <li className="badge-item" onClick={handleClickBadge}>
       <div className="badge-item-image-box">
         <img
-          className={is_complete ? "" : "is_complete"}
+          className={is_complete ? "" : "not-achieve"}
           // 추후 이미지 연결 후 수정
           src={badge_url ? badge_url : dummy_badge}
           alt="뱃지 이미지"
