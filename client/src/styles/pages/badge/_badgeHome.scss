@@ -24,19 +24,16 @@
 
   &-item {
     @include column-flexbox;
+    @include ScaleEffect;
+    cursor: pointer;
 
     &-image-box {
       margin-bottom: 4px;
-      // width: 96px;
-      // height: 96px;
-
       img {
         width: 100%;
       }
 
       .is_complete {
-        // background-color: pink;
-
         opacity: 0.1;
       }
     }
