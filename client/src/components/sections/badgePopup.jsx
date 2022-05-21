@@ -8,16 +8,16 @@ const BadgePopup = (props) => {
   };
 
   return (
-    <div>
-      <button className="todo-popup-close-btn" onClick={closePopup}>
+    <div className="badge-popup">
+      <button className="popup-close-btn" onClick={closePopup}>
         <img src={close_btn_icon} alt="" />
       </button>
-      <h2 className="todo-popup-title">뱃지 이름</h2>
-      <section>
-        <div>
+      <h2 className="badge-popup-title">뱃지 이름</h2>
+      <section className="badge-popup-main">
+        <div className="badge-popup-image-container">
           <img src={dummy_badge} alt="더미 뱃지" />
         </div>
-        <p>
+        <p className="badge-popup-text">
           뱃지 달성 조건
           <br />
           일기를 10번 썼어요!
@@ -27,6 +27,7 @@ const BadgePopup = (props) => {
           text="닫기"
           color="btn-secondary"
           size="btn-40"
+          className="badge-popup-bottom-btn"
           onClick={closePopup}
         />
       </section>
