@@ -46,6 +46,7 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
       <TodoSection
         // select_todo가 없다면 undefined 전달
         todos={todos}
+        is_home={false}
       />
     </div>
   );
