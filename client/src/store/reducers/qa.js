@@ -2,7 +2,7 @@ import { QA_REQUEST_FAIL, QA_REQUEST_SUCCESS } from "../actions/types";
 
 const initState = {
   question: "",
-  choice: [],
+  choices: [],
   month_emoji: [],
 
   // month_emoji: [
@@ -20,7 +20,7 @@ const qaReducer = (state = initState, action) => {
       return {
         ...state,
         question,
-        choice,
+        choices: choice,
       };
     }
 

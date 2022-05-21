@@ -2,7 +2,7 @@ import axios from "axios";
 import { QA_REQUEST_FAIL, QA_REQUEST_SUCCESS } from "./types";
 
 // QA 질문지와 선택지 요청 함수
-export const RequestQA = () => async (dispatch, getState) => {
+export const RequestQAAsync = () => async (dispatch, getState) => {
   try {
     // const res = await axios.get("/api/QA");
     // const { question, choice } = res.data;
