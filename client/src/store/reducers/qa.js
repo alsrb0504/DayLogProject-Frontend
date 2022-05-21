@@ -1,9 +1,16 @@
-import { QA_REQUEST_FAIL, QA_REQUEST_SUCCESS } from "../actions/types";
+import {
+  QA_REQUEST_FAIL,
+  QA_REQUEST_SUCCESS,
+  QA_RESULT_FAIL,
+  QA_RESULT_SUCCESS,
+} from "../actions/types";
 
 const initState = {
   question: "",
   choices: [],
   month_emoji: [],
+  selected_emoji_url: "",
+  description: "",
 
   // month_emoji: [
   //   {
@@ -24,7 +31,18 @@ const qaReducer = (state = initState, action) => {
       };
     }
 
-    case QA_REQUEST_FAIL: {
+    case QA_RESULT_SUCCESS: {
+      const { selected_emoji_url, description, month_emoji } = action.payload;
+      return {
+        ...state,
+        selected_emoji_url,
+        description,
+        month_emoji,
+      };
+    }
+
+    case QA_REQUEST_FAIL:
+    case QA_RESULT_FAIL: {
       return { ...state };
     }
 
