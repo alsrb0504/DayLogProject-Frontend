@@ -3,8 +3,6 @@ import dummy_badge from "../../assets/img/dummy-badge.svg";
 import Button from "../modules/button";
 
 const BadgePopup = ({ badge, closePopup }) => {
-  console.log(badge);
-
   const {
     badge_no,
     badge_name,
@@ -31,15 +29,29 @@ const BadgePopup = ({ badge, closePopup }) => {
             alt="뱃지 이미지"
           />
         </div>
-        <p className="badge-popup-text">
-          뱃지 달성 조건
-          <br />
-          {description}
-        </p>
+        {is_complete && (
+          <p className="badge-popup-text">
+            <span>뱃지 달성 조건</span>
+            <br />
+            {description}
+          </p>
+        )}
+        {!is_complete && (
+          <>
+            <p className="badge-popup-text">
+              <span>뱃지 달성 조건</span>
+              <br />
+              {description}
+            </p>
+            <p className="badge-popup-text">
+              {goal_count} / {final_count}
+            </p>
+          </>
+        )}
 
         <Button
-          text="닫기"
-          color="btn-secondary"
+          text={is_complete ? "닫기" : "도전하기"}
+          color={is_complete ? "btn-secondary" : "btn-primary"}
           size="btn-40"
           className="badge-popup-bottom-btn"
           onClick={closePopup}
