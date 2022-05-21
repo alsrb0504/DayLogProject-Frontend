@@ -50,13 +50,11 @@ export const RequestQAAsync = () => async (dispatch, getState) => {
 
 // QA 결과 전송 함수
 export const ResultQAAsync = (index) => async (dispatch, getState) => {
-  const date = toDayInfo();
-
-  console.log(date);
+  const dateInfo = toDayInfo();
 
   try {
     // 결과 날짜를 꼭 보내야 할까?
-    // const res = await axios.post(`/api/QA?date=${date}&index=${index}`);
+    // const res = await axios.post(`/api/QA?date=${dateInfo.date}&index=${index}`);
     // const { selected_emoji_url, description, month_emoji } = res.data;
 
     const selected_emoji_url = "../../assets/img/dummy-emoji.svg";
