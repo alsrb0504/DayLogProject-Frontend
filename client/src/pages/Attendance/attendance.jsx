@@ -15,12 +15,12 @@ const Attendance = (props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="attendance">
       <GlobalHeader />
-      <main>
-        <div>{question}</div>
+      <main className="attendance-main">
+        <div className="question">{question}</div>
 
-        <ul>
+        <ul className="choice-container">
           {choices.map((choice) => (
             <ChoiceItem key={choice.index} choice={choice} />
           ))}

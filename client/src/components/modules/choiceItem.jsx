@@ -1,6 +1,6 @@
 const ChoiceItem = ({ choice }) => {
   return (
-    <li>
+    <li className="choice-item">
       <p>{choice.text}</p>
     </li>
   );
