@@ -6,11 +6,12 @@ import diaryReducer from "./reducers/diary";
 import scheduleReducer from "./reducers/schedule";
 import signupReducer from "./reducers/signup";
 import todoReducer from "./reducers/todo";
+import badgeReducer from "./reducers/badge";
+import qaReducer from "./reducers/qa";
 
 // Redux-persist
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import badgeReducer from "./reducers/badge";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   diary: diaryReducer,
   board: boardReducer,
   badge: badgeReducer,
+  qa: qaReducer,
 });
 
 const persistConfig = {
