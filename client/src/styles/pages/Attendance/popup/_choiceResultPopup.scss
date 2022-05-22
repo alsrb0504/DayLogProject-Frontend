@@ -1,0 +1,35 @@
+.choice-popup {
+  @include popup-setting;
+  @include column-flexbox;
+  max-width: 310px;
+
+  &-title {
+    @include popup-title;
+  }
+
+  &-main {
+    @include column-flexbox;
+    margin-bottom: 24px;
+
+    .choice-image-container {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .choice-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: $primary;
+    }
+  }
+
+  &-btn {
+    max-width: 160px;
+    text-align: center;
+  }
+}
