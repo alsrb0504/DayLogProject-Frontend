@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RequestQAAsync } from "../../store/actions/qa";
 import GlobalHeader from "../../components/modules/globalHeader";
 import ChoiceItem from "../../components/modules/choiceItem";
+import ChoiceResultPopup from "../../components/modules/choiceResultPopup";
 
 const Attendance = (props) => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const Attendance = (props) => {
 
   return (
     <div className="attendance">
+      <ChoiceResultPopup />
+
       <GlobalHeader />
       <main className="attendance-main">
         <div className="question">{question}</div>
