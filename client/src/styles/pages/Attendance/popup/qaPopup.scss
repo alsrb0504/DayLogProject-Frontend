@@ -1,4 +1,4 @@
-.choice-popup {
+.qa-popup {
   @include popup-setting;
   @include column-flexbox;
   max-width: 310px;
@@ -8,6 +8,14 @@
     @include popup-title;
   }
 
+  &-btn {
+    max-width: 160px;
+    text-align: center;
+  }
+}
+
+// 선택지 팝업
+.choice-popup {
   &-main {
     @include column-flexbox;
     margin-bottom: 24px;
@@ -27,10 +35,5 @@
       font-weight: 700;
       color: $primary;
     }
-  }
-
-  &-btn {
-    max-width: 160px;
-    text-align: center;
   }
 }
