@@ -5,17 +5,14 @@ const AttendanceCalendar = (props) => {
   const events = [];
 
   return (
-    <div>
-      <FullCalendar
-        plugins={[dayGridPlugin]}
-        headerToolbar={{
-          start: "",
-          center: "title",
-          end: "",
-        }}
-        events={events}
-      />
-    </div>
+    <FullCalendar
+      plugins={[dayGridPlugin]}
+      headerToolbar={{
+        start: "",
+        center: "title",
+        end: "",
+      }}
+    />
   );
 };
 

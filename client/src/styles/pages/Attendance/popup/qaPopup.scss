@@ -1,7 +1,10 @@
 .qa-popup {
   @include popup-setting;
-  @include column-flexbox;
+  // @include column-flexbox(flex-start);
+  @include column-flexbox(space-between);
+
   max-width: 310px;
+  height: 410px;
   padding: 24px 8px 8px 8px;
 
   &-title {
@@ -16,6 +19,7 @@
 
 // 선택지 팝업
 .choice-popup {
+  @include column-flexbox(space-between);
   &-main {
     @include column-flexbox;
     margin-bottom: 24px;
@@ -34,6 +38,95 @@
       font-size: 18px;
       font-weight: 700;
       color: $primary;
+    }
+  }
+}
+
+// 출석 캘린더 팝업
+.attendance-popup {
+  &-title {
+    margin-bottom: 0px;
+  }
+
+  &-main {
+    flex: 1;
+    // background-color: pink;
+    width: 260px;
+    // height: 280px;
+
+    // 년도와 달 정보 출력부
+    .fc-header-toolbar {
+      margin: 0 !important;
+      padding: 8px 0;
+      // background-color: oldlace;
+
+      .fc-toolbar-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+
+    // 달력 몸통 부
+    .fc-view-harness {
+      height: 260px !important;
+      font-weight: 700;
+    }
+
+    // 요일 출력 부
+    .fc-col-header-cell-cushion {
+      font-size: 14px;
+    }
+
+    // border remove.
+    th {
+      border: none !important;
+    }
+    td {
+      border: none !important;
+    }
+
+    .fc-scrollgrid {
+      border: 2px solid $primary !important;
+      border-radius: 10px;
+    }
+
+    // 일요일 설정
+    .fc-day-sun {
+      color: $red;
+    }
+
+    // 날짜 파트
+    .fc-daygrid-day-top {
+      @include flexbox;
+      width: 100%;
+    }
+
+    .fc-daygrid-day-events {
+      background-color: orange !important;
+      min-height: 1.5em !important;
+    }
+
+    // 오늘 날짜 파란 원 표시.
+    .fc-day-today {
+      background-color: transparent !important;
+
+      .fc-daygrid-day-top {
+        @include flexbox(center);
+        min-width: 29px;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -3px; // 한 칸의 height가 24px
+          left: 2px; // 한 칸의 width가 29px
+          width: 31px;
+          height: 31px;
+          border: 2.5px solid $primary;
+          border-radius: 50%;
+          margin: auto;
+        }
+      }
     }
   }
 }

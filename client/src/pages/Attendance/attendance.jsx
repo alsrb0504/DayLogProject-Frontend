@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestQAAsync } from "../../store/actions/qa";
 import GlobalHeader from "../../components/modules/globalHeader";
@@ -12,13 +12,15 @@ const Attendance = (props) => {
   const question = useSelector((state) => state.qa.question);
   const choices = useSelector((state) => state.qa.choices);
 
+  const [choiceToggle, setChoiceToggle] = useState(false);
+
   useEffect(() => {
     dispatch(RequestQAAsync());
   }, [dispatch]);
 
   return (
     <div className="attendance">
-      <ChoiceResultPopup />
+      {/* <ChoiceResultPopup /> */}
 
       <AttendancePopup />
 
