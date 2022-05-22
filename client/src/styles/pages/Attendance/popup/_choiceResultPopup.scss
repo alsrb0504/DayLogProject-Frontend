@@ -2,6 +2,7 @@
   @include popup-setting;
   @include column-flexbox;
   max-width: 310px;
+  padding: 24px 8px 8px 8px;
 
   &-title {
     @include popup-title;
