@@ -64,3 +64,19 @@ export const GetCalendarMonthYear = (calendarApi) => {
 
   return { month, year };
 };
+
+// 출석 캘린더 이벤트 만드는 함수
+export const MakeEmojiEvents = () => {
+  const emojiArr = useSelector((state) => state.qa.month_emoji);
+  const events = [];
+
+  emojiArr.forEach((emoji, idx) => {
+    events.push({
+      id: idx,
+      date: emoji.date,
+      classNames: [`emoji-event emoji-event-${emoji.index}`],
+    });
+  });
+
+  return events;
+};

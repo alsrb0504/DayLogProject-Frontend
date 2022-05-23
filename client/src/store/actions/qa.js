@@ -63,14 +63,17 @@ export const ResultQAAsync = (index) => async (dispatch, getState) => {
       {
         date: "2022-05-13",
         emoji_url: "../../assets/img/dummy-emoji.svg",
+        index: 1,
       },
       {
-        date: "2022-05-13",
+        date: "2022-05-16",
         emoji_url: "../../assets/img/dummy-emoji.svg",
+        index: 3,
       },
       {
-        date: "2022-05-13",
+        date: "2022-05-23",
         emoji_url: "../../assets/img/dummy-emoji.svg",
+        index: 6,
       },
     ];
 

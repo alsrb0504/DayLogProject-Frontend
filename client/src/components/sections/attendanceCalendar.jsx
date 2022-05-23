@@ -1,8 +1,9 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { MakeEmojiEvents } from "../../services/calendar";
 
 const AttendanceCalendar = (props) => {
-  const events = [];
+  const events = MakeEmojiEvents();
 
   return (
     <FullCalendar
@@ -12,6 +13,7 @@ const AttendanceCalendar = (props) => {
         center: "title",
         end: "",
       }}
+      events={events}
     />
   );
 };
