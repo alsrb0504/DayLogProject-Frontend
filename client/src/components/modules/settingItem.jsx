@@ -1,6 +1,6 @@
 const MyPageItem = ({ text }) => {
   return (
-    <li>
+    <li className="mypage-menu-item">
       <span>{text}</span>
     </li>
   );
