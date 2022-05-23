@@ -1,17 +1,35 @@
 .qa-popup {
   @include popup-setting;
-  // @include column-flexbox(flex-start);
-  @include column-flexbox(space-between);
+
+  @include column-flexbox(stretch);
+  // @include column-flexbox(space-between);
 
   max-width: 310px;
-  height: 410px;
-  padding: 24px 8px 8px 8px;
+  height: 440px;
+  padding: 24px 0 0 0;
 
   &-title {
     @include popup-title;
   }
 
+  &-main {
+    position: relative;
+
+    flex: 1;
+    background-color: $blue-light;
+    width: 100%;
+    text-align: center;
+
+    border-radius: 0 0px 10px 10px;
+  }
+
   &-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
     max-width: 160px;
     text-align: center;
   }
@@ -19,15 +37,14 @@
 
 // 선택지 팝업
 .choice-popup {
-  @include column-flexbox(space-between);
   &-main {
     @include column-flexbox;
-    margin-bottom: 24px;
 
     .choice-image-container {
-      width: 180px;
-      height: 180px;
-      margin-bottom: 20px;
+      width: 200px;
+      height: 200px;
+      margin-top: 20px;
+      margin-bottom: 25px;
 
       img {
         width: 100%;
@@ -68,7 +85,7 @@
 
     // 달력 몸통 부
     .fc-view-harness {
-      height: 260px !important;
+      height: 267px !important;
       font-weight: 700;
     }
 
