@@ -1,0 +1,167 @@
+.qa-popup {
+  @include popup-setting;
+
+  @include column-flexbox(stretch);
+  // @include column-flexbox(space-between);
+
+  max-width: 310px;
+  height: 440px;
+  padding: 24px 0 0 0;
+
+  &-title {
+    @include popup-title;
+  }
+
+  &-main {
+    position: relative;
+
+    flex: 1;
+    background-color: $blue-light;
+    width: 100%;
+    text-align: center;
+
+    border-radius: 0 0px 10px 10px;
+  }
+
+  &-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    max-width: 160px;
+    text-align: center;
+  }
+}
+
+// 선택지 팝업
+.choice-popup {
+  &-main {
+    @include column-flexbox;
+
+    .choice-image-container {
+      width: 200px;
+      height: 200px;
+      margin-top: 20px;
+      margin-bottom: 25px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .choice-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: $primary;
+    }
+  }
+}
+
+// 출석 캘린더 팝업
+.attendance-popup {
+  &-title {
+    margin-bottom: 0px;
+  }
+
+  &-main {
+    flex: 1;
+    width: 260px;
+    margin: auto;
+
+    // 년도와 달 정보 출력부
+    .fc-header-toolbar {
+      margin: 0 !important;
+      padding: 8px 0;
+
+      .fc-toolbar-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+
+    // 달력 몸통 부
+    .fc-view-harness {
+      height: 267px !important;
+      font-weight: 700;
+      background-color: $white;
+    }
+
+    // 요일 출력 부
+    .fc-col-header-cell-cushion {
+      font-size: 14px;
+    }
+
+    // 보더 제거.
+    th {
+      border: none !important;
+    }
+    td {
+      border: none !important;
+    }
+
+    .fc-scrollgrid {
+      border: 2px solid $primary !important;
+      border-radius: 10px;
+    }
+
+    // 일요일 설정
+    .fc-day-sun {
+      color: $red;
+    }
+
+    // 날짜 파트
+    .fc-daygrid-day-top {
+      @include flexbox;
+      width: 100%;
+    }
+
+    // 오늘 날짜 파란 원 표시.
+    .fc-day-today {
+      background-color: transparent !important;
+
+      .fc-daygrid-day-top {
+        @include flexbox(center);
+        min-width: 29px;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -3px; // 한 칸의 height가 24px
+          left: 2px; // 한 칸의 width가 29px
+          width: 31px;
+          height: 31px;
+          border: 2.5px solid $primary;
+          border-radius: 50%;
+          margin: auto;
+        }
+      }
+    }
+
+    // 이벤트 관련
+    .fc-daygrid-day-events {
+      // background-color: orange !important;
+      min-height: 1.5em !important;
+
+      .fc-daygrid-event-harness {
+        width: 100%;
+        height: 22px;
+
+        .emoji-event {
+          height: 100%;
+          background-color: transparent;
+          border: none;
+
+          background-image: url("../../../../assets/img/dummy-emoji.svg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+
+          transform: translateY(-5px);
+        }
+      }
+    }
+  }
+}

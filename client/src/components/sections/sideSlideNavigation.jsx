@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
 import DefaultProfile from "../../assets/img/default-profile.svg";
@@ -17,10 +16,12 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
 
   const moveHome = () => {
     navigate("/");
+    closeToggle();
   };
 
   const moveDiary = () => {
     navigate("/diary");
+    closeToggle();
   };
 
   const moveDiet = () => {
@@ -30,19 +31,17 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   };
 
   const moveBadge = () => {
-    alert("구현 중");
-    return;
-    // navigate('/badge');
+    navigate("/badge");
+    closeToggle();
   };
 
   const moveBoard = () => {
     navigate("/board");
+    closeToggle();
   };
 
   const moveMypage = () => {
-    alert("구현 중");
-    return;
-    // navigate('/myPage');
+    navigate("/mypage");
   };
 
   const onLogout = () => {
@@ -61,9 +60,11 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
         </button>
         <div className="slide-bar-header-user">
           <div className="slide-bar-header-user-profile">
-            <img src={DefaultProfile} alt="프로필 사진" />
+            <img src={DefaultProfile} alt="프로필 사진" onClick={moveMypage} />
           </div>
-          <span className="slide-bar-header-user-name">닉네임닉네임</span>
+          <span className="slide-bar-header-user-name" onClick={moveMypage}>
+            닉네임닉네임
+          </span>
         </div>
       </header>
       <nav className="slide-bar-nav">

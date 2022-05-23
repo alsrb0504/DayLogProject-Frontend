@@ -1,0 +1,30 @@
+.todo-section {
+  .home-badge-container {
+    @include flexbox(space-between);
+    height: 50px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    background-color: $primary;
+
+    .badge-image-container {
+      width: 30px;
+      height: 30px;
+      margin-right: 8px;
+
+      img {
+        width: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+
+    .badge-info {
+      @include flexbox(space-between);
+      flex: 1;
+      font-size: 18px;
+      font-weight: 700;
+      color: $white;
+    }
+  }
+}

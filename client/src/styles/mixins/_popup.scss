@@ -10,4 +10,24 @@
   background-color: $white;
   transform: translate(-50%, -50%);
   z-index: 10000;
+
+  .popup-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    transition: opacity 50ms ease-in-out;
+
+    &:hover,
+    &:active {
+      opacity: 0.3;
+    }
+  }
+}
+
+@mixin popup-title {
+  color: $primary;
+  font-size: $font-size-24;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
 }

@@ -1,0 +1,39 @@
+$qa-font-color: $white;
+$qa-font-size: 30px;
+$qa-font-weight: 700;
+
+.attendance {
+  .question {
+    @include flexbox;
+    width: 100%;
+    height: 180px;
+    margin-bottom: 24px;
+
+    font-size: $qa-font-size;
+    font-weight: $qa-font-weight;
+    color: $qa-font-color;
+
+    border-radius: 6px;
+    background-color: $primary;
+  }
+
+  .choice-container {
+    .choice-item {
+      @include OpacityEffect(0.8);
+      @include flexbox;
+      width: 100%;
+      height: 60px;
+      margin-bottom: 16px;
+
+      border-radius: 6px;
+      background-color: $secondary;
+
+      p {
+        font-size: 21px;
+
+        font-weight: $qa-font-weight;
+        color: $qa-font-color;
+      }
+    }
+  }
+}

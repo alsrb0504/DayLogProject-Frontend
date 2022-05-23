@@ -25,6 +25,9 @@ import BoardHome from "./pages/Board/Details/boardHome";
 import BoardMyPage from "./pages/Board/Details/boardMyPage";
 import BoardOther from "./pages/Board/Details/boardOther";
 import BoardDescription from "./pages/Board/Details/boardDescription";
+import BadgeHome from "./pages/Badge/badgeHome";
+import Attendance from "./pages/Attendance/attendance";
+import MyPage from "./pages/Mypage/mypage";
 
 function App() {
   const navigate = useNavigate();
@@ -86,6 +89,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/attendance" element={<Attendance />} />
               <Route path="/signup" element={<SignUp />}>
                 <Route index element={<SignUpId />} />
                 <Route path="password" element={<SignUpPasswd />} />
@@ -110,6 +114,8 @@ function App() {
                 <Route path="other" element={<BoardOther />} />
                 <Route path="description" element={<BoardDescription />} />
               </Route>
+              <Route path="/badge" element={<BadgeHome />} />
+              <Route path="/mypage" element={<MyPage />} />
             </Routes>
           </div>
         </div>

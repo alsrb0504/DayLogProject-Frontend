@@ -85,6 +85,7 @@ const Home = (props) => {
         <TodoSection
           // select_todo가 없다면 undefined 전달
           todos={select_todos && select_todos.todos}
+          is_home={true}
         />
       </section>
 
