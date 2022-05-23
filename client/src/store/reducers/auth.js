@@ -3,7 +3,6 @@ import { LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS } from "../actions/types";
 const initState = {
   login_result: false,
   user: "",
-  loading: false,
 };
 
 const authReducer = (state = initState, action) => {
@@ -11,7 +10,6 @@ const authReducer = (state = initState, action) => {
     case LOGIN_START: {
       return {
         ...state,
-        loading: true,
       };
     }
     case LOGIN_SUCCESS: {
@@ -20,7 +18,6 @@ const authReducer = (state = initState, action) => {
         ...state,
         login_result: action.payload.success,
         user: action.payload.user,
-        loading: false,
       };
     }
     case LOGIN_ERROR: {
@@ -28,7 +25,6 @@ const authReducer = (state = initState, action) => {
         ...state,
         login_result: action.payload,
         user: "",
-        loading: false,
       };
     }
     default:
