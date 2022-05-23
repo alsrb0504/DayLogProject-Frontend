@@ -1,6 +1,4 @@
-import React from "react";
-
-const SettingItem = ({ text }) => {
+const MyPageItem = ({ text }) => {
   return (
     <li>
       <span>{text}</span>
@@ -8,4 +6,4 @@ const SettingItem = ({ text }) => {
   );
 };
 
-export default SettingItem;
+export default MyPageItem;

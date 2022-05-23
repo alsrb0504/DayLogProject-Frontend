@@ -1,8 +1,8 @@
 import GlobalHeader from "../../components/modules/globalHeader";
 import default_profile from "../../assets/img/default-profile.svg";
-import SettingItem from "../../components/modules/settingItem";
+import MyPageItem from "../../components/modules/settingItem";
 
-const Setting = (props) => {
+const MyPage = (props) => {
   return (
     <div>
       <GlobalHeader />
@@ -15,14 +15,14 @@ const Setting = (props) => {
         </section>
 
         <ul>
-          <SettingItem text="프로필 변경" />
-          <SettingItem text="비밀 번호 변경" />
-          <SettingItem text="로그 아웃" />
-          <SettingItem text="회원 탈퇴" />
+          <MyPageItem text="프로필 변경" />
+          <MyPageItem text="비밀 번호 변경" />
+          <MyPageItem text="로그 아웃" />
+          <MyPageItem text="회원 탈퇴" />
         </ul>
       </main>
     </div>
   );
 };
 
-export default Setting;
+export default MyPage;
