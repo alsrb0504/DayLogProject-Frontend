@@ -1,8 +1,13 @@
 import GlobalHeader from "../../components/modules/globalHeader";
+import MyPageItem from "../../components/modules/mypageItem";
+
 import default_profile from "../../assets/img/default-profile.svg";
-import MyPageItem from "../../components/modules/settingItem";
+import { useState } from "react";
 
 const MyPage = (props) => {
+  const [logoutToggle, setLogoutToggle] = useState(false);
+  const [resignToggle, resignLogoutToggle] = useState(false);
+
   return (
     <div className="mypage">
       <GlobalHeader />

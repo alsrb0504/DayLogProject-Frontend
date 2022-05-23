@@ -27,7 +27,7 @@ import BoardOther from "./pages/Board/Details/boardOther";
 import BoardDescription from "./pages/Board/Details/boardDescription";
 import BadgeHome from "./pages/Badge/badgeHome";
 import Attendance from "./pages/Attendance/attendance";
-import MyPage from "./pages/Setting/setting";
+import MyPage from "./pages/Mypage/mypage";
 
 function App() {
   const navigate = useNavigate();
