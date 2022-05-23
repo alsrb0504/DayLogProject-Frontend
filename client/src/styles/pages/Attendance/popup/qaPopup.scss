@@ -120,24 +120,6 @@
     // 오늘 날짜 파란 원 표시.
     .fc-day-today {
       background-color: transparent !important;
-
-      .fc-daygrid-day-top {
-        @include flexbox(center);
-        min-width: 29px;
-        position: relative;
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: -3px; // 한 칸의 height가 24px
-          left: 2px; // 한 칸의 width가 29px
-          width: 31px;
-          height: 31px;
-          border: 2.5px solid $primary;
-          border-radius: 50%;
-          margin: auto;
-        }
-      }
     }
 
     // 이벤트 관련
