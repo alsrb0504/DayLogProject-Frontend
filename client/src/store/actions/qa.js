@@ -10,24 +10,24 @@ import {
 // QA 질문지와 선택지 요청 함수
 export const RequestQAAsync = () => async (dispatch, getState) => {
   try {
-    // const res = await axios.get("/api/QA");
-    // const { question, choice } = res.data;
+    const res = await axios.get("/api/QA");
+    const { question, choice } = res.data;
 
-    const question = "오늘의 질문";
-    const choice = [
-      {
-        index: 1,
-        text: "선택지 1",
-      },
-      {
-        index: 2,
-        text: "선택지 2",
-      },
-      {
-        index: 3,
-        text: "선택지 3",
-      },
-    ];
+    // const question = "오늘의 질문";
+    // const choice = [
+    //   {
+    //     index: 1,
+    //     text: "선택지 1",
+    //   },
+    //   {
+    //     index: 2,
+    //     text: "선택지 2",
+    //   },
+    //   {
+    //     index: 3,
+    //     text: "선택지 3",
+    //   },
+    // ];
 
     dispatch({
       type: QA_REQUEST_SUCCESS,
@@ -54,28 +54,30 @@ export const ResultQAAsync = (index) => async (dispatch, getState) => {
 
   try {
     // 결과 날짜를 꼭 보내야 할까?
-    // const res = await axios.post(`/api/QA?date=${dateInfo.date}&index=${index}`);
-    // const { selected_emoji_url, description, month_emoji } = res.data;
+    const res = await axios.post(
+      `/api/QA?date=${dateInfo.date}&index=${index}`
+    );
+    const { selected_emoji_url, description, month_emoji } = res.data;
 
-    const selected_emoji_url = "../../assets/img/dummy-emoji.svg";
-    const description = "선택한 이미지 상세정보?";
-    const month_emoji = [
-      {
-        date: "2022-05-13",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
-        index: 1,
-      },
-      {
-        date: "2022-05-16",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
-        index: 3,
-      },
-      {
-        date: "2022-05-23",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
-        index: 6,
-      },
-    ];
+    // const selected_emoji_url = "../../assets/img/dummy-emoji.svg";
+    // const description = "선택한 이미지 상세정보?";
+    // const month_emoji = [
+    //   {
+    //     date: "2022-05-13",
+    //     emoji_url: "../../assets/img/dummy-emoji.svg",
+    //     index: 1,
+    //   },
+    //   {
+    //     date: "2022-05-16",
+    //     emoji_url: "../../assets/img/dummy-emoji.svg",
+    //     index: 3,
+    //   },
+    //   {
+    //     date: "2022-05-23",
+    //     emoji_url: "../../assets/img/dummy-emoji.svg",
+    //     index: 6,
+    //   },
+    // ];
 
     dispatch({
       type: QA_RESULT_SUCCESS,
