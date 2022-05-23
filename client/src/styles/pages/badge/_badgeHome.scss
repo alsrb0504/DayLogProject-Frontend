@@ -3,7 +3,13 @@
     @include column-flexbox(flex-start, stretch);
     position: relative;
 
-    background-color: $yellow;
+    // background-color: $yellow;
+
+    // background-color: $blue-light;
+
+    background-color: #ecf3f8;
+
+    // background-color: $secondary
 
     width: 100vw;
     transform: translateX(-8px);
@@ -32,15 +38,39 @@
       img {
         width: 100%;
       }
-
-      .not-achieve {
-        opacity: 0.1;
-      }
     }
 
     &-title {
       font-size: $font-size-12;
-      font-weight: 600;
+      // font-weight: 600;
+    }
+
+    // 미획득 뱃지
+    &-not-complete {
+      img {
+        opacity: 0.1;
+      }
+
+      .badge-item-title {
+        color: $text-gray-3;
+      }
+    }
+
+    // 도전중인 뱃지
+    // 뱃지 상단에 체크 표시
+    // 글씨 크기를 두껍게
+    // 음.. 추가로 좀 덜 투명하게 해 봄.
+    &-challenge {
+      img {
+        background-color: pink;
+        border-radius: 50%;
+        opacity: 0.5;
+      }
+      .badge-item-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: $primary;
+      }
     }
   }
 
@@ -98,6 +128,12 @@
       span {
         font-weight: 600;
       }
+    }
+
+    // 현재 달성률
+    &-count {
+      line-height: 1em;
+      // font-weight: 600;
     }
 
     &-bottom-btn {

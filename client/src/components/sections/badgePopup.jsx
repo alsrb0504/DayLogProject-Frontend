@@ -54,7 +54,7 @@ const BadgePopup = ({ closePopup }) => {
               <br />
               {description}
             </p>
-            <p className="badge-popup-text">
+            <p className="badge-popup-text badge-popup-count">
               {goal_count} / {final_count}
             </p>
           </>
@@ -62,7 +62,13 @@ const BadgePopup = ({ closePopup }) => {
 
         <Button
           text={is_complete ? "닫기" : challenge ? "도전 중" : "도전하기"}
-          color={is_complete ? "btn-secondary" : "btn-primary"}
+          color={
+            is_complete
+              ? "btn-secondary"
+              : challenge
+              ? "btn-primary"
+              : "btn-secondary"
+          }
           size="btn-40"
           className="badge-popup-bottom-btn"
           onClick={is_complete ? closePopup : ChallengeBadge}
