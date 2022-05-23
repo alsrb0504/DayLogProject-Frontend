@@ -41,9 +41,7 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   };
 
   const moveMypage = () => {
-    alert("구현 중");
-    return;
-    // navigate('/myPage');
+    navigate("/mypage");
   };
 
   const onLogout = () => {
@@ -62,9 +60,11 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
         </button>
         <div className="slide-bar-header-user">
           <div className="slide-bar-header-user-profile">
-            <img src={DefaultProfile} alt="프로필 사진" />
+            <img src={DefaultProfile} alt="프로필 사진" onClick={moveMypage} />
           </div>
-          <span className="slide-bar-header-user-name">닉네임닉네임</span>
+          <span className="slide-bar-header-user-name" onClick={moveMypage}>
+            닉네임닉네임
+          </span>
         </div>
       </header>
       <nav className="slide-bar-nav">
