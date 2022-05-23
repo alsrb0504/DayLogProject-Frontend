@@ -68,6 +68,7 @@
   &-main {
     flex: 1;
     width: 260px;
+    margin: auto;
 
     // 년도와 달 정보 출력부
     .fc-header-toolbar {
@@ -84,6 +85,7 @@
     .fc-view-harness {
       height: 267px !important;
       font-weight: 700;
+      background-color: $white;
     }
 
     // 요일 출력 부
