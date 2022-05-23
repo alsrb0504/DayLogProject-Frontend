@@ -1,17 +1,20 @@
 $qa-font-color: $white;
-$qa-font-size: 30px;
+$qa-font-size: 24px;
 $qa-font-weight: 700;
 
 .attendance {
   .question {
     @include flexbox;
+    padding: 16px 20px;
+    margin-bottom: 24px;
     width: 100%;
     height: 180px;
-    margin-bottom: 24px;
 
     font-size: $qa-font-size;
     font-weight: $qa-font-weight;
     color: $qa-font-color;
+    line-height: 1.3em;
+    text-align: center;
 
     border-radius: 6px;
     background-color: $primary;
