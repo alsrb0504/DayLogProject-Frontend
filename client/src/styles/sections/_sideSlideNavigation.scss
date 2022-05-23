@@ -37,6 +37,11 @@
         height: 50px;
         margin-right: 8px;
         cursor: pointer;
+
+        img {
+          width: 100%;
+          border-radius: 50%;
+        }
       }
 
       &-name {
