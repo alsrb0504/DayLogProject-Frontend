@@ -20,7 +20,7 @@ const Attendance = (props) => {
 
   return (
     <div className="attendance">
-      {/* <ChoiceResultPopup /> */}
+      <ChoiceResultPopup />
 
       <AttendancePopup />
 
