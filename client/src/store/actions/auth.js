@@ -1,24 +1,36 @@
-import axios from "axios";
 import { login, SetAccessToken } from "../../services/auth";
-import { LOGIN_ERROR, LOGIN_START, LOGIN_SUCCESS } from "./types";
+import { LOGIN_ERROR, LOGIN_SUCCESS } from "./types";
 
 export const loginActionAync =
   (user_info) =>
   async (dispatch, getState, { history }) => {
-    dispatch({ type: LOGIN_START });
-
     try {
       const data = await login(user_info);
 
       // 로그인 성공 시,
       // access 토큰을 로컬 스토리지에 저장.
       // cookie에 httpOnly, Secure로 설정해서 refresh_token 자동 저장.
+      // 유저 정보를 redux에 저장.
       if (data.success) {
-        const { AT } = data;
+        const { isFirst, AT, name, nickname, profile_image_url, email } = data;
         SetAccessToken(AT);
 
-        dispatch({ type: LOGIN_SUCCESS, payload: data });
-        history.push("/");
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: {
+            name,
+            nickname,
+            profile_image_url,
+            email,
+          },
+        });
+
+        // 오늘 처음 로그인 했다면 Q&A로 이동.
+        if (isFirst) {
+          history.psuh("/attendance");
+        } else {
+          history.push("/");
+        }
       }
       // 로그인 실패
       // 통신은 성공, 비밀번호나 아이디가 틀린 경우
