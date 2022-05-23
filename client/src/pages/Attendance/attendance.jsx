@@ -5,6 +5,7 @@ import GlobalHeader from "../../components/modules/globalHeader";
 import ChoiceItem from "../../components/modules/choiceItem";
 import ChoiceResultPopup from "../../components/modules/choiceResultPopup";
 import AttendancePopup from "../../components/modules/attendancePopup";
+import OverLay from "../../components/modules/overLay";
 
 const Attendance = (props) => {
   const dispatch = useDispatch();
@@ -13,16 +14,36 @@ const Attendance = (props) => {
   const choices = useSelector((state) => state.qa.choices);
 
   const [choiceToggle, setChoiceToggle] = useState(false);
+  const [attendanceToggle, setAttendanceToggle] = useState(false);
 
   useEffect(() => {
     dispatch(RequestQAAsync());
   }, [dispatch]);
 
+  const openChoicePopup = () => {
+    setChoiceToggle(true);
+  };
+
+  const closeChoicePopup = () => {
+    setChoiceToggle(false);
+    setAttendanceToggle(true);
+  };
+
   return (
     <div className="attendance">
-      <ChoiceResultPopup />
+      {choiceToggle && (
+        <>
+          <OverLay />
+          <ChoiceResultPopup closeChoicePopup={closeChoicePopup} />
+        </>
+      )}
 
-      <AttendancePopup />
+      {attendanceToggle && (
+        <>
+          <OverLay />
+          <AttendancePopup />
+        </>
+      )}
 
       <GlobalHeader />
       <main className="attendance-main">
@@ -30,7 +51,11 @@ const Attendance = (props) => {
 
         <ul className="choice-container">
           {choices.map((choice) => (
-            <ChoiceItem key={choice.index} choice={choice} />
+            <ChoiceItem
+              key={choice.index}
+              choice={choice}
+              openChoicePopup={openChoicePopup}
+            />
           ))}
         </ul>
       </main>

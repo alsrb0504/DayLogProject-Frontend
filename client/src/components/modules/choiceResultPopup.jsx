@@ -1,7 +1,7 @@
 import dummy_emoji from "../../assets/img/dummy-emoji.svg";
 import Button from "./button";
 
-const ChoiceResultPopup = (props) => {
+const ChoiceResultPopup = ({ closeChoicePopup }) => {
   return (
     <div className="qa-popup choice-popup">
       <h2 className="qa-popup-title">오늘의 스티커</h2>
@@ -16,6 +16,7 @@ const ChoiceResultPopup = (props) => {
         color="btn-secondary"
         size="btn-40"
         className="qa-popup-btn"
+        onClick={closeChoicePopup}
       />
     </div>
   );
