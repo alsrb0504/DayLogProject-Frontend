@@ -16,7 +16,7 @@
   }
 }
 
-@mixin menuColorEffect($color: $yellow, $time: 50ms) {
+@mixin menuColorEffect($color: $menu-hover, $time: 50ms) {
   transition: all $time ease-in-out;
 
   &:active,
