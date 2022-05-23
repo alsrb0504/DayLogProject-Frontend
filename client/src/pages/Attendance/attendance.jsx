@@ -6,6 +6,7 @@ import ChoiceItem from "../../components/modules/choiceItem";
 import ChoiceResultPopup from "../../components/modules/choiceResultPopup";
 import AttendancePopup from "../../components/modules/attendancePopup";
 import OverLay from "../../components/modules/overLay";
+import { SetAuthHeader } from "../../services/auth";
 
 const Attendance = (props) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Attendance = (props) => {
   const [attendanceToggle, setAttendanceToggle] = useState(false);
 
   useEffect(() => {
+    SetAuthHeader();
     dispatch(RequestQAAsync());
   }, [dispatch]);
 
