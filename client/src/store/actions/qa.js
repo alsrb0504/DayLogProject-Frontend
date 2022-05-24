@@ -59,22 +59,17 @@ export const ResultQAAsync = (index) => async (dispatch, getState) => {
     // );
     // const { selected_emoji_url, description, month_emoji } = res.data;
 
-    const selected_emoji_url = "../../assets/img/dummy-emoji.svg";
-    const description = "선택한 이미지 상세정보?";
     const month_emoji = [
       {
         date: "2022-05-13",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
         index: 1,
       },
       {
         date: "2022-05-16",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
         index: 3,
       },
       {
         date: "2022-05-23",
-        emoji_url: "../../assets/img/dummy-emoji.svg",
         index: 6,
       },
     ];
@@ -82,8 +77,6 @@ export const ResultQAAsync = (index) => async (dispatch, getState) => {
     dispatch({
       type: QA_RESULT_SUCCESS,
       payload: {
-        selected_emoji_url,
-        description,
         month_emoji,
       },
     });
