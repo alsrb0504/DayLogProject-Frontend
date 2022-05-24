@@ -4,11 +4,14 @@ import GlobalHeader from "../../components/modules/globalHeader";
 import MyPageItem from "../../components/modules/mypageItem";
 import OverLay from "../../components/modules/overLay";
 import ConfirmPopup from "../../components/modules/confirmPopup";
-
-import default_profile from "../../assets/img/default-profile.svg";
+import default_profile from "../../assets/img/default-profile.jpeg";
+import { useSelector } from "react-redux";
 
 const MyPage = (props) => {
   const navigate = useNavigate();
+
+  const nickname = useSelector((state) => state.auth.nickname);
+  const profile_image = useSelector((state) => state.auth.profile_image_url);
 
   const [logoutToggle, setLogoutToggle] = useState(false);
   const [resignToggle, resignLogoutToggle] = useState(false);
@@ -59,9 +62,9 @@ const MyPage = (props) => {
       <main className="mypage-main">
         <section className="mypage-profile">
           <div className="mypage-profile-img-container">
-            <img src={default_profile} alt="" />
+            <img src={profile_image ? profile_image : default_profile} alt="" />
           </div>
-          <h3 className="mypage-profile-nickname">닉네임</h3>
+          <h3 className="mypage-profile-nickname">{nickname}</h3>
         </section>
 
         <ul className="mypage-menu">

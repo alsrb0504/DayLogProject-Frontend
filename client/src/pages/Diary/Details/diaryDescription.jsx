@@ -33,7 +33,9 @@ const DiaryDescription = (props) => {
 
   const confirmShare = () => {
     console.log("share confirm");
-    dispatch(ChangeShareDiaryAsync(diary_no));
+    // dispatch(ChangeShareDiaryAsync(diary_no));
+    dispatch(ChangeShareDiaryAsync());
+
     setSharePopup(false);
   };
 

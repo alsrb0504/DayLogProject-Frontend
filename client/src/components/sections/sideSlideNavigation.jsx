@@ -1,14 +1,14 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
-import DefaultProfile from "../../assets/img/default-profile.svg";
+import default_profile from "../../assets/img/default-profile.jpeg";
 import NavMenuItem from "../modules/navMenu";
 
 const SideSlideNavigation = ({ isOpen, closeToggle }) => {
-  // 추후 유저가 로그인하면 유저 정보를 저장하는 redux 구현
-  // 이후 useSelector로 유저의 닉니엠과 프로필 이미지를 가져와서
-  // 아래 메뉴들 구성
-
   const navigate = useNavigate();
+
+  const nickname = useSelector((state) => state.auth.nickname);
+  const profile_image = useSelector((state) => state.auth.profile_image_url);
 
   const closeMenu = () => {
     closeToggle();
@@ -60,10 +60,14 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
         </button>
         <div className="slide-bar-header-user">
           <div className="slide-bar-header-user-profile">
-            <img src={DefaultProfile} alt="프로필 사진" onClick={moveMypage} />
+            <img
+              src={profile_image ? profile_image : default_profile}
+              alt="프로필 사진"
+              onClick={moveMypage}
+            />
           </div>
           <span className="slide-bar-header-user-name" onClick={moveMypage}>
-            닉네임닉네임
+            {nickname}
           </span>
         </div>
       </header>

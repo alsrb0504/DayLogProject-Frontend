@@ -19,10 +19,12 @@
 
     .board-desc-image-container {
       margin-right: 12px;
-      height: 100%;
+      width: 40px;
+      height: 40px;
 
       img {
         height: 100%;
+        border-radius: 50%;
       }
     }
 
@@ -48,6 +50,9 @@
 
       img {
         width: 100%;
+
+        // 모바일 화면 세로 길이 설정.
+        max-height: 244px;
       }
     }
 
