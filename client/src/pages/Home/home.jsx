@@ -72,7 +72,6 @@ const Home = (props) => {
 
   return (
     <div>
-      <div onClick={onLogout}>로그아웃</div>
       {isTodoPopup && <OverLay onClick={closeTodoPopup} />}
 
       <GlobalHeader />
