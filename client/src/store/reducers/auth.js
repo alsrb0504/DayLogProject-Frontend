@@ -1,4 +1,10 @@
-import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_USER } from "../actions/types";
+import {
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGOUT_USER,
+  RESIGN_FAIL,
+  RESIGN_SUCCESS,
+} from "../actions/types";
 
 const initState = {
   login_result: false,
@@ -22,7 +28,8 @@ const authReducer = (state = initState, action) => {
       };
     }
 
-    case LOGOUT_USER: {
+    case LOGOUT_USER:
+    case RESIGN_SUCCESS: {
       return {
         ...state,
         login_result: "FAIL",
@@ -42,6 +49,9 @@ const authReducer = (state = initState, action) => {
         profile_image_url: null,
         email: "",
       };
+    }
+    case RESIGN_FAIL: {
+      return { ...state };
     }
     default:
       return state;

@@ -1,6 +1,12 @@
 import axios from "axios";
 import { login, SetAccessToken } from "../../services/auth";
-import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_USER } from "./types";
+import {
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+  LOGOUT_USER,
+  RESIGN_FAIL,
+  RESIGN_SUCCESS,
+} from "./types";
 
 export const loginActionAync =
   (user_info) =>
@@ -63,4 +69,25 @@ export const Logout =
     });
 
     history.push("/login");
+  };
+
+export const ResignRequestAsync =
+  () =>
+  async (dispatch, getState, { history }) => {
+    try {
+      const res = await axios.delete("/api/members");
+
+      dispatch({
+        type: RESIGN_SUCCESS,
+      });
+      alert("회원 탈퇴 성공");
+      history.push("/login");
+    } catch (e) {
+      console.error(e);
+      alert("회원 탈퇴 실패");
+
+      dispatch({
+        type: RESIGN_FAIL,
+      });
+    }
   };

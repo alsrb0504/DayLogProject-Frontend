@@ -6,7 +6,7 @@ import OverLay from "../../components/modules/overLay";
 import ConfirmPopup from "../../components/modules/confirmPopup";
 import default_profile from "../../assets/img/default-profile.jpeg";
 import { useDispatch, useSelector } from "react-redux";
-import { Logout } from "../../store/actions/auth";
+import { Logout, ResignRequestAsync } from "../../store/actions/auth";
 
 const MyPage = (props) => {
   const navigate = useNavigate();
@@ -21,6 +21,11 @@ const MyPage = (props) => {
   // 로그아웃
   const confirmLogout = () => {
     dispatch(Logout());
+  };
+
+  // 회원탈퇴
+  const confirmResign = () => {
+    dispatch(ResignRequestAsync());
   };
 
   // 토글 창
@@ -48,7 +53,6 @@ const MyPage = (props) => {
           <ConfirmPopup
             text="로그아웃 하시겠습니까?"
             close={closeLogoutPopup}
-            // 추후 로그아웃 연결.
             confirm={confirmLogout}
           />
         </>
@@ -60,8 +64,7 @@ const MyPage = (props) => {
           <ConfirmPopup
             text="회원탈퇴 하시겠습니까?"
             close={closeResignPopup}
-            // 추후 회원탈퇴 연결.
-            confirm={() => {}}
+            confirm={confirmResign}
           />
         </>
       )}
