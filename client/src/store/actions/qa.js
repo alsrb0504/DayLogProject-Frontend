@@ -55,25 +55,25 @@ export const ResultQAAsync = (choice) => async (dispatch, getState) => {
   const dateInfo = toDayInfo();
 
   try {
-    // const res = await axios.post(
-    //   `/api/QA?date=${dateInfo.date}&index=${index}`
-    // );
-    // const { month_emoji } = res.data;
+    const res = await axios.post(
+      `/api/QA?date=${dateInfo.date}&index=${index}`
+    );
+    const { month_emoji } = res.data;
 
-    const month_emoji = [
-      {
-        date: "2022-05-13",
-        index: 1,
-      },
-      {
-        date: "2022-05-16",
-        index: 3,
-      },
-      {
-        date: "2022-05-23",
-        index: 6,
-      },
-    ];
+    // const month_emoji = [
+    //   {
+    //     date: "2022-05-13",
+    //     index: 1,
+    //   },
+    //   {
+    //     date: "2022-05-16",
+    //     index: 3,
+    //   },
+    //   {
+    //     date: "2022-05-23",
+    //     index: 6,
+    //   },
+    // ];
 
     dispatch({
       type: QA_RESULT_SUCCESS,

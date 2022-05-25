@@ -6,6 +6,7 @@ import close_btn_icon from "../../assets/icons/close-btn.svg";
 import TodoSection from "./todoSection";
 import { useDispatch } from "react-redux";
 import { AddTodoAsync } from "../../store/actions/todo";
+import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 
 const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
 
   const onSubmit = (content) => {
     dispatch(AddTodoAsync(content, dateFormat.date));
+    dispatch(RequestChallengeBadgeAsync());
   };
 
   return (

@@ -18,6 +18,9 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGOUT_USER = "LOGOUT_USER";
 
+export const RESIGN_SUCCESS = "RESIGN_SUCCESS";
+export const RESIGN_FAIL = "RESIGN_FAIL";
+
 // ?
 export const LOGIN_USER = "LOGIN_USER";
 

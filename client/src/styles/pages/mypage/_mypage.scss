@@ -18,11 +18,12 @@
     margin-bottom: 24px;
 
     &-img-container {
+      position: relative;
       width: 180px;
       height: 180px;
       margin-bottom: 16px;
 
-      img {
+      .mypage-profile-image {
         width: 100%;
         height: 100%;
         border-radius: 50%;
@@ -30,6 +31,7 @@
     }
 
     &-nickname {
+      display: inline-block;
       position: relative;
       padding: 0 4px;
       font-size: 30px;
@@ -68,6 +70,50 @@
         font-weight: 700;
         color: $primary;
       }
+    }
+  }
+}
+
+// edit 폼의 닉네임 input
+.mypage-edit-nickname {
+  padding: 4px 10px;
+  min-width: 160px;
+  width: 60%;
+  height: 36px;
+  max-width: 300px;
+  border-bottom: 2px solid $text-dark;
+
+  font-size: 24px;
+  text-align: center;
+
+  background-color: transparent;
+}
+
+.mypage-profile-add-icon {
+  @include ScaleEffect(1.1);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  width: 60px;
+  height: 60px;
+
+  opacity: 0.8;
+}
+
+.mypage-edit-btn-section {
+  @include flexbox(flex-end);
+  position: absolute;
+  width: 100%;
+  bottom: 26px;
+  padding-right: 8px;
+
+  .mypage-edit-btn {
+    margin: 0;
+    max-width: 140px;
+
+    &:first-child {
+      margin-right: 8px;
     }
   }
 }

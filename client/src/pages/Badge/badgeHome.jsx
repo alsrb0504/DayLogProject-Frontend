@@ -1,11 +1,12 @@
+import { SetAuthHeader } from "../../services/auth";
 import { useEffect, useState } from "react";
-import GlobalHeader from "../../components/modules/globalHeader";
-import trophy_image from "../../assets/img/trophy.svg";
+import { RequestBadgeListAsync } from "../../store/actions/badge";
+import { useDispatch, useSelector } from "react-redux";
+import OverLay from "../../components/modules/overLay";
 import BadgeItem from "../../components/modules/badgeItem";
 import BadgePopup from "../../components/sections/badgePopup";
-import { useDispatch, useSelector } from "react-redux";
-import { RequestBadgeListAsync } from "../../store/actions/badge";
-import OverLay from "../../components/modules/overLay";
+import GlobalHeader from "../../components/modules/globalHeader";
+import trophy_image from "../../assets/img/trophy.svg";
 
 const BadgeHome = (props) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const BadgeHome = (props) => {
   const badge_list = useSelector((state) => state.badge.badges);
 
   useEffect(() => {
+    SetAuthHeader();
     dispatch(RequestBadgeListAsync());
   }, [dispatch]);
 
