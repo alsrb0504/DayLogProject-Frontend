@@ -111,7 +111,8 @@ export const RemoveDiaryAsync =
   };
 
 // 문제 : 공유 변경 수행 후, 한 번 더 변경하면 diary_no가 전달이 안 됨.
-// 해결 방법 다이어리 넘버를 redux에서 그냥 가져오는 걸로 수정
+// 문제 원인 : 받아오는 데이터에서 selected_diary 가 객체가 아닌 배열 형식.
+// 받아오는 방식 수정 필요.
 export const ChangeShareDiaryAsync =
   // (diary_no) =>
 
