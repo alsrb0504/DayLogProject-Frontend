@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, ResignRequestAsync } from "../../../store/actions/auth";
 import OverLay from "../../../components/modules/overLay";
@@ -7,6 +8,7 @@ import ConfirmPopup from "../../../components/modules/confirmPopup";
 import default_profile from "../../../assets/img/default-profile.jpeg";
 
 const MypageHome = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const nickname = useSelector((state) => state.auth.nickname);
@@ -14,6 +16,11 @@ const MypageHome = (props) => {
 
   const [logoutToggle, setLogoutToggle] = useState(false);
   const [resignToggle, resignLogoutToggle] = useState(false);
+
+  // 프로필 편집 이동
+  const moveEditProfile = () => {
+    navigate("/mypage/edit");
+  };
 
   // 로그아웃
   const confirmLogout = () => {
@@ -74,7 +81,7 @@ const MypageHome = (props) => {
       </section>
 
       <ul className="mypage-menu">
-        <MyPageItem text="프로필 변경" />
+        <MyPageItem text="프로필 변경" onClick={moveEditProfile} />
         <MyPageItem text="비밀 번호 변경" />
         <MyPageItem text="로그아웃" onClick={openLogoutPopup} />
         <MyPageItem text="회원 탈퇴" onClick={openResignPopup} />
