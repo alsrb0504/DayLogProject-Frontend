@@ -2,6 +2,9 @@ import axios from "axios";
 import {
   BADGE_CHALLENGE_FAIL,
   BADGE_CHALLENGE_SUCCESS,
+  BADGE_REQUEST_CHALLENGE_BADGE_EMPTY,
+  BADGE_REQUEST_CHALLENGE_BADGE_FAIL,
+  BADGE_REQUEST_CHALLENGE_BADGE_FILL,
   BADGE_REQUEST_FAIL,
   BADGE_REQUEST_SUCCESS,
   BADGE_SELECT,
@@ -151,4 +154,57 @@ export const selectBadge = (badge_no) => (dispatch, getState) => {
       select_badge,
     },
   });
+};
+
+// 홈화면에서 도전 중인 뱃지만 불러오는 함수
+export const RequestChallengeBadgeAsync = () => async (dispatch, getState) => {
+  try {
+    const res = await axios.get("/api/badge/check");
+    const { is_present } = res.data;
+
+    // local 테스트
+    // const res = {
+    //   data: {
+    //     badge: {
+    //       badge_no: 3,
+    //       badge_name: "뱃지 이름 3",
+    //       badge_url: null,
+    //       challenge: true,
+    //       goal_count: 3,
+    //       final_count: 10,
+    //       is_complete: false,
+    //       description: "뱃지 이름 3의 뱃지 설명",
+    //     },
+    //   },
+    // };
+    // const is_present = true;
+
+    // 1. 도전 중인 뱃지가 없는 경우
+    if (!is_present) {
+      dispatch({
+        type: BADGE_REQUEST_CHALLENGE_BADGE_EMPTY,
+      });
+    }
+
+    // 2. 도전 중인 뱃지가 있는 경우
+    if (is_present) {
+      const { badge } = res.data;
+
+      dispatch({
+        type: BADGE_REQUEST_CHALLENGE_BADGE_FILL,
+        payload: {
+          challenge_badge: badge,
+        },
+      });
+    }
+  } catch (e) {
+    console.error(e);
+
+    alert("도전중인 뱃지 정보 요청 실패");
+    console.log("도전중인 뱃지 정보 요청 실패");
+
+    dispatch({
+      type: BADGE_REQUEST_CHALLENGE_BADGE_FAIL,
+    });
+  }
 };

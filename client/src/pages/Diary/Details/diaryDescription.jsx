@@ -19,8 +19,11 @@ const DiaryDescription = (props) => {
   const [sharePopup, setSharePopup] = useState(false);
 
   const diary = useSelector((state) => state.diary.selected_diary);
-  console.log(diary);
   const { image_url, shared, content, date, emotion, diary_no } = diary;
+
+  // 확인용
+  console.log(diary);
+  console.log(image_url);
 
   const moveBack = () => {
     navigate("/diary");
@@ -84,7 +87,11 @@ const DiaryDescription = (props) => {
       <main className="diary-desc-main">
         {image_url !== null && (
           <div className="diary-desc-main-image">
-            <img src={image_url} alt="일기 사진" />
+            <img
+              // src={"http://localhost:3001/images/1653402355619_cookie.jpg"}
+              src={image_url}
+              alt="일기 사진"
+            />
           </div>
         )}
 
@@ -101,7 +108,7 @@ const DiaryDescription = (props) => {
       <div className="diary-desc-btns">
         <div className="diary-desc-btns-share">
           <Button
-            text={`${shared ? "공유 해제" : "공유 설정"}`}
+            text={`${shared !== "false" ? "공유 해제" : "공유 설정"}`}
             color="btn-tertiary"
             size="btn-40"
             onClick={openSharePopup}

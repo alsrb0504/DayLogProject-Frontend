@@ -34,10 +34,8 @@ const GlobalHeader = (props) => {
     }
   };
 
-  // 추후 홈으로 이동하도록 수정
   const handleLogo = () => {
-    // navigate("/");
-    navigate("/login");
+    navigate("/");
   };
 
   return (

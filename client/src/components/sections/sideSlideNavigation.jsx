@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MenuWhiteIcon from "../../assets/icons/menu-white.svg";
 import default_profile from "../../assets/img/default-profile.jpeg";
+import { Logout } from "../../store/actions/auth";
 import NavMenuItem from "../modules/navMenu";
 
 const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const nickname = useSelector((state) => state.auth.nickname);
   const profile_image = useSelector((state) => state.auth.profile_image_url);
@@ -45,9 +47,7 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
   };
 
   const onLogout = () => {
-    // 추후 로그아웃 기능 추가.
-    alert("구현 중");
-    return;
+    dispatch(Logout());
   };
 
   return (

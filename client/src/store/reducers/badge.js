@@ -1,6 +1,9 @@
 import {
   BADGE_CHALLENGE_FAIL,
   BADGE_CHALLENGE_SUCCESS,
+  BADGE_REQUEST_CHALLENGE_BADGE_EMPTY,
+  BADGE_REQUEST_CHALLENGE_BADGE_FAIL,
+  BADGE_REQUEST_CHALLENGE_BADGE_FILL,
   BADGE_REQUEST_FAIL,
   BADGE_REQUEST_SUCCESS,
   BADGE_SELECT,
@@ -8,7 +11,7 @@ import {
 
 const initState = {
   badges: [],
-  challenge_badge: {},
+  challenge_badge: null,
   popup_badge: {},
 };
 
@@ -35,9 +38,17 @@ const badgeReducer = (state = initState, action) => {
         popup_badge: action.payload.select_badge,
       };
     }
-
+    case BADGE_REQUEST_CHALLENGE_BADGE_FILL: {
+      const { challenge_badge } = action.payload;
+      return {
+        ...state,
+        challenge_badge,
+      };
+    }
     case BADGE_REQUEST_FAIL:
-    case BADGE_CHALLENGE_FAIL: {
+    case BADGE_CHALLENGE_FAIL:
+    case BADGE_REQUEST_CHALLENGE_BADGE_EMPTY:
+    case BADGE_REQUEST_CHALLENGE_BADGE_FAIL: {
       return { ...state };
     }
 
