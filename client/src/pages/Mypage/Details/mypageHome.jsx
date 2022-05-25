@@ -75,7 +75,11 @@ const MypageHome = (props) => {
 
       <section className="mypage-profile">
         <div className="mypage-profile-img-container">
-          <img src={profile_image ? profile_image : default_profile} alt="" />
+          <img
+            className="mypage-profile-image"
+            src={profile_image ? profile_image : default_profile}
+            alt=""
+          />
         </div>
         <h3 className="mypage-profile-nickname">{nickname}</h3>
       </section>
