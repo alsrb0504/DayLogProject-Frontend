@@ -9,15 +9,15 @@ import {
 } from "../../../store/actions/board";
 import InputHeader from "../../../components/modules/inputHeader";
 import BoardContainer from "../../../components/sections/boardContainer";
-import default_profile from "../../../assets/img/default-profile.svg";
+import default_profile from "../../../assets/img/default-profile.jpeg";
 
 const BoardMyPage = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // 음.. 자신의 닉네임과 profile_url을 받아와야 하는데..
-  // 같이 보내는 게 좀 까다롭다 싶으면 로그인
-  // 로그인 시, 저장된 닉네임과 profile_url로 구현
+  // 자신의 프로필 정보
+  const nickname = useSelector((state) => state.auth.nickname);
+  const my_profile = useSelector((state) => state.auth.profile_image_url);
 
   // SECRET or SHARE or SCRAP
   const prev_cate = useSelector((state) => state.board.category);
@@ -67,12 +67,14 @@ const BoardMyPage = (props) => {
       <div className="board-header board-profile-header">
         <div className="board-header-bg"></div>
 
-        {/* 추후 본인의 프로필 및 닉네임 가져오는 방법 결정 후 구현. */}
         <div className="board-profile-info">
           <div className="board-profile-image-container">
-            <img src={default_profile} alt="프로필 이미지" />
+            <img
+              src={my_profile ? my_profile : default_profile}
+              alt="프로필 이미지"
+            />
           </div>
-          <span className="board-profile-nickname">마이 닉네임</span>
+          <span className="board-profile-nickname">{nickname}</span>
         </div>
 
         <nav className="board-nav board-profile-nav">
