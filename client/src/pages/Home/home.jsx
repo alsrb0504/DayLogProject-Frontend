@@ -40,15 +40,13 @@ const Home = (props) => {
   }, [dispatch]);
 
   // 로그아웃
-  // localStrage의 access_token을 지워버림.
   const onLogout = async () => {
-    localStorage.clear();
-
-    // 로그아웃 api 호출.
-    // 성공 후에 cookie에 refresh 토큰이 없는 것을 확인해야 함.
-    await axios.delete("/api/members/logout");
-
-    navigate("/login");
+    // auth action 에 구현해두었음.
+    // localStorage.clear();
+    // // 로그아웃 api 호출.
+    // // 성공 후에 cookie에 refresh 토큰이 없는 것을 확인해야 함.
+    // await axios.delete("/api/members/logout");
+    // navigate("/login");
   };
   // ======================================
   //
