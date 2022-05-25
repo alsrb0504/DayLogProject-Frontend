@@ -8,7 +8,7 @@ import {
 
 const initState = {
   badges: [],
-  challenge_badge: {},
+  challenge_badge: null,
   popup_badge: {},
 };
 

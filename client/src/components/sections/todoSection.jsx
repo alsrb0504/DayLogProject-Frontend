@@ -30,7 +30,7 @@ const TodoSection = ({ todos, is_home }) => {
       )}
 
       {/* 도전 중인 뱃지 있다면 표시 */}
-      {badge && is_home && (
+      {badge.badge_name && is_home && (
         <div className="home-badge-container" onClick={openBadgePopup}>
           <div className="badge-image-container">
             {/* 뱃지 테스트 완료 후, 삭제 */}
