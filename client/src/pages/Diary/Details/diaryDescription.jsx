@@ -20,8 +20,9 @@ const DiaryDescription = (props) => {
 
   const diary = useSelector((state) => state.diary.selected_diary);
   const { image_url, shared, content, date, emotion, diary_no } = diary;
-  console.log(diary);
 
+  // 확인용
+  console.log(diary);
   console.log(image_url);
 
   const moveBack = () => {
@@ -86,7 +87,11 @@ const DiaryDescription = (props) => {
       <main className="diary-desc-main">
         {image_url !== null && (
           <div className="diary-desc-main-image">
-            <img src={image_url} alt="일기 사진" />
+            <img
+              // src={"http://localhost:3001/images/1653402355619_cookie.jpg"}
+              src={image_url}
+              alt="일기 사진"
+            />
           </div>
         )}
 
