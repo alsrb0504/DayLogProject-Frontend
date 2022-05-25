@@ -36,6 +36,7 @@ const Home = (props) => {
   );
 
   useEffect(() => {
+    SetAuthHeader();
     dispatch(RequestChallengeBadgeAsync());
   }, [dispatch]);
 
