@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux";
-import default_profile from "../../../assets/img/default-profile.jpeg";
 import { useForm } from "react-hook-form";
-import InputContainer from "../../../components/modules/inputContainer";
-
+import { useSelector } from "react-redux";
 import plus_icon from "../../../assets/icons/add-btn.svg";
+import InputContainer from "../../../components/modules/inputContainer";
+import default_profile from "../../../assets/img/default-profile.jpeg";
+import Button from "../../../components/modules/button";
 
 const MypageEdit = (props) => {
   const name = useSelector((state) => state.auth.name);
@@ -93,6 +93,21 @@ const MypageEdit = (props) => {
         label="이메일"
         error={errors.email && "input-error"}
       />
+
+      <div className="mypage-edit-btn-section">
+        <Button
+          className="mypage-edit-btn"
+          text="취소"
+          color="btn-secondary"
+          size="btn-40 col-sm-1"
+        />
+        <Button
+          className="mypage-edit-btn"
+          text="저장"
+          color="btn-primary"
+          size="btn-40 col-sm-1"
+        />
+      </div>
     </>
   );
 };

@@ -100,3 +100,20 @@
 
   opacity: 0.8;
 }
+
+.mypage-edit-btn-section {
+  @include flexbox(flex-end);
+  position: absolute;
+  width: 100%;
+  bottom: 26px;
+  padding-right: 8px;
+
+  .mypage-edit-btn {
+    margin: 0;
+    max-width: 140px;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+  }
+}
