@@ -89,6 +89,12 @@
   background-color: transparent;
 }
 
+.mypage-main {
+  .input-label {
+    margin-bottom: 8px;
+  }
+}
+
 .mypage-profile-add-icon {
   @include ScaleEffect(1.1);
   position: absolute;

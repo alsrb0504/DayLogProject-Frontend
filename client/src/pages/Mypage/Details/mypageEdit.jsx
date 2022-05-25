@@ -26,7 +26,7 @@ const MypageEdit = (props) => {
 
   return (
     <>
-      <section className="mypage-profile">
+      <section className="mypage-profile mypage-edit">
         <div className="mypage-profile-img-container">
           <img
             className="mypage-profile-image"
