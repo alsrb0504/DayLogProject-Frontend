@@ -5,10 +5,12 @@ import MyPageItem from "../../components/modules/mypageItem";
 import OverLay from "../../components/modules/overLay";
 import ConfirmPopup from "../../components/modules/confirmPopup";
 import default_profile from "../../assets/img/default-profile.jpeg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "../../store/actions/auth";
 
 const MyPage = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const nickname = useSelector((state) => state.auth.nickname);
   const profile_image = useSelector((state) => state.auth.profile_image_url);
@@ -16,6 +18,12 @@ const MyPage = (props) => {
   const [logoutToggle, setLogoutToggle] = useState(false);
   const [resignToggle, resignLogoutToggle] = useState(false);
 
+  // 로그아웃
+  const confirmLogout = () => {
+    dispatch(Logout());
+  };
+
+  // 토글 창
   const openLogoutPopup = () => {
     setLogoutToggle(true);
   };
@@ -41,7 +49,7 @@ const MyPage = (props) => {
             text="로그아웃 하시겠습니까?"
             close={closeLogoutPopup}
             // 추후 로그아웃 연결.
-            confirm={() => {}}
+            confirm={confirmLogout}
           />
         </>
       )}
