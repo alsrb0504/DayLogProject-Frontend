@@ -11,13 +11,15 @@ import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon_white from "../../assets/icons/close-icon-white.svg";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
 import { SetAuthHeader } from "../../services/auth";
 import SideSlideNavigation from "../../components/sections/sideSlideNavigation";
+import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 
 const Home = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
@@ -32,6 +34,10 @@ const Home = (props) => {
   const select_todos = month_todos.find(
     (daily_todos) => daily_todos.date === selectedDate.date
   );
+
+  useEffect(() => {
+    dispatch(RequestChallengeBadgeAsync());
+  }, [dispatch]);
 
   // 로그아웃
   // localStrage의 access_token을 지워버림.

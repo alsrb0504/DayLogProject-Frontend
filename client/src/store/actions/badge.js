@@ -162,6 +162,23 @@ export const RequestChallengeBadgeAsync = () => async (dispatch, getState) => {
     const res = await axios.get("/api/badge/check");
     const { is_present } = res.data;
 
+    // local 테스트
+    // const res = {
+    //   data: {
+    //     badge: {
+    //       badge_no: 3,
+    //       badge_name: "뱃지 이름 3",
+    //       badge_url: null,
+    //       challenge: true,
+    //       goal_count: 3,
+    //       final_count: 10,
+    //       is_complete: false,
+    //       description: "뱃지 이름 3의 뱃지 설명",
+    //     },
+    //   },
+    // };
+    // const is_present = true;
+
     // 1. 도전 중인 뱃지가 없는 경우
     if (!is_present) {
       dispatch({
