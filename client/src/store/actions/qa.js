@@ -10,24 +10,24 @@ import {
 // QA 질문지와 선택지 요청 함수
 export const RequestQAAsync = () => async (dispatch, getState) => {
   try {
-    // const res = await axios.get("/api/QA");
-    // const { question, choice } = res.data;
+    const res = await axios.get("/api/QA");
+    const { question, choice } = res.data;
 
-    const question = "오늘의 질문 오늘의 질문 오늘의 질문 오늘의 질문";
-    const choice = [
-      {
-        index: 1,
-        text: "선택지 1",
-      },
-      {
-        index: 2,
-        text: "선택지 2",
-      },
-      {
-        index: 3,
-        text: "선택지 3",
-      },
-    ];
+    // const question = "오늘의 질문 오늘의 질문 오늘의 질문 오늘의 질문";
+    // const choice = [
+    //   {
+    //     index: 1,
+    //     text: "선택지 1",
+    //   },
+    //   {
+    //     index: 2,
+    //     text: "선택지 2",
+    //   },
+    //   {
+    //     index: 3,
+    //     text: "선택지 3",
+    //   },
+    // ];
 
     dispatch({
       type: QA_REQUEST_SUCCESS,
@@ -49,15 +49,16 @@ export const RequestQAAsync = () => async (dispatch, getState) => {
 };
 
 // QA 결과 전송 함수
-export const ResultQAAsync = (index) => async (dispatch, getState) => {
+export const ResultQAAsync = (choice) => async (dispatch, getState) => {
+  const { index, text } = choice;
+
   const dateInfo = toDayInfo();
 
   try {
-    // 결과 날짜를 꼭 보내야 할까?
     // const res = await axios.post(
     //   `/api/QA?date=${dateInfo.date}&index=${index}`
     // );
-    // const { selected_emoji_url, description, month_emoji } = res.data;
+    // const { month_emoji } = res.data;
 
     const month_emoji = [
       {
@@ -78,6 +79,8 @@ export const ResultQAAsync = (index) => async (dispatch, getState) => {
       type: QA_RESULT_SUCCESS,
       payload: {
         month_emoji,
+        description: text,
+        selected_emoji_index: index,
       },
     });
   } catch (e) {

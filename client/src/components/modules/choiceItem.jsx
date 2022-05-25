@@ -5,7 +5,10 @@ const ChoiceItem = ({ choice, openChoicePopup }) => {
   const dispatch = useDispatch();
 
   const selectChoice = () => {
-    dispatch(ResultQAAsync(choice.index));
+    // dispatch(ResultQAAsync(choice.index));
+
+    dispatch(ResultQAAsync(choice));
+
     openChoicePopup();
   };
 

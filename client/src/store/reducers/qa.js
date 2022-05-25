@@ -9,7 +9,7 @@ const initState = {
   question: "",
   choices: [],
   month_emoji: [],
-  selected_emoji_url: "",
+  selected_emoji_index: 0,
   description: "",
 };
 
@@ -25,10 +25,10 @@ const qaReducer = (state = initState, action) => {
     }
 
     case QA_RESULT_SUCCESS: {
-      const { selected_emoji_url, description, month_emoji } = action.payload;
+      const { selected_emoji_index, description, month_emoji } = action.payload;
       return {
         ...state,
-        selected_emoji_url,
+        selected_emoji_index,
         description,
         month_emoji,
       };
