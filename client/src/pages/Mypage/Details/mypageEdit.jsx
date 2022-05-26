@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import plus_icon from "../../../assets/icons/add-btn.svg";
 import InputContainer from "../../../components/modules/inputContainer";
 import default_profile from "../../../assets/img/default-profile.jpeg";
 import Button from "../../../components/modules/button";
 
 const MypageEdit = (props) => {
+  const navigate = useNavigate();
+
   const name = useSelector((state) => state.auth.name);
   const email = useSelector((state) => state.auth.email);
   const nickname = useSelector((state) => state.auth.nickname);
@@ -23,6 +26,10 @@ const MypageEdit = (props) => {
       profile_image,
     },
   });
+
+  const moveBack = () => {
+    navigate("/mypage");
+  };
 
   return (
     <>
@@ -100,6 +107,7 @@ const MypageEdit = (props) => {
           text="취소"
           color="btn-secondary"
           size="btn-40 col-sm-1"
+          onClick={moveBack}
         />
         <Button
           className="mypage-edit-btn"
