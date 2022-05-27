@@ -82,7 +82,6 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
         }}
         events={events}
         eventClick={onClickHeart}
-        // eventClick={(e) => console.log(e)}
         dateClick={(info) => {
           onClickDate(info);
         }}
