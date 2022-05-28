@@ -25,7 +25,7 @@ const MainCalendarWrapper = ({
 
   // 캘린더 이벤트 생성 함수.
   const events = MakeCalendarEvents();
-  console.log("calendar :", events);
+  // console.log("calendar :", events);
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
@@ -83,7 +83,7 @@ const MainCalendarWrapper = ({
         // alert("hi");
         // }}
         events={events}
-        eventClick={console.log("event click")}
+        // eventClick={console.log("event click")}
         eventOverlap={true}
         dateClick={(info) => {
           onClickDate(info);

@@ -75,8 +75,8 @@ export const MakeCalendarEvents = () => {
     // 일정만 추가
   }
 
-  console.log("scheduleArr", scheduleArr);
-  console.log("events", events);
+  // console.log("scheduleArr", scheduleArr);
+  // console.log("events", events);
 
   return events;
 };
