@@ -1,21 +1,25 @@
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import plus_icon from "../../../assets/icons/add-btn.svg";
 import InputContainer from "../../../components/modules/inputContainer";
 import default_profile from "../../../assets/img/default-profile.jpeg";
 import Button from "../../../components/modules/button";
 import { useRef } from "react";
+import { UpdateProfileAsync } from "../../../store/actions/auth";
 
 const MypageEdit = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const fileRef = useRef(null);
 
   const name = useSelector((state) => state.auth.name);
   const email = useSelector((state) => state.auth.email);
   const nickname = useSelector((state) => state.auth.nickname);
-  const profile_image = useSelector((state) => state.auth.profile_image_url);
+  const profile_image_url = useSelector(
+    (state) => state.auth.profile_image_url
+  );
 
   const {
     register,
@@ -26,7 +30,7 @@ const MypageEdit = (props) => {
       name,
       email,
       nickname,
-      profile_image,
+      profile_image_url,
     },
   });
 
@@ -39,14 +43,21 @@ const MypageEdit = (props) => {
   };
 
   const onSubmit = (e) => {
-    console.log(profile_image);
-
+    // 확인용 콘솔 로그
+    console.log(profile_image_url);
     console.log(e);
-
     console.log(fileRef.current.value);
 
     // profile_image 가 input 넣어도 바뀌지 않음.
-    // 전달할 때, profile_image || fileRef.current.value
+    // 전달할 때, profile_image_url || fileRef.current.value
+    const user_info = {
+      name: e.name,
+      email: e.email,
+      nickname: e.nickname,
+      profile_image: fileRef.current.value || profile_image_url,
+    };
+
+    dispatch(UpdateProfileAsync(user_info));
   };
 
   return (
@@ -56,7 +67,7 @@ const MypageEdit = (props) => {
           <div className="mypage-profile-img-container">
             <img
               className="mypage-profile-image"
-              src={profile_image ? profile_image : default_profile}
+              src={profile_image_url ? profile_image_url : default_profile}
               alt=""
             />
             <img
@@ -69,7 +80,7 @@ const MypageEdit = (props) => {
               className="profile-img-input"
               type="file"
               accept="image/*"
-              {...register("profile_image")}
+              {...register("profile_image_url")}
               // 순서 register 다음에 ref 연결해야 함.
               ref={fileRef}
             />

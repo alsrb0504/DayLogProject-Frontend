@@ -4,6 +4,9 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_USER,
+  PROFILE_UPDATE_FAIL,
+  PROFILE_UPDATE_IMAGE_FAIL,
+  PROFILE_UPDATE_SUCCESS,
   RESIGN_FAIL,
   RESIGN_SUCCESS,
 } from "./types";
@@ -88,6 +91,65 @@ export const ResignRequestAsync =
 
       dispatch({
         type: RESIGN_FAIL,
+      });
+    }
+  };
+
+export const UpdateProfileAsync =
+  (user_info) =>
+  async (dispatch, getState, { history }) => {
+    console.log(user_info);
+
+    const { name, email, nickname, profile_image } = user_info;
+
+    console.log(name, email, nickname, profile_image);
+
+    try {
+      // 1번째 요청 : 사진 전송 api 먼저
+      if (profile_image) {
+        const formData = new FormData();
+        formData.append("image", profile_image);
+
+        const img_res = await axios({
+          method: "post",
+          url: "/api/members/profile",
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (img_res.data.message !== true) {
+          //
+          dispatch({
+            type: PROFILE_UPDATE_IMAGE_FAIL,
+          });
+        }
+      }
+
+      // 2번째 요청 : 변경된 유저 정보 전달
+      const res = await axios.post("/api/members/name", {
+        new_name: name,
+        new_nickname: nickname,
+        new_email: email,
+      });
+
+      const updated_user_info = res.data;
+
+      dispatch({
+        type: PROFILE_UPDATE_SUCCESS,
+        payload: {
+          name: updated_user_info.name,
+          nickname: updated_user_info.nickname,
+          email: updated_user_info.email,
+          profile_image_url: updated_user_info.profile_image_url,
+        },
+      });
+    } catch (e) {
+      alert("프로필 업데이트 실패");
+      console.error("프로필 업데이트 실패");
+      dispatch({
+        type: PROFILE_UPDATE_FAIL,
       });
     }
   };

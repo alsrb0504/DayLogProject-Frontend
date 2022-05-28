@@ -2,6 +2,9 @@ import {
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_USER,
+  PROFILE_UPDATE_FAIL,
+  PROFILE_UPDATE_IMAGE_FAIL,
+  PROFILE_UPDATE_SUCCESS,
   RESIGN_FAIL,
   RESIGN_SUCCESS,
 } from "../actions/types";
@@ -50,6 +53,20 @@ const authReducer = (state = initState, action) => {
         email: "",
       };
     }
+
+    case PROFILE_UPDATE_SUCCESS: {
+      const { name, nickname, email, profile_image_url } = action.payload;
+      return {
+        ...state,
+        name,
+        nickname,
+        email,
+        profile_image_url,
+      };
+    }
+
+    case PROFILE_UPDATE_IMAGE_FAIL:
+    case PROFILE_UPDATE_FAIL:
     case RESIGN_FAIL: {
       return { ...state };
     }
