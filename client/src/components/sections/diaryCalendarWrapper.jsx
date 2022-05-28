@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import {
   FindDiaryCalendar,
   RequestDiaryAsync,
+  SelectDiaryAsync,
 } from "../../store/actions/diary";
 
 const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
@@ -64,6 +65,11 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
     // dispatch(SetCurSchedules(date, day));
   };
 
+  // 캘린더 하트 아이콘 클릭 아벤트 함수
+  const onClickHeart = (info) => {
+    dispatch(SelectDiaryAsync(info.event.id));
+  };
+
   return (
     <div className="diary-calendar">
       <FullCalendar
@@ -75,6 +81,7 @@ const DiaryCalendarWrapper = ({ setIsToggle, setSelectedDate }) => {
           end: "",
         }}
         events={events}
+        eventClick={onClickHeart}
         dateClick={(info) => {
           onClickDate(info);
         }}

@@ -74,6 +74,13 @@
   }
 }
 
+// edit 페이지 form 이미지 input
+.mypage-edit-form {
+  .profile-img-input {
+    display: none;
+  }
+}
+
 // edit 폼의 닉네임 input
 .mypage-edit-nickname {
   padding: 4px 10px;
@@ -87,6 +94,12 @@
   text-align: center;
 
   background-color: transparent;
+}
+
+.mypage-main {
+  .input-label {
+    margin-bottom: 8px;
+  }
 }
 
 .mypage-profile-add-icon {

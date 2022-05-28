@@ -25,6 +25,7 @@ const MainCalendarWrapper = ({
 
   // 캘린더 이벤트 생성 함수.
   const events = MakeCalendarEvents();
+  // console.log("calendar :", events);
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
@@ -32,7 +33,7 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("prev", month, year);
 
-   dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+    dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
     dispatch(ChangeCycleAsync(calced_date.mm, calced_date.yy));
 
@@ -44,9 +45,9 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("next", month, year);
 
-   dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+    dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
-    dispatch(ChangeCycleAsync( calced_date.mm, calced_date.yy));
+    dispatch(ChangeCycleAsync(calced_date.mm, calced_date.yy));
 
     calendarApi.next();
   };
@@ -78,10 +79,12 @@ const MainCalendarWrapper = ({
           center: "customPrev title customNext",
           end: "",
         }}
-        eventClick={function () {
-          alert("hi");
-        }}
+        // eventClick={function () {
+        // alert("hi");
+        // }}
         events={events}
+        // eventClick={console.log("event click")}
+        eventOverlap={true}
         dateClick={(info) => {
           onClickDate(info);
         }}

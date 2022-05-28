@@ -68,6 +68,30 @@ export function printDayInfoForDate(info) {
   return `${changeMonthFromIntToFull(dateInfo[1])} ${dateInfo[2]}`;
 }
 
+export function editScheduleEnd(start, end) {
+  const date = new Date(end);
+  let is_same = false;
+
+  if (start === end) {
+    date.setDate(date.getDate() + 2);
+    is_same = true;
+  } else {
+    date.setDate(date.getDate() + 1);
+  }
+
+  const dateStr = date.toString().split(" ");
+
+  // dateStr = ['Sat', 'May', '21', '2022', '09:00:00', 'GMT+0900', '(한국', '표준시)'];
+  const yy = dateStr[3];
+  const mm = changeMonthInt(dateStr[1]);
+  const dd = dateStr[2];
+
+  return {
+    is_same,
+    date: `${yy}-${mm}-${dd}`,
+  };
+}
+
 export function changeDayFull(day) {
   switch (day) {
     case "Sun":
