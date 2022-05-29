@@ -22,6 +22,7 @@ const MypageEdit = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       name,
@@ -30,6 +31,18 @@ const MypageEdit = (props) => {
       file: null,
     },
   });
+
+  const watchFile = watch("file", false);
+
+  // 프로필 이미지 선택 함수.
+  const selectProfile = () => {
+    let image = profile_image_url ? profile_image_url : default_profile;
+    if (watchFile[0] !== undefined) {
+      image = URL.createObjectURL(watchFile[0]);
+    }
+
+    return image;
+  };
 
   const moveBack = () => {
     navigate("/mypage");
@@ -53,8 +66,8 @@ const MypageEdit = (props) => {
           <div className="mypage-profile-img-container">
             <img
               className="mypage-profile-image"
-              src={profile_image_url ? profile_image_url : default_profile}
-              alt=""
+              src={selectProfile()}
+              alt="프로필 이미지"
             />
             <div className="mypage-profile-add">
               <img
