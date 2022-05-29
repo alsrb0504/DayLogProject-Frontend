@@ -30,7 +30,7 @@ const MypageEdit = (props) => {
       name,
       email,
       nickname,
-      profile_image_url,
+      file: null,
     },
   });
 
@@ -38,24 +38,23 @@ const MypageEdit = (props) => {
     navigate("/mypage");
   };
 
-  const profileInputClick = () => {
-    fileRef.current.click();
-  };
-
   const onSubmit = (e) => {
     // 확인용 콘솔 로그
-    console.log(profile_image_url);
-    console.log(e);
-    console.log(fileRef.current.value);
+    // console.log(profile_image_url);
+    console.log("edit-date :", e);
+    // console.log(fileRef.current.value);
 
-    // profile_image 가 input 넣어도 바뀌지 않음.
-    // 전달할 때, profile_image_url || fileRef.current.value
+    // ref로 접근해서 가져오면 file 객체가 생기지 않음...
+
     const user_info = {
       name: e.name,
       email: e.email,
       nickname: e.nickname,
-      profile_image: fileRef.current.value || profile_image_url,
+      // profile_image_url: fileRef.current.value || profile_image_url,
+      profile_image_url: e.file,
     };
+
+    // console.log(user_info);
 
     dispatch(UpdateProfileAsync(user_info));
   };
@@ -70,20 +69,19 @@ const MypageEdit = (props) => {
               src={profile_image_url ? profile_image_url : default_profile}
               alt=""
             />
-            <img
-              className="mypage-profile-add-icon"
-              src={plus_icon}
-              alt="플러스 아이콘"
-              onClick={profileInputClick}
-            />
-            <input
-              className="profile-img-input"
-              type="file"
-              accept="image/*"
-              {...register("profile_image_url")}
-              // 순서 register 다음에 ref 연결해야 함.
-              ref={fileRef}
-            />
+            <div className="mypage-profile-add">
+              <img
+                className="mypage-profile-add-icon"
+                src={plus_icon}
+                alt="플러스 아이콘"
+              />
+              <input
+                className="profile-file-input"
+                type="file"
+                accept="image/*"
+                {...register("file")}
+              />
+            </div>
           </div>
           <input
             className="mypage-profile-nickname mypage-edit-nickname"
