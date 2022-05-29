@@ -29,6 +29,10 @@ const DiaryDescription = (props) => {
     navigate("/diary");
   };
 
+  const moveEdit = () => {
+    navigate("/diary/edit");
+  };
+
   const confirmRemove = () => {
     console.log("remove confirm");
     dispatch(RemoveDiaryAsync(diary_no));
@@ -119,7 +123,7 @@ const DiaryDescription = (props) => {
             text="편집"
             color="btn-secondary"
             size="btn-40"
-            onClick={confirmShare}
+            onClick={moveEdit}
           />
           <Button
             text="삭제"
