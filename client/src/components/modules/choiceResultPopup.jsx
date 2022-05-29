@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import dummy_emoji from "../../assets/img/dummy-emoji.svg";
+import dummy_emoji from "../../assets/img/dummy-emoji.png";
 import Button from "./button";
 
 const ChoiceResultPopup = ({ closeChoicePopup }) => {
