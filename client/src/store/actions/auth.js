@@ -100,15 +100,34 @@ export const UpdateProfileAsync =
   async (dispatch, getState, { history }) => {
     console.log(user_info);
 
-    const { name, email, nickname, profile_image } = user_info;
+    const {
+      edited_name,
+      edited_email,
+      edited_nickname,
+      edited_profile_image_url,
+    } = user_info;
 
-    console.log(name, email, nickname, profile_image);
+    console.log(
+      edited_name,
+      edited_email,
+      edited_nickname,
+      edited_profile_image_url
+    );
 
     try {
       // 1번째 요청 : 사진 전송 api 먼저
-      if (profile_image) {
+      if (edited_profile_image_url.length !== 0) {
         const formData = new FormData();
-        formData.append("image", profile_image);
+        formData.append("image", edited_profile_image_url);
+
+        // 폼 데이터 확인용
+        // for (var key of formData.keys()) {
+        //   console.log(key);
+        // }
+
+        // for (var value of formData.values()) {
+        //   console.log(value);
+        // }
 
         const img_res = await axios({
           method: "post",
@@ -129,9 +148,9 @@ export const UpdateProfileAsync =
 
       // 2번째 요청 : 변경된 유저 정보 전달
       const res = await axios.post("/api/members/name", {
-        new_name: name,
-        new_nickname: nickname,
-        new_email: email,
+        new_name: edited_name,
+        new_nickname: edited_nickname,
+        new_email: edited_email,
       });
 
       const updated_user_info = res.data;

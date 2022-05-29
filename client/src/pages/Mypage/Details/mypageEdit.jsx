@@ -1,18 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { UpdateProfileAsync } from "../../../store/actions/auth";
+import Button from "../../../components/modules/button";
 import plus_icon from "../../../assets/icons/add-btn.svg";
 import InputContainer from "../../../components/modules/inputContainer";
 import default_profile from "../../../assets/img/default-profile.jpeg";
-import Button from "../../../components/modules/button";
-import { useRef } from "react";
-import { UpdateProfileAsync } from "../../../store/actions/auth";
 
 const MypageEdit = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const fileRef = useRef(null);
 
   const name = useSelector((state) => state.auth.name);
   const email = useSelector((state) => state.auth.email);
@@ -38,23 +35,13 @@ const MypageEdit = (props) => {
     navigate("/mypage");
   };
 
-  const onSubmit = (e) => {
-    // 확인용 콘솔 로그
-    // console.log(profile_image_url);
-    console.log("edit-date :", e);
-    // console.log(fileRef.current.value);
-
-    // ref로 접근해서 가져오면 file 객체가 생기지 않음...
-
+  const onSubmit = (data) => {
     const user_info = {
-      name: e.name,
-      email: e.email,
-      nickname: e.nickname,
-      // profile_image_url: fileRef.current.value || profile_image_url,
-      profile_image_url: e.file,
+      edited_name: data.name,
+      edited_email: data.email,
+      edited_nickname: data.nickname,
+      edited_profile_image_url: data.file,
     };
-
-    // console.log(user_info);
 
     dispatch(UpdateProfileAsync(user_info));
   };
