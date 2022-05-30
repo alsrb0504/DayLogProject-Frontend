@@ -112,8 +112,8 @@
         &::after {
           content: "";
           position: absolute;
-          top: -3px; // 한 칸의 height가 24px
-          left: 0px; // 한 칸의 width가 29px
+          top: -2.5px; // 한 칸의 height가 24px
+          left: -1px; // 한 칸의 width가 29px
           width: 30px;
           height: 30px;
           border: 2.5px solid $primary;
