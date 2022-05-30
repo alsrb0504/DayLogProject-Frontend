@@ -31,6 +31,7 @@ import MyPage from "./pages/Mypage/mypage";
 import MypageHome from "./pages/Mypage/Details/mypageHome";
 import MypageEdit from "./pages/Mypage/Details/mypageEdit";
 import DiaryEdit from "./pages/Diary/Details/diaryEdit";
+import MypagePasswd from "./pages/Mypage/Details/mypagePasswd";
 
 function App() {
   const navigate = useNavigate();
@@ -122,6 +123,7 @@ function App() {
               <Route path="/mypage" element={<MyPage />}>
                 <Route index element={<MypageHome />} />
                 <Route path="edit" element={<MypageEdit />} />
+                <Route path="changepasswd" element={<MypagePasswd />} />
               </Route>
             </Routes>
           </div>

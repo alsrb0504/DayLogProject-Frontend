@@ -22,6 +22,10 @@ const MypageHome = (props) => {
     navigate("/mypage/edit");
   };
 
+  const moveChangePasswd = () => {
+    navigate("/mypage/changepasswd");
+  };
+
   // 로그아웃
   const confirmLogout = () => {
     dispatch(Logout());
@@ -86,7 +90,7 @@ const MypageHome = (props) => {
 
       <ul className="mypage-menu">
         <MyPageItem text="프로필 변경" onClick={moveEditProfile} />
-        <MyPageItem text="비밀 번호 변경" />
+        <MyPageItem text="비밀 번호 변경" onClick={moveChangePasswd} />
         <MyPageItem text="로그아웃" onClick={openLogoutPopup} />
         <MyPageItem text="회원 탈퇴" onClick={openResignPopup} />
       </ul>
