@@ -8,10 +8,12 @@ import InputContainer from "../../../components/modules/inputContainer";
 import InputTextarea from "../../../components/modules/inputTextarea";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { EditDiaryAsync } from "../../../store/actions/diary";
 
 const DiaryEdit = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // member_id(pin):"test"
   // date(pin):"2022-05-25"
@@ -61,9 +63,9 @@ const DiaryEdit = (props) => {
       edited_image_url: data.file,
     };
 
-    console.log("edit_diary : ", edit_diary);
+    // console.log("edit_diary : ", edit_diary);
 
-    // dispatch(AddDiaryAsync(date, content, image, emotion, shared));
+    dispatch(EditDiaryAsync(edit_diary));
   };
 
   // 사진 추가 버튼 text 주는 함수.

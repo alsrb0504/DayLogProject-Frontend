@@ -4,6 +4,8 @@ import {
   DIARY_ADD_SUCCESS,
   DIARY_CHANGE_SHARE_FAIL,
   DIARY_CHANGE_SHARE_SUCCESS_FILL,
+  DIARY_EDIT_FAIL,
+  DIARY_EDIT_SUCCESS,
   DIARY_REMOVE_FAIL,
   DIARY_REMOVE_SUCCESS_EMPTY,
   DIARY_REMOVE_SUCCESS_FILL,
@@ -229,3 +231,91 @@ export const FindDiaryCalendar = (date) => (dispatch, getState) => {
 
   dispatch(SelectDiaryAsync(found.diary_no));
 };
+
+// 일기 수정 함수
+export const EditDiaryAsync =
+  (edit_diary) =>
+  async (dispatch, getState, { history }) => {
+    const {
+      edited_date,
+      edited_content,
+      edited_shared,
+      edited_emotion,
+      edited_image_url,
+    } = edit_diary;
+
+    const edit_diary_no = getState().diary.selected_diary.diary_no;
+    const selected_diary = getState().diary.selected_diary;
+
+    // console.log(
+    //   edited_date,
+    //   edited_content,
+    //   edited_shared,
+    //   edited_emotion,
+    //   edited_image_url,
+
+    //   diary_no
+    // );
+
+    try {
+      // 1번째 요청 : 사진을 변경했다면 사진 변경 요청
+      if (edited_image_url) {
+        const formData = new FormData();
+        formData.append("image", edited_image_url);
+
+        const img_res = await axios({
+          method: "post",
+          url: `/api/diary/image/change?no=${edit_diary_no}`,
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (img_res.data.message !== true) {
+          console.error("사진 변경 실패");
+          dispatch({
+            type: DIARY_EDIT_FAIL,
+          });
+        }
+      }
+
+      // 2번째 요청 : 변경된 유저 정보 전달
+      const res = await axios.post(`/api/diary/change?no=${edit_diary_no}`, {
+        date: edited_date,
+        content: edited_content,
+        emotion: edited_emotion,
+        share: edited_shared,
+      });
+
+      const { diary_no, member_id, date, content, emotion, shared, image_url } =
+        res.data.edited_diary;
+
+      const updated_diary = {
+        ...selected_diary,
+        date,
+        member_id,
+        emotion,
+        diary_no,
+        shared,
+        content,
+        image_url,
+      };
+
+      // 결과 확인용.
+      console.log("update_diary :", updated_diary);
+
+      dispatch({
+        type: DIARY_EDIT_SUCCESS,
+        payload: {
+          updated_diary,
+        },
+      });
+    } catch (e) {
+      alert("일기 수정 실패");
+      console.error("일기 수정 실패");
+      dispatch({
+        type: DIARY_EDIT_FAIL,
+      });
+    }
+  };
