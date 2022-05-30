@@ -33,6 +33,7 @@ const DiaryEdit = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       date,
@@ -43,37 +44,72 @@ const DiaryEdit = (props) => {
     },
   });
 
-  const [openPopup, setOpenPopup] = useState(false);
+  const watchContent = watch("content");
+  const watchFile = watch("file", null);
 
-  const handleShared = () => {
-    // setShared(!shared);
-  };
+  // 주의: 서버에서 받아온 shared가 문자열임.
+  const [shareCheck, setShareCheck] = useState(Boolean(shared));
+  const [openPopup, setOpenPopup] = useState(false);
+  const [newEmotion, setNewEmotion] = useState(emotion);
 
   const onSubmit = (data) => {
-    // popUp 오픈을 위한 코드
-    // if (emotion === 0) {
-    //   openEmotionPopup();
-    //   return;
-    // }
+    const edit_diary = {
+      edited_date: data.date,
+      edited_content: data.content,
+      edited_shared: shareCheck,
+      edited_emotion: newEmotion,
+      edited_image_url: data.file,
+    };
 
-    const date = data.date;
-    const content = data.content;
-    const image = data.file[0];
+    console.log("edit_diary : ", edit_diary);
 
     // dispatch(AddDiaryAsync(date, content, image, emotion, shared));
   };
 
+  // 사진 추가 버튼 text 주는 함수.
+  const viewImageInfo = () => {
+    // 기본 정보
+    let image_btn_text = image_url ? "사진 변경" : "사진 추가";
+
+    if (watchFile && watchFile[0] !== undefined) {
+      // image_btn_text = URL.createObjectURL(watchFile[0]);
+    }
+
+    return image_btn_text;
+  };
+
+  const handleShared = () => {
+    setShareCheck(!shareCheck);
+  };
+
   const moveBack = () => {
-    navigate("/diary");
+    navigate("/diary/description");
   };
 
   const openEmotionPopup = () => {
+    if (watchContent === "") {
+      alert("일기 내용을 작성해주세요.");
+      return;
+    }
+
     setOpenPopup(true);
   };
 
   const closeEmotionPopup = () => {
     setOpenPopup(false);
   };
+
+  // popup에서 handleSubmit을 이용하기 위해
+  // 버튼 미리 생성.
+  const submitBtn = (
+    <Button
+      text={emotion === 0 ? "선택" : "완료"}
+      type="submit"
+      color={emotion === 0 ? "btn-secondary" : "btn-primary"}
+      size="btn-40 col-sm-1"
+      onClick={handleSubmit(onSubmit)}
+    />
+  );
 
   return (
     <div>
@@ -82,9 +118,9 @@ const DiaryEdit = (props) => {
           <OverLay onClick={closeEmotionPopup} />
           <EmotionPopup
             close={closeEmotionPopup}
-            // emotion={emotion}
-            // setEmotion={setEmotion}
-            // submitBtn={submitBtn}
+            emotion={newEmotion}
+            setEmotion={setNewEmotion}
+            submitBtn={submitBtn}
           />
         </>
       )}
@@ -125,20 +161,18 @@ const DiaryEdit = (props) => {
               ></textarea>
             </>
           }
-          // 추후 일기 내용이 없다면
-          // 다른 인풋처럼 border 강조되는 효과 넣을 것.
-          // error={errors.date && "input-error"}
         />
 
         <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">
-          <span>사진 추가</span>
+          {/* <span>사진 추가</span> */}
+          <span>{viewImageInfo()}</span>
           <input type="file" accept="image/*" {...register("file")} />
         </button>
 
         <div className="diary-form-shared col-sm-2">
           <span>공유 하시겠습니까?</span>
           <div className="diary-form-shared-container" onClick={handleShared}>
-            {/* {shared && <img src={check_icon} alt="check icon" />} */}
+            {shareCheck && <img src={check_icon} alt="check icon" />}
           </div>
         </div>
       </form>
@@ -156,7 +190,7 @@ const DiaryEdit = (props) => {
           type="submit"
           color="btn-primary"
           size="btn-40 col-sm-4"
-          onClick={handleSubmit(onSubmit)}
+          onClick={openEmotionPopup}
         />
       </section>
     </div>
