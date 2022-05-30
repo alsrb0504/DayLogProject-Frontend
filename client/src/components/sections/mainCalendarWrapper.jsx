@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
   GetCalendarMonthYear,
@@ -13,7 +13,7 @@ import {
   RequestSchedulesAsync,
   SetCurSchedules,
 } from "../../store/actions/schedule";
-import { RequestTodosAsync } from "../../store/actions/todo";
+import { RequestTodosAsync, SetSelectedTodos } from "../../store/actions/todo";
 
 const MainCalendarWrapper = ({
   setIsToggle,
@@ -25,7 +25,6 @@ const MainCalendarWrapper = ({
 
   // 캘린더 이벤트 생성 함수.
   const events = MakeCalendarEvents();
-  // console.log("calendar :", events);
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
@@ -53,7 +52,6 @@ const MainCalendarWrapper = ({
   };
 
   // 캘린더 날짜 클릭 이벤트
-  // 날짜 선택 시, 버튼창 뜨도록...
   const onClickDate = (info) => {
     setIsToggle(true);
 
@@ -66,6 +64,7 @@ const MainCalendarWrapper = ({
       day,
     });
 
+    dispatch(SetSelectedTodos(date));
     dispatch(SetCurSchedules(date, day));
   };
 

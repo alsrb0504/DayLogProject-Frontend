@@ -1,14 +1,13 @@
-import React from "react";
 import { useForm } from "react-hook-form";
+import { AddTodoAsync } from "../../store/actions/todo";
+import { useDispatch, useSelector } from "react-redux";
+import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 import AddButton from "../modules/addButton";
+import TodoSection from "./todoSection";
 import InputContainer from "../modules/inputContainer";
 import close_btn_icon from "../../assets/icons/close-btn.svg";
-import TodoSection from "./todoSection";
-import { useDispatch } from "react-redux";
-import { AddTodoAsync } from "../../store/actions/todo";
-import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 
-const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
+const TodoPopup = ({ date_info, closePopup }) => {
   const dispatch = useDispatch();
   const {
     register,
@@ -16,8 +15,11 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
     formState: { errors },
   } = useForm();
 
+  const todos = useSelector((state) => state.todo.selected_todos);
+  const set_date = useSelector((state) => state.todo.selected_date);
+
   const onSubmit = (content) => {
-    dispatch(AddTodoAsync(content, dateFormat.date));
+    dispatch(AddTodoAsync(content, set_date));
     dispatch(RequestChallengeBadgeAsync());
   };
 
@@ -26,7 +28,7 @@ const TodoPopup = ({ date, dateFormat, todos, closePopup }) => {
       <button className="todo-popup-close-btn" onClick={closePopup}>
         <img src={close_btn_icon} alt="" />
       </button>
-      <h2 className="todo-popup-title">{date}</h2>
+      <h2 className="todo-popup-title">{date_info}</h2>
 
       <div className="todo-popup-form">
         <form onSubmit={handleSubmit(onSubmit)}>

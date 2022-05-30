@@ -1,15 +1,17 @@
-import { useSelector } from "react-redux";
-import EmptyText from "../modules/emptyText";
-import Todolist from "../modules/todolist";
-
-import dummy_badge from "../../assets/img/dummy-badge.svg";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import OverLay from "../modules/overLay";
+import Todolist from "../modules/todolist";
+import EmptyText from "../modules/emptyText";
 import BadgePopup from "./badgePopup";
 
-const TodoSection = ({ todos, is_home }) => {
+// badge 이미지 받은 후 수정
+import dummy_badge from "../../assets/img/dummy-badge.svg";
+
+const TodoSection = ({ is_home }) => {
   const [badgeToggle, setBadgeToggle] = useState(false);
 
+  const todos = useSelector((state) => state.todo.selected_todos);
   const badge = useSelector((state) => state.badge.challenge_badge);
 
   const openBadgePopup = () => {

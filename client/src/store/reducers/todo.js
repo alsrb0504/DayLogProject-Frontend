@@ -7,6 +7,7 @@ import {
   REMOVE_TODO_FAIL,
   CHANGE_TODO_CALENDAR_SUCCESS,
   CHANGE_TODO_CALENDAR_FAIL,
+  TODO_SET_SELECTED_TODOS,
 } from "../actions/types";
 
 // 월간 todos : month_todos 와
@@ -17,12 +18,23 @@ import {
 const initState = {
   month_todos: [],
 
-  // 추후 달력 넘어갈 때, todo 사라지는 거 보완하기 위해.
-  selected_todos: {},
+  // 홈 화면 하단 투두 목록
+  selected_todos: [],
+
+  selected_date: "",
 };
 
 const todoReducer = (state = initState, action) => {
   switch (action.type) {
+    case TODO_SET_SELECTED_TODOS: {
+      const { todos, date } = action.payload;
+      return {
+        ...state,
+        selected_todos: todos,
+        selected_date: date,
+      };
+    }
+
     case ADD_TODO_SUCCESS: {
       return { ...state, month_todos: action.payload };
     }
@@ -42,7 +54,6 @@ const todoReducer = (state = initState, action) => {
       return { ...state };
     }
     case CHANGE_TODO_CALENDAR_SUCCESS: {
-      console.log(action.payload);
       return { ...state, month_todos: action.payload };
     }
     case CHANGE_TODO_CALENDAR_FAIL: {

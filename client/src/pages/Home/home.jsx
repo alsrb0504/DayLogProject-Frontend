@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import GlobalHeader from "../../components/modules/globalHeader";
 import MainCalendarWrapper from "../../components/sections/mainCalendarWrapper";
 import TodoSection from "../../components/sections/todoSection";
@@ -11,17 +10,16 @@ import schedule_icon from "../../assets/icons/schedule.svg";
 import water_icon from "../../assets/icons/water-black.svg";
 import delete_icon_white from "../../assets/icons/close-icon-white.svg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
 import { SetAuthHeader } from "../../services/auth";
 import SideSlideNavigation from "../../components/sections/sideSlideNavigation";
 import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
+import { RequestCurrentTodosAsync } from "../../store/actions/todo";
 
 const Home = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [logined, setLogined] = useState(localStorage.getItem("access_token"));
 
   const [isToggle, setIsToggle] = useState(false);
   // const [sidebarToggle, setSidebarToggle] = useState(true);
@@ -29,14 +27,13 @@ const Home = (props) => {
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
-  // 월간 Todo 목록.
-  const month_todos = useSelector((state) => state.todo.month_todos);
-  const select_todos = month_todos.find(
-    (daily_todos) => daily_todos.date === selectedDate.date
-  );
-
+  // 홈 화면 이동 시,
+  // 현재 달의 todo, 일정, 생리, 도전 뱃지 정보 요청.
   useEffect(() => {
     SetAuthHeader();
+
+    dispatch(RequestCurrentTodosAsync());
+
     dispatch(RequestChallengeBadgeAsync());
   }, [dispatch]);
 
@@ -86,11 +83,7 @@ const Home = (props) => {
       <section className="home-bottom">
         <h3 className="home-bottom-date">{printDayInfo(selectedDate)}</h3>
 
-        <TodoSection
-          // select_todo가 없다면 undefined 전달
-          todos={select_todos && select_todos.todos}
-          is_home={true}
-        />
+        <TodoSection is_home={true} />
       </section>
 
       {isToggle && (
@@ -108,10 +101,7 @@ const Home = (props) => {
 
       {isTodoPopup && (
         <TodoPopup
-          date={printDayInfo(selectedDate)}
-          dateFormat={selectedDate}
-          // select_todo가 없다면 undefined 전달
-          todos={select_todos && select_todos.todos}
+          date_info={printDayInfo(selectedDate)}
           closePopup={closeTodoPopup}
         />
       )}
