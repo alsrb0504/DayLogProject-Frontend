@@ -21,10 +21,6 @@ const DiaryDescription = (props) => {
   const diary = useSelector((state) => state.diary.selected_diary);
   const { image_url, shared, content, date, emotion, diary_no } = diary;
 
-  // 확인용
-  console.log(diary);
-  console.log(image_url);
-
   const moveBack = () => {
     navigate("/diary");
   };
@@ -34,13 +30,10 @@ const DiaryDescription = (props) => {
   };
 
   const confirmRemove = () => {
-    console.log("remove confirm");
     dispatch(RemoveDiaryAsync(diary_no));
   };
 
   const confirmShare = () => {
-    console.log("share confirm");
-    // dispatch(ChangeShareDiaryAsync(diary_no));
     dispatch(ChangeShareDiaryAsync());
 
     setSharePopup(false);
@@ -91,11 +84,7 @@ const DiaryDescription = (props) => {
       <main className="diary-desc-main">
         {image_url !== null && (
           <div className="diary-desc-main-image">
-            <img
-              // src={"http://localhost:3001/images/1653402355619_cookie.jpg"}
-              src={image_url}
-              alt="일기 사진"
-            />
+            <img src={image_url} alt="일기 사진" />
           </div>
         )}
 
@@ -104,6 +93,7 @@ const DiaryDescription = (props) => {
             className={`diary-form-textarea`}
             placeholder="일정 내용"
             defaultValue={content}
+            disabled
           ></textarea>
           <span className="diary-date">{date}</span>
         </div>
