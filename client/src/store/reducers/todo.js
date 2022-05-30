@@ -15,73 +15,10 @@ import {
 // 주고 만약 캘린더에서 선택하면 해당 날짜의 todos로
 // 자체 selected_day_todos 업데이트.
 const initState = {
-  month_todos: [
-    {
-      date: "2022-04-01",
-      todos: [
-        {
-          content: "4월 1일 투두리스트 1",
-          state: false,
-          todo_no: 13224,
-        },
-        {
-          content: "4월 1일 투두리스트 2",
-          state: false,
-          todo_no: 23144,
-        },
-        {
-          content: "4월 1일 투두리스트 3",
-          state: true,
-          todo_no: 56454,
-        },
-        {
-          content: "4월 1일 투두리스트 4",
-          state: false,
-          todo_no: 25463,
-        },
-      ],
-    },
-    {
-      date: "2022-04-18",
-      todos: [
-        {
-          content: "4월 18일 투두리스트 1",
-          state: false,
-          todo_no: 23534,
-        },
-        {
-          content: "4월 18일 투두리스트 2",
-          state: true,
-          todo_no: 23434,
-        },
-        {
-          content: "4월 18일 투두리스트 3",
-          state: false,
-          todo_no: 12345,
-        },
-      ],
-    },
-    {
-      date: "2022-04-30",
-      todos: [
-        {
-          content: "4월 30일 투두리스트 1",
-          state: false,
-          todo_no: 11111,
-        },
-        {
-          content: "4월 30일 투두리스트 2",
-          state: true,
-          todo_no: 22222,
-        },
-        {
-          content: "4월 30일 투두리스트 3",
-          state: false,
-          todo_no: 33333,
-        },
-      ],
-    },
-  ],
+  month_todos: [],
+
+  // 추후 달력 넘어갈 때, todo 사라지는 거 보완하기 위해.
+  selected_todos: {},
 };
 
 const todoReducer = (state = initState, action) => {
