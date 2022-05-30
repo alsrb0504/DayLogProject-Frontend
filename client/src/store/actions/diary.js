@@ -311,6 +311,9 @@ export const EditDiaryAsync =
           updated_diary,
         },
       });
+
+      history.push("/diary/description");
+      //
     } catch (e) {
       alert("일기 수정 실패");
       console.error("일기 수정 실패");
