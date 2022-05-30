@@ -4,6 +4,8 @@ import {
   DIARY_ADD_SUCCESS,
   DIARY_CHANGE_SHARE_FAIL,
   DIARY_CHANGE_SHARE_SUCCESS_FILL,
+  DIARY_EDIT_FAIL,
+  DIARY_EDIT_SUCCESS,
   DIARY_REMOVE_FAIL,
   DIARY_REMOVE_SUCCESS_EMPTY,
   DIARY_REMOVE_SUCCESS_FILL,
@@ -110,55 +112,38 @@ export const RemoveDiaryAsync =
     }
   };
 
-// 문제 : 공유 변경 수행 후, 한 번 더 변경하면 diary_no가 전달이 안 됨.
-// 문제 원인 : 받아오는 데이터에서 selected_diary 가 객체가 아닌 배열 형식.
-// 받아오는 방식 수정 필요.
 export const ChangeShareDiaryAsync =
-  // (diary_no) =>
+  () =>
+  async (dispatch, getState, { history }) => {
+    const selected_diary_no = getState().diary.selected_diary.diary_no;
+    console.log("다이어리 공유 상태 변경, 다이어리 넘버 : ", selected_diary_no);
 
+    try {
+      const res = await axios.get(`/api/diary/share?no=${selected_diary_no}`);
 
-    () =>
-    async (dispatch, getState, { history }) => {
-      // 추후 해결방법 테스트 위함.
-      // console.log(diary_no);
+      const { selected_diary, month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
 
-      const selected_diary_no = getState().diary.selected_diary.diary_no;
-      console.log(
-        "다이어리 공유 상태 변경, 다이어리 넘버 : ",
-        selected_diary_no
-      );
+      dispatch({
+        type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+          selected_diary,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+      console.log("diary change share action fail");
+      alert("일기 공유 상태 변경 실패");
+      dispatch({
+        type: DIARY_CHANGE_SHARE_FAIL,
+      });
 
-      try {
-        const res = await axios.get(`/api/diary/share?no=${selected_diary_no}`);
-
-        const { selected_diary, month_diary, current_diary } = res.data;
-        const shared_diary = ClassifyDiary(month_diary);
-
-        dispatch({
-          type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
-          payload: {
-            month_diary,
-            current_diary,
-            shared_diary,
-            selected_diary,
-          },
-        });
-
-        // 지울 것.
-        // 문제 : 공유 여부 변경이 한 번 정상적으로 수행되고 이후에는 diary_no가 전달이 되지 않는 문제 발생.
-        // 해결 방법 1 : redux 를 업데이트 한 다음, 페이지를 리프레쉬
-        // history.push("/diary/description");
-      } catch (e) {
-        console.error(e);
-
-        console.log("diary change share action fail");
-        dispatch({
-          type: DIARY_CHANGE_SHARE_FAIL,
-        });
-
-        history.push("/diary");
-      }
-    };
+      history.push("/diary");
+    }
+  };
 
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
@@ -246,3 +231,94 @@ export const FindDiaryCalendar = (date) => (dispatch, getState) => {
 
   dispatch(SelectDiaryAsync(found.diary_no));
 };
+
+// 일기 수정 함수
+export const EditDiaryAsync =
+  (edit_diary) =>
+  async (dispatch, getState, { history }) => {
+    const {
+      edited_date,
+      edited_content,
+      edited_shared,
+      edited_emotion,
+      edited_image_url,
+    } = edit_diary;
+
+    const edit_diary_no = getState().diary.selected_diary.diary_no;
+    const selected_diary = getState().diary.selected_diary;
+
+    // console.log(
+    //   edited_date,
+    //   edited_content,
+    //   edited_shared,
+    //   edited_emotion,
+    //   edited_image_url,
+
+    //   diary_no
+    // );
+
+    try {
+      // 1번째 요청 : 사진을 변경했다면 사진 변경 요청
+      if (edited_image_url) {
+        const formData = new FormData();
+        formData.append("image", edited_image_url);
+
+        const img_res = await axios({
+          method: "post",
+          url: `/api/diary/image/change?no=${edit_diary_no}`,
+          data: formData,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (img_res.data.message !== true) {
+          console.error("사진 변경 실패");
+          dispatch({
+            type: DIARY_EDIT_FAIL,
+          });
+        }
+      }
+
+      // 2번째 요청 : 변경된 유저 정보 전달
+      const res = await axios.post(`/api/diary/change?no=${edit_diary_no}`, {
+        date: edited_date,
+        content: edited_content,
+        emotion: edited_emotion,
+        share: edited_shared,
+      });
+
+      const { diary_no, member_id, date, content, emotion, shared, image_url } =
+        res.data.edited_diary;
+
+      const updated_diary = {
+        ...selected_diary,
+        date,
+        member_id,
+        emotion,
+        diary_no,
+        shared,
+        content,
+        image_url,
+      };
+
+      // 결과 확인용.
+      console.log("update_diary :", updated_diary);
+
+      dispatch({
+        type: DIARY_EDIT_SUCCESS,
+        payload: {
+          updated_diary,
+        },
+      });
+
+      history.push("/diary/description");
+      //
+    } catch (e) {
+      alert("일기 수정 실패");
+      console.error("일기 수정 실패");
+      dispatch({
+        type: DIARY_EDIT_FAIL,
+      });
+    }
+  };

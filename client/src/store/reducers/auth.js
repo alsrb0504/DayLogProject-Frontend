@@ -1,4 +1,7 @@
 import {
+  CHANGE_PASSWD_ERROR,
+  CHANGE_PASSWD_FAIL,
+  CHANGE_PASSWD_SUCCESS,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_USER,
@@ -32,6 +35,7 @@ const authReducer = (state = initState, action) => {
     }
 
     case LOGOUT_USER:
+    case CHANGE_PASSWD_SUCCESS:
     case RESIGN_SUCCESS: {
       return {
         ...state,
@@ -67,6 +71,8 @@ const authReducer = (state = initState, action) => {
 
     case PROFILE_UPDATE_IMAGE_FAIL:
     case PROFILE_UPDATE_FAIL:
+    case CHANGE_PASSWD_FAIL:
+    case CHANGE_PASSWD_ERROR:
     case RESIGN_FAIL: {
       return { ...state };
     }

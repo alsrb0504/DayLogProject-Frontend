@@ -1,6 +1,9 @@
 import axios from "axios";
 import { login, SetAccessToken } from "../../services/auth";
 import {
+  CHANGE_PASSWD_ERROR,
+  CHANGE_PASSWD_FAIL,
+  CHANGE_PASSWD_SUCCESS,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_USER,
@@ -95,20 +98,40 @@ export const ResignRequestAsync =
     }
   };
 
+// 유저 프로필 변경 함수.
 export const UpdateProfileAsync =
   (user_info) =>
   async (dispatch, getState, { history }) => {
     console.log(user_info);
 
-    const { name, email, nickname, profile_image } = user_info;
+    const {
+      edited_name,
+      edited_email,
+      edited_nickname,
+      edited_profile_image_url,
+    } = user_info;
 
-    console.log(name, email, nickname, profile_image);
+    console.log(
+      edited_name,
+      edited_email,
+      edited_nickname,
+      edited_profile_image_url
+    );
 
     try {
       // 1번째 요청 : 사진 전송 api 먼저
-      if (profile_image) {
+      if (edited_profile_image_url.length !== 0) {
         const formData = new FormData();
-        formData.append("image", profile_image);
+        formData.append("image", edited_profile_image_url);
+
+        // 폼 데이터 확인용
+        // for (var key of formData.keys()) {
+        //   console.log(key);
+        // }
+
+        // for (var value of formData.values()) {
+        //   console.log(value);
+        // }
 
         const img_res = await axios({
           method: "post",
@@ -129,9 +152,9 @@ export const UpdateProfileAsync =
 
       // 2번째 요청 : 변경된 유저 정보 전달
       const res = await axios.post("/api/members/name", {
-        new_name: name,
-        new_nickname: nickname,
-        new_email: email,
+        new_name: edited_name,
+        new_nickname: edited_nickname,
+        new_email: edited_email,
       });
 
       const updated_user_info = res.data;
@@ -200,4 +223,39 @@ export const UpdateProfileAsync =
     //     type: PROFILE_UPDATE_FAIL,
     //   });
     // }
+  };
+
+// 비밀번호 변경 함수.
+export const ChangePasswd =
+  (passwd_info) =>
+  async (dispatch, getState, { history }) => {
+    // console.log(passwd_info);
+
+    const { prev_passwd, new_passwd } = passwd_info;
+    try {
+      const res = await axios.post("/api/members/pw", {
+        password: prev_passwd,
+        new_password: new_passwd,
+      });
+
+      if (res.data.result === "SUCCESS") {
+        alert("비밀 번호가 변경되었습니다.");
+        dispatch({
+          type: CHANGE_PASSWD_SUCCESS,
+        });
+        history.push("/login");
+        //
+      } else {
+        alert("비밀 번호 정보가 틀립니다.");
+        dispatch({
+          type: CHANGE_PASSWD_FAIL,
+        });
+      }
+    } catch (e) {
+      console.error("비밀 번호 변경 에러");
+      alert("비밀번호 변경 에러");
+      dispatch({
+        type: CHANGE_PASSWD_ERROR,
+      });
+    }
   };

@@ -11,6 +11,8 @@ import {
   DIARY_REMOVE_SUCCESS_FILL,
   DIARY_CHANGE_SHARE_FAIL,
   DIARY_CHANGE_SHARE_SUCCESS_FILL,
+  DIARY_EDIT_FAIL,
+  DIARY_EDIT_SUCCESS,
 } from "../actions/types";
 
 const initState = {
@@ -136,7 +138,6 @@ const initState = {
     date: "2022-05-01",
     emotion: 2,
     diary_no: 13,
-    like_count: 0,
     shared: false,
     content: "5월 1일 일기",
     image: "",
@@ -199,11 +200,20 @@ const diaryReducer = (state = initState, action) => {
         selected_diary: action.payload.selected_diary,
       };
     }
+
+    case DIARY_EDIT_SUCCESS: {
+      return {
+        ...state,
+        selected_diary: action.payload.updated_diary,
+      };
+    }
+
     case DIARY_SELECT_FAIL:
     case DIARY_ADD_FAIL:
     case DIARY_REQUEST_FAIL:
     case DIARY_REQUEST_EMPTY:
-    case DIARY_REMOVE_FAIL: {
+    case DIARY_REMOVE_FAIL:
+    case DIARY_EDIT_FAIL: {
       return { ...state };
     }
     default:
