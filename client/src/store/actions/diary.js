@@ -110,55 +110,38 @@ export const RemoveDiaryAsync =
     }
   };
 
-// 문제 : 공유 변경 수행 후, 한 번 더 변경하면 diary_no가 전달이 안 됨.
-// 문제 원인 : 받아오는 데이터에서 selected_diary 가 객체가 아닌 배열 형식.
-// 받아오는 방식 수정 필요.
 export const ChangeShareDiaryAsync =
-  // (diary_no) =>
+  () =>
+  async (dispatch, getState, { history }) => {
+    const selected_diary_no = getState().diary.selected_diary.diary_no;
+    console.log("다이어리 공유 상태 변경, 다이어리 넘버 : ", selected_diary_no);
 
+    try {
+      const res = await axios.get(`/api/diary/share?no=${selected_diary_no}`);
 
-    () =>
-    async (dispatch, getState, { history }) => {
-      // 추후 해결방법 테스트 위함.
-      // console.log(diary_no);
+      const { selected_diary, month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
 
-      const selected_diary_no = getState().diary.selected_diary.diary_no;
-      console.log(
-        "다이어리 공유 상태 변경, 다이어리 넘버 : ",
-        selected_diary_no
-      );
+      dispatch({
+        type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+          selected_diary,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+      console.log("diary change share action fail");
+      alert("일기 공유 상태 변경 실패");
+      dispatch({
+        type: DIARY_CHANGE_SHARE_FAIL,
+      });
 
-      try {
-        const res = await axios.get(`/api/diary/share?no=${selected_diary_no}`);
-
-        const { selected_diary, month_diary, current_diary } = res.data;
-        const shared_diary = ClassifyDiary(month_diary);
-
-        dispatch({
-          type: DIARY_CHANGE_SHARE_SUCCESS_FILL,
-          payload: {
-            month_diary,
-            current_diary,
-            shared_diary,
-            selected_diary,
-          },
-        });
-
-        // 지울 것.
-        // 문제 : 공유 여부 변경이 한 번 정상적으로 수행되고 이후에는 diary_no가 전달이 되지 않는 문제 발생.
-        // 해결 방법 1 : redux 를 업데이트 한 다음, 페이지를 리프레쉬
-        // history.push("/diary/description");
-      } catch (e) {
-        console.error(e);
-
-        console.log("diary change share action fail");
-        dispatch({
-          type: DIARY_CHANGE_SHARE_FAIL,
-        });
-
-        history.push("/diary");
-      }
-    };
+      history.push("/diary");
+    }
+  };
 
 export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
   try {
