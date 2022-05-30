@@ -11,6 +11,9 @@ import {
   REMOVE_TODO_FAIL,
 } from "./types";
 
+// 홈 화면 접속 시, todo 목록을 받아오는 함수
+//
+
 export const changeTodoAsync = (idx) => async (dispatch, getState) => {
   try {
     const res = await axios.get(`/api/todolist/check?no=${idx}`);
@@ -67,7 +70,7 @@ export const RemoveTodoAsync = (idx) => async (dispatch, getState) => {
 
 // Todo calendar에서 달 변경
 // 년도가 변경될 수도 있어서 년도 정보도 같이 보내야 할 듯.
-export const changeTodoCalendar = (yy, mm) => async (dispatch, getState) => {
+export const RequestTodosAsync = (yy, mm) => async (dispatch, getState) => {
   try {
     const res = await axios.get(`api/todolist/calendar?month=${mm}&year=${yy}`);
     const month_todos = res.data;
