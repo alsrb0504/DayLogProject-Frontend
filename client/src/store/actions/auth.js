@@ -124,15 +124,6 @@ export const UpdateProfileAsync =
         const formData = new FormData();
         formData.append("image", edited_profile_image_url);
 
-        // 폼 데이터 확인용
-        // for (var key of formData.keys()) {
-        //   console.log(key);
-        // }
-
-        // for (var value of formData.values()) {
-        //   console.log(value);
-        // }
-
         const img_res = await axios({
           method: "post",
           url: "/api/members/profile",
