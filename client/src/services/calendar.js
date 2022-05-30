@@ -1,27 +1,17 @@
 import { useSelector } from "react-redux";
 import { editScheduleEnd } from "./calcDate";
 
-// 캘린더 이벤트 생성 함수.
-// 추후 일정도 추가.
+// 홈 화면 캘린더 이벤트 생성 함수.
+// 생리 기록, 일정 이벤트 생성.
 export const MakeCalendarEvents = () => {
+  const events = [];
   // 생리 관련 정보들
   const cycleToggle = useSelector((state) => state.cycle.toggled);
   const startArr = useSelector((state) => state.cycle.start_dates);
   const dueArr = useSelector((state) => state.cycle.due_dates);
 
+  // 일정 정보
   const scheduleArr = useSelector((state) => state.schedule.month_schedules);
-
-  // content: "333"
-  // end_date: "2022-06-01"
-  // schedule_no: 47
-  // start_date: "2022-05-03"
-  // title: "333"
-
-  // 이벤트 식별자
-  // 시작일 : 1000번대,
-  // 예정일 : 2000번대,
-  // 일정 : 3000번대.
-  const events = [];
 
   scheduleArr.forEach((schedule, idx) => {
     const { schedule_no, start_date, end_date, title } = schedule;
@@ -71,16 +61,12 @@ export const MakeCalendarEvents = () => {
         classNames: ["menstruation-due-date"],
       });
     });
-  } else {
-    // 일정만 추가
   }
-
-  // console.log("scheduleArr", scheduleArr);
-  // console.log("events", events);
 
   return events;
 };
 
+// 일기 캘린더
 // 일기 이벤트를 만드는 함수.
 export const MakeDiaryEvents = () => {
   const diarys = useSelector((state) => state.diary.month_diary);
@@ -106,15 +92,19 @@ export const GetCalendarMonthYear = (calendarApi) => {
 };
 
 // 출석 캘린더 이벤트 만드는 함수
+// 이모지 캘린더
 export const MakeEmojiEvents = () => {
   const emojiArr = useSelector((state) => state.qa.month_emoji);
   const events = [];
 
+  console.log(emojiArr);
+
   emojiArr.forEach((emoji, idx) => {
+    console.log(emoji);
     events.push({
       id: idx,
       date: emoji.date,
-      classNames: [`emoji-event emoji-event-${emoji.index}`],
+      classNames: [`emoji-event emoji-event-${emoji.emoji_index}`],
     });
   });
 
