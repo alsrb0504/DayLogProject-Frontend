@@ -1,6 +1,11 @@
 .mypage {
   min-height: 100vh;
 
+  .input-header {
+    border: none;
+    margin-bottom: 0;
+  }
+
   &-main {
     @include column-flexbox(flex-start);
     padding: 24px 8px 0 8px;
