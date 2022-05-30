@@ -44,8 +44,8 @@ const MypagePasswd = (props) => {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <section className="mypage-passwd">
+      <form className="mypage-passwd-form" onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
           children={
             <>
