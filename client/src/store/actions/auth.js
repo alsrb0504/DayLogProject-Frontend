@@ -1,6 +1,9 @@
 import axios from "axios";
 import { login, SetAccessToken } from "../../services/auth";
 import {
+  CHANGE_PASSWD_ERROR,
+  CHANGE_PASSWD_FAIL,
+  CHANGE_PASSWD_SUCCESS,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
   LOGOUT_USER,
@@ -95,6 +98,7 @@ export const ResignRequestAsync =
     }
   };
 
+// 유저 프로필 변경 함수.
 export const UpdateProfileAsync =
   (user_info) =>
   async (dispatch, getState, { history }) => {
@@ -219,4 +223,39 @@ export const UpdateProfileAsync =
     //     type: PROFILE_UPDATE_FAIL,
     //   });
     // }
+  };
+
+// 비밀번호 변경 함수.
+export const ChangePasswd =
+  (passwd_info) =>
+  async (dispatch, getState, { history }) => {
+    // console.log(passwd_info);
+
+    const { prev_passwd, new_passwd } = passwd_info;
+    try {
+      const res = await axios.post("/api/members/pw", {
+        password: prev_passwd,
+        new_password: new_passwd,
+      });
+
+      if (res.data.result === "SUCCESS") {
+        alert("비밀 번호가 변경되었습니다.");
+        dispatch({
+          type: CHANGE_PASSWD_SUCCESS,
+        });
+        history.push("/login");
+        //
+      } else {
+        alert("비밀 번호 정보가 틀립니다.");
+        dispatch({
+          type: CHANGE_PASSWD_FAIL,
+        });
+      }
+    } catch (e) {
+      console.error("비밀 번호 변경 에러");
+      alert("비밀번호 변경 에러");
+      dispatch({
+        type: CHANGE_PASSWD_ERROR,
+      });
+    }
   };

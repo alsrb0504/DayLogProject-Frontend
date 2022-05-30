@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
+import { ChangePasswd } from "../../../store/actions/auth";
 
 const MypagePasswd = (props) => {
   const navigate = useNavigate();
@@ -22,16 +23,24 @@ const MypagePasswd = (props) => {
     },
   });
 
-  const watchPasswd_1 = watch("new_password1");
-  const watchPasswd_2 = watch("new_password_2");
-
   const onSubmit = (data) => {
-    if (watchPasswd_1 !== watchPasswd_2) {
+    const { prev_password, new_password1, new_password2 } = data;
+    if (new_password1 !== new_password2) {
       alert("새 비밀번호가 서로 다릅니다.");
       reset();
     }
 
-    console.log(data);
+    if (prev_password === new_password1) {
+      alert("기존 비밀번호와 같습니다.");
+      reset();
+    }
+
+    const passwd_info = {
+      prev_passwd: prev_password,
+      new_passwd: new_password1,
+    };
+
+    dispatch(ChangePasswd(passwd_info));
   };
 
   return (
