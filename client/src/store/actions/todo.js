@@ -1,5 +1,5 @@
 import axios from "axios";
-import { calcMonthYear, toDayInfo, toDayYYMM } from "../../services/calcDate";
+import { toDayInfo, toDayYYMM } from "../../services/calcDate";
 import {
   CHANGE_TODO_STATE_FAIL,
   CHANGE_TODO_STATE_SUCCESS,
