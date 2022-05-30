@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout, ResignRequestAsync } from "../../../store/actions/auth";
 import OverLay from "../../../components/modules/overLay";
@@ -11,6 +11,8 @@ const MypageHome = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { setIsHome } = useOutletContext();
+
   const nickname = useSelector((state) => state.auth.nickname);
   const profile_image = useSelector((state) => state.auth.profile_image_url);
 
@@ -19,10 +21,12 @@ const MypageHome = (props) => {
 
   // 프로필 편집 이동
   const moveEditProfile = () => {
+    setIsHome(false);
     navigate("/mypage/edit");
   };
 
   const moveChangePasswd = () => {
+    setIsHome(false);
     navigate("/mypage/changepasswd");
   };
 
