@@ -91,7 +91,7 @@ const DiaryDescription = (props) => {
         <div className="diary-desc-main-text">
           <textarea
             className={`diary-form-textarea`}
-            placeholder="일정 내용"
+            placeholder="일기를 작성해주세요."
             defaultValue={content}
             disabled
           ></textarea>

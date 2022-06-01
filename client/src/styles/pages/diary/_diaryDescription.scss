@@ -1,6 +1,6 @@
 .diary-desc {
   @include column-flexbox(space-between, stretch);
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
 
   &-main {
@@ -18,12 +18,14 @@
     }
 
     &-text {
-      position: relative;
+      @include flexbox(stretch, stretch);
       flex: 1;
+      position: relative;
       padding-bottom: 16px;
 
       textarea {
-        height: 100%;
+        flex: 1;
+        margin-bottom: 0;
       }
 
       .diary-date {
