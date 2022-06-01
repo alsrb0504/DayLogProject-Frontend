@@ -1,15 +1,13 @@
 import {
   CHANGE_PASSWD_ERROR,
   CHANGE_PASSWD_FAIL,
-  CHANGE_PASSWD_SUCCESS,
+  // CHANGE_PASSWD_SUCCESS,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
-  LOGOUT_USER,
   PROFILE_UPDATE_FAIL,
   PROFILE_UPDATE_IMAGE_FAIL,
   PROFILE_UPDATE_SUCCESS,
   RESIGN_FAIL,
-  RESIGN_SUCCESS,
 } from "../actions/types";
 
 const initState = {
@@ -34,18 +32,17 @@ const authReducer = (state = initState, action) => {
       };
     }
 
-    case LOGOUT_USER:
-    case CHANGE_PASSWD_SUCCESS:
-    case RESIGN_SUCCESS: {
-      return {
-        ...state,
-        login_result: "FAIL",
-        name: "",
-        nickname: "",
-        profile_image_url: null,
-        email: "",
-      };
-    }
+    // case CHANGE_PASSWD_SUCCESS:
+    // {
+    //   return {
+    //     ...state,
+    //     login_result: "FAIL",
+    //     name: "",
+    //     nickname: "",
+    //     profile_image_url: null,
+    //     email: "",
+    //   };
+    // }
 
     case LOGIN_ERROR: {
       return {

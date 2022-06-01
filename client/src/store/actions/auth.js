@@ -3,15 +3,14 @@ import { login, SetAccessToken } from "../../services/auth";
 import {
   CHANGE_PASSWD_ERROR,
   CHANGE_PASSWD_FAIL,
-  CHANGE_PASSWD_SUCCESS,
+  // CHANGE_PASSWD_SUCCESS,
+  CLEAR_STORE,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
-  LOGOUT_USER,
   PROFILE_UPDATE_FAIL,
   PROFILE_UPDATE_IMAGE_FAIL,
   PROFILE_UPDATE_SUCCESS,
   RESIGN_FAIL,
-  RESIGN_SUCCESS,
 } from "./types";
 
 export const loginActionAync =
@@ -71,7 +70,7 @@ export const Logout =
     localStorage.clear();
 
     dispatch({
-      type: LOGOUT_USER,
+      type: CLEAR_STORE,
     });
 
     history.push("/login");
@@ -84,7 +83,7 @@ export const ResignRequestAsync =
       const res = await axios.delete("/api/members");
 
       dispatch({
-        type: RESIGN_SUCCESS,
+        type: CLEAR_STORE,
       });
       alert("회원 탈퇴 성공");
       history.push("/login");
@@ -166,62 +165,12 @@ export const UpdateProfileAsync =
         type: PROFILE_UPDATE_FAIL,
       });
     }
-
-    // // 기존 다이어리 추가와 같은 순서 : 프로필 정보 먼저 이후, 사진 정보 전달
-    // try {
-    //   // 1번째 요청 : 변경된 유저 정보 먼저 전달
-    //   const res = await axios.post("/api/members/name", {
-    //     new_name: name,
-    //     new_nickname: nickname,
-    //     new_email: email,
-    //   });
-
-    //   let updated_user_info = res.data;
-
-    //   // 2번째 요청 : 사진이 있는 경우
-    //   // 음.. redux 저장소에 있는 사진과 전달된
-    //   // 프로필 이미지가 다른 경우에만 호출하도록?
-    //   if (profile_image) {
-    //     const formData = new FormData();
-    //     formData.append("image", profile_image);
-
-    //     const img_res = await axios({
-    //       method: "post",
-    //       url: "/api/members/profile",
-    //       data: formData,
-    //       headers: {
-    //         "Content-Type": "multipart/form-data",
-    //       },
-    //     });
-
-    //     // 사진 추가된 정보 업데이트
-    //     updated_user_info = res.data;
-    //   }
-
-    //   dispatch({
-    //     type: PROFILE_UPDATE_SUCCESS,
-    //     payload: {
-    //       name: updated_user_info.name,
-    //       nickname: updated_user_info.nickname,
-    //       email: updated_user_info.email,
-    //       profile_image_url: updated_user_info.profile_image_url,
-    //     },
-    //   });
-    // } catch (e) {
-    //   alert("프로필 업데이트 실패");
-    //   console.error("프로필 업데이트 실패");
-    //   dispatch({
-    //     type: PROFILE_UPDATE_FAIL,
-    //   });
-    // }
   };
 
 // 비밀번호 변경 함수.
 export const ChangePasswd =
   (passwd_info) =>
   async (dispatch, getState, { history }) => {
-    // console.log(passwd_info);
-
     const { prev_passwd, new_passwd } = passwd_info;
     try {
       const res = await axios.post("/api/members/pw", {
@@ -232,7 +181,8 @@ export const ChangePasswd =
       if (res.data.result === "SUCCESS") {
         alert("비밀 번호가 변경되었습니다.");
         dispatch({
-          type: CHANGE_PASSWD_SUCCESS,
+          // type: CHANGE_PASSWD_SUCCESS,
+          type: CLEAR_STORE,
         });
         history.push("/login");
         //

@@ -10,14 +10,10 @@ import {
 } from "../actions/types";
 
 const initState = {
-  // month_schedules: [],
-
-  // 로컬 테스트용
   month_schedules: [],
-
+  cur_day: "",
+  cur_date: "",
   cur_schedules: [],
-  cur_date: "2022-05-05",
-  cur_day: "Thursday",
 };
 
 const scheduleReducer = (state = initState, action) => {
