@@ -2,8 +2,10 @@
   &-main {
     @include column-flexbox(flex-start, stretch);
     position: relative;
-    background-color: #ecf3f8;
+    padding-bottom: 16px;
     width: 100vw;
+    min-height: 100vh;
+    background-color: #ecf3f8;
     transform: translateX(-8px);
   }
 
