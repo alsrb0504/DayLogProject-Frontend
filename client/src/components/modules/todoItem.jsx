@@ -6,8 +6,6 @@ import delete_icon from "../../assets/icons/delete-icon.svg";
 const TodoItem = ({ todo }) => {
   const { todo_checked, todo_content } = todo;
 
-  console.log(todo_checked);
-
   const dispatch = useDispatch();
 
   const handleCheck = () => {
