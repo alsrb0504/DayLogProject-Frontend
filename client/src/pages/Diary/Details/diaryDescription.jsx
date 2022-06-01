@@ -96,7 +96,7 @@ const DiaryDescription = (props) => {
             defaultValue={content}
             disabled
           ></textarea>
-          <span className="diary-date">{lowDateToDotDate(date)}</span>
+          {/* <span className="diary-date">{lowDateToDotDate(date)}</span> */}
         </div>
       </main>
 
