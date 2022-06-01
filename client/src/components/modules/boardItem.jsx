@@ -6,7 +6,7 @@ const BoardItem = ({ diary }) => {
   const dispatch = useDispatch();
 
   // 좋아요를 날짜 옆에 표시할까?
-  const { diary_no, content, image_url, like_count, date } = diary;
+  const { diary_no, content, image_url, date } = diary;
 
   const selectDiary = () => {
     dispatch(RequestBoardDiaryAsync(diary_no));

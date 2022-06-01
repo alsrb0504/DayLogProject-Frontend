@@ -247,16 +247,6 @@ export const EditDiaryAsync =
     const edit_diary_no = getState().diary.selected_diary.diary_no;
     const selected_diary = getState().diary.selected_diary;
 
-    // console.log(
-    //   edited_date,
-    //   edited_content,
-    //   edited_shared,
-    //   edited_emotion,
-    //   edited_image_url,
-
-    //   diary_no
-    // );
-
     try {
       // 1번째 요청 : 사진을 변경했다면 사진 변경 요청
       if (edited_image_url) {
