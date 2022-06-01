@@ -24,7 +24,8 @@ export const loginActionAync =
       // cookie에 httpOnly, Secure로 설정해서 refresh_token 자동 저장.
       // 유저 정보를 redux에 저장.
       if (data.success) {
-        const { isFirst, AT, name, nickname, profile_image_url, email } = data;
+        const { isFirst, AT, name, nickname, profile_image_url, email, id } =
+          data;
         SetAccessToken(AT);
 
         dispatch({
@@ -34,6 +35,7 @@ export const loginActionAync =
             nickname,
             profile_image_url,
             email,
+            id,
           },
         });
 

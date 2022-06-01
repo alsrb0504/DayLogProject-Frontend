@@ -16,12 +16,13 @@ const initState = {
   nickname: "",
   profile_image_url: null,
   email: "",
+  id: "",
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      const { name, nickname, profile_image_url, email } = action.payload;
+      const { name, nickname, profile_image_url, email, id } = action.payload;
       return {
         ...state,
         login_result: "SUCCESS",
@@ -29,6 +30,7 @@ const authReducer = (state = initState, action) => {
         nickname,
         profile_image_url,
         email,
+        id,
       };
     }
 
@@ -46,12 +48,7 @@ const authReducer = (state = initState, action) => {
 
     case LOGIN_ERROR: {
       return {
-        ...state,
-        login_result: "FAIL",
-        name: "",
-        nickname: "",
-        profile_image_url: null,
-        email: "",
+        state: initState,
       };
     }
 
