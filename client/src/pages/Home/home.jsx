@@ -12,7 +12,7 @@ import delete_icon_white from "../../assets/icons/close-icon-white.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { printDayInfo, toDayInfo } from "../../services/calcDate";
-import { SetAuthHeader } from "../../services/auth";
+import { CheckLogin, SetAuthHeader } from "../../services/auth";
 import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 import { RequestCurrentTodosAsync } from "../../store/actions/todo";
 import { RequestCurrentSchedulesAsync } from "../../store/actions/schedule";
@@ -27,16 +27,21 @@ const Home = (props) => {
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
   // 홈 화면 이동 시,
+  // 로그인 유무 확인.
   // 현재 달의 todo, 일정, 생리, 도전 뱃지 정보 요청.
   useEffect(() => {
-    SetAuthHeader();
+    if (!CheckLogin()) {
+      navigate("/login");
+    } else {
+      SetAuthHeader();
 
-    dispatch(RequestCurrentTodosAsync());
-    dispatch(RequestCurrentSchedulesAsync());
-    dispatch(RequestCurrentCycleAsync());
+      dispatch(RequestCurrentTodosAsync());
+      dispatch(RequestCurrentSchedulesAsync());
+      dispatch(RequestCurrentCycleAsync());
 
-    dispatch(RequestChallengeBadgeAsync());
-  }, [dispatch]);
+      dispatch(RequestChallengeBadgeAsync());
+    }
+  }, [dispatch, navigate]);
 
   // todo 팝업 오픈 관련 및 화면 이동 함수들
   const openTodoPopup = () => {

@@ -32,6 +32,13 @@ export function isIncludeDate(date, start, end) {
   }
 }
 
+// 2022-10-23 => 2022.10.23
+export function lowDateToDotDate(date) {
+  const dateArr = date.split("-");
+
+  return dateArr[0] + "." + dateArr[1] + "." + dateArr[2];
+}
+
 export function calcMonthYear(move, month, year) {
   let yy = Number(year);
   let mm = changeFullMonthInt(month);

@@ -76,8 +76,6 @@ export const AddDiaryAsync =
 export const RemoveDiaryAsync =
   (diary_no) =>
   async (dispatch, getState, { history }) => {
-    console.log(diary_no);
-
     try {
       const res = await axios.delete(`/api/diary?no=${diary_no}`);
 
@@ -86,22 +84,27 @@ export const RemoveDiaryAsync =
         dispatch({
           type: DIARY_REMOVE_SUCCESS_EMPTY,
         });
+
+        history.push("/diary");
       }
 
       // 해당 달, 데이터가 있는 경우.
-      const { month_diary, current_diary } = res.data;
-      const shared_diary = ClassifyDiary(month_diary);
+      else {
+        const { month_diary, current_diary } = res.data;
+        const shared_diary = ClassifyDiary(month_diary);
 
-      dispatch({
-        type: DIARY_REMOVE_SUCCESS_FILL,
-        payload: {
-          month_diary,
-          current_diary,
-          shared_diary,
-        },
-      });
+        dispatch({
+          type: DIARY_REMOVE_SUCCESS_FILL,
+          payload: {
+            month_diary,
+            current_diary,
+            shared_diary,
+          },
+        });
+      }
 
       history.push("/diary");
+      //
     } catch (e) {
       console.error(e);
 

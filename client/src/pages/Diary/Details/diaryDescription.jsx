@@ -10,6 +10,7 @@ import {
   RemoveDiaryAsync,
   ChangeShareDiaryAsync,
 } from "../../../store/actions/diary";
+import { lowDateToDotDate } from "../../../services/calcDate";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
@@ -95,7 +96,7 @@ const DiaryDescription = (props) => {
             defaultValue={content}
             disabled
           ></textarea>
-          <span className="diary-date">{date}</span>
+          {/* <span className="diary-date">{lowDateToDotDate(date)}</span> */}
         </div>
       </main>
 

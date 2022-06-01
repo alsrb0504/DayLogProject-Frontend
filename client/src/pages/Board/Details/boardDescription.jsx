@@ -13,6 +13,7 @@ import {
   RequestBoardProfileAsync,
 } from "../../../store/actions/board";
 import { SetAuthHeader } from "../../../services/auth";
+import { lowDateToDotDate } from "../../../services/calcDate";
 
 const BoardDescription = (props) => {
   const navigate = useNavigate();
@@ -52,10 +53,6 @@ const BoardDescription = (props) => {
 
   const moveBack = () => {
     navigate("/board");
-
-    // 추후에 홈으로 갈지,
-    // 아니면 타인 프로필 페이지 or 마이 페이지 스크랩?
-    // 으로 갈지 결정.
   };
 
   const moveProfile = () => {
@@ -90,7 +87,7 @@ const BoardDescription = (props) => {
             defaultValue={content}
             disabled
           ></textarea>
-          <span className="board-date">{date}</span>
+          <span className="board-date">{lowDateToDotDate(date)}</span>
         </div>
       </main>
 

@@ -1,3 +1,4 @@
+$board-item-height: 144px;
 $image-height-sm: 95px;
 
 // 게시판 헤더
@@ -56,7 +57,7 @@ $image-height-sm: 95px;
 
   .board-item {
     @include ScaleEffect(1.02);
-    height: 140px;
+    height: $board-item-height;
     border: 2px solid $text-gray-4;
     background-color: $white;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
@@ -80,8 +81,8 @@ $image-height-sm: 95px;
 
     &-text {
       @include column-flexbox(space-between, flex-start);
-      padding: 0 4px 4px 2px;
-      height: 140px - $image-height-sm;
+      padding: 4px 2px 4px 2px;
+      height: $board-item-height - $image-height-sm;
       color: $text-dark;
       font-weight: 700;
 
@@ -98,10 +99,26 @@ $image-height-sm: 95px;
         -webkit-box-orient: vertical;
       }
 
-      span {
-        display: inline-block;
-        font-size: 10px;
-        color: $text-gray-1;
+      .text-details {
+        @include flexbox(space-between);
+        width: 100%;
+        height: 12px;
+
+        span {
+          display: inline-block;
+          font-size: 10px;
+          color: $text-gray-2;
+        }
+
+        .like-info {
+          @include flexbox;
+          height: 100%;
+
+          .heart-img {
+            height: 9px;
+            margin-right: 2px;
+          }
+        }
       }
     }
   }
