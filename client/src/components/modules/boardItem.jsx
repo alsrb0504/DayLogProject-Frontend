@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
-import logo_image from "../../assets/img/logo-bold.svg";
 import { lowDateToDotDate } from "../../services/calcDate";
 import { RequestBoardDiaryAsync } from "../../store/actions/board";
+import logo_image from "../../assets/img/logo-bold.svg";
+import heart_icon from "../../assets/icons/heart-empty-pink-icon.svg";
 
 const BoardItem = ({ diary }) => {
   const dispatch = useDispatch();
 
   // 좋아요를 날짜 옆에 표시할까?
-  const { diary_no, content, image_url, date } = diary;
+  const { diary_no, content, image_url, date, like_count } = diary;
 
   const selectDiary = () => {
     dispatch(RequestBoardDiaryAsync(diary_no));
@@ -25,7 +26,13 @@ const BoardItem = ({ diary }) => {
 
       <div className="board-item-text">
         <h3>{content}</h3>
-        <span>{lowDateToDotDate(date)}</span>
+        <div className="text-details">
+          <span className="data-info">{lowDateToDotDate(date)}</span>
+          <div className="like-info">
+            <img className="heart-img" src={heart_icon} alt="하트 아이콘" />
+            <span>{like_count}</span>
+          </div>
+        </div>
       </div>
     </li>
   );
