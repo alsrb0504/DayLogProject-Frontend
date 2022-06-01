@@ -7,15 +7,20 @@
     border-radius: 10px;
     background-color: $primary;
 
-    .badge-image-container {
+    // 도전 뱃지 관련
+    .badge-image {
       width: 30px;
       height: 30px;
       margin-right: 8px;
+      border-radius: 50%;
+    }
 
-      img {
-        width: 100%;
-        border-radius: 50%;
-        overflow: hidden;
+    @for $idx from 1 through 12 {
+      .badge-image-#{$idx} {
+        background-image: url("../../assets/badges/#{$idx}.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
     }
 

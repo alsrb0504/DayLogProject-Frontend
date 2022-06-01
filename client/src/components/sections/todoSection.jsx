@@ -5,14 +5,12 @@ import Todolist from "../modules/todolist";
 import EmptyText from "../modules/emptyText";
 import BadgePopup from "./badgePopup";
 
-// badge 이미지 받은 후 수정
-import dummy_badge from "../../assets/img/dummy-badge.svg";
-
 const TodoSection = ({ is_home }) => {
   const [badgeToggle, setBadgeToggle] = useState(false);
 
   const todos = useSelector((state) => state.todo.selected_todos);
   const badge = useSelector((state) => state.badge.challenge_badge);
+  const { badge_no, badge_name, goal_count, final_count } = badge;
 
   const openBadgePopup = () => {
     setBadgeToggle(true);
@@ -34,17 +32,11 @@ const TodoSection = ({ is_home }) => {
       {/* 도전 중인 뱃지 있다면 표시 */}
       {badge && is_home && (
         <div className="home-badge-container" onClick={openBadgePopup}>
-          <div className="badge-image-container">
-            {/* 뱃지 테스트 완료 후, 삭제 */}
-            <img
-              src={badge.badge_url ? badge.badge_url : dummy_badge}
-              alt="뱃지 이미지"
-            />
-          </div>
+          <div className={`badge-image badge-image-${badge_no}`}></div>
           <div className="badge-info">
-            <span>{badge.badge_name}</span>
+            <span>{badge_name}</span>
             <span>
-              {badge.goal_count} / {badge.final_count}
+              {goal_count} / {final_count}
             </span>
           </div>
         </div>
