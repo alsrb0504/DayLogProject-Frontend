@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export function CheckLogin() {
+  const access_token = localStorage.getItem("access_token");
+
+  return access_token ? true : false;
+}
+
 export async function login(data) {
   try {
     const res = await axios.post("/api/members/login", data);
