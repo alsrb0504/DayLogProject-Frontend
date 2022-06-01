@@ -1,4 +1,5 @@
 import axios from "axios";
+import { SelectDiaryAsync } from "./diary";
 import {
   BOARD_CHANGE_HEART_FAIL,
   BOARD_CHANGE_HEART_SUCCESS,
@@ -155,8 +156,22 @@ export const RequestBoardDiaryAsync =
         },
       });
 
-      // 게시글 상세 페이지로 이동.
-      history.push(`/board/description?no=${selected.diary_no}`);
+      console.log(selected);
+
+      // 추후 auth에서 nickname이 아닌 id를 받아와서
+      // selected_writer_id 랑 비교하는 걸로 수정.
+      const my_id = getState().auth.nickname;
+
+      console.log(my_id);
+
+      if (my_id === selected.writer_nickname) {
+        dispatch(SelectDiaryAsync(selected.diary_no));
+        history.push("/diary/description");
+      } else {
+        // 게시글 상세 페이지로 이동.
+        history.push(`/board/description?no=${selected.diary_no}`);
+      }
+      //
     } catch (e) {
       console.error(e);
 
