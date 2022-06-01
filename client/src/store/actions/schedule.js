@@ -1,5 +1,5 @@
 import axios from "axios";
-import { calcMonthYear, isIncludeDate } from "../../services/calcDate";
+import { isIncludeDate, toDayYYMM } from "../../services/calcDate";
 import {
   SCHEDULE_ADD_FAIL,
   SCHEDULE_ADD_SUCCESS,
@@ -20,6 +20,32 @@ const ClassifyDates = (scheduleArr, date) => {
   return curScheduleArr;
 };
 
+// 스케줄 요청 처리 함수
+// (RequestCurrentSchedulesAsync)
+// (RequestSchedulesAsync) 에서 공통적으로 사용.
+const RequestSchedules = async (yy, mm, dispatch) => {
+  const res = await axios.get(`api/schedule/calendar?month=${mm}&year=${yy}`);
+
+  // true & false
+  const haveSchedules = res.data.haveSchedules;
+
+  // 1. 일정 정보가 존재하는 경우.
+  if (haveSchedules === true) {
+    let month_schedules = res.data.month_schedules;
+
+    dispatch({
+      type: SCHEDULE_REQUEST_SUCCESS,
+      payload: { month_schedules },
+    });
+  }
+  // 2. 일정 정보가 존재하지 않는 경우
+  else {
+    dispatch({
+      type: SCHEDULE_REQUEST_EMPTY,
+    });
+  }
+};
+
 // 캘린더 날짜 클릭 시,
 // cur_schedules를 바꾸는 action 함수.
 export const SetCurSchedules =
@@ -33,41 +59,29 @@ export const SetCurSchedules =
     });
   };
 
-// 여기서는 달 전체를 기준으로 가져오는 거니까
-// Home.jsx에서만 호출
+// 홈 화면 이동 시, 현재 달의 일정 정보를 요청하는 함수.
+export const RequestCurrentSchedulesAsync =
+  () => async (dispatch, getState) => {
+    const { yy, mm } = toDayYYMM();
+    const cur_yy = Number(yy);
+    const cur_mm = Number(mm);
+
+    try {
+      RequestSchedules(cur_yy, cur_mm, dispatch);
+    } catch (e) {
+      console.log(e);
+      console.log(e.message);
+      dispatch({
+        type: SCHEDULE_REQUEST_FAIL,
+      });
+    }
+  };
+
+// 달력 이동 시, 일정 정보를 받아오는 함수.
 // 전달된 선택된 날짜를 기준으로 cur_schdules 분류
 export const RequestSchedulesAsync = (yy, mm) => async (dispatch, getState) => {
   try {
-    // 테스트 시에는
-    
-      const res = await axios.get(
-        `api/schedule/calendar?month=${mm}&year=${yy}`
-      );
-
-      console.log(res.data);
-
-      // true & false
-      const haveSchedules = res.data.haveSchedules;
-      
-
-    // 로컬 테스트용
-    
-
-    // 1. 일정 정보가 존재하는 경우.
-    if (haveSchedules === true) {
-      let month_schedules = res.data.month_schedules;
-
-      dispatch({
-        type: SCHEDULE_REQUEST_SUCCESS,
-        payload: { month_schedules },
-      });
-    }
-    // 2. 일정 정보가 존재하지 않는 경우
-    else {
-      dispatch({
-        type: SCHEDULE_REQUEST_EMPTY,
-      });
-    }
+    RequestSchedules(yy, mm, dispatch);
   } catch (e) {
     console.log(e);
     console.log(e.message);
@@ -81,20 +95,16 @@ export const AddSchedulesAsync =
   (data, date, day) =>
   async (dispatch, getState, { history }) => {
     try {
-       const {title, content, start_date, end_date } = data;
-       const res = await axios.post("/api/schedule", {
-        title, content, start_date, end_date
-       });
-
-      // 확인용.
-      // console.log(res.data);
+      const { title, content, start_date, end_date } = data;
+      const res = await axios.post("/api/schedule", {
+        title,
+        content,
+        start_date,
+        end_date,
+      });
 
       // true & false
-       const haveSchedules = res.data.haveSchedules;
-
-
-      // 로컬 테스트용
-      
+      const haveSchedules = res.data.haveSchedules;
 
       // 1. 데이터가 있을 경우만 존재?
       if (haveSchedules === true) {
@@ -121,15 +131,10 @@ export const RemoveScheduleAsync = (idx) => async (dispatch, getState) => {
   const cur_date = getState().schedule.cur_date;
 
   try {
-     const res = await axios.delete(`/api/schedule?no=${idx}`);
+    const res = await axios.delete(`/api/schedule?no=${idx}`);
 
     // true & false
-     const haveSchedules = res.data.haveSchedules;
-
-     
-
-    // 로컬 테스트용
-    
+    const haveSchedules = res.data.haveSchedules;
 
     // 1. 데이터가 있을 경우만 존재?
     if (haveSchedules === true) {
