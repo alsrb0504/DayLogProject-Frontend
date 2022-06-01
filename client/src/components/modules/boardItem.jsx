@@ -15,9 +15,6 @@ const BoardItem = ({ diary }) => {
   return (
     <li className="board-item" onClick={selectDiary}>
       <div className="board-item-image-container">
-        {/* 이미지 존재 여부에 따라 img를 다르게 만들어야 함.
-          추후 이미지 어떻게 오는지 확인 후 결정.
-        */}
         <img
           className="board-item-image board-item-image-logo"
           src={image_url ? `${image_url}` : logo_image}

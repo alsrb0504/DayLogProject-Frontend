@@ -7,7 +7,7 @@
   .header-section {
     height: 100%;
     @include flexbox(flex-start, flex-end);
-    padding-bottom: 16px;
+    padding-bottom: 20px;
 
     .header-icon-box {
       width: 24px;
