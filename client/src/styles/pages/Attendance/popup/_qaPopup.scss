@@ -40,14 +40,19 @@
   &-main {
     @include column-flexbox;
 
+    // 선택지 결과 이미지
     .choice-image-container {
       width: 200px;
       height: 200px;
       margin-top: 20px;
       margin-bottom: 25px;
+    }
 
-      img {
-        width: 100%;
+    @for $index from 1 through 22 {
+      .choice_image-emoji-#{$index} {
+        background-image: url("../../../../assets/emoji/#{$index}.png");
+        background-position: center;
+        background-size: contain;
       }
     }
 
@@ -60,6 +65,7 @@
 }
 
 // 출석 캘린더 팝업
+// 이모지 캘린더
 .attendance-popup {
   &-title {
     margin-bottom: 0px;
@@ -124,7 +130,6 @@
 
     // 이벤트 관련
     .fc-daygrid-day-events {
-      // background-color: orange !important;
       min-height: 1.5em !important;
 
       .fc-daygrid-event-harness {
@@ -136,12 +141,17 @@
           background-color: transparent;
           border: none;
 
-          background-image: url("../../../../assets/img/dummy-emoji.svg");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
 
           transform: translateY(-5px);
+        }
+
+        @for $index from 1 through 22 {
+          .emoji-event-#{$index} {
+            background-image: url("../../../../assets/emoji/#{$index}.png");
+          }
         }
       }
     }

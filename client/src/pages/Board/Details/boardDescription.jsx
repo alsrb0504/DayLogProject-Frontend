@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
-import default_profile from "../../../assets/img/default-profile.svg";
-import dummy_image from "../../../assets/img/dummy-image.png";
+import default_profile from "../../../assets/img/default-profile.jpeg";
 import heart_icon from "../../../assets/icons/heart-pink-icon.svg";
 import star_icon from "../../../assets/icons/star-yellow-icon.svg";
 import heart_empty_icon from "../../../assets/icons/heart-empty-pink-icon.svg";

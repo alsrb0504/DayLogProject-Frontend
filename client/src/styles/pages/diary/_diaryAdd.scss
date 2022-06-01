@@ -5,7 +5,7 @@
 // 공통으로 쓰일 거
 .diary-form {
   &-textarea {
-    @include textareaSetting(312px);
+    @include textareaSetting(260px);
     margin-bottom: 16px;
   }
 

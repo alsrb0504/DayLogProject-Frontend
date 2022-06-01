@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
   GetCalendarMonthYear,
@@ -13,19 +13,18 @@ import {
   RequestSchedulesAsync,
   SetCurSchedules,
 } from "../../store/actions/schedule";
-import { changeTodoCalendar } from "../../store/actions/todo";
+import { RequestTodosAsync, SetSelectedTodos } from "../../store/actions/todo";
 
 const MainCalendarWrapper = ({
   setIsToggle,
   setSelectedDate,
-  selectedDate,
+  // selectedDate,
 }) => {
   const calendarRef = useRef();
   const dispatch = useDispatch();
 
   // 캘린더 이벤트 생성 함수.
   const events = MakeCalendarEvents();
-  // console.log("calendar :", events);
 
   // 캘린더 달 prev, next 클릭 이벤트
   const movePrevMonth = () => {
@@ -33,7 +32,7 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("prev", month, year);
 
-    dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+    dispatch(RequestTodosAsync(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
     dispatch(ChangeCycleAsync(calced_date.mm, calced_date.yy));
 
@@ -45,7 +44,7 @@ const MainCalendarWrapper = ({
     const { month, year } = GetCalendarMonthYear(calendarApi);
     const calced_date = calcMonthYear("next", month, year);
 
-    dispatch(changeTodoCalendar(calced_date.yy, calced_date.mm));
+    dispatch(RequestTodosAsync(calced_date.yy, calced_date.mm));
     dispatch(RequestSchedulesAsync(calced_date.yy, calced_date.mm));
     dispatch(ChangeCycleAsync(calced_date.mm, calced_date.yy));
 
@@ -53,7 +52,6 @@ const MainCalendarWrapper = ({
   };
 
   // 캘린더 날짜 클릭 이벤트
-  // 날짜 선택 시, 버튼창 뜨도록...
   const onClickDate = (info) => {
     setIsToggle(true);
 
@@ -66,6 +64,7 @@ const MainCalendarWrapper = ({
       day,
     });
 
+    dispatch(SetSelectedTodos(date));
     dispatch(SetCurSchedules(date, day));
   };
 

@@ -8,6 +8,7 @@ body {
   margin: 0 auto;
   background-color: $white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.18);
+  height: fit-content;
   min-height: 100vh;
 
   max-width: $lg-breakpoint;

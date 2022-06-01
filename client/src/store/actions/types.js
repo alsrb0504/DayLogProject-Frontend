@@ -1,3 +1,7 @@
+// Redux-persist 관련
+// 로그아웃 성공 및 회원 탈퇴 성공, 비밀번호 변경 성공 시 사용.
+export const CLEAR_STORE = "CLEAR_STORE";
+
 // 회원가입 관련
 // ID 중복 확인용
 export const SIGNUP_ID_START = "SIGNUP_ID_START";
@@ -16,21 +20,17 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 // 로그인 관련
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_ERROR = "LOGIN_ERROR";
-export const LOGOUT_USER = "LOGOUT_USER";
 
-export const RESIGN_SUCCESS = "RESIGN_SUCCESS";
+// 회원 탈퇴
 export const RESIGN_FAIL = "RESIGN_FAIL";
 
 export const PROFILE_UPDATE_SUCCESS = "PROFILE_UPDATE_SUCCESS";
 export const PROFILE_UPDATE_FAIL = "PROFILE_UPDATE_FAIL";
 export const PROFILE_UPDATE_IMAGE_FAIL = "PROFILE_UPDATE_IMAGE_FAIL";
 
-export const CHANGE_PASSWD_SUCCESS = "CHANGE_PASSWD_SUCCESS";
+// export const CHANGE_PASSWD_SUCCESS = "CHANGE_PASSWD_SUCCESS";
 export const CHANGE_PASSWD_FAIL = "CHANGE_PASSWD_FAIL";
 export const CHANGE_PASSWD_ERROR = "CHANGE_PASSWD_ERROR";
-
-// ?
-export const LOGIN_USER = "LOGIN_USER";
 
 // Todo
 export const ADD_TODO_SUCCESS = "ADD_TODO";
@@ -41,6 +41,7 @@ export const CHANGE_TODO_STATE_SUCCESS = "CHANGE_TODO_STATE_SUCCESS";
 export const CHANGE_TODO_STATE_FAIL = "CHANGE_TODO_STATE_FAIL";
 export const CHANGE_TODO_CALENDAR_SUCCESS = "CHANGE_TODO_CALENDAR_SUCCESS";
 export const CHANGE_TODO_CALENDAR_FAIL = "CHANGE_TODO_CALENDAR_FAIL";
+export const TODO_SET_SELECTED_TODOS = "TODO_SET_SELECTED_TODOS";
 
 // 생리 관련
 export const CYCLE_CHANGE_SUCCESS = "CYCLE_CHANGE_SUCCESS";

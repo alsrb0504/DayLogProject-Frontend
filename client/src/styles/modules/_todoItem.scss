@@ -23,11 +23,17 @@
     }
   }
 
+  // todo 내용
   &-content {
     flex: 1;
     font-size: $font-size-16;
     font-weight: 700;
     color: $white;
+  }
+
+  // 체크된 경우
+  .todo-checked {
+    text-decoration: line-through;
   }
 
   .delete-btn {

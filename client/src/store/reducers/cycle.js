@@ -41,6 +41,9 @@ const cycleReducer = (state = initState, action) => {
         cycle: action.payload.cycle,
         start_dates: action.payload.start_dates,
         due_dates: action.payload.due_dates,
+        // EMPTY 였으면 => NO
+        // EMPTY가 아니였으면 그대로 유지.
+        toggled: "ON" ? "ON" : "NO",
       };
     }
     case CYCLE_INFO_REQUEST_EMPTY: {

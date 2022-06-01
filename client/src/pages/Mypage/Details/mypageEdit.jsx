@@ -53,7 +53,7 @@ const MypageEdit = (props) => {
       edited_name: data.name,
       edited_email: data.email,
       edited_nickname: data.nickname,
-      edited_profile_image_url: data.file,
+      edited_profile_image_url: data.file[0],
     };
 
     dispatch(UpdateProfileAsync(user_info));

@@ -12,8 +12,9 @@ import qaReducer from "./reducers/qa";
 // Redux-persist
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { CLEAR_STORE } from "./actions/types";
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth: authReducer,
   signup: signupReducer,
   todo: todoReducer,
@@ -28,6 +29,16 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
+};
+
+const initState = {};
+
+const rootReducer = (state = initState, action) => {
+  if (action.type === CLEAR_STORE) {
+    return appReducer(initState, action);
+  } else {
+    return appReducer(state, action);
+  }
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

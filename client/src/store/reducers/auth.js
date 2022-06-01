@@ -1,15 +1,13 @@
 import {
   CHANGE_PASSWD_ERROR,
   CHANGE_PASSWD_FAIL,
-  CHANGE_PASSWD_SUCCESS,
+  // CHANGE_PASSWD_SUCCESS,
   LOGIN_ERROR,
   LOGIN_SUCCESS,
-  LOGOUT_USER,
   PROFILE_UPDATE_FAIL,
   PROFILE_UPDATE_IMAGE_FAIL,
   PROFILE_UPDATE_SUCCESS,
   RESIGN_FAIL,
-  RESIGN_SUCCESS,
 } from "../actions/types";
 
 const initState = {
@@ -18,12 +16,13 @@ const initState = {
   nickname: "",
   profile_image_url: null,
   email: "",
+  id: "",
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      const { name, nickname, profile_image_url, email } = action.payload;
+      const { name, nickname, profile_image_url, email, id } = action.payload;
       return {
         ...state,
         login_result: "SUCCESS",
@@ -31,30 +30,25 @@ const authReducer = (state = initState, action) => {
         nickname,
         profile_image_url,
         email,
+        id,
       };
     }
 
-    case LOGOUT_USER:
-    case CHANGE_PASSWD_SUCCESS:
-    case RESIGN_SUCCESS: {
-      return {
-        ...state,
-        login_result: "FAIL",
-        name: "",
-        nickname: "",
-        profile_image_url: null,
-        email: "",
-      };
-    }
+    // case CHANGE_PASSWD_SUCCESS:
+    // {
+    //   return {
+    //     ...state,
+    //     login_result: "FAIL",
+    //     name: "",
+    //     nickname: "",
+    //     profile_image_url: null,
+    //     email: "",
+    //   };
+    // }
 
     case LOGIN_ERROR: {
       return {
-        ...state,
-        login_result: "FAIL",
-        name: "",
-        nickname: "",
-        profile_image_url: null,
-        email: "",
+        state: initState,
       };
     }
 
