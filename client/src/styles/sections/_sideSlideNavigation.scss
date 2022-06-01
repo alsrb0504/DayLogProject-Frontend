@@ -7,6 +7,8 @@
   background-color: $blue-light;
   transition: all 200ms ease-in-out;
 
+  @include column-flexbox(flex-start, stretch);
+
   &-close {
     left: -180px;
   }
@@ -57,7 +59,37 @@
     }
   }
 
-  &-nav-container {
+  &-nav {
+    position: relative;
+    flex: 1;
+  }
+
+  &-nav-container-top {
     padding-top: 8px;
+  }
+
+  &-nav-container-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 16px;
+  }
+}
+
+.slide-bar-nav-item {
+  @include menuColorEffect($menu-hover);
+  @include flexbox(flex-start, center);
+  width: 100%;
+  height: 40px;
+  padding-left: 16px;
+  margin-bottom: 4px;
+  border-top: 1px solid $primary;
+  border-bottom: 1px solid $primary;
+  background-color: $white;
+  cursor: pointer;
+
+  &-name {
+    color: $primary;
+    font-size: $font-size-14;
+    font-weight: 600;
   }
 }

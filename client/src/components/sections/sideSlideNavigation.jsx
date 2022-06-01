@@ -26,12 +26,6 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
     closeToggle();
   };
 
-  const moveDiet = () => {
-    alert("구현 중");
-    return;
-    // navigate('/diet');
-  };
-
   const moveBadge = () => {
     navigate("/badge");
     closeToggle();
@@ -72,12 +66,13 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
         </div>
       </header>
       <nav className="slide-bar-nav">
-        <ul className="slide-bar-nav-container">
+        <ul className="slide-bar-nav-container-top">
           <NavMenuItem name="홈" onClick={moveHome} />
           <NavMenuItem name="일기" onClick={moveDiary} />
-          <NavMenuItem name="식단" onClick={moveDiet} />
           <NavMenuItem name="뱃지 컬렉션" onClick={moveBadge} />
           <NavMenuItem name="공유 일기 게시판" onClick={moveBoard} />
+        </ul>
+        <ul className="slide-bar-nav-container-bottom">
           <NavMenuItem name="마이 페이지 및 설정" onClick={moveMypage} />
           <NavMenuItem name="로그아웃" onClick={onLogout} />
         </ul>
