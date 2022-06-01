@@ -22,40 +22,6 @@ export const RequestBadgeListAsync = () => async (dispatch) => {
     const res = await axios.get("/api/badge");
     const { badges } = res.data;
 
-    // 테스트용
-    // const badges = [
-    //   {
-    //     badge_no: 1,
-    //     badge_name: "뱃지 이름 1",
-    //     badge_url: null,
-    //     challenge: false,
-    //     goal_count: 1,
-    //     final_count: 10,
-    //     is_complete: false,
-    //     description: "뱃지 이름 1의 뱃지 설명",
-    //   },
-    //   {
-    //     badge_no: 2,
-    //     badge_name: "뱃지 이름 2",
-    //     badge_url: null,
-    //     challenge: false,
-    //     goal_count: 2,
-    //     final_count: 10,
-    //     is_complete: true,
-    //     description: "뱃지 이름 2의 뱃지 설명",
-    //   },
-    //   {
-    //     badge_no: 3,
-    //     badge_name: "뱃지 이름 3",
-    //     badge_url: null,
-    //     challenge: false,
-    //     goal_count: 3,
-    //     final_count: 10,
-    //     is_complete: false,
-    //     description: "뱃지 이름 3의 뱃지 설명",
-    //   },
-    // ];
-
     const challenge_badge = FindChallengeBadge(badges);
 
     dispatch({
@@ -79,45 +45,9 @@ export const RequestBadgeListAsync = () => async (dispatch) => {
 
 // 뱃지 상태(도전) 변경 요청 함수
 export const ChangeBadgeStateAsync = (badge_no) => async (dispatch) => {
-  console.log(badge_no);
-
   try {
     const res = await axios.get(`/api/badge/challenge?badge_no=${badge_no}`);
     const { badges } = res.data;
-
-    // 테스트용
-    // const badges = [
-    //   {
-    //     badge_no: 1,
-    //     badge_name: "뱃지 이름 1",
-    //     badge_url: null,
-    //     challenge: false,
-    //     goal_count: 1,
-    //     final_count: 10,
-    //     is_complete: false,
-    //     description: "뱃지 이름 1의 뱃지 설명",
-    //   },
-    //   {
-    //     badge_no: 2,
-    //     badge_name: "뱃지 이름 2",
-    //     badge_url: null,
-    //     challenge: false,
-    //     goal_count: 2,
-    //     final_count: 10,
-    //     is_complete: true,
-    //     description: "뱃지 이름 2의 뱃지 설명",
-    //   },
-    //   {
-    //     badge_no: 3,
-    //     badge_name: "뱃지 이름 3",
-    //     badge_url: null,
-    //     challenge: true,
-    //     goal_count: 3,
-    //     final_count: 10,
-    //     is_complete: false,
-    //     description: "뱃지 이름 3의 뱃지 설명",
-    //   },
-    // ];
 
     const challenge_badge = FindChallengeBadge(badges);
 
@@ -144,8 +74,6 @@ export const ChangeBadgeStateAsync = (badge_no) => async (dispatch) => {
 export const selectBadge = (badge_no) => (dispatch, getState) => {
   const badgeArr = getState().badge.badges;
 
-  console.log(badgeArr);
-
   const select_badge = badgeArr.find((badge) => badge.badge_no === badge_no);
 
   dispatch({
@@ -161,23 +89,6 @@ export const RequestChallengeBadgeAsync = () => async (dispatch, getState) => {
   try {
     const res = await axios.get("/api/badge/check");
     const { is_present } = res.data;
-
-    // local 테스트
-    // const res = {
-    //   data: {
-    //     badge: {
-    //       badge_no: 3,
-    //       badge_name: "뱃지 이름 3",
-    //       badge_url: null,
-    //       challenge: true,
-    //       goal_count: 3,
-    //       final_count: 10,
-    //       is_complete: false,
-    //       description: "뱃지 이름 3의 뱃지 설명",
-    //     },
-    //   },
-    // };
-    // const is_present = true;
 
     // 1. 도전 중인 뱃지가 없는 경우
     if (!is_present) {
