@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import close_btn_icon from "../../assets/icons/close-btn.svg";
-import dummy_badge from "../../assets/img/dummy-badge.svg";
 import { ChangeBadgeStateAsync } from "../../store/actions/badge";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../modules/button";
+import close_btn_icon from "../../assets/icons/close-btn.svg";
 
 const BadgePopup = ({ closePopup }) => {
   const dispatch = useDispatch();
@@ -12,7 +11,6 @@ const BadgePopup = ({ closePopup }) => {
   const {
     badge_no,
     badge_name,
-    badge_url,
     challenge,
     description,
     final_count,
@@ -31,13 +29,17 @@ const BadgePopup = ({ closePopup }) => {
       </button>
       <h2 className="badge-popup-title">{badge_name}</h2>
       <section className="badge-popup-main">
-        <div className="badge-popup-image-container">
+        <div
+          className={`badge-popup-image badge-popup-image-${badge_no}
+          ${is_complete ? "" : "not-achieve"}
+        `}
+        >
           {/* 추후에 dummy_badge 삭제 */}
-          <img
+          {/* <img
             className={is_complete ? "" : "not-achieve"}
             src={badge_url ? badge_url : dummy_badge}
             alt="뱃지 이미지"
-          />
+          /> */}
         </div>
         {is_complete && (
           <p className="badge-popup-text">

@@ -2,15 +2,7 @@
   &-main {
     @include column-flexbox(flex-start, stretch);
     position: relative;
-
-    // background-color: $yellow;
-
-    // background-color: $blue-light;
-
     background-color: #ecf3f8;
-
-    // background-color: $secondary
-
     width: 100vw;
     transform: translateX(-8px);
   }
@@ -31,24 +23,40 @@
   &-item {
     @include column-flexbox;
     @include ScaleEffect;
+    min-height: 96px;
     cursor: pointer;
 
-    &-image-box {
-      margin-bottom: 4px;
-      img {
-        width: 100%;
+    &-image {
+      width: 80%;
+      height: 80%;
+      margin-bottom: 8px;
+    }
+
+    @for $idx from 1 through 12 {
+      .badge-image-#{$idx} {
+        background-image: url("../../../assets/badges/#{$idx}.png");
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
       }
     }
 
     &-title {
       font-size: $font-size-12;
-      // font-weight: 600;
+      font-weight: 700;
+
+      white-space: no-wrap;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
     }
 
     // 미획득 뱃지
     &-not-complete {
-      img {
-        opacity: 0.1;
+      .badge-item-image {
+        opacity: 0.3;
       }
 
       .badge-item-title {
@@ -57,9 +65,6 @@
     }
 
     // 도전중인 뱃지
-    // 뱃지 상단에 체크 표시
-    // 글씨 크기를 두껍게
-    // 음.. 추가로 좀 덜 투명하게 해 봄.
     &-challenge {
       img {
         background-color: pink;
@@ -90,21 +95,23 @@
       background-color: $blue-light;
       border-radius: 0 0 10px 10px;
 
-      .badge-popup-image-container {
+      .badge-popup-image {
         width: 180px;
         height: 180px;
         margin-bottom: 16px;
+      }
 
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          overflow: hidden;
+      @for $idx from 1 through 12 {
+        .badge-popup-image-#{$idx} {
+          background-image: url("../../../assets/badges/#{$idx}.png");
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
         }
+      }
 
-        .not-achieve {
-          opacity: 0.1;
-        }
+      .not-achieve {
+        opacity: 0.3;
       }
     }
 
@@ -133,7 +140,6 @@
     // 현재 달성률
     &-count {
       line-height: 1em;
-      // font-weight: 600;
     }
 
     &-bottom-btn {
