@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import logo_image from "../../assets/img/logo-bold.svg";
+import { lowDateToDotDate } from "../../services/calcDate";
 import { RequestBoardDiaryAsync } from "../../store/actions/board";
 
 const BoardItem = ({ diary }) => {
@@ -24,7 +25,7 @@ const BoardItem = ({ diary }) => {
 
       <div className="board-item-text">
         <h3>{content}</h3>
-        <span>{date}</span>
+        <span>{lowDateToDotDate(date)}</span>
       </div>
     </li>
   );
