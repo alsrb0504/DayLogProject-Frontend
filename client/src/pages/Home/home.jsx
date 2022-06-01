@@ -16,6 +16,7 @@ import { SetAuthHeader } from "../../services/auth";
 import { RequestChallengeBadgeAsync } from "../../store/actions/badge";
 import { RequestCurrentTodosAsync } from "../../store/actions/todo";
 import { RequestCurrentSchedulesAsync } from "../../store/actions/schedule";
+import { RequestCurrentCycleAsync } from "../../store/actions/cycle";
 
 const Home = (props) => {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const Home = (props) => {
 
     dispatch(RequestCurrentTodosAsync());
     dispatch(RequestCurrentSchedulesAsync());
+    dispatch(RequestCurrentCycleAsync());
 
     dispatch(RequestChallengeBadgeAsync());
   }, [dispatch]);
