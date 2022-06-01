@@ -18,7 +18,7 @@ import { RequestTodosAsync, SetSelectedTodos } from "../../store/actions/todo";
 const MainCalendarWrapper = ({
   setIsToggle,
   setSelectedDate,
-  selectedDate,
+  // selectedDate,
 }) => {
   const calendarRef = useRef();
   const dispatch = useDispatch();

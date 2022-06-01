@@ -22,8 +22,6 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   const [isToggle, setIsToggle] = useState(false);
-  // const [sidebarToggle, setSidebarToggle] = useState(true);
-
   const [isTodoPopup, setIsTodoPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
@@ -37,18 +35,6 @@ const Home = (props) => {
     dispatch(RequestChallengeBadgeAsync());
   }, [dispatch]);
 
-  // 로그아웃
-  const onLogout = async () => {
-    // auth action 에 구현해두었음.
-    // localStorage.clear();
-    // // 로그아웃 api 호출.
-    // // 성공 후에 cookie에 refresh 토큰이 없는 것을 확인해야 함.
-    // await axios.delete("/api/members/logout");
-    // navigate("/login");
-  };
-  // ======================================
-  //
-
   // todo 팝업 오픈 관련 및 화면 이동 함수들
   const openTodoPopup = () => {
     setIsTodoPopup(true);
@@ -59,14 +45,12 @@ const Home = (props) => {
   };
 
   const moveSchedule = () => {
-    // navigate("/schedule", { state: selectedDate });
     navigate(`/schedule?date=${selectedDate.date}&day=${selectedDate.day}`);
   };
 
   const moveMenstruation = () => {
     navigate("/menstruation");
   };
-  // ======================================
 
   return (
     <div>
