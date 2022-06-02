@@ -13,6 +13,7 @@
     .fc-daygrid-event-harness {
       position: relative;
       height: 100%;
+      margin-top: 0 !important;
 
       // 생리 관련 이벤트 공통 설정
       .menstruation-start-date,

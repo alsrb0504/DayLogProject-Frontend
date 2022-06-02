@@ -56,6 +56,8 @@ const MypageEdit = (props) => {
       edited_profile_image_url: data.file[0],
     };
 
+    console.log(user_info);
+
     dispatch(UpdateProfileAsync(user_info));
   };
 
