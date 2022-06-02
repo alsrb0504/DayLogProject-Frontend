@@ -36,7 +36,8 @@ export const AddDiaryAsync =
 
       // 2번째 요청 : 사진이 있는 경우.
       // res를 사진 추가된 버전의 response 응답으로 변경.
-      if (image !== undefined) {
+      // if (image !== undefined) {
+      if (image.length !== 0) {
         // 사진만 FormData에 담아 먼저 보냄.
         const formData = new FormData();
         formData.append("image", image);
@@ -252,7 +253,8 @@ export const EditDiaryAsync =
 
     try {
       // 1번째 요청 : 사진을 변경했다면 사진 변경 요청
-      if (edited_image_url) {
+      if (edited_image_url && edited_image_url.length !== 0) {
+        // if (edited_image_url) {
         const formData = new FormData();
         formData.append("image", edited_image_url);
 
@@ -296,7 +298,7 @@ export const EditDiaryAsync =
       };
 
       // 결과 확인용.
-      console.log("update_diary :", updated_diary);
+      // console.log("update_diary :", updated_diary);
 
       dispatch({
         type: DIARY_EDIT_SUCCESS,

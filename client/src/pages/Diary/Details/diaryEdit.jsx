@@ -60,7 +60,7 @@ const DiaryEdit = (props) => {
       edited_content: data.content,
       edited_shared: shareCheck,
       edited_emotion: newEmotion,
-      edited_image_url: data.file[0],
+      edited_image_url: data.file && data.file[0],
     };
 
     dispatch(EditDiaryAsync(edit_diary));
