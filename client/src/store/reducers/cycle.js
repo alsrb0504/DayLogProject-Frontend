@@ -18,6 +18,7 @@ const cycleReducer = (state = initState, action) => {
   switch (action.type) {
     case CYCLE_CHANGE_SUCCESS: {
       const { cycle, start_dates, due_dates } = action.payload;
+
       return {
         ...state,
         cycle,

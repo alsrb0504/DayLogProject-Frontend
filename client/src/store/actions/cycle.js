@@ -13,7 +13,6 @@ const ClassifyDates = (dateArr) => {
   const startArr = [];
   const dueArr = [];
 
-  console.log(dateArr);
   dateArr.forEach((date) => {
     if (date.type === "START_DATE") {
       startArr.push(date);
@@ -98,11 +97,12 @@ const RequestCycles = async (yy, mm, dispatch, history) => {
   // // 1. 서버에 주기 정보가 있는 경우
   if (res.data.message === "FILL") {
     const { startArr, dueArr } = ClassifyDates(res.data.cycle_data.dates);
+    const cycle = res.data.cycle_data.cycle;
 
     dispatch({
       type: CYCLE_INFO_REQUEST_SUCCESS,
       payload: {
-        cycle: res.data.cycle,
+        cycle,
         start_dates: startArr,
         due_dates: dueArr,
       },
