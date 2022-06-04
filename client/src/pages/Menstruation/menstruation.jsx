@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/modules/button";
 import InputContainer from "../../components/modules/inputContainer";
@@ -9,11 +9,18 @@ import { toDayInfo } from "../../services/calcDate";
 import { RequestCycleAsync } from "../../store/actions/cycle";
 
 const Menstruation = (props) => {
+  const cycle_info = useSelector((state) => state.cycle.cycle);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      start_date: toDayInfo().date,
+      cycle: cycle_info,
+    },
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
