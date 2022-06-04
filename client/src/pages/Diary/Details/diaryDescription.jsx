@@ -73,7 +73,9 @@ const DiaryDescription = (props) => {
         <>
           <OverLay onClick={closeSharePopup} />
           <ConfirmPopup
-            text={`${shared ? "공유해제하시겠습니까?" : "공유하시겠습니까?"}`}
+            text={`${
+              shared !== "false" ? "공유해제하시겠습니까?" : "공유하시겠습니까?"
+            }`}
             close={closeSharePopup}
             confirm={confirmShare}
           />
