@@ -92,11 +92,10 @@ const DiaryDescription = (props) => {
         <div className="diary-desc-main-text">
           <textarea
             className={`diary-form-textarea`}
-            placeholder="일기를 작성해주세요."
             defaultValue={content}
             disabled
           ></textarea>
-          {/* <span className="diary-date">{lowDateToDotDate(date)}</span> */}
+          <span className="diary-date">{lowDateToDotDate(date)}</span>
         </div>
       </main>
 
