@@ -7,6 +7,7 @@ import BadgeItem from "../../components/modules/badgeItem";
 import BadgePopup from "../../components/sections/badgePopup";
 import GlobalHeader from "../../components/modules/globalHeader";
 import trophy_image from "../../assets/img/trophy.svg";
+import DummyBadgeItem from "../../components/modules/dummyBadgeItem";
 
 const BadgeHome = (props) => {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ const BadgeHome = (props) => {
               openPopup={openPopup}
             />
           ))}
+          <DummyBadgeItem />
+          <DummyBadgeItem />
+          <DummyBadgeItem />
         </ul>
       </main>
     </div>

@@ -1,6 +1,8 @@
 .btns-section {
   @include column-flexbox;
 
+  z-index: 1000;
+
   position: fixed;
   bottom: 8px;
   right: 8px;
