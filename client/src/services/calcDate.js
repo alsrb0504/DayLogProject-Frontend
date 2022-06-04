@@ -34,6 +34,8 @@ export function isIncludeDate(date, start, end) {
 
 // 2022-10-23 => 2022.10.23
 export function lowDateToDotDate(date) {
+  console.log(date);
+
   const dateArr = date.split("-");
 
   return dateArr[0] + "." + dateArr[1] + "." + dateArr[2];

@@ -94,6 +94,11 @@ export const RemoveDiaryAsync =
         const { month_diary, current_diary } = res.data;
         const shared_diary = ClassifyDiary(month_diary);
 
+        // dispatch가 먼저 실행되면 Selected_diary가 없어져서
+        // diaryDescription에서 문제 발생.
+        // => 페이지 이동 먼저 실행해야 함.
+        history.push("/diary");
+
         dispatch({
           type: DIARY_REMOVE_SUCCESS_FILL,
           payload: {
@@ -104,7 +109,6 @@ export const RemoveDiaryAsync =
         });
       }
 
-      history.push("/diary");
       //
     } catch (e) {
       console.error(e);
