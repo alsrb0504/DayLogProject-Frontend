@@ -69,7 +69,7 @@ const DiaryAdd = (props) => {
   );
 
   return (
-    <div className="diary-add-page">
+    <div className="diary-form-page">
       {openPopup && (
         <>
           <OverLay onClick={closeEmotionPopup} />

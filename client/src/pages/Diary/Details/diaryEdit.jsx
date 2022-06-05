@@ -114,7 +114,7 @@ const DiaryEdit = (props) => {
   );
 
   return (
-    <div>
+    <div className="diary-form-page">
       {openPopup && (
         <>
           <OverLay onClick={closeEmotionPopup} />
@@ -178,19 +178,19 @@ const DiaryEdit = (props) => {
         </div>
       </form>
 
-      <section className="schedule-form-btn-section col-sm-2">
+      <section className="schedule-form-btn-section col-sm-4">
         <Button
           text="취소"
           type="button"
           color="btn-secondary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={moveBack}
         />
         <Button
           text="완료"
           type="submit"
           color="btn-primary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={openEmotionPopup}
         />
       </section>
