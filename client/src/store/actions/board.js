@@ -166,7 +166,7 @@ export const RequestBoardDiaryAsync =
 
       if (my_id === selected.writer_nickname) {
         dispatch(SelectDiaryAsync(selected.diary_no));
-        history.push("/diary/description");
+        history.push("/diary/description?prev=board");
       } else {
         // 게시글 상세 페이지로 이동.
         history.push(`/board/description?no=${selected.diary_no}`);

@@ -194,7 +194,7 @@ export const SelectDiaryAsync =
       const { member_id, date, content, emotion, shared, image_url, diary_no } =
         res.data;
 
-      console.log(res.data);
+      const prev = history.location.search.split("=")[1];
 
       const diary = {
         member_id,
@@ -216,7 +216,9 @@ export const SelectDiaryAsync =
         },
       });
 
-      history.push("/diary/description");
+      history.push(
+        `/diary/description?prev=${prev ? `${prev}/mypage` : "diary"}`
+      );
     } catch (e) {
       console.error(e);
       console.error(e.message);
