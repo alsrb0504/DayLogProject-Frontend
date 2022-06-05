@@ -17,8 +17,6 @@ import {
 } from "./types";
 
 const ClassifyDiary = (monthArr) => {
-  console.log(monthArr);
-
   const sharedArr = monthArr.filter((diary) => diary.shared === true);
   return sharedArr;
 };
