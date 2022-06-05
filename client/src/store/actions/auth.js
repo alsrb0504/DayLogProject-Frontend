@@ -126,9 +126,13 @@ export const UpdateProfileAsync =
 
     try {
       // 1번째 요청 : 사진 전송 api 먼저
-      if (edited_profile_image_url.length !== 0) {
+      if (edited_profile_image_url && edited_profile_image_url.length !== 0) {
+        console.log("test0");
+
         const formData = new FormData();
         formData.append("image", edited_profile_image_url);
+
+        console.log("test1");
 
         const img_res = await axios({
           method: "post",
@@ -138,6 +142,8 @@ export const UpdateProfileAsync =
             "Content-Type": "multipart/form-data",
           },
         });
+
+        console.log("test2");
 
         if (img_res.data.message !== true) {
           //
@@ -156,6 +162,8 @@ export const UpdateProfileAsync =
 
       const updated_user_info = res.data;
 
+      console.log("updated_profile", updated_user_info);
+
       dispatch({
         type: PROFILE_UPDATE_SUCCESS,
         payload: {
@@ -165,6 +173,9 @@ export const UpdateProfileAsync =
           profile_image_url: updated_user_info.profile_image_url,
         },
       });
+
+      history.push("/mypage");
+      //
     } catch (e) {
       alert("프로필 업데이트 실패");
       console.error("프로필 업데이트 실패");

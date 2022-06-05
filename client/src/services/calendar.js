@@ -21,7 +21,9 @@ export const MakeCalendarEvents = () => {
 
     // FullCalendar 표기를 위해 마지막 날짜만 하루 더 추가.
     // date_info = { is_same , date };
+    // const date_info = editScheduleEnd(start_date, end_date);
     const date_info = editScheduleEnd(start_date, end_date);
+
     const edited_end = date_info.date;
     const is_same = date_info.is_same;
 
@@ -40,6 +42,8 @@ export const MakeCalendarEvents = () => {
       display: "block",
     });
   });
+
+  console.log(events);
 
   // 토클 ON/OFF 기능
   // 일정도 추가 해야 함.
