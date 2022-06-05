@@ -65,12 +65,20 @@ export const AddDiaryAsync =
       });
 
       history.push("/diary");
+      //
     } catch (e) {
-      console.error(e);
+      console.error(e.response);
+      const { status, data } = e.response;
+
       dispatch({
         type: DIARY_ADD_FAIL,
       });
-      history.push("/diary");
+
+      if (status === 401) {
+        alert(data.message);
+      } else {
+        alert(`일기 추가 실패 : 서버 통신 문제`);
+      }
     }
   };
 
@@ -194,8 +202,6 @@ export const SelectDiaryAsync =
       const { member_id, date, content, emotion, shared, image_url, diary_no } =
         res.data;
 
-      // const prev = history.location.search.split("=")[1];
-
       const diary = {
         member_id,
         date,
@@ -253,8 +259,6 @@ export const SelectDiaryFromBoardAsync =
           selected_diary: diary,
         },
       });
-
-      console.log(pathArr);
 
       if (pathArr.length === 2) {
         // history.push(`/board`);
