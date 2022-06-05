@@ -28,7 +28,6 @@ export function SetAuthHeader() {
   const access_token = localStorage.getItem("access_token");
 
   if (!access_token) {
-    console.error("로컬 스토리지에 Access 토큰이 없음!");
     return;
   }
 

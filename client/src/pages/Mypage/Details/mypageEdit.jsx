@@ -37,7 +37,7 @@ const MypageEdit = (props) => {
   // 프로필 이미지 선택 함수.
   const selectProfile = () => {
     let image = profile_image_url ? profile_image_url : default_profile;
-    if (watchFile[0] !== undefined) {
+    if (watchFile && watchFile[0] !== undefined) {
       image = URL.createObjectURL(watchFile[0]);
     }
 
@@ -53,10 +53,8 @@ const MypageEdit = (props) => {
       edited_name: data.name,
       edited_email: data.email,
       edited_nickname: data.nickname,
-      edited_profile_image_url: data.file[0],
+      edited_profile_image_url: data.file && data.file[0],
     };
-
-    console.log(user_info);
 
     dispatch(UpdateProfileAsync(user_info));
   };
