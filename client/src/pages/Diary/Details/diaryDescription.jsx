@@ -26,7 +26,7 @@ const DiaryDescription = (props) => {
   const moveBack = () => {
     const prev = searchParams.get("prev");
 
-    navigate(`/${prev}`);
+    navigate(`/${prev ? prev : "diary"}`);
   };
 
   const moveEdit = () => {

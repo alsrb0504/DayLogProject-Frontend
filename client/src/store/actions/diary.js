@@ -194,7 +194,7 @@ export const SelectDiaryAsync =
       const { member_id, date, content, emotion, shared, image_url, diary_no } =
         res.data;
 
-      const prev = history.location.search.split("=")[1];
+      // const prev = history.location.search.split("=")[1];
 
       const diary = {
         member_id,
@@ -206,7 +206,45 @@ export const SelectDiaryAsync =
         diary_no,
       };
 
-      console.log(diary);
+      dispatch({
+        type: DIARY_SELECT_SUCCESS,
+
+        payload: {
+          selected_diary: diary,
+        },
+      });
+
+      history.push(`/diary/description`);
+      // history.push(`/diary/description?prev=${prev ? `${prev}` : "diary"}`);
+    } catch (e) {
+      console.error(e);
+      console.error(e.message);
+
+      dispatch({
+        type: DIARY_SELECT_FAIL,
+      });
+    }
+  };
+
+// 공유 게시판에서 자기 일기 선택 함수.
+// 각각 쿼리에 /board로 갈지, board/mypage로 갈지 선택.
+export const SelectDiaryFromBoardAsync =
+  (diary_idx, pathArr) =>
+  async (dispatch, getState, { history }) => {
+    try {
+      const res = await axios.get(`/api/diary?no=${diary_idx}`);
+      const { member_id, date, content, emotion, shared, image_url, diary_no } =
+        res.data;
+
+      const diary = {
+        member_id,
+        date,
+        content,
+        emotion,
+        shared,
+        image_url,
+        diary_no,
+      };
 
       dispatch({
         type: DIARY_SELECT_SUCCESS,
@@ -216,9 +254,16 @@ export const SelectDiaryAsync =
         },
       });
 
-      history.push(
-        `/diary/description?prev=${prev ? `${prev}/mypage` : "diary"}`
-      );
+      console.log(pathArr);
+
+      if (pathArr.length === 2) {
+        // history.push(`/board`);
+        history.push(`/diary/description?prev=board`);
+      } else if (pathArr.length === 3) {
+        history.push(`/diary/description?prev=board/myPage`);
+      } else {
+        throw new Error("게시판 자기 일기 선택 에러");
+      }
     } catch (e) {
       console.error(e);
       console.error(e.message);

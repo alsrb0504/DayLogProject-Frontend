@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SelectDiaryAsync } from "./diary";
+import { SelectDiaryAsync, SelectDiaryFromBoardAsync } from "./diary";
 import {
   BOARD_CHANGE_HEART_FAIL,
   BOARD_CHANGE_HEART_SUCCESS,
@@ -149,6 +149,10 @@ export const RequestBoardDiaryAsync =
       const res = await axios.get(`/api/board/diary?no=${selected_diary_no}`);
       const { selected } = res.data;
 
+      // pathArr = ['', 'board', 'myPage'];
+      // myPage는 게시판 현재 위치에 따라 option.
+      const pathArr = history.location.pathname.split("/");
+
       dispatch({
         type: BOARD_REQUEST_DIARY_SUCCESS,
         payload: {
@@ -156,20 +160,25 @@ export const RequestBoardDiaryAsync =
         },
       });
 
-      console.log(selected);
-
       // 추후 auth에서 nickname이 아닌 id를 받아와서
       // selected_writer_id 랑 비교하는 걸로 수정.
       const my_id = getState().auth.nickname;
 
-      console.log(my_id);
-
+      // 자기 게시글 선택 시,
+      // /board or /board/myPage로 갈지 분기
       if (my_id === selected.writer_nickname) {
-        dispatch(SelectDiaryAsync(selected.diary_no));
-        history.push("/diary/description?prev=board");
-      } else {
-        // 게시글 상세 페이지로 이동.
-        history.push(`/board/description?no=${selected.diary_no}`);
+        dispatch(SelectDiaryFromBoardAsync(selected.diary_no, pathArr));
+      }
+      // 타인의 게시글 선택 or 스크랩 선택
+      // pathArr.length === 3 이면 scrap 한 일기 조회.
+      else {
+        let scrap = false;
+        if (pathArr.length === 3) {
+          scrap = true;
+        }
+        history.push(
+          `/board/description?no=${selected.diary_no}&scrap=${scrap}`
+        );
       }
       //
     } catch (e) {
