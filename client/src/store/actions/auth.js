@@ -50,16 +50,21 @@ export const loginActionAync =
       // 로그인 실패
       // 통신은 성공, 비밀번호나 아이디가 틀린 경우
       else {
-        console.error(data);
+        console.log("로그인 실패 : ", data);
         dispatch({ type: LOGIN_ERROR, payload: data.success });
         alert(`로그인 실패 : ${data.message}`);
       }
     } catch (e) {
-      console.error(e);
-      console.error("로그인 실패");
+      const { status, data } = e.response;
+
       // 로그인 통신 실패
       dispatch({ type: LOGIN_ERROR, payload: false });
-      alert(`로그인 실패 : 서버 통신 문제`);
+
+      if (status === 401) {
+        alert(data);
+      } else {
+        alert(`로그인 실패 : 서버 통신 문제`);
+      }
     }
   };
 
