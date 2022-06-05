@@ -47,10 +47,12 @@ const DiaryEdit = (props) => {
   });
 
   const watchContent = watch("content");
-  const watchFile = watch("file", null);
+  // const watchFile = watch("file", null);
 
   // 주의: 서버에서 받아온 shared가 문자열임.
-  const [shareCheck, setShareCheck] = useState(Boolean(shared));
+  const [shareCheck, setShareCheck] = useState(
+    shared === "true" ? true : false
+  );
   const [openPopup, setOpenPopup] = useState(false);
   const [newEmotion, setNewEmotion] = useState(emotion);
 
@@ -71,9 +73,9 @@ const DiaryEdit = (props) => {
     // 기본 정보
     let image_btn_text = image_url ? "사진 변경" : "사진 추가";
 
-    if (watchFile && watchFile[0] !== undefined) {
-      // image_btn_text = URL.createObjectURL(watchFile[0]);
-    }
+    // if (watchFile && watchFile[0] !== undefined) {
+    //   // image_btn_text = URL.createObjectURL(watchFile[0]);
+    // }
 
     return image_btn_text;
   };
@@ -164,7 +166,6 @@ const DiaryEdit = (props) => {
         />
 
         <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">
-          {/* <span>사진 추가</span> */}
           <span>{viewImageInfo()}</span>
           <input type="file" accept="image/*" {...register("file")} />
         </button>
