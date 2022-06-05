@@ -1,9 +1,12 @@
-// .diary-add {
-// background-color: orange;
-// }
+.diary-add-page {
+  @include column-flexbox(space-between, stretch);
+  min-height: 100vh;
+}
 
 // 공통으로 쓰일 거
 .diary-form {
+  flex: 1;
+
   &-textarea {
     @include textareaSetting(260px);
     margin-bottom: 16px;

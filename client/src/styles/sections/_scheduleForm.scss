@@ -1,4 +1,11 @@
+.schedule-add {
+  @include column-flexbox(space-between, stretch);
+  min-height: 100vh;
+}
+
 .schedule-form {
+  flex: 1;
+
   &-date {
     @include flexbox(space-between);
 
@@ -21,8 +28,7 @@
   }
 
   &-btn-section {
-    @include absolute-bottom-right(16px);
-    @include flexbox;
+    @include flexbox(flex-end);
 
     button:first-child {
       margin-right: 16px;
