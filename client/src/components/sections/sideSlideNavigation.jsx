@@ -71,9 +71,9 @@ const SideSlideNavigation = ({ isOpen, closeToggle }) => {
           <NavMenuItem name="일기" onClick={moveDiary} />
           <NavMenuItem name="뱃지 컬렉션" onClick={moveBadge} />
           <NavMenuItem name="공유 일기 게시판" onClick={moveBoard} />
+          <NavMenuItem name="마이 페이지 및 설정" onClick={moveMypage} />
         </ul>
         <ul className="slide-bar-nav-container-bottom">
-          <NavMenuItem name="마이 페이지 및 설정" onClick={moveMypage} />
           <NavMenuItem name="로그아웃" onClick={onLogout} logout={true} />
         </ul>
       </nav>
