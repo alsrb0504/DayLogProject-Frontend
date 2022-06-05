@@ -175,20 +175,20 @@ export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
       dispatch({
         type: DIARY_REQUEST_EMPTY,
       });
+    } else {
+      // 해당 달, 데이터가 있는 경우.
+      const { month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
+
+      dispatch({
+        type: DIARY_REQUEST_SUCCESS,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+        },
+      });
     }
-
-    // 해당 달, 데이터가 있는 경우.
-    const { month_diary, current_diary } = res.data;
-    const shared_diary = ClassifyDiary(month_diary);
-
-    dispatch({
-      type: DIARY_REQUEST_SUCCESS,
-      payload: {
-        month_diary,
-        current_diary,
-        shared_diary,
-      },
-    });
   } catch (e) {
     console.error(e);
     console.error(e.message);
