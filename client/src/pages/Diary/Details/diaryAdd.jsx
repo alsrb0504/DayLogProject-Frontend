@@ -111,7 +111,7 @@ const DiaryAdd = (props) => {
                 className={`diary-form-textarea ${
                   errors.content ? "textarea-error" : ""
                 }`}
-                placeholder="일정 내용"
+                placeholder="일기를 작성하세요."
                 {...register("content", {
                   required: true,
                 })}
