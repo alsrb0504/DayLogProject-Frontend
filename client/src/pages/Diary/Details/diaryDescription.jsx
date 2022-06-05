@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../../components/modules/button";
 import InputHeader from "../../../components/modules/inputHeader";
 import dummy_image from "../../../assets/img/dummy-image.png";
@@ -15,6 +15,7 @@ import { lowDateToDotDate } from "../../../services/calcDate";
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const [removePopup, setRemovePopup] = useState(false);
   const [sharePopup, setSharePopup] = useState(false);
@@ -23,7 +24,9 @@ const DiaryDescription = (props) => {
   const { image_url, shared, content, date, emotion, diary_no } = diary;
 
   const moveBack = () => {
-    navigate("/diary");
+    const prev = searchParams.get("prev");
+
+    navigate(`/${prev ? prev : "diary"}`);
   };
 
   const moveEdit = () => {
@@ -73,7 +76,9 @@ const DiaryDescription = (props) => {
         <>
           <OverLay onClick={closeSharePopup} />
           <ConfirmPopup
-            text={`${shared ? "공유해제하시겠습니까?" : "공유하시겠습니까?"}`}
+            text={`${
+              shared !== "false" ? "공유해제하시겠습니까?" : "공유하시겠습니까?"
+            }`}
             close={closeSharePopup}
             confirm={confirmShare}
           />
@@ -95,7 +100,9 @@ const DiaryDescription = (props) => {
             defaultValue={content}
             disabled
           ></textarea>
-          <span className="diary-date">{lowDateToDotDate(date)}</span>
+          <span className="diary-date">
+            {date ? lowDateToDotDate(date) : ""}
+          </span>
         </div>
       </main>
 

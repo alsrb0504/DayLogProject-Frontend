@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import InputHeader from "../../../components/modules/inputHeader";
 import default_profile from "../../../assets/img/default-profile.jpeg";
 import heart_icon from "../../../assets/icons/heart-pink-icon.svg";
@@ -18,6 +18,7 @@ import { lowDateToDotDate } from "../../../services/calcDate";
 const BoardDescription = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const selected_diary = useSelector((state) => state.board.selected_diary);
   const {
@@ -52,7 +53,10 @@ const BoardDescription = (props) => {
   };
 
   const moveBack = () => {
-    navigate("/board");
+    const scrap = searchParams.get("scrap");
+    const is_scrap = scrap === "true" ? true : false;
+
+    navigate(`/board${is_scrap ? "/myPage" : ""}`);
   };
 
   const moveProfile = () => {

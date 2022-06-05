@@ -36,13 +36,13 @@ export const AddDiaryAsync =
 
       // 2번째 요청 : 사진이 있는 경우.
       // res를 사진 추가된 버전의 response 응답으로 변경.
-      // if (image !== undefined) {
-      if (image.length !== 0) {
+      if (image && image.length !== 0) {
         // 사진만 FormData에 담아 먼저 보냄.
+
         const formData = new FormData();
         formData.append("image", image);
 
-        res = await axios({
+        const res_2 = await axios({
           method: "post",
           url: "/api/diary/image",
           data: formData,
@@ -64,13 +64,26 @@ export const AddDiaryAsync =
         },
       });
 
+      console.log("test1");
       history.push("/diary");
+      console.log("test2");
+
+      //
     } catch (e) {
-      console.error(e);
+      console.error(e.response);
+      console.log(e);
+
+      const { status, data } = e.response;
+
       dispatch({
         type: DIARY_ADD_FAIL,
       });
-      history.push("/diary");
+
+      if (status === 401) {
+        alert(data.message);
+      } else {
+        alert(`일기 추가 실패 : 서버 통신 문제`);
+      }
     }
   };
 
@@ -94,6 +107,11 @@ export const RemoveDiaryAsync =
         const { month_diary, current_diary } = res.data;
         const shared_diary = ClassifyDiary(month_diary);
 
+        // dispatch가 먼저 실행되면 Selected_diary가 없어져서
+        // diaryDescription에서 문제 발생.
+        // => 페이지 이동 먼저 실행해야 함.
+        history.push("/diary");
+
         dispatch({
           type: DIARY_REMOVE_SUCCESS_FILL,
           payload: {
@@ -104,7 +122,6 @@ export const RemoveDiaryAsync =
         });
       }
 
-      history.push("/diary");
       //
     } catch (e) {
       console.error(e);
@@ -158,20 +175,20 @@ export const RequestDiaryAsync = (yy, mm) => async (dispatch, getState) => {
       dispatch({
         type: DIARY_REQUEST_EMPTY,
       });
+    } else {
+      // 해당 달, 데이터가 있는 경우.
+      const { month_diary, current_diary } = res.data;
+      const shared_diary = ClassifyDiary(month_diary);
+
+      dispatch({
+        type: DIARY_REQUEST_SUCCESS,
+        payload: {
+          month_diary,
+          current_diary,
+          shared_diary,
+        },
+      });
     }
-
-    // 해당 달, 데이터가 있는 경우.
-    const { month_diary, current_diary } = res.data;
-    const shared_diary = ClassifyDiary(month_diary);
-
-    dispatch({
-      type: DIARY_REQUEST_SUCCESS,
-      payload: {
-        month_diary,
-        current_diary,
-        shared_diary,
-      },
-    });
   } catch (e) {
     console.error(e);
     console.error(e.message);
@@ -190,7 +207,45 @@ export const SelectDiaryAsync =
       const { member_id, date, content, emotion, shared, image_url, diary_no } =
         res.data;
 
-      console.log(res.data);
+      const diary = {
+        member_id,
+        date,
+        content,
+        emotion,
+        shared,
+        image_url,
+        diary_no,
+      };
+
+      dispatch({
+        type: DIARY_SELECT_SUCCESS,
+
+        payload: {
+          selected_diary: diary,
+        },
+      });
+
+      history.push(`/diary/description`);
+      // history.push(`/diary/description?prev=${prev ? `${prev}` : "diary"}`);
+    } catch (e) {
+      console.error(e);
+      console.error(e.message);
+
+      dispatch({
+        type: DIARY_SELECT_FAIL,
+      });
+    }
+  };
+
+// 공유 게시판에서 자기 일기 선택 함수.
+// 각각 쿼리에 /board로 갈지, board/mypage로 갈지 선택.
+export const SelectDiaryFromBoardAsync =
+  (diary_idx, pathArr) =>
+  async (dispatch, getState, { history }) => {
+    try {
+      const res = await axios.get(`/api/diary?no=${diary_idx}`);
+      const { member_id, date, content, emotion, shared, image_url, diary_no } =
+        res.data;
 
       const diary = {
         member_id,
@@ -202,8 +257,6 @@ export const SelectDiaryAsync =
         diary_no,
       };
 
-      console.log(diary);
-
       dispatch({
         type: DIARY_SELECT_SUCCESS,
 
@@ -212,7 +265,14 @@ export const SelectDiaryAsync =
         },
       });
 
-      history.push("/diary/description");
+      if (pathArr.length === 2) {
+        // history.push(`/board`);
+        history.push(`/diary/description?prev=board`);
+      } else if (pathArr.length === 3) {
+        history.push(`/diary/description?prev=board/myPage`);
+      } else {
+        throw new Error("게시판 자기 일기 선택 에러");
+      }
     } catch (e) {
       console.error(e);
       console.error(e.message);

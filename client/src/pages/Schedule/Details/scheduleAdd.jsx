@@ -38,7 +38,7 @@ const ScheduleAdd = (props) => {
   };
 
   return (
-    <div>
+    <div className="schedule-add">
       <InputHeader text="일정 목록으로" onClick={moveBack} />
       <form className="schedule-form" onSubmit={handleSubmit(onSubmit)}>
         <InputContainer
@@ -127,19 +127,19 @@ const ScheduleAdd = (props) => {
         />
       </form>
 
-      <section className="schedule-form-btn-section col-sm-2">
+      <section className="schedule-form-btn-section">
         <Button
           text="취소"
           type="button"
           color="btn-secondary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={moveBack}
         />
         <Button
           text="완료"
           type="submit"
           color="btn-primary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={handleSubmit(onSubmit)}
         />
       </section>

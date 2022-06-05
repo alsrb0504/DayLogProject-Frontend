@@ -69,7 +69,7 @@ const DiaryAdd = (props) => {
   );
 
   return (
-    <div>
+    <div className="diary-add-page">
       {openPopup && (
         <>
           <OverLay onClick={closeEmotionPopup} />
@@ -111,7 +111,7 @@ const DiaryAdd = (props) => {
                 className={`diary-form-textarea ${
                   errors.content ? "textarea-error" : ""
                 }`}
-                placeholder="일정 내용"
+                placeholder="일기를 작성하세요."
                 {...register("content", {
                   required: true,
                 })}
@@ -136,19 +136,19 @@ const DiaryAdd = (props) => {
         </div>
       </form>
 
-      <section className="schedule-form-btn-section col-sm-2">
+      <section className="schedule-form-btn-section col-sm-4">
         <Button
           text="취소"
           type="button"
           color="btn-secondary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={moveBack}
         />
         <Button
           text="완료"
           type="submit"
           color="btn-primary"
-          size="btn-40 col-sm-4"
+          size="btn-40 col-sm-1"
           onClick={handleSubmit(onSubmit)}
         />
       </section>
