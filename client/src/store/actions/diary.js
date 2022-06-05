@@ -17,6 +17,8 @@ import {
 } from "./types";
 
 const ClassifyDiary = (monthArr) => {
+  console.log(monthArr);
+
   const sharedArr = monthArr.filter((diary) => diary.shared === true);
   return sharedArr;
 };
@@ -36,13 +38,13 @@ export const AddDiaryAsync =
 
       // 2번째 요청 : 사진이 있는 경우.
       // res를 사진 추가된 버전의 response 응답으로 변경.
-      // if (image !== undefined) {
-      if (image.length !== 0) {
+      if (image && image.length !== 0) {
         // 사진만 FormData에 담아 먼저 보냄.
+
         const formData = new FormData();
         formData.append("image", image);
 
-        res = await axios({
+        const res_2 = await axios({
           method: "post",
           url: "/api/diary/image",
           data: formData,
@@ -64,10 +66,15 @@ export const AddDiaryAsync =
         },
       });
 
+      console.log("test1");
       history.push("/diary");
+      console.log("test2");
+
       //
     } catch (e) {
       console.error(e.response);
+      console.log(e);
+
       const { status, data } = e.response;
 
       dispatch({
