@@ -160,13 +160,11 @@ export const RequestBoardDiaryAsync =
         },
       });
 
-      // 추후 auth에서 nickname이 아닌 id를 받아와서
-      // selected_writer_id 랑 비교하는 걸로 수정.
-      const my_id = getState().auth.nickname;
+      const my_id = getState().auth.id;
 
       // 자기 게시글 선택 시,
       // /board or /board/myPage로 갈지 분기
-      if (my_id === selected.writer_nickname) {
+      if (my_id === selected.writer_id) {
         dispatch(SelectDiaryFromBoardAsync(selected.diary_no, pathArr));
       }
       // 타인의 게시글 선택 or 스크랩 선택
