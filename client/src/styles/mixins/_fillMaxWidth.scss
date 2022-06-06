@@ -1,0 +1,27 @@
+@mixin fillMaxWidth() {
+  width: 100vw;
+  max-width: 1024px;
+  transform: translateX(-8px);
+
+  img {
+    width: 100%;
+    min-height: 244px;
+    max-height: 244px;
+  }
+
+  @media screen and (min-width: $md-breakpoint) {
+    transform: translateX(-24px);
+
+    img {
+      max-height: 400px;
+    }
+  }
+
+  @media screen and (min-width: $lg-breakpoint) {
+    transform: translateX(-40px);
+
+    img {
+      max-height: 450px;
+    }
+  }
+}
