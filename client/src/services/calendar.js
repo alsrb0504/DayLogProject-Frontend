@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { editScheduleEnd } from "./calcDate";
+import { changeMonthInt, editScheduleEnd } from "./calcDate";
 
 // 홈 화면 캘린더 이벤트 생성 함수.
 // 생리 기록, 일정 이벤트 생성.
@@ -22,25 +22,91 @@ export const MakeCalendarEvents = () => {
     // FullCalendar 표기를 위해 마지막 날짜만 하루 더 추가.
     // date_info = { is_same , date };
     // const date_info = editScheduleEnd(start_date, end_date);
-    const date_info = editScheduleEnd(start_date, end_date);
 
-    const edited_end = date_info.date;
-    const is_same = date_info.is_same;
+    const date1 = new Date(start_date);
+    const date2 = new Date(end_date);
 
-    events.push({
-      id: schedule_no,
-      title: `${title} 일정`,
-      start: start_date,
-      end: edited_end,
-      classNames: [
-        `${is_same && "schedule-event-same"} schedule-event schedule-event-${
-          schedule_no % 7
-        }`,
-      ],
-      backgroundColor: "tomato",
-      borderColor: "transparent",
-      display: "block",
-    });
+    console.log(start_date, end_date);
+    const diff_time = date1.getTime() - date2.getTime();
+    const diff_date = Math.abs(diff_time / (1000 * 3600 * 24));
+
+    console.log(diff_date);
+
+    // diff_date === 0 : 당일 일정
+    if (diff_date === 0) {
+      events.push({
+        title: `${title} 일정`,
+        date: start_date,
+        classNames: ["schedule-event schedule-event-today"],
+        backgroundColor: "tomato",
+        display: "block",
+      });
+    }
+    // diff_date !== 0 : 2일 이상의 일정.
+    else {
+      console.log("----");
+
+      for (let i = 0; i <= diff_date; i++) {
+        const make_date = new Date(start_date);
+
+        make_date.setDate(date1.getDate() + i);
+
+        console.log(i, make_date);
+
+        const dateArr = make_date.toString().split(" ");
+        const yy = dateArr[3];
+        const mm = changeMonthInt(dateArr[1]);
+        const dd = dateArr[2];
+
+        const calced_date = `${yy}-${mm}-${dd}`;
+
+        if (i === 0) {
+          events.push({
+            title: `${title} 일정`,
+            date: calced_date,
+            classNames: ["schedule-event schedule-event-start"],
+            backgroundColor: "tomato",
+            display: "block",
+          });
+        } else if (i === diff_date) {
+          events.push({
+            title: `${title} 일정`,
+            date: calced_date,
+            classNames: ["schedule-event schedule-event-end"],
+            backgroundColor: "tomato",
+            display: "block",
+          });
+        } else {
+          events.push({
+            title: `${title} 일정`,
+            date: calced_date,
+            classNames: ["schedule-event schedule-event-mid"],
+            backgroundColor: "tomato",
+            display: "block",
+          });
+        }
+      }
+    }
+
+    // const date_info = editScheduleEnd(start_date, end_date);
+
+    // const edited_end = date_info.date;
+    // const is_same = date_info.is_same;
+
+    // events.push({
+    //   id: schedule_no,
+    //   title: `${title} 일정`,
+    //   start: start_date,
+    //   end: edited_end,
+    //   classNames: [
+    //     `${is_same && "schedule-event-same"} schedule-event schedule-event-${
+    //       schedule_no % 7
+    //     }`,
+    //   ],
+    //   backgroundColor: "tomato",
+    //   borderColor: "transparent",
+    //   display: "block",
+    // });
   });
 
   console.log(events);
