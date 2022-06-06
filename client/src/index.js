@@ -40,19 +40,14 @@ const persistor = persistStore(store);
 // React.strictMode 나중에 지울 것
 // alert 2번씩 뜸.
 ReactDOM.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <HistoryRouter history={customHistory}>
-            <App />
-          </HistoryRouter>
-        </PersistGate>
-      </Provider>
-    </CookiesProvider>
-  </React.StrictMode>,
+  <CookiesProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <HistoryRouter history={customHistory}>
+          <App />
+        </HistoryRouter>
+      </PersistGate>
+    </Provider>
+  </CookiesProvider>,
   document.getElementById("root")
 );
-
-// 성능
-// reportWebVitals(console.log);
