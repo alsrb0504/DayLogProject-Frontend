@@ -35,15 +35,12 @@ export const changeTodoAsync = (idx) => async (dispatch, getState) => {
 // Todo popup에서 투두리스트 추가
 // 내용과 날짜 전달
 export const AddTodoAsync = (content, date) => async (dispatch, getState) => {
-  console.log(content, date);
-
   try {
     const res = await axios.post("api/todolist", {
       date,
       content: content.content,
     });
     const month_todos = res.data;
-    console.log(month_todos);
     dispatch({
       type: ADD_TODO_SUCCESS,
       payload: month_todos,
