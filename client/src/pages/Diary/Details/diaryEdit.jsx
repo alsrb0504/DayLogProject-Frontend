@@ -157,7 +157,11 @@ const DiaryEdit = (props) => {
 
         <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">
           <span>{viewImageInfo()}</span>
-          <input type="file" accept="image/*" {...register("file")} />
+          <input
+            type="file"
+            accept=".gif, .jpg, .jpeg, .png"
+            {...register("file")}
+          />
         </button>
 
         <div className="diary-form-shared col-sm-2">

@@ -78,7 +78,7 @@ const MypageEdit = (props) => {
               <input
                 className="profile-file-input"
                 type="file"
-                accept="image/*"
+                accept=".gif, .jpg, .jpeg, .png"
                 {...register("file")}
               />
             </div>
