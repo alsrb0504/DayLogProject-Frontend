@@ -90,7 +90,7 @@ const DiaryDescription = (props) => {
       <main className="diary-desc-main">
         {image_url !== null && (
           <div className="diary-desc-main-image">
-            <img src={image_url} alt="일기 사진" />
+            <img className="fill-image" src={image_url} alt="일기 사진" />
           </div>
         )}
 

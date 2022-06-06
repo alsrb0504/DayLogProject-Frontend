@@ -13,6 +13,7 @@ const TodoPopup = ({ date_info, closePopup }) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const todos = useSelector((state) => state.todo.selected_todos);
@@ -21,6 +22,7 @@ const TodoPopup = ({ date_info, closePopup }) => {
   const onSubmit = (content) => {
     dispatch(AddTodoAsync(content, set_date));
     dispatch(RequestChallengeBadgeAsync());
+    reset();
   };
 
   return (

@@ -81,7 +81,7 @@ const BoardDescription = (props) => {
         {/* 이미지 유무에 따라 */}
         {image_url && (
           <div className="board-desc-main-image">
-            <img src={image_url} alt="일기 이미지" />
+            <img className="fill-image" src={image_url} alt="일기 이미지" />
           </div>
         )}
 

@@ -3,7 +3,7 @@
   max-width: 1024px;
   transform: translateX(-8px);
 
-  img {
+  .fill-image {
     width: 100%;
     height: auto;
     min-height: 244px;
@@ -14,7 +14,7 @@
     transform: translateX(-24px);
 
     img {
-      max-height: 400px;
+      max-height: 500px;
     }
   }
 
@@ -22,7 +22,7 @@
     transform: translateX(-40px);
 
     img {
-      max-height: 450px;
+      max-height: 600px;
     }
   }
 }
