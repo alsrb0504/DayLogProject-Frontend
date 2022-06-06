@@ -5,7 +5,7 @@ const AddBoardItem = (props) => {
   const navigate = useNavigate();
 
   const moveNewDiary = () => {
-    navigate("/diary/add");
+    navigate("/diary/add?prev=board/mypage");
   };
 
   return (

@@ -20,7 +20,7 @@ const DiaryHome = (props) => {
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
   const moveAdd = () => {
-    navigate("/diary/add");
+    navigate("/diary/add?prev=diary");
   };
 
   // 처음 한 번만 일기 정보를 요청하도록 구현

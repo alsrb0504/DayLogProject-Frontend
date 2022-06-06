@@ -1,27 +1,21 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { EditDiaryAsync } from "../../../store/actions/diary";
 import Button from "../../../components/modules/button";
 import InputHeader from "../../../components/modules/inputHeader";
 import check_icon from "../../../assets/icons/check.svg";
 import OverLay from "../../../components/modules/overLay";
 import EmotionPopup from "../../../components/sections/emotionPopup";
-import { useState } from "react";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputTextarea from "../../../components/modules/inputTextarea";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { EditDiaryAsync } from "../../../store/actions/diary";
 
 const DiaryEdit = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // member_id(pin):"test"
-  // date(pin):"2022-05-25"
-  // content(pin):"dfdf"
-  // emotion(pin):5
-  // shared(pin):"false"
-  // image_url(pin):null
-  // diary_no(pin):236
+  let [searchParams] = useSearchParams();
+  const prev = searchParams.get("prev");
 
   const date = useSelector((state) => state.diary.selected_diary.date);
   const content = useSelector((state) => state.diary.selected_diary.content);
@@ -70,12 +64,7 @@ const DiaryEdit = (props) => {
 
   // 사진 추가 버튼 text 주는 함수.
   const viewImageInfo = () => {
-    // 기본 정보
     let image_btn_text = image_url ? "사진 변경" : "사진 추가";
-
-    // if (watchFile && watchFile[0] !== undefined) {
-    //   // image_btn_text = URL.createObjectURL(watchFile[0]);
-    // }
 
     return image_btn_text;
   };
@@ -85,7 +74,8 @@ const DiaryEdit = (props) => {
   };
 
   const moveBack = () => {
-    navigate("/diary/description");
+    const move_url = `/diary/description?prev=${prev ? prev : "diary"}`;
+    navigate(move_url);
   };
 
   const openEmotionPopup = () => {
@@ -156,7 +146,7 @@ const DiaryEdit = (props) => {
                 className={`diary-form-textarea ${
                   errors.content ? "textarea-error" : ""
                 }`}
-                placeholder="일정 내용"
+                placeholder="일기를 작성하세요."
                 {...register("content", {
                   required: true,
                 })}
