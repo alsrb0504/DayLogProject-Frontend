@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../../components/modules/button";
 import InputContainer from "../../components/modules/inputContainer";
 import InputHeader from "../../components/modules/inputHeader";
@@ -40,7 +39,10 @@ const SignUpId = (props) => {
                 placeholder="아이디를 입력하세요."
                 autoFocus={true}
                 {...register("id", {
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "아이디를 입력해주세요.",
+                  },
                   minLength: {
                     value: 4,
                     message: "아이디가 너무 짧습니다.",
