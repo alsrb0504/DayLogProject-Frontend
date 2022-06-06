@@ -8,16 +8,8 @@
     flex: 1;
 
     &-image {
+      @include fillMaxWidth;
       margin-bottom: 8px;
-      width: 100vw;
-      max-width: 1024px;
-      transform: translateX(-8px);
-
-      img {
-        width: 100%;
-        min-height: 200px;
-        max-height: 244px;
-      }
     }
 
     &-text {

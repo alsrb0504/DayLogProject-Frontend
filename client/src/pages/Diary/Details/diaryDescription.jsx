@@ -1,36 +1,36 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Button from "../../../components/modules/button";
-import InputHeader from "../../../components/modules/inputHeader";
-import dummy_image from "../../../assets/img/dummy-image.png";
-import ConfirmPopup from "../../../components/modules/confirmPopup";
-import OverLay from "../../../components/modules/overLay";
 import {
   RemoveDiaryAsync,
   ChangeShareDiaryAsync,
 } from "../../../store/actions/diary";
 import { lowDateToDotDate } from "../../../services/calcDate";
+import Button from "../../../components/modules/button";
+import OverLay from "../../../components/modules/overLay";
+import InputHeader from "../../../components/modules/inputHeader";
+import ConfirmPopup from "../../../components/modules/confirmPopup";
 
 const DiaryDescription = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
+  const prev = searchParams.get("prev");
 
   const [removePopup, setRemovePopup] = useState(false);
   const [sharePopup, setSharePopup] = useState(false);
 
   const diary = useSelector((state) => state.diary.selected_diary);
-  const { image_url, shared, content, date, emotion, diary_no } = diary;
+  const { image_url, shared, content, date, diary_no } = diary;
 
   const moveBack = () => {
-    const prev = searchParams.get("prev");
-
-    navigate(`/${prev ? prev : "diary"}`);
+    const move_url = `/${prev ? prev : "diary"}`;
+    navigate(move_url);
   };
 
   const moveEdit = () => {
-    navigate("/diary/edit");
+    const move_url = `/diary/edit?prev=${prev ? prev : "diary"}`;
+    navigate(move_url);
   };
 
   const confirmRemove = () => {

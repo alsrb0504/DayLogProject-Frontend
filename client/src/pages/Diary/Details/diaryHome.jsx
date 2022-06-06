@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import CircularButton from "../../../components/modules/circularButton";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { SetAuthHeader } from "../../../services/auth";
+import { RequestDiaryAsync } from "../../../store/actions/diary";
+import { useEffect, useState } from "react";
+import { toDayInfo, toDayYYMM } from "../../../services/calcDate";
 import GlobalHeader from "../../../components/modules/globalHeader";
-import DiaryCalendarWrapper from "../../../components/sections/diaryCalendarWrapper";
+import CircularButton from "../../../components/modules/circularButton";
 import add_btn_primary from "../../../assets/icons/plus-icon-primary.svg";
 import delete_icon_white from "../../../assets/icons/close-icon-white.svg";
-import { toDayInfo, toDayYYMM } from "../../../services/calcDate";
-import { useNavigate } from "react-router-dom";
 import CurrentDiarySection from "../../../components/sections/currentDiarySection";
-import { useDispatch } from "react-redux";
-import { RequestDiaryAsync } from "../../../store/actions/diary";
-import { SetAuthHeader } from "../../../services/auth";
+import DiaryCalendarWrapper from "../../../components/sections/diaryCalendarWrapper";
 
 const DiaryHome = (props) => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const DiaryHome = (props) => {
   const [selectedDate, setSelectedDate] = useState(toDayInfo());
 
   const moveAdd = () => {
-    navigate("/diary/add");
+    navigate("/diary/add?prev=diary");
   };
 
   // 처음 한 번만 일기 정보를 요청하도록 구현

@@ -1,109 +1,95 @@
 .main-calendar {
   @include calendarSetting();
 
-  @media screen and (max-width: $md-breakpoint) {
-    // 남은 달 날짜들 예외 설정.
-    .fc-day-other {
-      .menstruation-start-date,
-      .menstruation-due-date {
-        opacity: 0.3;
-      }
+  // 남은 달 날짜들 예외 설정.
+  .fc-day-other {
+    .menstruation-start-date,
+    .menstruation-due-date {
+      opacity: 0.3;
+    }
+  }
+
+  .fc-daygrid-day-top {
+    z-index: 10;
+  }
+
+  .fc-daygrid-day-events {
+    position: absolute !important;
+    width: 100%;
+    height: 100%;
+    // background-color: orange;
+    // opacity: 0.5;
+  }
+
+  .fc-daygrid-event-harness {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    // 생리 관련 이벤트 공통 설정
+    .menstruation-start-date,
+    .menstruation-due-date {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      margin: 0 !important;
+
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+
+      z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.
     }
 
-    .fc-daygrid-event-harness {
-      position: relative;
-      height: 100%;
-      margin-top: 0 !important;
-
-      // 생리 관련 이벤트 공통 설정
-      .menstruation-start-date,
-      .menstruation-due-date {
-        width: 31px;
-        height: 31px;
-        border-radius: 50%;
-
-        z-index: 3; // 나중에 popup 하고 다 z-index 수정해야 함.
-      }
-
-      // 생리 시작일
-      .menstruation-start-date {
-        border: none;
-        background-color: $yellow;
-      }
-
-      // 생리 예정일
-      .menstruation-due-date {
-        border: 3px dotted $yellow;
-        background-color: transparent;
-      }
-
-      .fc-event-title {
-        display: none;
-      }
+    // 생리 시작일
+    .menstruation-start-date {
+      border: none;
+      background-color: $yellow;
     }
 
-    // 일정 정보 표시
-    .fc-daygrid-event-harness-abs {
-      position: absolute !important;
-      top: 50% !important;
-      left: 0;
-      height: 36px;
-      transform: translateY(-50%);
-
-      .schedule-event {
-        border: 0;
-        background-color: beige !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: calc(100% + 12vw);
-        transform: translateX(-6.5vw);
-
-        // width: calc(100% + 44px);
-        // transform: translateX(-22px);
-        border-radius: 20px;
-        height: 100%;
-        opacity: 0.5;
-        z-index: 1;
-        background-color: $tertiary !important;
-        // background-color: $secondary !important;
-
-        .fc-event-main {
-          display: none;
-        }
-      }
-
-      .schedule-event-same {
-        // width: calc(50% + 6vw);
-        margin: 0 !important;
-        box-sizing: border-box;
-        width: 36px;
-        border-radius: 50%;
-        transform: translateX(-40%);
-      }
+    // 생리 예정일
+    .menstruation-due-date {
+      border: 3px dotted $yellow;
+      background-color: transparent;
     }
 
-    // .fc-daygrid-event {
-    //   top: 0;
-    // }
+    .fc-event-title {
+      display: none;
+    }
+  }
 
-    // .fc-daygrid-day-events {
-    //   // background-color: beige;
-    //   height: 32px;
-    // }
+  .schedule-event {
+    background-color: $tertiary !important;
+    top: 50%;
 
-    // // 예외 : 시작일과 종료일이 같은 일정
-    // .schedule-event-same {
-    //   position: absolute !important;
-    //   top: 50%;
-    //   left: 50%;
-    //   transform: translate(-53%, -50%);
-    //   width: 42px;
-    //   height: 42px;
-    //   border-radius: 50%;
-    //   background-color: $tertiary !important;
-    //   opacity: 0.5;
-    //   z-index: 1;
-    // }
+    transform: translateY(-50%);
+
+    height: 80%;
+    width: 100%;
+    margin: 0 !important;
+    border: none;
+    opacity: 0.5;
+    z-index: 1;
+  }
+
+  // 일정 : 당일 하루
+  .schedule-event-today {
+    border-radius: 20px;
+  }
+
+  .schedule-event-start {
+    border-radius: 20px 0 0 20px;
+  }
+
+  .schedule-event-mid {
+    border-radius: 0;
+  }
+
+  .schedule-event-end {
+    border-radius: 0 20px 20px 0;
   }
 }

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { AddDiaryAsync } from "../../../store/actions/diary";
 import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
@@ -8,8 +10,7 @@ import InputTextarea from "../../../components/modules/inputTextarea";
 import check_icon from "../../../assets/icons/check.svg";
 import OverLay from "../../../components/modules/overLay";
 import EmotionPopup from "../../../components/sections/emotionPopup";
-import { useDispatch } from "react-redux";
-import { AddDiaryAsync } from "../../../store/actions/diary";
+import { toDayInfo } from "../../../services/calcDate";
 
 const DiaryAdd = (props) => {
   const navigate = useNavigate();
@@ -18,7 +19,14 @@ const DiaryAdd = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      date: toDayInfo().date,
+      content: "",
+      image: null,
+      emotion: 0,
+    },
+  });
 
   const [shared, setShared] = useState(false);
   const [emotion, setEmotion] = useState(0);
@@ -38,8 +46,6 @@ const DiaryAdd = (props) => {
     const date = data.date;
     const content = data.content;
     const image = data.file[0];
-
-    // console.log(image);
 
     dispatch(AddDiaryAsync(date, content, image, emotion, shared));
   };
@@ -118,14 +124,15 @@ const DiaryAdd = (props) => {
               ></textarea>
             </>
           }
-          // 추후 일기 내용이 없다면
-          // 다른 인풋처럼 border 강조되는 효과 넣을 것.
-          // error={errors.date && "input-error"}
         />
 
         <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">
           <span>사진 추가</span>
-          <input type="file" accept="image/*" {...register("file")} />
+          <input
+            type="file"
+            accept=".gif, .jpg, .jpeg, .png"
+            {...register("file")}
+          />
         </button>
 
         <div className="diary-form-shared col-sm-2">

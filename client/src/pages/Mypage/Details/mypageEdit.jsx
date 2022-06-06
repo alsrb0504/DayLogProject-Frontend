@@ -78,7 +78,7 @@ const MypageEdit = (props) => {
               <input
                 className="profile-file-input"
                 type="file"
-                accept="image/*"
+                accept=".gif, .jpg, .jpeg, .png"
                 {...register("file")}
               />
             </div>
@@ -101,7 +101,7 @@ const MypageEdit = (props) => {
                 {...register("name", {
                   required: "이름 입력",
                   maxLength: {
-                    value: 10,
+                    value: 30,
                   },
                   minLength: {
                     value: 1,

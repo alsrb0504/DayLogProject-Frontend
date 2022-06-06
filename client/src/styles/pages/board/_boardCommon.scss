@@ -11,14 +11,10 @@ $image-height-sm: 95px;
 
   &-bg {
     @include absolute-top-left(0, 0);
-    width: 100vw;
-    max-width: 1024px;
+    @include fillMaxWidth;
     height: 90px;
     background-color: $tertiary;
     z-index: -1;
-
-    // 모바일에서의 그 아.. 배경을 위해.
-    transform: translateX(-8px);
   }
 
   &-title {

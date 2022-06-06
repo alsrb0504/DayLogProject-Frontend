@@ -87,7 +87,7 @@ export const ResignRequestAsync =
   () =>
   async (dispatch, getState, { history }) => {
     try {
-      const res = await axios.delete("/api/members");
+      await axios.delete("/api/members");
 
       dispatch({
         type: CLEAR_STORE,
@@ -127,12 +127,8 @@ export const UpdateProfileAsync =
     try {
       // 1번째 요청 : 사진 전송 api 먼저
       if (edited_profile_image_url && edited_profile_image_url.length !== 0) {
-        console.log("test0");
-
         const formData = new FormData();
         formData.append("image", edited_profile_image_url);
-
-        console.log("test1");
 
         const img_res = await axios({
           method: "post",
@@ -143,9 +139,7 @@ export const UpdateProfileAsync =
           },
         });
 
-        console.log("test2");
-
-        if (img_res.data.message !== true) {
+        if (img_res.data.result !== "SUCCESS") {
           //
           dispatch({
             type: PROFILE_UPDATE_IMAGE_FAIL,
@@ -161,8 +155,6 @@ export const UpdateProfileAsync =
       });
 
       const updated_user_info = res.data;
-
-      console.log("updated_profile", updated_user_info);
 
       dispatch({
         type: PROFILE_UPDATE_SUCCESS,

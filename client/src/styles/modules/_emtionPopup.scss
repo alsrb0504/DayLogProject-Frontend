@@ -1,5 +1,6 @@
 .emotion-popup {
   @include popup-setting;
+  max-width: 400px;
 
   &-title {
     margin-bottom: 16px;

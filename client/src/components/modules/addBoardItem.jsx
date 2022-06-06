@@ -5,13 +5,12 @@ const AddBoardItem = (props) => {
   const navigate = useNavigate();
 
   const moveNewDiary = () => {
-    navigate("/diary/add");
+    navigate("/diary/add?prev=board/mypage");
   };
 
   return (
     <li className="board-item board-add-item" onClick={moveNewDiary}>
       <div className="board-add-item-image">
-        {/* 이미지 존재 여부에 따라 img를 다르게 만들어야 함. */}
         <img
           className="board-item-image board-item-image-logo"
           src={diary_icon}

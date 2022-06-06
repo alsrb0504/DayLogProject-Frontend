@@ -1,17 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import ReactDOM from "react-dom/client";
 import App from "./App";
-import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
-import { composeWithDevTools } from "@redux-devtools/extension";
-import { CookiesProvider } from "react-cookie";
-import ReduxThunk from "redux-thunk";
-import logger from "redux-logger";
-
-import { createBrowserHistory } from "history";
 import axios from "axios";
+import ReduxThunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
+import { composeWithDevTools } from "@redux-devtools/extension";
+import { createBrowserHistory } from "history";
+import { applyMiddleware, createStore } from "redux";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
 
 // redux-persist
 import persistedReducer from "./store";
@@ -28,31 +25,22 @@ const customHistory = createBrowserHistory({
 const store = createStore(
   persistedReducer,
   composeWithDevTools(
-    applyMiddleware(
-      ReduxThunk.withExtraArgument({ history: customHistory }),
-      logger
-    )
+    applyMiddleware(ReduxThunk.withExtraArgument({ history: customHistory }))
   )
 );
 
 const persistor = persistStore(store);
 
-// React.strictMode 나중에 지울 것
-// alert 2번씩 뜸.
-ReactDOM.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <HistoryRouter history={customHistory}>
-            <App />
-          </HistoryRouter>
-        </PersistGate>
-      </Provider>
-    </CookiesProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const rootNode = document.getElementById("root");
 
-// 성능
-// reportWebVitals(console.log);
+ReactDOM.createRoot(rootNode).render(
+  <CookiesProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <HistoryRouter history={customHistory}>
+          <App />
+        </HistoryRouter>
+      </PersistGate>
+    </Provider>
+  </CookiesProvider>
+);

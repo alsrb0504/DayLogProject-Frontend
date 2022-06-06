@@ -9,117 +9,115 @@
     margin-bottom: 8px;
   }
 
-  // mobile
-  @media screen and (max-width: $md-breakpoint) {
-    // monthly header
-    .fc-header-toolbar {
-      height: 26px;
-      margin-bottom: 0 !important;
+  // monthly header
+  .fc-header-toolbar {
+    height: 26px;
+    margin-bottom: 0 !important;
 
-      .fc-toolbar-chunk {
-        @include flexbox;
-        height: 16px;
+    .fc-toolbar-chunk {
+      @include flexbox;
+      height: 16px;
 
-        .fc-toolbar-title {
-          font-size: $font-size-16;
-          font-weight: 600;
-        }
+      .fc-toolbar-title {
+        font-size: $font-size-16;
+        font-weight: 600;
+      }
 
-        .fc-customPrev-button,
-        .fc-customNext-button {
-          font-size: 24px;
-          font-weight: 700;
-          padding: 0;
-          border: none;
-          color: $black;
-          outline: none;
-          background-color: transparent;
-          transform: translateY(-5%);
-          box-shadow: none;
+      .fc-customPrev-button,
+      .fc-customNext-button {
+        font-size: 24px;
+        font-weight: 700;
+        padding: 0;
+        border: none;
+        color: $black;
+        outline: none;
+        background-color: transparent;
+        transform: translateY(-5%);
+        box-shadow: none;
 
-          &:active,
-          &:hover,
-          &:focus {
-            box-shadow: none !important;
-            background-color: transparent !important;
-          }
+        &:active,
+        &:hover,
+        &:focus {
+          box-shadow: none !important;
+          background-color: transparent !important;
         }
       }
     }
+  }
 
-    // calendar header
-    .fc-col-header {
-      margin-top: 6px;
-      &-cell {
-        font-weight: 600;
-      }
+  // calendar header
+  .fc-col-header {
+    margin-top: 6px;
+    &-cell {
+      font-weight: 600;
+    }
+  }
+
+  // border remove.
+  th {
+    border: none !important;
+  }
+  td {
+    border: none !important;
+  }
+
+  .fc-scrollgrid {
+    border: 2px solid $primary !important;
+    border-radius: 10px;
+  }
+
+  // calendar body
+
+  .fc-view-harness {
+    height: 312px !important;
+  }
+
+  .fc-daygrid-day-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .fc-daygrid-day-top {
+      font-weight: 600;
+      color: $text-gray-1;
     }
 
-    // border remove.
-    th {
-      border: none !important;
+    // 모바일에서는 일정 이벤트 노출 안 됨.
+    .fc-daygrid-day-events {
+      position: absolute !important;
     }
-    td {
-      border: none !important;
-    }
+  }
 
-    .fc-scrollgrid {
-      border: 2px solid $primary !important;
-      border-radius: 10px;
-    }
-
-    // calendar body
-
-    .fc-view-harness {
-      height: 312px !important;
-    }
-
-    .fc-daygrid-day-frame {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .fc-daygrid-day-top {
-        font-weight: 600;
-        color: $text-gray-1;
-      }
-
-      // 모바일에서는 일정 이벤트 노출 안 됨.
-      .fc-daygrid-day-events {
-        position: absolute !important;
-      }
-    }
-
-    .fc-day-sun {
+  .fc-day-sun {
+    color: red;
+    a {
       color: red;
-      a {
-        color: red;
-      }
     }
+  }
 
-    // 오늘 날짜 표시
-    .fc-day-today {
-      background-color: transparent !important;
+  // 오늘 날짜 표시
+  .fc-day-today {
+    background-color: transparent !important;
 
-      .fc-daygrid-day-top {
-        @include flexbox(center);
-        min-width: 29px;
-        // background-color: pink;
-        // border: 2.5px solid $primary;
-        // border-radius: 50%;
-        position: relative;
+    .fc-daygrid-day-top {
+      a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      a::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-        &::after {
-          content: "";
-          position: absolute;
-          top: -1px; // 한 칸의 height가 24px
-          left: 1.8px; // 한 칸의 width가 29px
-          width: 26px;
-          height: 26px;
-          border: 2.5px solid $primary;
-          border-radius: 50%;
-          margin: auto;
-        }
+        width: 29px;
+        height: 29px;
+        border: 2.5px solid $primary;
+        border-radius: 50%;
+        margin: auto;
       }
     }
   }
