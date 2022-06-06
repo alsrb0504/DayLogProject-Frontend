@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { SetAuthHeader } from "../../../services/auth";
+import { printDayInfo } from "../../../services/calcDate";
 import AddButton from "../../../components/modules/addButton";
 import InputHeader from "../../../components/modules/inputHeader";
 import ScheduleSection from "../../../components/sections/scheduleSection";
-import { SetAuthHeader } from "../../../services/auth";
-import { printDayInfo } from "../../../services/calcDate";
 
 const ScheduleHome = () => {
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const date = searchParams.get("date");
   const day = searchParams.get("day");
 
@@ -31,7 +31,7 @@ const ScheduleHome = () => {
   }, [navigate, date, day]);
 
   return (
-    <div>
+    <div className="schedule-home schedule">
       <InputHeader text="홈으로" onClick={moveHome} />
       <h2 className="schedule-date">{printDayInfo({ date, day })}</h2>
 

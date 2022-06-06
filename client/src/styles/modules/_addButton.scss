@@ -7,7 +7,7 @@
   }
 }
 
-.todo {
+.add-btn-todo {
   // 기본 40px 크기
   img {
     width: 36px;
@@ -15,8 +15,10 @@
   }
 }
 
-// 일정
-.schedule {
-  width: 60px;
-  height: 60px;
+// // 일정
+.add-btn-schedule {
+  img {
+    width: 48px;
+    height: 48px;
+  }
 }
