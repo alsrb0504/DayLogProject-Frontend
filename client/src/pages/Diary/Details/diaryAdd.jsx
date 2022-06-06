@@ -10,6 +10,7 @@ import InputTextarea from "../../../components/modules/inputTextarea";
 import check_icon from "../../../assets/icons/check.svg";
 import OverLay from "../../../components/modules/overLay";
 import EmotionPopup from "../../../components/sections/emotionPopup";
+import { toDayInfo } from "../../../services/calcDate";
 
 const DiaryAdd = (props) => {
   const navigate = useNavigate();
@@ -18,7 +19,14 @@ const DiaryAdd = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      date: toDayInfo().date,
+      content: "",
+      image: null,
+      emotion: 0,
+    },
+  });
 
   const [shared, setShared] = useState(false);
   const [emotion, setEmotion] = useState(0);
