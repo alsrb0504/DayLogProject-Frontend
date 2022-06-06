@@ -41,20 +41,9 @@
     margin-bottom: 12px;
 
     &-image {
+      @include fillMaxWidth;
       margin-bottom: 8px;
-      width: 100vw;
-      max-width: 1024px;
-      transform: translateX(-8px);
-
-      // 사진 길이가... 최소 길이만 설정.
       min-height: 180px;
-
-      img {
-        width: 100%;
-
-        // 모바일 화면 세로 길이 설정.
-        max-height: 244px;
-      }
     }
 
     &-text {
