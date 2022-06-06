@@ -37,8 +37,6 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-// React.strictMode 나중에 지울 것
-// alert 2번씩 뜸.
 ReactDOM.render(
   <CookiesProvider>
     <Provider store={store}>
