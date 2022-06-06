@@ -26,11 +26,11 @@ export const MakeCalendarEvents = () => {
     const date1 = new Date(start_date);
     const date2 = new Date(end_date);
 
-    console.log(start_date, end_date);
+    // console.log(start_date, end_date);
     const diff_time = date1.getTime() - date2.getTime();
     const diff_date = Math.abs(diff_time / (1000 * 3600 * 24));
 
-    console.log(diff_date);
+    // console.log(diff_date);
 
     // diff_date === 0 : 당일 일정
     if (diff_date === 0) {
@@ -44,14 +44,14 @@ export const MakeCalendarEvents = () => {
     }
     // diff_date !== 0 : 2일 이상의 일정.
     else {
-      console.log("----");
+      // console.log("----");
 
       for (let i = 0; i <= diff_date; i++) {
         const make_date = new Date(start_date);
 
         make_date.setDate(date1.getDate() + i);
 
-        console.log(i, make_date);
+        // console.log(i, make_date);
 
         const dateArr = make_date.toString().split(" ");
         const yy = dateArr[3];
@@ -109,7 +109,7 @@ export const MakeCalendarEvents = () => {
     // });
   });
 
-  console.log(events);
+  // console.log(events);
 
   // 토클 ON/OFF 기능
   // 일정도 추가 해야 함.
