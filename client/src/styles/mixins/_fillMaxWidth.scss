@@ -5,8 +5,9 @@
 
   img {
     width: 100%;
+    height: auto;
     min-height: 244px;
-    max-height: 244px;
+    max-height: 400px;
   }
 
   @media screen and (min-width: $md-breakpoint) {
