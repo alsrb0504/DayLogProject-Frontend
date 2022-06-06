@@ -1,6 +1,8 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { AddDiaryAsync } from "../../../store/actions/diary";
 import Button from "../../../components/modules/button";
 import InputContainer from "../../../components/modules/inputContainer";
 import InputHeader from "../../../components/modules/inputHeader";
@@ -8,8 +10,6 @@ import InputTextarea from "../../../components/modules/inputTextarea";
 import check_icon from "../../../assets/icons/check.svg";
 import OverLay from "../../../components/modules/overLay";
 import EmotionPopup from "../../../components/sections/emotionPopup";
-import { useDispatch } from "react-redux";
-import { AddDiaryAsync } from "../../../store/actions/diary";
 
 const DiaryAdd = (props) => {
   const navigate = useNavigate();
@@ -38,8 +38,6 @@ const DiaryAdd = (props) => {
     const date = data.date;
     const content = data.content;
     const image = data.file[0];
-
-    // console.log(image);
 
     dispatch(AddDiaryAsync(date, content, image, emotion, shared));
   };
@@ -118,9 +116,6 @@ const DiaryAdd = (props) => {
               ></textarea>
             </>
           }
-          // 추후 일기 내용이 없다면
-          // 다른 인풋처럼 border 강조되는 효과 넣을 것.
-          // error={errors.date && "input-error"}
         />
 
         <button className="diary-form-img-btn btn-secondary btn-40 col-sm-2">

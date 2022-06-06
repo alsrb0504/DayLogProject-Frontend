@@ -16,10 +16,17 @@ import {
   DIARY_SELECT_SUCCESS,
 } from "./types";
 
-const ClassifyDiary = (monthArr) => {
+function ClassifyDiary(monthArr) {
   const sharedArr = monthArr.filter((diary) => diary.shared === true);
   return sharedArr;
-};
+}
+
+// 일기 삭제, 편집, 작성 후, 쿼리를 통해 돌아갈 페이지를 정해주는 함수.
+function getQueryPrev(query) {
+  const prev = query.split("=")[1];
+
+  return prev;
+}
 
 export const AddDiaryAsync =
   (date, content, image, emotion, share) =>
@@ -64,13 +71,8 @@ export const AddDiaryAsync =
         },
       });
 
-      console.log("test1");
-      console.log("test2");
-
       const prev = getQueryPrev(history.location.search);
       history.push(`/${prev}`);
-      // history.push("/diary");
-
       //
     } catch (e) {
       console.error(e.response);
@@ -111,12 +113,6 @@ export const RemoveDiaryAsync =
         const { month_diary, current_diary } = res.data;
         const shared_diary = ClassifyDiary(month_diary);
 
-        // dispatch가 먼저 실행되면 Selected_diary가 없어져서
-        // diaryDescription에서 문제 발생.
-        // => 페이지 이동 먼저 실행해야 함.
-        // history.push("/diary");
-        history.push(`/${prev}`);
-
         dispatch({
           type: DIARY_REMOVE_SUCCESS_FILL,
           payload: {
@@ -125,6 +121,8 @@ export const RemoveDiaryAsync =
             shared_diary,
           },
         });
+
+        history.push(`/${prev}`);
       }
 
       //
@@ -271,7 +269,6 @@ export const SelectDiaryFromBoardAsync =
       });
 
       if (pathArr.length === 2) {
-        // history.push(`/board`);
         history.push(`/diary/description?prev=board`);
       } else if (pathArr.length === 3) {
         history.push(`/diary/description?prev=board/myPage`);
@@ -319,7 +316,6 @@ export const EditDiaryAsync =
     try {
       // 1번째 요청 : 사진을 변경했다면 사진 변경 요청
       if (edited_image_url && edited_image_url.length !== 0) {
-        // if (edited_image_url) {
         const formData = new FormData();
         formData.append("image", edited_image_url);
 
@@ -381,10 +377,3 @@ export const EditDiaryAsync =
       });
     }
   };
-
-// 일기 삭제, 편집, 작성 후, 쿼리를 통해 돌아갈 페이지를 정해주는 함수.
-function getQueryPrev(query) {
-  const prev = query.split("=")[1];
-
-  return prev;
-}
