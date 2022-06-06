@@ -1,16 +1,14 @@
 .schedule {
-  // 추후 todo popup, bade popup 등의 날짜 정보와 공통된 스타일 특성
-  // 으로 분리
   &-date {
+    // 날짜 아래 border 있는 경우
+    padding-bottom: 16px;
+    border-bottom: 1px solid $primary;
+
     color: $primary;
     font-size: $font-size-24;
     font-weight: 700;
     text-align: center;
     margin-bottom: 16px;
-
-    // 날짜 아래 border 있는 경우
-    padding-bottom: 16px;
-    border-bottom: 1px solid $primary;
   }
 
   &-main {
@@ -28,14 +26,15 @@
       scrollbar-width: none; /* Firefox */
 
       .schedule-item {
-        background-color: powderblue;
-
         @include flexbox(space-between);
         padding: 16px;
-        margin-bottom: 8px;
+        margin: 0 6px 8px 6px;
         border-radius: 10px;
+
         color: $white;
         font-weight: 700;
+
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
         &-text {
           width: 70%;
