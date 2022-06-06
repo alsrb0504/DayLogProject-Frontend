@@ -101,7 +101,7 @@ const MypageEdit = (props) => {
                 {...register("name", {
                   required: "이름 입력",
                   maxLength: {
-                    value: 10,
+                    value: 30,
                   },
                   minLength: {
                     value: 1,

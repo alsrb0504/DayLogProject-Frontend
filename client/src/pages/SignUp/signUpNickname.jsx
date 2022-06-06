@@ -44,7 +44,7 @@ const SignUpNickname = (props) => {
                     message: "닉네임이 너무 짧습니다.",
                   },
                   maxLength: {
-                    value: 20,
+                    value: 40,
                     message: "닉네임이 너무 깁니다.",
                   },
                 })}
